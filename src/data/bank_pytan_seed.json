@@ -44,10 +44,17 @@
       "id": "Z-03",
       "tom": "II Zakwas",
       "poziom": "JUNIOR",
-      "typ": "praktyczny",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Pokaż jak wykonać odświeżenie zakwasu w proporcji z karty.",
-      "wzorzec": "Demonstracja: zaczyn:mąka:woda wg proporcji, kontrola temperatury i konsystencji",
+      "pytanie": "Masz odświeżyć zakwas przed wypiekiem, ale nie masz pod ręką wagi i się spieszysz. Co robisz?",
+      "opcje": [
+        "Odmierzasz zaczyn:mąkę:wodę wg proporcji z karty i kontrolujesz temperaturę wody oraz konsystencję",
+        "Dosypujesz mąki „na oko”, aż konsystencja wygląda znajomo",
+        "Dodajesz tylko wody, żeby rozluźnić, bez dokarmiania mąką",
+        "Bierzesz wczorajszy zakwas bez odświeżania — i tak zadziała"
+      ],
+      "poprawne": [0],
+      "wzorzec": "Odświeżenie wg proporcji z karty (zaczyn:mąka:woda), kontrola temperatury wody i konsystencji — nie „na oko”",
       "zrodlo": "Tom II 2.2"
     },
     {
@@ -173,10 +180,17 @@
       "id": "W-05",
       "tom": "IV Wypiek",
       "poziom": "MENTOR",
-      "typ": "praktyczny",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Skalibruj krzywą wypieku dla nowego produktu na Bongard (bez rotacji) — opisz procedurę.",
-      "wzorzec": "Mapowanie stref gorących/zimnych poziomów, pomiar sondą per poziom, korekta czasu per poziom, dokumentacja w DZIENNIKU",
+      "pytanie": "Wprowadzasz nowy produkt na piec Bongard bez rotacji. Bochenki z górnych poziomów wychodzą ciemniejsze niż z dolnych. Jak ustawiasz krzywą wypieku?",
+      "opcje": [
+        "Ustawiasz jeden czas i temperaturę dla całego pieca wg górnego poziomu",
+        "Mapujesz strefy gorące/zimne per poziom, mierzysz sondą rdzeń per poziom, korygujesz czas i temperaturę per poziom i zapisujesz w DZIENNIKU",
+        "Rotujesz blachy w połowie wypieku, żeby wyrównać kolor",
+        "Podnosisz temperaturę całego pieca, aż dolne poziomy się doprą"
+      ],
+      "poprawne": [1],
+      "wzorzec": "Mapowanie stref gorących/zimnych poziomów, pomiar sondą per poziom, korekta czasu/temp. per poziom, dokumentacja w DZIENNIKU",
       "zrodlo": "Tom IV Troubleshooting"
     },
     {
@@ -200,10 +214,17 @@
       "id": "D-02",
       "tom": "V DDT",
       "poziom": "JUNIOR",
-      "typ": "praktyczny",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Zmierz temperaturę ciasta po miesieniu sondą Testo 106 i porównaj z docelową.",
-      "wzorzec": "Poprawny pomiar w rdzeniu masy, odczyt, porównanie z DDT z karty",
+      "pytanie": "Ciasto właśnie zeszło z miesienia i chcesz sprawdzić, czy trafiłeś w docelową DDT. Co robisz?",
+      "opcje": [
+        "Dotykasz ciasta ręką — jeśli nie parzy, jest w normie",
+        "Mierzysz temperaturę powietrza nad dzieżą",
+        "Wbijasz sondę Testo 106 w rdzeń masy ciasta, odczytujesz temperaturę i porównujesz z DDT z karty",
+        "Mierzysz przy krawędzi dzieży — tam najłatwiej dosięgnąć"
+      ],
+      "poprawne": [2],
+      "wzorzec": "Pomiar sondą Testo 106 w rdzeniu masy, odczyt, porównanie z docelową DDT z karty",
       "zrodlo": "Tom V"
     },
     {

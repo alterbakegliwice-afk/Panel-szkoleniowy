@@ -94,12 +94,15 @@ live — Panel nie ma jeszcze buildu.
 
 ## Warianty odpowiedzi — zrobione (decyzja Piotra: „unikaj otwartych pytań")
 
-Bank `bank_pytan_seed.json` (wersja `2026-07-09`) ma teraz warianty odpowiedzi:
+Bank `bank_pytan_seed.json` (wersja `2026-07-09`) — **wszystkie 16 pytań auto-ocenianych**
+(`jednokrotny` + `opcje[]`/`poprawne[]`), **zero pytań otwartych i zero praktycznych**:
 
-- **13 pytań auto-ocenianych** (`jednokrotny` + `opcje[]`/`poprawne[]`), w tym oba CCP
-  (W-01 → ≥92°C, W-02). Wszystkie `otwarty` zamienione na `jednokrotny` — **zero pytań otwartych**.
-- **Poprawne odpowiedzi wzięte 1:1 z pola `wzorzec`** (treść już zwalidowana). Dorobione są
-  wyłącznie warianty błędne (dystraktory); `wzorzec` został jako referencja/wyjaśnienie.
+- Pytania `otwarty` zamienione na `jednokrotny` z wariantami (w tym oba CCP: W-01 → ≥92°C, W-02).
+- Pytania `praktyczny` (Z-03, D-02, W-05) zamienione na **pytania sytuacyjne „co robisz?"** —
+  konkretna sytuacja przy stanowisku + warianty działania (np. Z-03: odświeżasz zakwas bez wagi,
+  w pośpiechu; W-05: górne poziomy Bongarda ciemniejsze niż dolne).
+- **Poprawne odpowiedzi wynikają 1:1 z pola `wzorzec`** (treść już zwalidowana). Dorobione są
+  wyłącznie sytuacja i warianty błędne (dystraktory); `wzorzec` został jako referencja/wyjaśnienie.
 - Pozycja poprawnej odpowiedzi jest różna w różnych pytaniach (nie zawsze pierwsza).
 
 Format (obsługiwany przez `src/components/Quiz.jsx`):
@@ -117,10 +120,10 @@ Format (obsługiwany przez `src/components/Quiz.jsx`):
    `bank_pytan_seed.json`. Po akceptacji warto wpisać `opcje`/`poprawne` do master-xlsx
    i re-eksportować, żeby xlsx pozostał źródłem prawdy.
 
-2. **Pytania praktyczne (Z-03, D-02, W-05).** Zostawiłem je jako demonstracje na stanowisku —
-   to nie są „pytania otwarte" (tekst), tylko sprawdzenie umiejętności przy piecu/mieszarce,
-   więc wymagają obserwacji Mentora. Jeśli chcesz je również zamienić na test wiedzy
-   (warianty) albo na checklistę „zrobił/nie zrobił" — powiedz, dorobię.
+2. **Pytania praktyczne — zamienione na sytuacyjne** (decyzja Piotra). Z-03, D-02 i W-05 to teraz
+   pytania „w tej sytuacji — co robisz?" z wariantami działania. Poprawne działanie wynika z `wzorzec`.
+   Jeśli chcesz zamiast tego (albo dodatkowo) sprawdzać realną demonstrację przy stanowisku,
+   typ `praktyczny` nadal jest obsługiwany przez aplikację i można go przywrócić dla wybranych pytań.
 
 3. **PIN.** Zaimplementowany jako opcjonalny 4-cyfrowy per profil, przechowywany lokalnie
    jawnie (piekarnia, nie bank). Jeśli potrzebna większa ochrona — do ustalenia.
