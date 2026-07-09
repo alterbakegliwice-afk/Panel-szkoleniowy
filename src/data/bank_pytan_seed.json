@@ -1,0 +1,170 @@
+{
+  "wersja": "2026-07-06",
+  "pilot": [
+    "II Zakwas",
+    "IV Wypiek",
+    "V DDT"
+  ],
+  "pytania": [
+    {
+      "id": "Z-01",
+      "tom": "II Zakwas",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaki jest docelowy zakres temperatury fermentacji zakwasu pszennego wg karty Alterbake?",
+      "wzorzec": "24–26°C (profil łagodny); realna karta Tradilevain: M=25°C ±1",
+      "zrodlo": "Tom II 8.1 / I-OBS-TRADILEVAIN-A"
+    },
+    {
+      "id": "Z-02",
+      "tom": "II Zakwas",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Co oznacza zapach acetonowy (zmywacza) w zakwasie?",
+      "wzorzec": "Głód — zbyt długi czas między karmieniami, przesunięcie metabolizmu ku związkom lotnym",
+      "zrodlo": "Tom II Troubleshooting"
+    },
+    {
+      "id": "Z-03",
+      "tom": "II Zakwas",
+      "poziom": "JUNIOR",
+      "typ": "praktyczny",
+      "ccp": false,
+      "pytanie": "Pokaż jak wykonać odświeżenie zakwasu w proporcji z karty.",
+      "wzorzec": "Demonstracja: zaczyn:mąka:woda wg proporcji, kontrola temperatury i konsystencji",
+      "zrodlo": "Tom II 2.2"
+    },
+    {
+      "id": "Z-04",
+      "tom": "II Zakwas",
+      "poziom": "SAMODZIELNY",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Zakwas pachnie octowo zamiast mlecznie. Podaj mechanizm i korektę.",
+      "wzorzec": "Heterofermentatywne LAB faworyzowane przez niższą temp./hydrację; korekta: podnieść temp. ku górnemu zakresowi i/lub hydrację",
+      "zrodlo": "Tom II Troubleshooting"
+    },
+    {
+      "id": "Z-05",
+      "tom": "II Zakwas",
+      "poziom": "SAMODZIELNY",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Dlaczego test flotacji jest zawodny jako jedyny wskaźnik gotowości?",
+      "wzorzec": "Mierzy uwięziony gaz, nie siłę fermentacji ani strukturę — może pływać przefermentowany lub tonąć gotowy przy gęstej hydracji",
+      "zrodlo": "Tom II Troubleshooting (MIT)"
+    },
+    {
+      "id": "Z-06",
+      "tom": "II Zakwas",
+      "poziom": "MENTOR",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Jak zdiagnozować spadek aktywności po konwersji na czystą matkę pszenną i jak poprowadzić zespół przez ten okres?",
+      "wzorzec": "Zmiana ekosystemu — pszenna rafinowana uboższa mikrobiologicznie; oczekiwać okresu adaptacji (dni), nie interpretować jako awarii; uczyć zespół cierpliwości i monitoringu pH",
+      "zrodlo": "Tom II Troubleshooting"
+    },
+    {
+      "id": "W-01",
+      "tom": "IV Wypiek",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Jaka jest minimalna temperatura rdzenia pieczywa (CCP1)?",
+      "wzorzec": "≥ 92°C, weryfikowana sondą Testo 106",
+      "zrodlo": "Tom IV / CCP1"
+    },
+    {
+      "id": "W-02",
+      "tom": "IV Wypiek",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Czy kolor skórki wystarcza do oceny gotowości pieczywa?",
+      "wzorzec": "NIE — zawsze potwierdzić sondą; ładny kolor przy zbyt wysokiej temp. startowej maskuje niedopieczony rdzeń",
+      "zrodlo": "Tom IV Troubleshooting"
+    },
+    {
+      "id": "W-03",
+      "tom": "IV Wypiek",
+      "poziom": "SAMODZIELNY",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Blada skórka mimo pełnego czasu wypieku — mechanizm i korekta.",
+      "wzorzec": "Za mało pary na starcie (skrobia nie skleikowała, opóźniony Maillard) lub za niska temp. startowa; korekta: więcej pary, kontrola kalibracji pieca",
+      "zrodlo": "Tom IV Troubleshooting"
+    },
+    {
+      "id": "W-04",
+      "tom": "IV Wypiek",
+      "poziom": "SAMODZIELNY",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Niekontrolowane pęknięcia skórki poza nacięciem — przyczyna i korekta.",
+      "wzorzec": "Za mało pary — skórka usztywnia się zanim gazy się rozprężą; korekta: więcej pary w pierwszych minutach, kontrola nacięcia",
+      "zrodlo": "Tom IV Troubleshooting"
+    },
+    {
+      "id": "W-05",
+      "tom": "IV Wypiek",
+      "poziom": "MENTOR",
+      "typ": "praktyczny",
+      "ccp": false,
+      "pytanie": "Skalibruj krzywą wypieku dla nowego produktu na Bongard (bez rotacji) — opisz procedurę.",
+      "wzorzec": "Mapowanie stref gorących/zimnych poziomów, pomiar sondą per poziom, korekta czasu per poziom, dokumentacja w DZIENNIKU",
+      "zrodlo": "Tom IV Troubleshooting"
+    },
+    {
+      "id": "D-01",
+      "tom": "V DDT",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Podaj wzór na temperaturę wody wg metody DDT.",
+      "wzorzec": "TEMP.WODY = (TEMP.CIASTA × N) − TEMP.MĄKI − TEMP.OTOCZENIA − WSP.TARCIA − [TEMP.ZAKWASU]",
+      "zrodlo": "Tom V"
+    },
+    {
+      "id": "D-02",
+      "tom": "V DDT",
+      "poziom": "JUNIOR",
+      "typ": "praktyczny",
+      "ccp": false,
+      "pytanie": "Zmierz temperaturę ciasta po miesieniu sondą Testo 106 i porównaj z docelową.",
+      "wzorzec": "Poprawny pomiar w rdzeniu masy, odczyt, porównanie z DDT z karty",
+      "zrodlo": "Tom V"
+    },
+    {
+      "id": "D-03",
+      "tom": "V DDT",
+      "poziom": "SAMODZIELNY",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Ciasto wychodzi cieplejsze niż wzór DDT. Mechanizm i korekta.",
+      "wzorzec": "WSP. tarcia zaniżony dla tej mieszarki/czasu; korekta: rekalibracja współczynnika tarcia po zmianie parametrów miesienia",
+      "zrodlo": "Tom V Troubleshooting"
+    },
+    {
+      "id": "D-04",
+      "tom": "V DDT",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego temperatura mąki musi być osobną zmienną wzoru, nie stałą?",
+      "wzorzec": "Mąka przechowywana blisko pieca latem / chłodniej zimą — realna zmienność wpływa na DDT",
+      "zrodlo": "Tom V Troubleshooting"
+    },
+    {
+      "id": "D-05",
+      "tom": "V DDT",
+      "poziom": "MENTOR",
+      "typ": "otwarty",
+      "ccp": false,
+      "pytanie": "Jak rekalibrować WSP. tarcia dla mieszarki po serwisie i nauczyć tego zespół?",
+      "wzorzec": "Seria pomiarów temp. ciasta przy znanych wejściach, wyliczenie realnego WSP, aktualizacja karty; szkolenie: pokazać że czas≠stały efekt cieplny",
+      "zrodlo": "Tom V"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+:root {
+  --tlo: #f6f1e7;
+  --karta: #fffdf8;
+  --tekst: #2b2320;
+  --cichy: #7c6f63;
+  --linia: #e6ddcd;
+  --akcent: #8a5a2b;      /* skórka chleba */
+  --akcent-ciemny: #6d4520;
+  --ok: #2e7d4f;
+  --ok-tlo: #e6f4ea;
+  --brak: #c0392b;
+  --brak-tlo: #fdecea;
+  --toku: #b07b1e;
+  --cien: 0 1px 3px rgba(60, 40, 20, .08), 0 4px 16px rgba(60, 40, 20, .05);
+  --r: 14px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--tlo);
+  color: var(--tekst);
+  line-height: 1.5;
+}
+h1 { font-size: 1.6rem; margin: 0 0 .3rem; }
+h2 { font-size: 1.2rem; margin: 0 0 .6rem; }
+h3 { font-size: 1.02rem; margin: 0; }
+
+.aplikacja { min-height: 100vh; display: flex; flex-direction: column; }
+.naglowek {
+  background: var(--karta);
+  border-bottom: 1px solid var(--linia);
+  padding: .7rem 1.2rem;
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 10;
+}
+.logo { display: flex; align-items: center; gap: .6rem; }
+.logo-znak { font-size: 1.8rem; }
+.logo-nazwa { font-weight: 800; letter-spacing: .02em; }
+.logo-pod { font-size: .72rem; color: var(--cichy); text-transform: uppercase; letter-spacing: .08em; }
+.tresc { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 1.4rem 1.2rem 3rem; }
+.stopka { text-align: center; color: var(--cichy); font-size: .74rem; padding: 1rem; border-top: 1px solid var(--linia); }
+
+.pasek { display: flex; align-items: center; gap: 1rem; flex: 1; flex-wrap: wrap; }
+.pasek-kto { display: flex; flex-direction: column; }
+.pasek-rola { font-size: .72rem; color: var(--cichy); }
+.zakladki { display: flex; gap: .3rem; flex: 1; flex-wrap: wrap; }
+.zakladka {
+  border: none; background: transparent; padding: .5rem .8rem; border-radius: 9px;
+  cursor: pointer; font-size: .9rem; color: var(--cichy); font-weight: 600;
+}
+.zakladka:hover { background: var(--tlo); }
+.zakladka.aktywna { background: var(--akcent); color: #fff; }
+
+.karta {
+  background: var(--karta); border: 1px solid var(--linia); border-radius: var(--r);
+  padding: 1.2rem; box-shadow: var(--cien); margin-bottom: 1.1rem;
+}
+
+button { font-family: inherit; }
+.glowny, .drugi, .odrzuc {
+  border-radius: 10px; padding: .6rem 1rem; font-size: .92rem; font-weight: 600; cursor: pointer;
+  border: 1px solid transparent;
+}
+.glowny { background: var(--akcent); color: #fff; }
+.glowny:hover { background: var(--akcent-ciemny); }
+.drugi { background: transparent; border-color: var(--linia); color: var(--tekst); }
+.drugi:hover { background: var(--tlo); }
+.odrzuc { background: var(--brak); color: #fff; }
+.odrzuc:hover { filter: brightness(.93); }
+.link-odrzuc { background: none; border: none; color: var(--brak); cursor: pointer; text-decoration: underline; }
+.szeroki { width: 100%; margin-top: .6rem; }
+.jako-przycisk { display: inline-flex; align-items: center; cursor: pointer; }
+.rzad { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-top: .4rem; }
+.cichy { color: var(--cichy); }
+.mini { font-size: .78rem; }
+.duzy { font-size: 1.15rem; font-weight: 700; }
+
+/* --- wybór profilu --- */
+.wybor { max-width: 460px; margin: 3rem auto; }
+.lista-profili { display: grid; gap: .6rem; margin: 1rem 0; }
+.profil-kafel {
+  display: flex; flex-direction: column; text-align: left; gap: .1rem;
+  padding: .9rem 1rem; border: 1px solid var(--linia); background: var(--tlo);
+  border-radius: 11px; cursor: pointer;
+}
+.profil-kafel:hover { border-color: var(--akcent); }
+.profil-imie { font-weight: 700; }
+.profil-rola { font-size: .8rem; color: var(--cichy); }
+.separator { text-align: center; color: var(--cichy); font-size: .8rem; margin: 1rem 0; position: relative; }
+.separator::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--linia); }
+.separator span { background: var(--karta); padding: 0 .7rem; position: relative; }
+.pin-input { font-size: 1.6rem; letter-spacing: .5rem; text-align: center; padding: .6rem; width: 100%;
+  border: 1px solid var(--linia); border-radius: 10px; margin: .6rem 0; }
+
+/* --- dashboard --- */
+.naglowek-prof { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.ogolny { text-align: center; }
+.ogolny-liczba { font-size: 2.6rem; font-weight: 800; color: var(--akcent); line-height: 1; }
+.ogolny-etykieta { font-size: .75rem; color: var(--cichy); text-transform: uppercase; letter-spacing: .06em; }
+
+.ccp { display: flex; gap: .9rem; align-items: flex-start; }
+.ccp-ikona { font-size: 1.6rem; line-height: 1.2; }
+.ccp-ok { border-left: 5px solid var(--ok); background: var(--ok-tlo); }
+.ccp-brak { border-left: 5px solid var(--brak); background: var(--brak-tlo); }
+.ccp-ok .ccp-ikona { color: var(--ok); }
+.ccp-brak .ccp-ikona { color: var(--brak); }
+.ccp-tytul { font-weight: 800; }
+.ccp-brak .ccp-tytul { color: var(--brak); }
+.ccp-opis { font-size: .86rem; color: var(--cichy); }
+
+.tomy-siatka { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.tom-gora { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+.tom-dol { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; color: var(--cichy); margin-top: .35rem; }
+
+.pasek { }
+.dashboard .pasek, .tom .pasek { height: 10px; background: var(--linia); border-radius: 6px; overflow: hidden; display: block; padding: 0; }
+.pasek-wypelnienie { height: 100%; background: linear-gradient(90deg, var(--toku), var(--akcent)); border-radius: 6px; transition: width .3s; }
+
+.plakietka { font-size: .72rem; font-weight: 700; padding: .18rem .5rem; border-radius: 20px; white-space: nowrap; }
+.plakietka.ok { background: var(--ok-tlo); color: var(--ok); }
+.plakietka.toku { background: #fbf0d8; color: var(--toku); }
+.ccp-tag { font-size: .7rem; font-weight: 800; padding: .16rem .5rem; border-radius: 6px; white-space: nowrap; }
+.ccp-tag.ok { background: var(--ok-tlo); color: var(--ok); }
+.ccp-tag.brak { background: var(--brak-tlo); color: var(--brak); }
+
+.nastepny .krok-ccp { color: var(--brak); font-weight: 700; }
+
+/* --- quiz --- */
+.quiz-pasek { display: flex; justify-content: space-between; align-items: center; color: var(--cichy); font-size: .85rem; margin-bottom: .8rem; flex-wrap: wrap; gap: .5rem; }
+.quiz-meta { display: flex; gap: .4rem; align-items: center; }
+.quiz-pytanie { margin: .3rem 0 1rem; }
+.opcje { display: grid; gap: .5rem; }
+.opcja { display: flex; gap: .6rem; align-items: flex-start; padding: .7rem .9rem; border: 1px solid var(--linia); border-radius: 10px; cursor: pointer; }
+.opcja:hover { border-color: var(--akcent); }
+.opcja.zazn { border-color: var(--akcent); background: #f7ede0; }
+.pole { width: 100%; padding: .6rem .8rem; border: 1px solid var(--linia); border-radius: 10px; font-family: inherit; font-size: .92rem; background: var(--karta); }
+.pole.waski { max-width: 90px; }
+.podsumowanie { text-align: center; max-width: 520px; margin: 2rem auto; }
+
+/* --- tabela zespołu / konfig --- */
+.tabela-otoczka { overflow-x: auto; }
+.tabela { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.tabela th, .tabela td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid var(--linia); vertical-align: middle; }
+.tabela th { font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; color: var(--cichy); }
+.komorka-tom { display: flex; align-items: center; gap: .4rem; }
+.mini-pasek { width: 54px; height: 7px; background: var(--linia); border-radius: 4px; overflow: hidden; }
+.mini-wypelnienie { height: 100%; background: var(--akcent); }
+.mini-proc { font-size: .78rem; color: var(--cichy); }
+
+/* --- ocena --- */
+.pozycja-ccp { border-left: 5px solid var(--brak); }
+.pozycja-gora { display: flex; justify-content: space-between; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.pozycja-pytanie { margin: .5rem 0; }
+.pozycja-blok { margin: .6rem 0; }
+.etykieta-blok { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--cichy); margin-bottom: .2rem; }
+.odp-pracownika { background: var(--tlo); border-radius: 8px; padding: .6rem .8rem; white-space: pre-wrap; }
+.wzorzec { background: var(--ok-tlo); border-radius: 8px; padding: .6rem .8rem; }
+
+/* --- konfig --- */
+.dodaj-prac { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .8rem; align-items: center; }
+.pole-etykieta { display: block; }
+.pole-etykieta input[type=range] { display: block; width: 100%; max-width: 320px; margin-top: .4rem; }
+.strefa-ryzyka { border-color: #e9cfc9; }
+.info-ok { color: var(--ok); font-weight: 600; }
+.blad { color: var(--brak); font-weight: 600; }
