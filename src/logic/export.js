@@ -13,12 +13,15 @@ export function eksportPanelM5(pytania, wyniki, pracownicy, konfig, wygenerowano
     wersja: WERSJA_FORMATU,
     wygenerowano,
     pracownicy: pracownicy.map((prac) => {
-      const prof = profilPracownika(pytania, wyniki, prac.id_prac, konfig)
+      const prof = profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
       return {
         id_prac: prac.id_prac,
         imie: prac.imie,
         rola: prac.rola,
+        poziom_docelowy: prac.poziom_docelowy || null,
         poziom_ogolny_proc: zaokr(prof.poziomOgolny),
+        cel_osiagniety: prof.cel.osiagniety, // czy pracownik spełnia kryteria swojego poziomu docelowego
+        ccp_ogolem: prof.ccpOk ? 'OK' : 'BRAK — BLOKADA',
         tomy: prof.tomy.map((t) => ({
           tom: t.tom,
           procent: zaokr(t.procent),

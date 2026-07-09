@@ -83,6 +83,30 @@ export function walidujBank(obiekt) {
     if (typeof p.ccp !== 'boolean') {
       return `Pytanie ${p.id}: pole „ccp" musi być true/false.`
     }
+    // Klucz odpowiedzi (opcje/poprawne) — walidacja twarda. Błędny klucz w pytaniu
+    // CCP oznaczałby ciche mis-ocenianie bezpieczeństwa żywności, więc nie przepuszczamy.
+    if (p.opcje !== undefined) {
+      if (!Array.isArray(p.opcje) || p.opcje.length < 2) {
+        return `Pytanie ${p.id}: „opcje" musi być listą min. 2 wariantów.`
+      }
+      if (p.opcje.some((o) => typeof o !== 'string' || !o.trim())) {
+        return `Pytanie ${p.id}: każda opcja musi być niepustym tekstem.`
+      }
+      if (!Array.isArray(p.poprawne) || p.poprawne.length === 0) {
+        return `Pytanie ${p.id}: „opcje" bez „poprawne" — brak klucza odpowiedzi.`
+      }
+      if (p.poprawne.some((i) => !Number.isInteger(i) || i < 0 || i >= p.opcje.length)) {
+        return `Pytanie ${p.id}: „poprawne" wskazuje nieistniejącą opcję.`
+      }
+      if (new Set(p.poprawne).size !== p.poprawne.length) {
+        return `Pytanie ${p.id}: „poprawne" ma zduplikowane indeksy.`
+      }
+      if (p.typ === 'jednokrotny' && p.poprawne.length !== 1) {
+        return `Pytanie ${p.id}: „jednokrotny" musi mieć dokładnie 1 poprawną odpowiedź.`
+      }
+    } else if ((p.typ === 'jednokrotny' || p.typ === 'wielokrotny') && p.poprawne !== undefined) {
+      return `Pytanie ${p.id}: „poprawne" bez „opcje".`
+    }
   }
   const idki = obiekt.pytania.map((p) => p.id)
   if (new Set(idki).size !== idki.length) return 'Zduplikowane ID pytań.'

@@ -70,10 +70,19 @@ data/bank_pytan_seed.json ← 16 pytań pilota (II Zakwas, IV Wypiek, V DDT)
 ## Role i ekrany
 
 - **Pracownik** — wybiera profil (opcjonalny PIN), widzi „Mój poziom" (paski % per tom,
-  ogólny %, status CCP osobno, następny krok), rozwiązuje quizy.
+  ogólny %, status CCP osobno, status względem **poziomu docelowego**, następny krok),
+  rozwiązuje quizy i dostaje **przegląd odpowiedzi** (co poszło źle + poprawna odpowiedź).
 - **Mentor** (rola pracownika = `Mentor`) — dodatkowo „Zespół" i kolejka „Do oceny".
 - **Właściciel (Piotr)** — wszystko + „Konfiguracja i eksport": progi, pracownicy,
   wgrywanie banku, eksport do Panelu M5.
+
+### Kryterium zależne od roli (poziom docelowy)
+
+Awans nie jest jeden dla wszystkich — zależy od `poziom_docelowy` pracownika (schema, Aneks XIV):
+**Pomocnik → JUNIOR** (rola stała), **Piekarz → SAMODZIELNY**, itd. Gotowość liczona jest
+względem poziomów *do celu* (JUNIOR wymaga tylko poziomu JUNIOR; SAMODZIELNY wymaga JUNIOR+SAMODZIELNY)
++ komplet CCP. Dzięki temu Pomocnik, który osiągnął swój cel, widnieje jako „✓ JUNIOR", a nie
+wiecznie „jeszcze nie Samodzielny". To jest sedno M5: obiektywne, delegowalne kryterium **per rola**.
 
 ## Typy pytań i ocena (spec §3)
 
@@ -87,8 +96,9 @@ Aplikacja **nie zamyka automatem** pytań otwartych/praktycznych — kolejkuje j
 ## Eksport do Panelu M5 (spec §7)
 
 Konfiguracja → „Eksportuj dla Panelu M5 (JSON)" → jeden plik ze strukturą z `schema.md`
-(profile + postęp per tom + `ccp_status` osobno). To eksport pliku, **nie** integracja
-live — Panel nie ma jeszcze buildu.
+(profile + postęp per tom + `ccp_status` osobno). Dodatkowo per pracownik: `poziom_docelowy`,
+`cel_osiagniety` (gotowość względem celu) i `ccp_ogolem` — Panel od razu wie, kto spełnia
+kryteria. To eksport pliku, **nie** integracja live — Panel nie ma jeszcze buildu.
 
 ---
 

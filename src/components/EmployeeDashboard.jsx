@@ -3,7 +3,7 @@ import { profilPracownika } from '../logic/progress.js'
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
 export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, konfig, onStartQuizu }) {
-  const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig)
+  const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
   const proc = (x) => Math.round(x * 100)
   const wKolejce = (tom) =>
     kolejka.filter(
@@ -24,6 +24,11 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
         <div className="ogolny">
           <div className="ogolny-liczba">{proc(prof.poziomOgolny)}%</div>
           <div className="ogolny-etykieta">ogólny poziom wiedzy</div>
+          {pracownik.poziom_docelowy && (
+            <div className={prof.cel.osiagniety ? 'cel-plakietka ok' : 'cel-plakietka toku'}>
+              {prof.cel.osiagniety ? '✓ ' : ''}{prof.cel.etykieta}
+            </div>
+          )}
         </div>
       </div>
 

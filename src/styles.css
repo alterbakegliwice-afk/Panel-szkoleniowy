@@ -127,6 +127,24 @@ button { font-family: inherit; }
 
 .nastepny .krok-ccp { color: var(--brak); font-weight: 700; }
 
+.cel-plakietka { margin-top: .5rem; font-size: .72rem; font-weight: 800; padding: .2rem .55rem; border-radius: 20px; display: inline-block; }
+.cel-plakietka.ok { background: var(--ok-tlo); color: var(--ok); }
+.cel-plakietka.toku { background: #fbf0d8; color: var(--toku); }
+
+/* --- przegląd odpowiedzi po quizie --- */
+.przeglad { text-align: left; margin: 1.2rem 0; }
+.przeglad h3 { margin-bottom: .6rem; }
+.przeglad-poz { border: 1px solid var(--linia); border-left-width: 5px; border-radius: 10px; padding: .6rem .8rem; margin-bottom: .5rem; }
+.przeglad-poz.ok { border-left-color: var(--ok); }
+.przeglad-poz.zle { border-left-color: var(--brak); }
+.przeglad-pyt { display: flex; gap: .5rem; align-items: baseline; font-weight: 600; }
+.przeglad-znak { font-weight: 800; }
+.przeglad-poz.ok .przeglad-znak { color: var(--ok); }
+.przeglad-poz.zle .przeglad-znak { color: var(--brak); }
+.przeglad-szczegol { margin-top: .5rem; font-size: .86rem; display: grid; gap: .25rem; }
+.przeglad-szczegol .twoja { color: var(--brak); }
+.przeglad-szczegol .poprawna { color: var(--ok); font-weight: 600; }
+
 /* --- quiz --- */
 .quiz-pasek { display: flex; justify-content: space-between; align-items: center; color: var(--cichy); font-size: .85rem; margin-bottom: .8rem; flex-wrap: wrap; gap: .5rem; }
 .quiz-meta { display: flex; gap: .4rem; align-items: center; }

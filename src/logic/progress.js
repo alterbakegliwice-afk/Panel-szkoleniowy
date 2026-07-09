@@ -14,11 +14,32 @@ export const DOMYSLNA_KONFIG = {
 
 export const POZIOMY = ['JUNIOR', 'SAMODZIELNY', 'MENTOR']
 
+// Ranga poziomów — do liczenia „celu" pracownika (poziom_docelowy).
+const RANGA = { JUNIOR: 1, SAMODZIELNY: 2, MENTOR: 3 }
+
+// Poziomy, które trzeba opanować, by osiągnąć poziom docelowy
+// (JUNIOR → tylko JUNIOR; SAMODZIELNY → JUNIOR+SAMODZIELNY; MENTOR → wszystkie).
+export function poziomyDoCelu(poziomDocelowy) {
+  const r = RANGA[poziomDocelowy] || RANGA.SAMODZIELNY
+  return POZIOMY.filter((p) => RANGA[p] <= r)
+}
+
 // WYNIK to log append-only: aktualny stan = ostatni wpis per (pracownik, pytanie).
-// Wpisy dopisywane chronologicznie, więc późniejszy w tablicy = nowszy.
+// „Ostatni" liczymy po znaczniku czasu `data` (stabilnie — przy równych czasach
+// wygrywa późniejszy w tablicy). Dzięki temu stan jest poprawny nawet gdy log
+// zostanie zaimportowany/scalony poza kolejnością chronologiczną.
 export function ostatnieWyniki(wyniki) {
+  const posortowane = wyniki
+    .map((w, i) => [w, i])
+    .sort((a, b) => {
+      const da = a[0].data || ''
+      const db = b[0].data || ''
+      if (da < db) return -1
+      if (da > db) return 1
+      return a[1] - b[1] // równy czas → kolejność dopisania
+    })
   const mapa = new Map()
-  for (const w of wyniki) mapa.set(w.id_prac + '|' + w.id_pytania, w)
+  for (const [w] of posortowane) mapa.set(w.id_prac + '|' + w.id_pytania, w)
   return mapa
 }
 
@@ -83,8 +104,19 @@ export function listaTomow(pytania) {
   return [...new Set(pytania.map((p) => p.tom))]
 }
 
-// Pełny profil postępu pracownika: per tom + poziom ogólny + status CCP osobno.
-export function profilPracownika(pytania, wyniki, idPrac, konfig) {
+// Czy w danym tomie pracownik osiągnął swój poziom docelowy:
+// wszystkie poziomy do celu opanowane ORAZ CCP tomu = OK.
+export function tomCelOsiagniety(tom, poziomDocelowy) {
+  const potrzebne = poziomyDoCelu(poziomDocelowy)
+  const poziomyOk = tom.poziomy
+    .filter((p) => potrzebne.includes(p.poziom))
+    .every((p) => p.opanowany)
+  return poziomyOk && tom.ccp.status === 'OK'
+}
+
+// Pełny profil postępu pracownika: per tom + poziom ogólny + status CCP osobno
+// + status względem poziomu DOCELOWEGO (Pomocnik→JUNIOR, Piekarz→SAMODZIELNY itd.).
+export function profilPracownika(pytania, wyniki, idPrac, konfig, poziomDocelowy = 'SAMODZIELNY') {
   const ostatnie = ostatnieWyniki(wyniki)
   const tomy = listaTomow(pytania).map((tom) =>
     postepTomu(pytania, ostatnie, idPrac, tom, konfig)
@@ -93,18 +125,25 @@ export function profilPracownika(pytania, wyniki, idPrac, konfig) {
     ? tomy.reduce((s, t) => s + t.procent, 0) / tomy.length
     : 0
   const ccpOk = tomy.every((t) => t.ccp.status === 'OK')
+  const celOsiagniety = ccpOk && tomy.every((t) => tomCelOsiagniety(t, poziomDocelowy))
   return {
     tomy,
     poziomOgolny,
     ccpOk,
+    cel: {
+      poziomDocelowy,
+      osiagniety: celOsiagniety,
+      etykieta: celOsiagniety ? `Cel osiągnięty: ${poziomDocelowy}` : `W drodze do: ${poziomDocelowy}`
+    },
     // status „Samodzielny" wymaga TAKŻE ccp=OK we wszystkich tomach (spec.md §4)
     samodzielnyMozliwy: ccpOk && tomy.every((t) => t.awansSamodzielny),
-    nastepnyKrok: nastepnyKrok(tomy, konfig)
+    nastepnyKrok: nastepnyKrok(tomy, konfig, poziomDocelowy)
   }
 }
 
-// „Następny krok" dla widoku Mój poziom — CCP zawsze ma pierwszeństwo.
-export function nastepnyKrok(tomy, konfig) {
+// „Następny krok" dla widoku Mój poziom — CCP zawsze ma pierwszeństwo,
+// potem wskazuje konkretny poziom do podciągnięcia w drodze do CELU pracownika.
+export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY') {
   const ccpBrak = tomy.filter((t) => t.ccp.status === 'BRAK')
   if (ccpBrak.length) {
     return {
@@ -115,22 +154,31 @@ export function nastepnyKrok(tomy, konfig) {
         '. Bez kompletu CCP nie ma statusu Samodzielny — niezależnie od procentu ogólnego.'
     }
   }
-  const wToku = [...tomy]
-    .filter((t) => t.status === 'W TOKU')
-    .sort((a, b) => a.procent - b.procent)
-  if (wToku.length) {
-    const t = wToku[0]
-    return {
-      typ: 'TOM',
-      tekst:
-        `Podciągnij tom „${t.tom}" — masz ${Math.round(t.procent * 100)}%, ` +
-        `próg opanowania to ${Math.round(konfig.PROG_ZALICZENIA * 100)}%.`
+  const prog = konfig.PROG_ZALICZENIA
+  // Szukaj wg rangi poziomu: najpierw braki na JUNIOR, potem SAMODZIELNY itd.
+  for (const poz of poziomyDoCelu(poziomDocelowy)) {
+    const tomBrak = tomy.find((t) => {
+      const pp = t.poziomy.find((x) => x.poziom === poz)
+      return pp && pp.pytan > 0 && !pp.opanowany
+    })
+    if (tomBrak) {
+      const pp = tomBrak.poziomy.find((x) => x.poziom === poz)
+      return {
+        typ: 'TOM',
+        tekst:
+          `Podciągnij poziom ${poz} w tomie „${tomBrak.tom}" — masz ` +
+          `${Math.round((pp.procent || 0) * 100)}%, próg to ${Math.round(prog * 100)}%.`
+      }
     }
+  }
+  if (poziomDocelowy === 'JUNIOR') {
+    return { typ: 'GOTOWE', tekst: 'Docelowy poziom JUNIOR osiągnięty we wszystkich tomach, CCP zaliczone. 👏' }
+  }
+  if (poziomDocelowy === 'MENTOR') {
+    return { typ: 'GOTOWE', tekst: 'Kryteria poziomu Mentor spełnione — nadanie statusu to decyzja Właściciela.' }
   }
   return {
     typ: 'GOTOWE',
-    tekst:
-      'Wszystkie tomy opanowane i CCP zaliczone — kryteria awansu spełnione. ' +
-      'Zatwierdzenie awansu to decyzja Mentora/Właściciela.'
+    tekst: 'Kryteria awansu na Samodzielnego spełnione — zatwierdzenie to decyzja Mentora/Właściciela.'
   }
 }

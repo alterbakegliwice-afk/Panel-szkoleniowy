@@ -7,6 +7,7 @@ import {
   profilPracownika
 } from './progress.js'
 import { eksportPanelM5 } from './export.js'
+import { walidujBank } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
 
 const KONFIG = DOMYSLNA_KONFIG
@@ -117,5 +118,71 @@ describe('eksport do Panelu M5 (schema.md)', () => {
     expect(wypiek.ccp_status).toBe('BRAK — BLOKADA') // nie uśrednione, jawnie osobno
     const zakwas = p.tomy.find((t) => t.tom === 'II Zakwas')
     expect(zakwas.ccp_status).toBe('OK')
+  })
+
+  it('eksport zawiera poziom docelowy i gotowość (cel_osiagniety)', () => {
+    const pracownicy = [{ id_prac: 'P-01', imie: 'Weronika', rola: 'Pomocnik', poziom_docelowy: 'JUNIOR' }]
+    const eksport = eksportPanelM5(PYTANIA, [], pracownicy, KONFIG, '2026-07-09T12:00:00Z')
+    const p = eksport.pracownicy[0]
+    expect(p.poziom_docelowy).toBe('JUNIOR')
+    expect(p.cel_osiagniety).toBe(false)
+    expect(p.ccp_ogolem).toBe('BRAK — BLOKADA') // CCP W-01/W-02 nietknięte
+  })
+})
+
+describe('poziom docelowy — kryterium zależne od roli (schema: Pomocnik→JUNIOR)', () => {
+  // JUNIOR non-ccp: II Zakwas Z-01/02/03, V DDT D-01/02; IV Wypiek JUNIOR = tylko CCP.
+  // Komplet JUNIOR + CCP (W-01/W-02), bez poziomu SAMODZIELNY.
+  const doJuniora = ['Z-01', 'Z-02', 'Z-03', 'D-01', 'D-02', 'W-01', 'W-02'].map((id) => wynik(id, true))
+
+  it('Pomocnik (cel JUNIOR) po opanowaniu JUNIOR+CCP ma cel osiągnięty', () => {
+    const prof = profilPracownika(PYTANIA, doJuniora, 'P-01', KONFIG, 'JUNIOR')
+    expect(prof.cel.osiagniety).toBe(true)
+    expect(prof.nastepnyKrok.typ).toBe('GOTOWE')
+  })
+
+  it('te same wyniki przy celu SAMODZIELNY = cel NIE osiągnięty (brak poziomu Samodzielny)', () => {
+    const prof = profilPracownika(PYTANIA, doJuniora, 'P-01', KONFIG, 'SAMODZIELNY')
+    expect(prof.cel.osiagniety).toBe(false)
+    expect(prof.nastepnyKrok.typ).toBe('TOM')
+  })
+
+  it('brak CCP blokuje cel JUNIOR mimo opanowanego poziomu JUNIOR', () => {
+    const bezCcp = ['Z-01', 'Z-02', 'Z-03', 'D-01', 'D-02'].map((id) => wynik(id, true))
+    const prof = profilPracownika(PYTANIA, bezCcp, 'P-01', KONFIG, 'JUNIOR')
+    expect(prof.cel.osiagniety).toBe(false)
+    expect(prof.nastepnyKrok.typ).toBe('CCP')
+  })
+})
+
+describe('log append-only — „ostatni" po znaczniku czasu, nie po kolejności w tablicy', () => {
+  it('nowszy timestamp wygrywa nawet gdy jest wcześniej w tablicy', () => {
+    const wyniki = [
+      { data: '2026-07-06T12:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: true },
+      { data: '2026-07-05T09:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: false }
+    ]
+    const ostatnie = ostatnieWyniki(wyniki)
+    expect(ostatnie.get('P-01|Z-01').zaliczyl).toBe(true) // 06-07 > 05-07
+  })
+})
+
+describe('walidujBank — twarda walidacja klucza odpowiedzi', () => {
+  const baza = (extra) => ({
+    pytania: [{ id: 'X-1', tom: 'T', poziom: 'JUNIOR', typ: 'jednokrotny', ccp: false, pytanie: '?', wzorzec: 'w', ...extra }]
+  })
+  it('realny seed pilota przechodzi walidację', () => {
+    expect(walidujBank(seed)).toBe(null)
+  })
+  it('odrzuca „poprawne" wskazujące nieistniejącą opcję', () => {
+    expect(walidujBank(baza({ opcje: ['a', 'b'], poprawne: [5] }))).toMatch(/nieistniejącą/)
+  })
+  it('odrzuca jednokrotny z dwiema poprawnymi', () => {
+    expect(walidujBank(baza({ opcje: ['a', 'b', 'c'], poprawne: [0, 1] }))).toMatch(/dokładnie 1/)
+  })
+  it('odrzuca opcje bez klucza „poprawne"', () => {
+    expect(walidujBank(baza({ opcje: ['a', 'b'] }))).toMatch(/poprawne/)
+  })
+  it('przyjmuje poprawny zestaw opcje+poprawne', () => {
+    expect(walidujBank(baza({ opcje: ['a', 'b'], poprawne: [1] }))).toBe(null)
   })
 })

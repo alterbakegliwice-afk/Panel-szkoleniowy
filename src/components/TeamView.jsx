@@ -6,7 +6,7 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
   const proc = (x) => Math.round(x * 100)
   const wiersze = pracownicy.map((prac) => ({
     prac,
-    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig)
+    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
   }))
 
   return (
@@ -29,7 +29,7 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
               {pytania.length > 0 &&
                 [...new Set(pytania.map((p) => p.tom))].map((tom) => <th key={tom}>{tom}</th>)}
               <th>CCP</th>
-              <th>Awans</th>
+              <th>Cel / gotowość</th>
             </tr>
           </thead>
           <tbody>
@@ -57,10 +57,10 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
                   </span>
                 </td>
                 <td>
-                  {prof.samodzielnyMozliwy ? (
-                    <span className="plakietka ok">Samodzielny ✓</span>
+                  {prof.cel.osiagniety ? (
+                    <span className="plakietka ok">{prof.cel.poziomDocelowy} ✓</span>
                   ) : (
-                    <span className="plakietka toku">jeszcze nie</span>
+                    <span className="plakietka toku">→ {prof.cel.poziomDocelowy}</span>
                   )}
                 </td>
               </tr>
@@ -70,8 +70,9 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
       </div>
 
       <p className="cichy mini">
-        „Awans ✓" znaczy: kryteria spełnione w systemie. Formalne nadanie statusu = akcja Właściciela.
-        Brak CCP blokuje awans niezależnie od procentu ogólnego.
+        Kolumna „Cel / gotowość" pokazuje status względem <em>poziomu docelowego</em> pracownika
+        (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
+        formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
     </div>
   )

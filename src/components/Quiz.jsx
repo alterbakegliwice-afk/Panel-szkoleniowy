@@ -48,7 +48,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
         oceniajacy: 'auto',
         notatka: ''
       })
-      setWyniki((w) => [...w, { p, stan: ok ? 'auto-ok' : 'auto-zle' }])
+      setWyniki((w) => [...w, { p, stan: ok ? 'auto-ok' : 'auto-zle', wybrane: zazn }])
     } else {
       onDoKolejki({
         id: idWpisu(pracownik.id_prac, p.id),
@@ -82,11 +82,30 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
             „Do oceny" — Mentor porówna z wzorcem i zatwierdzi.
           </p>
         )}
-        {zestaw.some((q) => q.ccp) && (
-          <p className="cichy mini">
-            Pytania CCP w tym tomie wymagają potwierdzenia (próg 100%). Status bezpieczeństwa
-            zaktualizuje się po ocenie Mentora.
-          </p>
+        {auto.length > 0 && (
+          <div className="przeglad">
+            <h3>Przegląd odpowiedzi</h3>
+            {auto.map(({ p, stan, wybrane }) => (
+              <div key={p.id} className={stan === 'auto-ok' ? 'przeglad-poz ok' : 'przeglad-poz zle'}>
+                <div className="przeglad-pyt">
+                  <span className="przeglad-znak">{stan === 'auto-ok' ? '✓' : '✗'}</span>
+                  {p.pytanie}
+                  {p.ccp && <span className="ccp-tag brak">CCP</span>}
+                </div>
+                {stan === 'auto-zle' && (
+                  <div className="przeglad-szczegol">
+                    <div className="twoja">
+                      Twoja odpowiedź: {(wybrane || []).map((i) => p.opcje[i]).join('; ') || '—'}
+                    </div>
+                    <div className="poprawna">
+                      Poprawnie: {(p.poprawne || []).map((i) => p.opcje[i]).join('; ')}
+                    </div>
+                    <div className="cichy mini">Źródło: {p.zrodlo}</div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         )}
         <button className="glowny" onClick={onKoniec}>Wróć do „Mój poziom"</button>
       </div>
