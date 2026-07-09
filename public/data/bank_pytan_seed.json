@@ -1,5 +1,5 @@
 {
-  "wersja": "2026-07-06",
+  "wersja": "2026-07-09",
   "pilot": [
     "II Zakwas",
     "IV Wypiek",
@@ -13,6 +13,13 @@
       "typ": "jednokrotny",
       "ccp": false,
       "pytanie": "Jaki jest docelowy zakres temperatury fermentacji zakwasu pszennego wg karty Alterbake?",
+      "opcje": [
+        "18–20°C",
+        "24–26°C",
+        "28–30°C",
+        "34–36°C"
+      ],
+      "poprawne": [1],
       "wzorzec": "24–26°C (profil łagodny); realna karta Tradilevain: M=25°C ±1",
       "zrodlo": "Tom II 8.1 / I-OBS-TRADILEVAIN-A"
     },
@@ -23,6 +30,13 @@
       "typ": "jednokrotny",
       "ccp": false,
       "pytanie": "Co oznacza zapach acetonowy (zmywacza) w zakwasie?",
+      "opcje": [
+        "Nadmiar karmienia — zakwas dokarmiany za często",
+        "Zbyt niska temperatura fermentacji",
+        "Głód — zbyt długi czas między karmieniami, przesunięcie metabolizmu ku związkom lotnym",
+        "Zakażenie pleśnią — zakwas do wyrzucenia"
+      ],
+      "poprawne": [2],
       "wzorzec": "Głód — zbyt długi czas między karmieniami, przesunięcie metabolizmu ku związkom lotnym",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -40,9 +54,16 @@
       "id": "Z-04",
       "tom": "II Zakwas",
       "poziom": "SAMODZIELNY",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Zakwas pachnie octowo zamiast mlecznie. Podaj mechanizm i korektę.",
+      "pytanie": "Zakwas pachnie octowo zamiast mlecznie. Który mechanizm i korekta są poprawne?",
+      "opcje": [
+        "Za wysoka temperatura zabiła bakterie; korekta: mocno schłodzić zakwas",
+        "Przewaga bakterii heterofermentatywnych przy niższej temp./hydracji; korekta: podnieść temperaturę ku górnemu zakresowi i/lub hydrację",
+        "Nadmiar dzikich drożdży; korekta: dodać drożdży piekarskich",
+        "Za świeża mąka; korekta: użyć mąki starszej o kilka miesięcy"
+      ],
+      "poprawne": [1],
       "wzorzec": "Heterofermentatywne LAB faworyzowane przez niższą temp./hydrację; korekta: podnieść temp. ku górnemu zakresowi i/lub hydrację",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -50,9 +71,16 @@
       "id": "Z-05",
       "tom": "II Zakwas",
       "poziom": "SAMODZIELNY",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Dlaczego test flotacji jest zawodny jako jedyny wskaźnik gotowości?",
+      "pytanie": "Dlaczego test flotacji jest zawodny jako jedyny wskaźnik gotowości zakwasu?",
+      "opcje": [
+        "Mierzy tylko uwięziony gaz, nie siłę fermentacji ani strukturę — może pływać przefermentowany lub tonąć gotowy przy gęstej hydracji",
+        "Działa wyłącznie dla zakwasu żytniego, nie pszennego",
+        "Wymaga wagi laboratoryjnej, której nie ma w piekarni",
+        "Jest wiarygodny tylko rano, a myli wieczorem"
+      ],
+      "poprawne": [0],
       "wzorzec": "Mierzy uwięziony gaz, nie siłę fermentacji ani strukturę — może pływać przefermentowany lub tonąć gotowy przy gęstej hydracji",
       "zrodlo": "Tom II Troubleshooting (MIT)"
     },
@@ -60,9 +88,16 @@
       "id": "Z-06",
       "tom": "II Zakwas",
       "poziom": "MENTOR",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Jak zdiagnozować spadek aktywności po konwersji na czystą matkę pszenną i jak poprowadzić zespół przez ten okres?",
+      "pytanie": "Zakwas traci aktywność po konwersji na czystą matkę pszenną. Jak to zdiagnozować i poprowadzić zespół?",
+      "opcje": [
+        "Awaria zakwasu — wyrzucić i założyć nowy od zera",
+        "Zbyt niska temperatura — natychmiast dostawić zakwas przy piecu",
+        "Nadmiar wody — zmniejszyć hydrację o połowę",
+        "Zmiana ekosystemu — mąka rafinowana uboższa mikrobiologicznie; oczekiwać kilkudniowej adaptacji, monitorować pH, nie interpretować jako awarii"
+      ],
+      "poprawne": [3],
       "wzorzec": "Zmiana ekosystemu — pszenna rafinowana uboższa mikrobiologicznie; oczekiwać okresu adaptacji (dni), nie interpretować jako awarii; uczyć zespół cierpliwości i monitoringu pH",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -73,6 +108,13 @@
       "typ": "jednokrotny",
       "ccp": true,
       "pytanie": "Jaka jest minimalna temperatura rdzenia pieczywa (CCP1)?",
+      "opcje": [
+        "≥ 75°C",
+        "≥ 85°C",
+        "≥ 92°C",
+        "≥ 100°C"
+      ],
+      "poprawne": [2],
       "wzorzec": "≥ 92°C, weryfikowana sondą Testo 106",
       "zrodlo": "Tom IV / CCP1"
     },
@@ -83,6 +125,13 @@
       "typ": "jednokrotny",
       "ccp": true,
       "pytanie": "Czy kolor skórki wystarcza do oceny gotowości pieczywa?",
+      "opcje": [
+        "Tak — złoty kolor skórki gwarantuje wypieczony rdzeń",
+        "Nie — zawsze potwierdzić temperaturę rdzenia sondą; ładny kolor przy zbyt wysokiej temp. startowej maskuje niedopieczony środek",
+        "Tak, o ile bochenek jest wyraźnie lekki",
+        "Kolor nie ma znaczenia — liczy się wyłącznie czas wypieku"
+      ],
+      "poprawne": [1],
       "wzorzec": "NIE — zawsze potwierdzić sondą; ładny kolor przy zbyt wysokiej temp. startowej maskuje niedopieczony rdzeń",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -90,9 +139,16 @@
       "id": "W-03",
       "tom": "IV Wypiek",
       "poziom": "SAMODZIELNY",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Blada skórka mimo pełnego czasu wypieku — mechanizm i korekta.",
+      "pytanie": "Blada skórka mimo pełnego czasu wypieku — który mechanizm i korekta są poprawne?",
+      "opcje": [
+        "Za dużo pary — skórka się rozmyła; korekta: wyłączyć zaparowanie",
+        "Za długi czas wypieku; korekta: skrócić wypiek",
+        "Za mało pary na starcie lub za niska temp. startowa (opóźniony Maillard); korekta: więcej pary, kontrola kalibracji pieca",
+        "Za wysoka temperatura pieca; korekta: obniżyć temperaturę o 30°C"
+      ],
+      "poprawne": [2],
       "wzorzec": "Za mało pary na starcie (skrobia nie skleikowała, opóźniony Maillard) lub za niska temp. startowa; korekta: więcej pary, kontrola kalibracji pieca",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -100,9 +156,16 @@
       "id": "W-04",
       "tom": "IV Wypiek",
       "poziom": "SAMODZIELNY",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Niekontrolowane pęknięcia skórki poza nacięciem — przyczyna i korekta.",
+      "pytanie": "Niekontrolowane pęknięcia skórki poza nacięciem — która przyczyna i korekta są poprawne?",
+      "opcje": [
+        "Za mało pary — skórka usztywnia się, zanim gazy się rozprężą; korekta: więcej pary w pierwszych minutach, kontrola nacięcia",
+        "Za dużo mąki na spodzie; korekta: mniej mąki pod bochenkiem",
+        "Za głębokie nacięcie; korekta: nie nacinać bochenka wcale",
+        "Zbyt wilgotne ciasto; korekta: dodać mąki do receptury"
+      ],
+      "poprawne": [0],
       "wzorzec": "Za mało pary — skórka usztywnia się zanim gazy się rozprężą; korekta: więcej pary w pierwszych minutach, kontrola nacięcia",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -123,6 +186,13 @@
       "typ": "jednokrotny",
       "ccp": false,
       "pytanie": "Podaj wzór na temperaturę wody wg metody DDT.",
+      "opcje": [
+        "TEMP.WODY = TEMP.MĄKI + TEMP.OTOCZENIA − TEMP.CIASTA",
+        "TEMP.WODY = (TEMP.CIASTA × N) − TEMP.MĄKI − TEMP.OTOCZENIA − WSP.TARCIA − [TEMP.ZAKWASU]",
+        "TEMP.WODY = TEMP.CIASTA + TEMP.MĄKI + TEMP.OTOCZENIA",
+        "TEMP.WODY = (TEMP.CIASTA − N) + WSP.TARCIA"
+      ],
+      "poprawne": [1],
       "wzorzec": "TEMP.WODY = (TEMP.CIASTA × N) − TEMP.MĄKI − TEMP.OTOCZENIA − WSP.TARCIA − [TEMP.ZAKWASU]",
       "zrodlo": "Tom V"
     },
@@ -140,9 +210,16 @@
       "id": "D-03",
       "tom": "V DDT",
       "poziom": "SAMODZIELNY",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
-      "pytanie": "Ciasto wychodzi cieplejsze niż wzór DDT. Mechanizm i korekta.",
+      "pytanie": "Ciasto wychodzi cieplejsze niż wzór DDT. Który mechanizm i korekta są poprawne?",
+      "opcje": [
+        "Za zimna woda; korekta: użyć cieplejszej wody",
+        "Współczynnik tarcia zaniżony dla tej mieszarki/czasu; korekta: rekalibracja WSP. tarcia po zmianie parametrów miesienia",
+        "Za mało mąki; korekta: dodać mąki do receptury",
+        "Zbyt krótkie miesienie; korekta: wydłużyć miesienie"
+      ],
+      "poprawne": [1],
       "wzorzec": "WSP. tarcia zaniżony dla tej mieszarki/czasu; korekta: rekalibracja współczynnika tarcia po zmianie parametrów miesienia",
       "zrodlo": "Tom V Troubleshooting"
     },
@@ -153,6 +230,13 @@
       "typ": "jednokrotny",
       "ccp": false,
       "pytanie": "Dlaczego temperatura mąki musi być osobną zmienną wzoru, nie stałą?",
+      "opcje": [
+        "Bo mąka zawsze ma temperaturę pokojową 20°C",
+        "Bo temperatura mąki nie wpływa na ciasto",
+        "Bo mąka realnie zmienia temperaturę (magazyn latem cieplejszy, zimą chłodniejszy) i wpływa na DDT",
+        "Bo wzór wymaga stałej wartości 25°C"
+      ],
+      "poprawne": [2],
       "wzorzec": "Mąka przechowywana blisko pieca latem / chłodniej zimą — realna zmienność wpływa na DDT",
       "zrodlo": "Tom V Troubleshooting"
     },
@@ -160,9 +244,16 @@
       "id": "D-05",
       "tom": "V DDT",
       "poziom": "MENTOR",
-      "typ": "otwarty",
+      "typ": "jednokrotny",
       "ccp": false,
       "pytanie": "Jak rekalibrować WSP. tarcia dla mieszarki po serwisie i nauczyć tego zespół?",
+      "opcje": [
+        "Przyjąć wartość z instrukcji mieszarki i nie mierzyć",
+        "Skopiować WSP. z innej mieszarki w piekarni",
+        "Zignorować — po serwisie WSP. tarcia się nie zmienia",
+        "Seria pomiarów temp. ciasta przy znanych wejściach → wyliczyć realny WSP → zaktualizować kartę; zespołowi pokazać, że czas miesienia ≠ stały efekt cieplny"
+      ],
+      "poprawne": [3],
       "wzorzec": "Seria pomiarów temp. ciasta przy znanych wejściach, wyliczenie realnego WSP, aktualizacja karty; szkolenie: pokazać że czas≠stały efekt cieplny",
       "zrodlo": "Tom V"
     }

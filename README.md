@@ -92,29 +92,35 @@ live — Panel nie ma jeszcze buildu.
 
 ---
 
-## ⚠️ Do decyzji Piotra (zebrane, nie zgadywane — AI_BATON §8)
+## Warianty odpowiedzi — zrobione (decyzja Piotra: „unikaj otwartych pytań")
 
-1. **Format opcji auto-oceny.** Pilotowe pytania `jednokrotny`/`wielokrotny` mają tylko
-   `wzorzec` tekstowy, więc trafiają do ręcznej oceny Mentora (w tym CCP W-01/W-02).
-   Aby uruchomić auto-ocenę bez angażowania Mentora, proponuję rozszerzyć każde takie
-   pytanie w banku o dwa pola (kod już to obsługuje — `src/components/Quiz.jsx`):
+Bank `bank_pytan_seed.json` (wersja `2026-07-09`) ma teraz warianty odpowiedzi:
 
-   ```json
-   {
-     "id": "W-01",
-     "typ": "jednokrotny",
-     "opcje": ["≥ 80°C", "≥ 92°C", "≥ 100°C", "kolor skórki wystarcza"],
-     "poprawne": [1]
-   }
-   ```
-   `opcje` = warianty do wyświetlenia; `poprawne` = indeksy (0-based) poprawnych
-   (dla `wielokrotny` więcej niż jeden). **Nie uzupełniam tego sam** — treść merytoryczna
-   (dystraktory) wymaga akceptacji technologa. Proszę o zgodę na format i o listę opcji,
-   albo dodanie ich w xlsx i re-eksport do `bank_pytan_seed.json`.
+- **13 pytań auto-ocenianych** (`jednokrotny` + `opcje[]`/`poprawne[]`), w tym oba CCP
+  (W-01 → ≥92°C, W-02). Wszystkie `otwarty` zamienione na `jednokrotny` — **zero pytań otwartych**.
+- **Poprawne odpowiedzi wzięte 1:1 z pola `wzorzec`** (treść już zwalidowana). Dorobione są
+  wyłącznie warianty błędne (dystraktory); `wzorzec` został jako referencja/wyjaśnienie.
+- Pozycja poprawnej odpowiedzi jest różna w różnych pytaniach (nie zawsze pierwsza).
 
-2. **CCP a auto-ocena.** Do czasu decyzji z pkt 1, pytania CCP potwierdza Mentor/Właściciel
-   w kolejce „Do oceny" (bezpieczne — człowiek potwierdza próg 100%). Docelowo, po dodaniu
-   `opcje[]`, CCP też będzie auto-oceniane, wciąż z progiem 100%.
+Format (obsługiwany przez `src/components/Quiz.jsx`):
+```json
+{ "id": "W-01", "typ": "jednokrotny",
+  "opcje": ["≥ 75°C", "≥ 85°C", "≥ 92°C", "≥ 100°C"], "poprawne": [2] }
+```
+`opcje` = warianty; `poprawne` = indeksy (0-based) poprawnych (dla `wielokrotny` > 1).
+
+### ⚠️ Do decyzji Piotra (zebrane, nie zgadywane — AI_BATON §8)
+
+1. **Zweryfikuj dystraktory.** Poprawne odpowiedzi pochodzą z `wzorzec`, ale warianty błędne
+   napisałem ja — proszę o rzut okiem technologa, czy któryś dystraktor nie jest przypadkiem
+   „też trochę prawdziwy". Lista poprawnych do przeglądu: uruchom `npm test` lub zobacz
+   `bank_pytan_seed.json`. Po akceptacji warto wpisać `opcje`/`poprawne` do master-xlsx
+   i re-eksportować, żeby xlsx pozostał źródłem prawdy.
+
+2. **Pytania praktyczne (Z-03, D-02, W-05).** Zostawiłem je jako demonstracje na stanowisku —
+   to nie są „pytania otwarte" (tekst), tylko sprawdzenie umiejętności przy piecu/mieszarce,
+   więc wymagają obserwacji Mentora. Jeśli chcesz je również zamienić na test wiedzy
+   (warianty) albo na checklistę „zrobił/nie zrobił" — powiedz, dorobię.
 
 3. **PIN.** Zaimplementowany jako opcjonalny 4-cyfrowy per profil, przechowywany lokalnie
    jawnie (piekarnia, nie bank). Jeśli potrzebna większa ochrona — do ustalenia.
