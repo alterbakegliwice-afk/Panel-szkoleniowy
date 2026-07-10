@@ -20,6 +20,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
   const [i, setI] = useState(0)
   const [odp, setOdp] = useState({}) // indeksy zaznaczone (auto) lub tekst
   const [wyniki, setWyniki] = useState([]) // {p, stan:'auto-ok'|'auto-zle'|'do-oceny'}
+  const [sprawdzone, setSprawdzone] = useState(false) // czy bieżące pytanie już sprawdzone (feedback)
   const [zakonczony, setZakonczony] = useState(false)
 
   if (!zestaw.length) {
@@ -33,35 +34,45 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
 
   const p = zestaw[i]
   const ostatni = i === zestaw.length - 1
+  const zazn = odp[p.id] || []
+  const poprawne = p.poprawne || []
+  const biezacyOk = zazn.length === poprawne.length && poprawne.every((idx) => zazn.includes(idx))
 
-  const zatwierdz = () => {
-    if (autoOceniany(p)) {
-      const zazn = odp[p.id] || []
-      const poprawne = p.poprawne || []
-      const ok =
-        zazn.length === poprawne.length && poprawne.every((idx) => zazn.includes(idx))
-      onWynik({
-        data: teraz(),
-        id_prac: pracownik.id_prac,
-        id_pytania: p.id,
-        zaliczyl: ok,
-        oceniajacy: 'auto',
-        notatka: ''
-      })
-      setWyniki((w) => [...w, { p, stan: ok ? 'auto-ok' : 'auto-zle', wybrane: zazn }])
-    } else {
-      onDoKolejki({
-        id: idWpisu(pracownik.id_prac, p.id),
-        data: teraz(),
-        id_prac: pracownik.id_prac,
-        id_pytania: p.id,
-        typ: p.typ,
-        odpowiedz: (odp[p.id] || '').toString().trim()
-      })
-      setWyniki((w) => [...w, { p, stan: 'do-oceny' }])
-    }
+  const dalej = () => {
     if (ostatni) setZakonczony(true)
-    else setI(i + 1)
+    else {
+      setI(i + 1)
+      setSprawdzone(false)
+    }
+  }
+
+  // Auto-ocena: krok 1 „Sprawdź" (feedback natychmiast — domknięcie/nagroda przy ADHD),
+  // krok 2 „Dalej". Wynik dopisujemy w momencie sprawdzenia.
+  const sprawdz = () => {
+    onWynik({
+      data: teraz(),
+      id_prac: pracownik.id_prac,
+      id_pytania: p.id,
+      zaliczyl: biezacyOk,
+      oceniajacy: 'auto',
+      notatka: ''
+    })
+    setWyniki((w) => [...w, { p, stan: biezacyOk ? 'auto-ok' : 'auto-zle', wybrane: zazn }])
+    setSprawdzone(true)
+  }
+
+  // Pytania nie-auto (otwarty/praktyczny): jednym krokiem do kolejki Mentora.
+  const zatwierdzNieAuto = () => {
+    onDoKolejki({
+      id: idWpisu(pracownik.id_prac, p.id),
+      data: teraz(),
+      id_prac: pracownik.id_prac,
+      id_pytania: p.id,
+      typ: p.typ,
+      odpowiedz: (odp[p.id] || '').toString().trim()
+    })
+    setWyniki((w) => [...w, { p, stan: 'do-oceny' }])
+    dalej()
   }
 
   if (zakonczony) {
@@ -115,10 +126,13 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
 
   // ADHD: nie pozwól „przeklikać" pustej odpowiedzi — jasny feedback, gdy nic nie wybrano.
   const odpowiedziano = autoOceniany(p)
-    ? (odp[p.id] || []).length > 0
+    ? zazn.length > 0
     : p.typ === 'praktyczny'
       ? true
       : (odp[p.id] || '').toString().trim().length > 0
+
+  // pasek postępu: sprawdzone pytanie liczy się jako ukończone
+  const postep = ((i + (sprawdzone ? 1 : 0)) / zestaw.length) * 100
 
   return (
     <div className="karta quiz">
@@ -131,14 +145,19 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
           </div>
         </div>
         <div className="quiz-progres">
-          <div className="quiz-progres-fill" style={{ width: (i / zestaw.length) * 100 + '%' }} />
+          <div className="quiz-progres-fill" style={{ width: postep + '%' }} />
         </div>
       </div>
 
       <h2 className="quiz-pytanie">{p.pytanie}</h2>
 
       {autoOceniany(p) ? (
-        <Opcje p={p} zazn={odp[p.id] || []} onZmiana={(v) => setOdp({ ...odp, [p.id]: v })} />
+        <Opcje
+          p={p}
+          zazn={zazn}
+          sprawdzone={sprawdzone}
+          onZmiana={(v) => !sprawdzone && setOdp({ ...odp, [p.id]: v })}
+        />
       ) : p.typ === 'praktyczny' ? (
         <div className="prakt">
           <p className="cichy">
@@ -163,21 +182,43 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
         />
       )}
 
+      {sprawdzone && autoOceniany(p) && (
+        <div className={biezacyOk ? 'feedback ok' : 'feedback zle'}>
+          <strong>{biezacyOk ? '✓ Dobrze!' : '✗ Niestety'}</strong>
+          {biezacyOk
+            ? (p.ccp ? ' Punkt krytyczny CCP potwierdzony.' : ' Tak trzymaj.')
+            : ` Poprawna odpowiedź: ${poprawne.map((idx) => p.opcje[idx]).join('; ')}.`}
+          {!biezacyOk && p.ccp && ' To pytanie CCP (bezpieczeństwo) — próg 100%, warto wrócić do źródła.'}
+        </div>
+      )}
+
       <p className="quiz-zrodlo">Źródło do nauki: {p.zrodlo}</p>
 
       <div className="quiz-akcje">
         <button className="cichy-link" onClick={onKoniec}>Przerwij</button>
-        <button className="glowny duzy-cta" onClick={zatwierdz} disabled={!odpowiedziano}>
-          {ostatni ? 'Zakończ quiz →' : 'Dalej →'}
-        </button>
+        {autoOceniany(p) && !sprawdzone ? (
+          <button className="glowny duzy-cta" onClick={sprawdz} disabled={!odpowiedziano}>
+            Sprawdź
+          </button>
+        ) : autoOceniany(p) ? (
+          <button className="glowny duzy-cta" onClick={dalej}>
+            {ostatni ? 'Zakończ quiz →' : 'Dalej →'}
+          </button>
+        ) : (
+          <button className="glowny duzy-cta" onClick={zatwierdzNieAuto} disabled={!odpowiedziano}>
+            {ostatni ? 'Zakończ quiz →' : 'Dalej →'}
+          </button>
+        )}
       </div>
     </div>
   )
 }
 
-function Opcje({ p, zazn, onZmiana }) {
+function Opcje({ p, zazn, sprawdzone, onZmiana }) {
   const wielo = p.typ === 'wielokrotny'
+  const poprawne = p.poprawne || []
   const przelacz = (idx) => {
+    if (sprawdzone) return
     if (wielo) {
       onZmiana(zazn.includes(idx) ? zazn.filter((x) => x !== idx) : [...zazn, idx])
     } else {
@@ -185,20 +226,31 @@ function Opcje({ p, zazn, onZmiana }) {
     }
   }
   return (
-    <div className="opcje">
-      {p.opcje.map((tekst, idx) => (
-        <label key={idx} className={zazn.includes(idx) ? 'opcja zazn' : 'opcja'}>
-          <input
-            type={wielo ? 'checkbox' : 'radio'}
-            name={p.id}
-            checked={zazn.includes(idx)}
-            onChange={() => przelacz(idx)}
-          />
-          <span className="opcja-litera">{String.fromCharCode(65 + idx)}</span>
-          <span className="opcja-tekst">{tekst}</span>
-        </label>
-      ))}
-      {wielo && <p className="cichy mini">Zaznacz wszystkie poprawne — komplet = zaliczone.</p>}
+    <div className={sprawdzone ? 'opcje sprawdzone' : 'opcje'}>
+      {p.opcje.map((tekst, idx) => {
+        const wybrana = zazn.includes(idx)
+        let klasa = 'opcja' + (wybrana ? ' zazn' : '')
+        if (sprawdzone) {
+          if (poprawne.includes(idx)) klasa += ' poprawna'
+          else if (wybrana) klasa += ' blledna'
+        }
+        return (
+          <label key={idx} className={klasa}>
+            <input
+              type={wielo ? 'checkbox' : 'radio'}
+              name={p.id}
+              checked={wybrana}
+              disabled={sprawdzone}
+              onChange={() => przelacz(idx)}
+            />
+            <span className="opcja-litera">{String.fromCharCode(65 + idx)}</span>
+            <span className="opcja-tekst">{tekst}</span>
+            {sprawdzone && poprawne.includes(idx) && <span className="opcja-mark ok">✓</span>}
+            {sprawdzone && wybrana && !poprawne.includes(idx) && <span className="opcja-mark zle">✗</span>}
+          </label>
+        )
+      })}
+      {wielo && !sprawdzone && <p className="cichy mini">Zaznacz wszystkie poprawne — komplet = zaliczone.</p>}
     </div>
   )
 }

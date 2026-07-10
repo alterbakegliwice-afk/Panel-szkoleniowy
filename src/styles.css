@@ -259,6 +259,21 @@ button { font-family: inherit; }
 }
 .opcja.zazn .opcja-litera { background: var(--akcent); color: #fff; border-color: var(--akcent); }
 .opcja-tekst { flex: 1; }
+.opcja-mark { flex: none; font-weight: 800; font-size: 1.1rem; }
+.opcja-mark.ok { color: var(--ok); }
+.opcja-mark.zle { color: var(--brak); }
+/* po sprawdzeniu — kolory poprawnej/błędnej, bez rozpraszania resztą */
+.opcje.sprawdzone .opcja { cursor: default; }
+.opcja.poprawna { border-color: var(--ok); background: var(--ok-tlo); box-shadow: 0 0 0 1px var(--ok) inset; }
+.opcja.poprawna .opcja-litera { background: var(--ok); color: #fff; border-color: var(--ok); }
+.opcja.blledna { border-color: var(--brak); background: var(--brak-tlo); }
+.opcja.blledna .opcja-litera { background: var(--brak); color: #fff; border-color: var(--brak); }
+
+/* baner feedbacku — natychmiastowe domknięcie po „Sprawdź" */
+.feedback { margin-top: 1.1rem; padding: .8rem 1rem; border-radius: 11px; font-size: .95rem; border-left: 5px solid; }
+.feedback.ok { background: var(--ok-tlo); border-left-color: var(--ok); color: #1f5c39; }
+.feedback.zle { background: var(--brak-tlo); border-left-color: var(--brak); color: var(--brak-ciemny); }
+.feedback strong { font-family: var(--serif); margin-right: .3rem; }
 .pole { width: 100%; padding: .7rem .9rem; border: 1px solid var(--linia-mocna); border-radius: 11px; font-family: inherit; font-size: .95rem; background: var(--karta); color: var(--tekst); }
 .pole:focus-visible { border-color: var(--akcent); }
 .pole.waski { max-width: 96px; }
