@@ -72,9 +72,10 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
       <div className="karta podsumowanie">
         <h1>Quiz ukończony — {tom}</h1>
         {auto.length > 0 && (
-          <p className="duzy">
-            Auto-ocena: {ok}/{auto.length} poprawnych
-          </p>
+          <div className="wynik-hero">
+            <div className="wynik-liczba">{ok}<span className="z"> / {auto.length}</span></div>
+            <div className="wynik-podpis">poprawnych odpowiedzi</div>
+          </div>
         )}
         {doOceny > 0 && (
           <p className="cichy">
@@ -112,13 +113,25 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
     )
   }
 
+  // ADHD: nie pozwól „przeklikać" pustej odpowiedzi — jasny feedback, gdy nic nie wybrano.
+  const odpowiedziano = autoOceniany(p)
+    ? (odp[p.id] || []).length > 0
+    : p.typ === 'praktyczny'
+      ? true
+      : (odp[p.id] || '').toString().trim().length > 0
+
   return (
     <div className="karta quiz">
-      <div className="quiz-pasek">
-        <span>Pytanie {i + 1} z {zestaw.length} · {tom}</span>
-        <div className="quiz-meta">
-          <span className="plakietka toku">{p.poziom}</span>
-          {p.ccp && <span className="ccp-tag brak">CCP · próg 100%</span>}
+      <div className="quiz-progres-wrap">
+        <div className="quiz-progres-info">
+          <span className="quiz-krok">Pytanie {i + 1} z {zestaw.length} · {tom}</span>
+          <div className="quiz-meta">
+            <span className="plakietka toku">{p.poziom}</span>
+            {p.ccp && <span className="ccp-tag brak">CCP · próg 100%</span>}
+          </div>
+        </div>
+        <div className="quiz-progres">
+          <div className="quiz-progres-fill" style={{ width: (i / zestaw.length) * 100 + '%' }} />
         </div>
       </div>
 
@@ -150,13 +163,13 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
         />
       )}
 
-      <p className="cichy mini">Źródło do nauki: {p.zrodlo}</p>
+      <p className="quiz-zrodlo">Źródło do nauki: {p.zrodlo}</p>
 
-      <div className="rzad">
-        <button className="glowny" onClick={zatwierdz}>
-          {ostatni ? 'Zakończ quiz' : 'Dalej'}
+      <div className="quiz-akcje">
+        <button className="cichy-link" onClick={onKoniec}>Przerwij</button>
+        <button className="glowny duzy-cta" onClick={zatwierdz} disabled={!odpowiedziano}>
+          {ostatni ? 'Zakończ quiz →' : 'Dalej →'}
         </button>
-        <button className="drugi" onClick={onKoniec}>Przerwij</button>
       </div>
     </div>
   )
@@ -181,7 +194,8 @@ function Opcje({ p, zazn, onZmiana }) {
             checked={zazn.includes(idx)}
             onChange={() => przelacz(idx)}
           />
-          <span>{tekst}</span>
+          <span className="opcja-litera">{String.fromCharCode(65 + idx)}</span>
+          <span className="opcja-tekst">{tekst}</span>
         </label>
       ))}
       {wielo && <p className="cichy mini">Zaznacz wszystkie poprawne — komplet = zaliczone.</p>}

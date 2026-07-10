@@ -22,6 +22,10 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
             {pracownik.data_startu ? ` · start: ${pracownik.data_startu}` : ''}
             {pracownik.poziom_docelowy ? ` · cel: ${pracownik.poziom_docelowy}` : ''}
           </p>
+          <p className="prof-purpose">
+            To, co tu opanujesz, wprost przekłada się na bezpieczeństwo naszych klientów
+            i Twoją drogę do samodzielności. Każde zaliczone pytanie się liczy.
+          </p>
         </div>
         <div className="ogolny">
           <div className="ogolny-liczba">{proc(prof.poziomOgolny)}%</div>
@@ -58,8 +62,8 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
                 {t.status}
               </span>
             </div>
-            <div className="pasek">
-              <div className="pasek-wypelnienie" style={{ width: proc(t.procent) + '%' }} />
+            <div className="postep-tor">
+              <div className="postep-fill" style={{ width: proc(t.procent) + '%' }} />
             </div>
             <div className="tom-dol">
               <span>{proc(t.procent)}% · {t.zaliczonych}/{t.pytan} pytań</span>

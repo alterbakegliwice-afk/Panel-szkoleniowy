@@ -54,8 +54,9 @@ export default function ProfilePicker({ pracownicy, onWybor }) {
 
   return (
     <div className="karta wybor">
+      <div className="wybor-marka">Złoty Standard Piekarstwa</div>
       <h1>Kto się uczy?</h1>
-      <p className="cichy">Wybierz swój profil, żeby zobaczyć swój poziom wiedzy.</p>
+      <p className="cichy">Wybierz swój profil, żeby zobaczyć swój poziom wiedzy i kolejny krok.</p>
       <div className="lista-profili">
         {pracownicy.map((p) => (
           <button key={p.id_prac} className="profil-kafel" onClick={() => wybierz(p)}>

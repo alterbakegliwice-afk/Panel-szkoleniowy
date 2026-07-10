@@ -67,6 +67,23 @@ data/bank_pytan_seed.json ← 16 pytań pilota (II Zakwas, IV Wypiek, V DDT)
 
 ---
 
+## Warstwa graficzna (pod uciekającą uwagę / ADHD)
+
+Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.
+Decyzje projektowe:
+- **Jeden punkt skupienia na ekranie.** Quiz to tryb skupienia: pojedyncza karta wyśrodkowana,
+  pasek postępu, duże pytanie, opcje A/B/C/D z wyraźnym stanem zaznaczenia, jedno główne CTA
+  („Dalej →"), a „Przerwij" celowo wyciszone. Przycisk blokowany do czasu wybrania odpowiedzi
+  (brak „przeklikania" pustych).
+- **Spokój i hierarchia.** Ciepły papierowy fon, jeden kolor akcentu (skórka), złoto dla
+  osiągnięć, poważna czerwień tylko dla CCP. Nagłówki szeryfowe (powaga/rzemiosło), tekst
+  bezszeryfowy (czytelność). Ograniczona długość linii.
+- **„Co teraz?" zawsze widoczne.** Karta „Następny krok" ma złoty akcent i przyciąga wzrok;
+  CCP ma pierwszeństwo.
+- **Mniej bodźców naraz.** Szczegóły (historia, źródło, przegląd) chowane za rozwijaniem
+  (`<details>`). Ruch tylko jako feedback + `prefers-reduced-motion`. Wyraźny focus klawiatury.
+- **Offline-first.** Fonty wyłącznie systemowe (bez CDN) — działa w piekarni bez sieci.
+
 ## Role i ekrany
 
 - **Pracownik** — wybiera profil (opcjonalny PIN), widzi „Mój poziom" (paski % per tom,
