@@ -67,6 +67,26 @@ data/bank_pytan_seed.json ← 16 pytań pilota (II Zakwas, IV Wypiek, V DDT)
 
 ---
 
+## Nauka → sprawdzenie wiedzy (najpierw materiał, potem quiz)
+
+Każdy tom ma teraz **część do nauki (merytorykę)**. Sprawdzenie wiedzy jest **zablokowane, dopóki
+pracownik nie przerobi materiału** (przycisk „Sprawdź wiedzę" odblokowuje się po „Przerobiłem materiał").
+Materiał pilota (II Zakwas, IV Wypiek, V DDT) jest oparty na realnych dokumentach Złotego Standardu
+(Kompendium Tom II, Parametry Wypieku, Mieszanie/Temperatura) i zwalidowanych wzorcach — nie na
+zmyśleniach. Pełny program (pozostałe tomy piekarza + części cukiernika) jest zmapowany jako roadmapa;
+banki pytań dla nich wymagają eksportu treści technologa (zgodnie z zasadą: merytoryki nie tworzymy w kodzie).
+Dane: `src/data/materialy_nauka.json`.
+
+## Moduł Przedsiębiorcy i Lidera Zespołu (tylko dla właściciela)
+
+Osobne kompendium, widoczne wyłącznie dla właściciela — zbudowane **analogicznie do Złotego Standardu**:
+synteza autorytetów i **metaanaliz badań**, z warstwą rozwiązań nieszablonowych. 8 modułów, każdy z materiałem
+do nauki (z cytowanymi źródłami) i sprawdzeniem wiedzy: bezpieczeństwo psychologiczne (Edmondson, Google
+Aristotle), motywacja wewnętrzna (SDT; Cerasoli 2014), cele i wykonanie (Locke & Latham; Gollwitzer 2006),
+delegowanie i systemy (Gerber, Gawande), informacja zwrotna (Kluger & DeNisi 1996), rekrutacja (Schmidt &
+Hunter 1998), zarządzanie sobą/uwagą (Kahneman; „Noise"), zmiana i nawyki (Kotter, Fogg, Heath). Wyniki
+właściciela logują się osobno (nie mieszają się z zespołem). Dane: `src/data/modul_przedsiebiorcy.json`.
+
 ## Warstwa graficzna (pod uciekającą uwagę / ADHD)
 
 Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.

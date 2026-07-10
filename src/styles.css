@@ -299,6 +299,22 @@ button { font-family: inherit; }
 .przeglad-szczegol .twoja { color: var(--brak-ciemny); }
 .przeglad-szczegol .poprawna { color: var(--ok); font-weight: 650; }
 
+/* ---------- nauka (merytoryka) ---------- */
+.eyebrow { font-size: .68rem; text-transform: uppercase; letter-spacing: .16em; color: var(--zloto); font-weight: 800; display: block; margin-bottom: .3rem; }
+.nauka-ekran { max-width: 760px; margin: 0 auto; }
+.nauka-naglowek { background: linear-gradient(180deg, #fffdf9, #fbf5ea); }
+.nauka-naglowek h1 { margin: .1rem 0 .5rem; }
+.nauka-intro { font-size: 1.05rem; color: var(--tekst); max-width: 68ch; }
+.nauka-karta h3 { font-size: 1.12rem; margin-bottom: .6rem; color: var(--akcent-ciemny); }
+.nauka-punkty { margin: 0; padding-left: 0; list-style: none; display: grid; gap: .55rem; }
+.nauka-punkty li { position: relative; padding-left: 1.4rem; line-height: 1.55; }
+.nauka-punkty li::before { content: ''; position: absolute; left: .2rem; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--akcent); }
+.nauka-zrodlo { margin-top: .8rem; font-size: .76rem; color: var(--cichy); border-top: 1px solid var(--linia); padding-top: .5rem; }
+.nauka-cta { text-align: center; background: linear-gradient(180deg, #fff, var(--zloto-tint)); border-left: 6px solid var(--zloto); }
+.tom-akcje { margin-top: .8rem; gap: .5rem; }
+.tom-akcje button { flex: 1; }
+.przedsiebiorca .naglowek-prof { background: linear-gradient(180deg, #fffdf9, #f6efe0); }
+
 /* ---------- historia / details ---------- */
 details.historia-karta { margin-bottom: .7rem; }
 .karta > details + details { margin-top: .5rem; }

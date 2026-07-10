@@ -40,6 +40,7 @@ export function domyslnyStan() {
     pracownicy: PRZYKLADOWI_PRACOWNICY,
     wyniki: PRZYKLADOWE_WYNIKI,
     kolejka: [], // odpowiedzi otwarte/praktyczne czekające na ocenę Mentora
+    nauka: [], // log przerobienia materiału: {id_prac, obszar, data} — quiz odblokowuje się po nauce
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -139,6 +140,7 @@ export function eksportKopii(stan) {
     pracownicy: stan.pracownicy,
     wyniki: stan.wyniki,
     kolejka: stan.kolejka,
+    nauka: stan.nauka,
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -163,6 +165,7 @@ export function kopieDoStanu(obiekt) {
     pracownicy: obiekt.pracownicy,
     wyniki: obiekt.wyniki,
     kolejka: Array.isArray(obiekt.kolejka) ? obiekt.kolejka : [],
+    nauka: Array.isArray(obiekt.nauka) ? obiekt.nauka : [],
     bank: obiekt.bank || null
   }
 }

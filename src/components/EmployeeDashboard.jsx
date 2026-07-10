@@ -1,12 +1,14 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import { czyPrzerobiono, materialTomu } from '../logic/nauka.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
-export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, konfig, onStartQuizu }) {
+export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
   const historia = historiaPracownika(wyniki, pytania, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
+  const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
   const wKolejce = (tom) =>
     kolejka.filter(
       (k) => k.id_prac === pracownik.id_prac && pytania.find((p) => p.id === k.id_pytania)?.tom === tom
@@ -76,9 +78,21 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
             {wKolejce(t.tom) > 0 && (
               <p className="cichy mini">⏳ {wKolejce(t.tom)} odp. czeka na ocenę Mentora</p>
             )}
-            <button className="glowny szeroki" onClick={() => onStartQuizu(t.tom)}>
-              Rozwiąż quiz
-            </button>
+            <div className="rzad tom-akcje">
+              <button className="drugi" onClick={() => onUczSie(t.tom)}>
+                📖 Ucz się{materialTomu(t.tom) ? '' : ' (wkrótce)'}
+              </button>
+              <button
+                className="glowny"
+                disabled={!przerobiony(t.tom)}
+                onClick={() => onStartQuizu(t.tom)}
+              >
+                Sprawdź wiedzę
+              </button>
+            </div>
+            {!przerobiony(t.tom) && (
+              <p className="cichy mini">🔒 Najpierw przerób materiał — potem sprawdzenie wiedzy.</p>
+            )}
           </div>
         ))}
       </div>

@@ -1,0 +1,108 @@
+{
+  "wersja": "2026-07-10",
+  "opis": "Materiał do nauki (merytoryka) per tom — oparty na dokumentach Złotego Standardu i zwalidowanych wzorcach pilota. Najpierw nauka, potem sprawdzenie wiedzy.",
+  "tomy": {
+    "II Zakwas": {
+      "intro": "Zakwas to żywy ekosystem bakterii i drożdży. Nie „karmi się go z kalendarza” — czyta się jego sygnały i steruje smakiem przez temperaturę i hydrację. Ten materiał daje Ci mapę: skąd bierze się smak, czym sterujesz i jak rozpoznać zdrowie zakwasu.",
+      "karty": [
+        {
+          "tytul": "Skąd bierze się smak — oś mlekowy vs octowy",
+          "punkty": [
+            "Za smak odpowiada heterofermentacja bakterii kwasu mlekowego (LAB) i drożdży dzikich — nie sama „kwaśność”.",
+            "Główna oś smaku: kwas mlekowy (łagodny, jogurtowy) ↔ kwas octowy (ostry, octowy).",
+            "Niższa temperatura i niższa hydracja przesuwają profil ku octowemu; wyższa temperatura i hydracja — ku mlekowemu.",
+            "Docelowy zakres fermentacji zakwasu pszennego wg karty Alterbake: 24–26°C (profil łagodny; karta Tradilevain: M=25°C ±1)."
+          ],
+          "zrodlo": "Złoty Standard Tom II, 2.1–2.2, 8.1; karta I-OBS-TRADILEVAIN-A"
+        },
+        {
+          "tytul": "Czytanie sygnałów — zdrowie i problemy",
+          "punkty": [
+            "Zapach acetonowy (jak zmywacz) = GŁÓD: zbyt długi czas między karmieniami, metabolizm przesuwa się ku związkom lotnym. Reakcja: częstsze/mocniejsze dokarmianie.",
+            "Zapach octowy zamiast mlecznego = przewaga bakterii heterofermentatywnych przy niższej temp./hydracji. Korekta: podnieść temperaturę ku górnemu zakresowi i/lub hydrację.",
+            "Test flotacji (czy kawałek pływa) jest ZAWODNY jako jedyny wskaźnik: mierzy uwięziony gaz, nie siłę fermentacji ani strukturę — może pływać przefermentowany lub tonąć gotowy przy gęstej hydracji.",
+            "Mistrz łączy kilka sygnałów: zapach, przyrost objętości, czas, pH — nie jeden test."
+          ],
+          "zrodlo": "Złoty Standard Tom II, Troubleshooting (w tym „MIT: test flotacji”)"
+        },
+        {
+          "tytul": "Utrzymanie i backup (ciągłość)",
+          "punkty": [
+            "Zakwas ma cykl życia i wymaga rytmu karmienia dopasowanego do temperatury otoczenia.",
+            "Zasada backupu 3-2-1 dla zakwasu: miej rezerwę (np. wysuszony/zamrożony), by awaria nie zatrzymała produkcji.",
+            "Po konwersji na czystą matkę pszenną spodziewaj się kilkudniowego okresu adaptacji (uboższy mikrobiologicznie ekosystem) — nie interpretuj tego jako awarii; monitoruj pH."
+          ],
+          "zrodlo": "Złoty Standard Tom II, 4.x, 5.1 (backup 3-2-1)"
+        }
+      ]
+    },
+    "IV Wypiek": {
+      "intro": "Wypiek to moment, w którym decyduje się bezpieczeństwo (CCP1) i charakter produktu. Kolor myli — liczy się temperatura rdzenia i para. Ten materiał uczy, co realnie kontrolować, żeby chleb był bezpieczny i dobry.",
+      "karty": [
+        {
+          "tytul": "CCP1 — temperatura rdzenia (bezpieczeństwo)",
+          "punkty": [
+            "Minimalna temperatura rdzenia pieczywa (CCP1) to ≥ 92°C, weryfikowana sondą (Testo 106).",
+            "To punkt krytyczny bezpieczeństwa żywności — próg 100%, bez kompromisu i bez uśredniania z innymi wynikami.",
+            "Kolor skórki NIE wystarcza do oceny gotowości: ładny kolor przy zbyt wysokiej temperaturze startowej maskuje niedopieczony rdzeń. Zawsze potwierdzaj sondą.",
+            "Mierz w rdzeniu największego bochenka z partii — najwolniej się nagrzewa."
+          ],
+          "zrodlo": "Złoty Standard, Parametry Wypieku / CCP1; Tom IV"
+        },
+        {
+          "tytul": "Para i skórka (jakość)",
+          "punkty": [
+            "Para na starcie skleikowuje skrobię i opóźnia usztywnienie skórki, umożliwiając rozprężenie (oven spring) i reakcję Maillarda.",
+            "Blada skórka mimo pełnego czasu = za mało pary na starcie lub za niska temperatura startowa (opóźniony Maillard). Korekta: więcej pary, kontrola kalibracji pieca.",
+            "Niekontrolowane pęknięcia poza nacięciem = za mało pary — skórka usztywnia się, zanim gazy się rozprężą. Korekta: więcej pary w pierwszych minutach, kontrola nacięcia.",
+            "Nacięcie kieruje rozprężaniem — świadomie, nie ozdobnie."
+          ],
+          "zrodlo": "Złoty Standard, Parametry Wypieku, Troubleshooting; Tom IV"
+        }
+      ]
+    },
+    "V DDT": {
+      "intro": "DDT (Desired Dough Temperature) to temperatura ciasta po mieszeniu, która decyduje o powtarzalności fermentacji. Zamiast zgadywać, wyliczasz temperaturę wody. To narzędzie powtarzalności — rdzeń rzemiosła, które da się delegować.",
+      "karty": [
+        {
+          "tytul": "Wzór DDT i zmienne",
+          "punkty": [
+            "Temperatura wody = (TEMP.CIASTA × N) − TEMP.MĄKI − TEMP.OTOCZENIA − WSP.TARCIA − [TEMP.ZAKWASU], gdzie N to liczba czynników.",
+            "Temperatura mąki musi być OSOBNĄ zmienną, nie stałą: mąka trzymana blisko pieca latem jest cieplejsza, zimą chłodniejsza — realna zmienność wpływa na DDT.",
+            "WSP. tarcia to ciepło wniesione przez mieszenie — zależy od mieszarki i czasu; trzeba go znać dla swojej maszyny."
+          ],
+          "zrodlo": "Złoty Standard, Mieszanie/Temperatura; Tom V"
+        },
+        {
+          "tytul": "Pomiar i korekta w praktyce",
+          "punkty": [
+            "Po mieszeniu zmierz temperaturę w rdzeniu masy sondą Testo 106 i porównaj z docelową DDT z karty.",
+            "Ciasto cieplejsze niż wzór najczęściej znaczy zaniżony WSP. tarcia dla tej mieszarki/czasu. Korekta: rekalibracja współczynnika tarcia po zmianie parametrów mieszenia.",
+            "Po serwisie mieszarki rekalibruj WSP.: seria pomiarów przy znanych wejściach → wylicz realny WSP → zaktualizuj kartę. Naucz zespół, że czas mieszenia ≠ stały efekt cieplny."
+          ],
+          "zrodlo": "Złoty Standard, Mieszanie/Temperatura, Troubleshooting; Tom V"
+        }
+      ]
+    }
+  },
+  "program": {
+    "opis": "Pełny program Złotego Standardu. Aktywne tomy pilota mają materiał i sprawdzenie wiedzy. Pozostałe mają materiał źródłowy w dokumentach technologa i czekają na eksport banku pytań (zgodnie z zasadą: treści merytorycznej nie tworzymy w kodzie).",
+    "piekarz": [
+      { "tom": "II Zakwas", "status": "aktywny" },
+      { "tom": "IV Wypiek", "status": "aktywny" },
+      { "tom": "V DDT", "status": "aktywny" },
+      { "tom": "Mąka i surowce", "status": "material" },
+      { "tom": "Mieszanie i temperatura", "status": "material" },
+      { "tom": "Fermentacja i formowanie", "status": "material" },
+      { "tom": "Fermentacja odroczona / odroczony rozrost", "status": "material" },
+      { "tom": "Parametry wypieku", "status": "material" },
+      { "tom": "Studzenie i świeżość", "status": "material" },
+      { "tom": "Laminowanie / viennoiserie", "status": "material" },
+      { "tom": "Kompetencje piekarza (Tom XIV)", "status": "planowany" }
+    ],
+    "cukiernik": [
+      { "tom": "Ciasto bazowe (Tom X)", "status": "material" },
+      { "tom": "Program cukiernika (14 części)", "status": "planowany" }
+    ]
+  }
+}

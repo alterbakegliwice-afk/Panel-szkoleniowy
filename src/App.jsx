@@ -13,6 +13,9 @@ import Quiz from './components/Quiz.jsx'
 import TeamView from './components/TeamView.jsx'
 import ReviewQueue from './components/ReviewQueue.jsx'
 import OwnerPanel from './components/OwnerPanel.jsx'
+import Learning from './components/Learning.jsx'
+import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
+import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 
 export default function App() {
   const [stan, setStan] = useState(wczytajStan)
@@ -55,6 +58,14 @@ export default function App() {
 
   const dodajDoKolejki = (wpis) =>
     setStan((s) => ({ ...s, kolejka: [...s.kolejka, wpis] }))
+
+  // Oznacz materiał jako przerobiony (odblokowuje sprawdzenie wiedzy).
+  const oznaczPrzerobiony = (idUcznia, obszar) =>
+    setStan((s) =>
+      s.nauka.some((n) => n.id_prac === idUcznia && n.obszar === obszar)
+        ? s
+        : { ...s, nauka: [...s.nauka, { id_prac: idUcznia, obszar, data: teraz() }] }
+    )
 
   const ocenZKolejki = (idWpisu, zaliczyl, notatka) =>
     setStan((s) => {
@@ -121,7 +132,10 @@ export default function App() {
       etykieta: `Do oceny${stan.kolejka.length ? ` (${stan.kolejka.length})` : ''}`
     })
   }
-  if (jestWlascicielem) zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
+  if (jestWlascicielem) {
+    zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
+    zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
+  }
 
   return (
     <Powloka
@@ -152,8 +166,22 @@ export default function App() {
           pytania={pytania}
           wyniki={stan.wyniki}
           kolejka={stan.kolejka}
+          nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
+          onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
+        />
+      )}
+      {ekran.widok === 'nauka' && pracownik && (
+        <Learning
+          tytul={ekran.tom}
+          material={materialTomu(ekran.tom)}
+          przerobiony={stan.nauka.some((n) => n.id_prac === pracownik.id_prac && n.obszar === ekran.tom)}
+          onWroc={() => setEkran({ widok: 'profil' })}
+          onGotowe={() => {
+            oznaczPrzerobiony(pracownik.id_prac, ekran.tom)
+            setEkran({ widok: 'quiz', tom: ekran.tom })
+          }}
         />
       )}
       {ekran.widok === 'quiz' && pracownik && (
@@ -166,6 +194,13 @@ export default function App() {
           onWynik={dodajWynik}
           onDoKolejki={dodajDoKolejki}
           onKoniec={() => setEkran({ widok: 'profil' })}
+        />
+      )}
+      {ekran.widok === 'przedsiebiorca' && jestWlascicielem && (
+        <EntrepreneurPanel
+          stan={stan}
+          onWynik={dodajWynik}
+          onPrzerobiony={(obszar) => oznaczPrzerobiony(ID_WLASCICIEL, obszar)}
         />
       )}
       {ekran.widok === 'zespol' && (jestMentorem || jestWlascicielem) && (
