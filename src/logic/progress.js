@@ -104,6 +104,30 @@ export function listaTomow(pytania) {
   return [...new Set(pytania.map((p) => p.tom))]
 }
 
+// Pełna historia podejść pracownika (log append-only) — wzbogacona o dane pytania
+// i posortowana malejąco (najnowsze na górze). To dowód przy decyzji o awansie:
+// kiedy, co, kto ocenił, z jaką notatką.
+export function historiaPracownika(wyniki, pytania, idPrac) {
+  const mapaP = new Map(pytania.map((p) => [p.id, p]))
+  return wyniki
+    .filter((w) => w.id_prac === idPrac)
+    .map((w) => {
+      const p = mapaP.get(w.id_pytania)
+      return {
+        data: w.data || '',
+        id_pytania: w.id_pytania,
+        tom: p?.tom || '—',
+        poziom: p?.poziom || '—',
+        ccp: !!p?.ccp,
+        pytanie: p?.pytanie || '(pytanie spoza aktualnego banku)',
+        zaliczyl: !!w.zaliczyl,
+        oceniajacy: w.oceniajacy || '—',
+        notatka: w.notatka || ''
+      }
+    })
+    .sort((a, b) => (a.data < b.data ? 1 : a.data > b.data ? -1 : 0))
+}
+
 // Czy w danym tomie pracownik osiągnął swój poziom docelowy:
 // wszystkie poziomy do celu opanowane ORAZ CCP tomu = OK.
 export function tomCelOsiagniety(tom, poziomDocelowy) {

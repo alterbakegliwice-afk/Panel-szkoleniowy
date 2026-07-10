@@ -1,4 +1,5 @@
-import { profilPracownika } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import HistoryList from './HistoryList.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
@@ -74,6 +75,23 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
         (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
+
+      <div className="karta">
+        <h2>Historia podejść (dowód przy awansie)</h2>
+        <p className="cichy mini">
+          Pełny log ocen — kiedy, co, kto ocenił, z jaką notatką. To obiektywna podstawa decyzji
+          o awansie, niezależna od „wyczucia".
+        </p>
+        {pracownicy.map((prac) => {
+          const wpisy = historiaPracownika(wyniki, pytania, prac.id_prac)
+          return (
+            <details key={prac.id_prac} className="historia-karta">
+              <summary>{prac.imie} — {prac.rola} ({wpisy.length} podejść)</summary>
+              <HistoryList wpisy={wpisy} />
+            </details>
+          )
+        })}
+      </div>
     </div>
   )
 }

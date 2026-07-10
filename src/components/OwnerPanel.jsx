@@ -4,12 +4,14 @@ import {
   ROLE,
   walidujBank,
   nastepneIdPracownika,
+  eksportKopii,
+  walidujKopie,
   teraz
 } from '../logic/store.js'
 
 // Panel Właściciela: progi (KONFIG), pracownicy, bank pytań, eksport do Panelu M5.
 // PROG_CCP nie jest edytowalny — 100% nienegocjowalne (AI_BATON §4).
-export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank, onPrzywrocSeed, onReset }) {
+export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank, onPrzywrocSeed, onReset, onKopia }) {
   const konfig = { PROG_CCP: 1, ...stan.konfig }
 
   const pobierz = (obiekt, nazwa) => {
@@ -42,16 +44,74 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
         <button className="glowny" onClick={eksportuj}>⬇ Eksportuj dla Panelu M5 (JSON)</button>
       </div>
 
+      <KopiaZapasowa stan={stan} pobierz={pobierz} onKopia={onKopia} />
+
       <div className="karta strefa-ryzyka">
-        <h2>Dane lokalne</h2>
+        <h2>Reset danych</h2>
         <p className="cichy">
-          Backup: eksportuj bank i eksport M5. Reset przywraca stan przykładowy — użyj tylko
-          świadomie (historia wyników zostanie skasowana).
+          Reset przywraca stan przykładowy — użyj tylko świadomie (cała historia wyników zostanie
+          skasowana). Najpierw zrób kopię zapasową powyżej.
         </p>
         <button className="odrzuc" onClick={() => {
           if (confirm('Skasować wszystkie dane lokalne i wrócić do stanu przykładowego?')) onReset()
         }}>Reset do stanu przykładowego</button>
       </div>
+    </div>
+  )
+}
+
+function KopiaZapasowa({ stan, pobierz, onKopia }) {
+  const [blad, setBlad] = useState('')
+  const [info, setInfo] = useState('')
+
+  const zrobKopie = () => {
+    pobierz(eksportKopii(stan), `alterbake_kopia_${teraz().slice(0, 10)}.json`)
+    setInfo('Kopia zapisana. Przechowaj plik poza tym komputerem (dysk/chmura).')
+    setBlad('')
+  }
+
+  const wczytaj = (e) => {
+    const plik = e.target.files?.[0]
+    if (!plik) return
+    const czyt = new FileReader()
+    czyt.onload = () => {
+      try {
+        const obiekt = JSON.parse(czyt.result)
+        const err = walidujKopie(obiekt)
+        if (err) { setBlad(err); setInfo(''); return }
+        const ile = obiekt.wyniki.length
+        if (confirm(`Wczytać kopię? Zastąpi bieżące dane (${ile} wyników w pliku). Zostaniesz wylogowany.`)) {
+          onKopia(obiekt)
+        }
+      } catch {
+        setBlad('Plik nie jest poprawnym JSON.')
+        setInfo('')
+      }
+    }
+    czyt.readAsText(plik)
+    e.target.value = ''
+  }
+
+  return (
+    <div className="karta">
+      <h2>Kopia zapasowa (cały stan)</h2>
+      <p className="cichy">
+        Wyniki, pracownicy, konfiguracja i bank żyją w tej przeglądarce. Kopia to jedyna ochrona
+        historii ewaluacji przed czyszczeniem cache lub zmianą urządzenia — rób ją regularnie.
+      </p>
+      <div className="rzad">
+        <button className="glowny" onClick={zrobKopie}>⬇ Pobierz kopię zapasową</button>
+        <label className="drugi jako-przycisk">
+          Wczytaj kopię zapasową
+          <input type="file" accept="application/json,.json" hidden onChange={wczytaj} />
+        </label>
+      </div>
+      {info && <p className="info-ok">{info}</p>}
+      {blad && <p className="blad">{blad}</p>}
+      <p className="cichy mini">
+        Kopia zawiera pełny log append-only — po wczytaniu na innym komputerze historia jest
+        identyczna. To NIE to samo co eksport M5 (ten jest tylko dla Panelu, bez pełnego logu).
+      </p>
     </div>
   )
 }

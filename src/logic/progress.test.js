@@ -6,8 +6,9 @@ import {
   postepTomu,
   profilPracownika
 } from './progress.js'
+import { historiaPracownika } from './progress.js'
 import { eksportPanelM5 } from './export.js'
-import { walidujBank } from './store.js'
+import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
 
 const KONFIG = DOMYSLNA_KONFIG
@@ -184,5 +185,57 @@ describe('walidujBank — twarda walidacja klucza odpowiedzi', () => {
   })
   it('przyjmuje poprawny zestaw opcje+poprawne', () => {
     expect(walidujBank(baza({ opcje: ['a', 'b'], poprawne: [1] }))).toBe(null)
+  })
+})
+
+describe('historia podejść (log append-only = dowód przy awansie)', () => {
+  it('zwraca wpisy pracownika, wzbogacone i posortowane malejąco po dacie', () => {
+    const wyniki = [
+      { data: '2026-07-05T08:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: false, oceniajacy: 'auto' },
+      { data: '2026-07-07T09:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: true, oceniajacy: 'auto' },
+      { data: '2026-07-06T10:00:00Z', id_prac: 'P-02', id_pytania: 'W-01', zaliczyl: true, oceniajacy: 'Piotr' }
+    ]
+    const h = historiaPracownika(wyniki, PYTANIA, 'P-01')
+    expect(h.length).toBe(2) // tylko P-01
+    expect(h[0].data).toBe('2026-07-07T09:00:00Z') // najnowszy na górze
+    expect(h[0].tom).toBe('II Zakwas') // wzbogacone o dane pytania
+    expect(h[0].ccp).toBe(false)
+  })
+
+  it('nie wywala się na wyniku spoza aktualnego banku', () => {
+    const h = historiaPracownika(
+      [{ data: '2026-07-07', id_prac: 'P-01', id_pytania: 'STARE-99', zaliczyl: true }],
+      PYTANIA,
+      'P-01'
+    )
+    expect(h[0].pytanie).toMatch(/spoza aktualnego banku/)
+  })
+})
+
+describe('kopia zapasowa — pełny round-trip stanu', () => {
+  const stan = {
+    konfig: { PROG_ZALICZENIA: 0.7 },
+    pracownicy: [{ id_prac: 'P-01', imie: 'Ala', rola: 'Piekarz', poziom_docelowy: 'SAMODZIELNY' }],
+    wyniki: [{ data: '2026-07-07', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: true, oceniajacy: 'auto' }],
+    kolejka: [],
+    bank: null
+  }
+
+  it('eksport → walidacja OK → odtworzony stan zachowuje wyniki i konfig', () => {
+    const kopia = eksportKopii(stan)
+    expect(walidujKopie(kopia)).toBe(null)
+    const odtworzony = kopieDoStanu(kopia)
+    expect(odtworzony.wyniki).toEqual(stan.wyniki)
+    expect(odtworzony.konfig.PROG_ZALICZENIA).toBe(0.7)
+    expect(odtworzony.pracownicy[0].imie).toBe('Ala')
+  })
+
+  it('odrzuca plik, który nie jest kopią Alterbake', () => {
+    expect(walidujKopie({ foo: 'bar' })).toMatch(/nie jest plik/)
+  })
+
+  it('odrzuca kopię z niepoprawnym bankiem', () => {
+    const kopia = eksportKopii({ ...stan, bank: { pytania: [{ id: 'X', tom: 'T', poziom: 'JUNIOR', typ: 'jednokrotny', ccp: false, pytanie: '?', wzorzec: 'w', opcje: ['a', 'b'], poprawne: [9] }] } })
+    expect(walidujKopie(kopia)).toMatch(/Bank w kopii/)
   })
 })

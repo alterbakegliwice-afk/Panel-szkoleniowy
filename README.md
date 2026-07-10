@@ -51,7 +51,7 @@ zaimplementowana logika biznesowa — reszta się do niej dopasowuje.
 | Wybór | Uzasadnienie |
 |---|---|
 | **React + Vite** | Sugerowany w spec §8. Szybki build, zero konfiguracji, statyczny `dist/`. |
-| **Trwałość: `localStorage`** (nie IndexedDB/SQLite) | Dane pilota liczone w kilobajtach (16 pytań, garść pracowników, log wyników), jedno stanowisko. `localStorage` daje trwałość między sesjami przy zerze zależności i zerze setupu serwera. Migracja do IndexedDB/SQLite jest prosta, gdy wolumen urośnie — cała warstwa danych jest odseparowana w `src/logic/store.js`. |
+| **Trwałość: `localStorage`** (nie IndexedDB/SQLite) | Dane pilota liczone w kilobajtach (16 pytań, garść pracowników, log wyników), jedno stanowisko. `localStorage` daje trwałość między sesjami przy zerze zależności i zerze setupu serwera. Ryzyko utraty (czyszczenie cache) domknięte **kopią zapasową całego stanu** (Konfiguracja → Kopia zapasowa). Migracja do IndexedDB/SQLite jest prosta, gdy wolumen urośnie — cała warstwa danych jest odseparowana w `src/logic/store.js`. |
 | **Logika jako czyste funkcje** (`src/logic/`) | Pomiar (CCP, progi, awans, eksport) nie zależy od Reacta — testowalny w izolacji, przenośny do przyszłej integracji z Panelem. |
 | **Bank pytań z pliku, nie z kodu** | `data/bank_pytan_seed.json` (przy `index.html`) ma pierwszeństwo; kopia wbudowana w build to fallback dla otwarcia z `file://`. Właściciel może wgrać nowszy bank w Konfiguracji — **bez zmiany kodu**. |
 
@@ -99,6 +99,18 @@ Konfiguracja → „Eksportuj dla Panelu M5 (JSON)" → jeden plik ze strukturą
 (profile + postęp per tom + `ccp_status` osobno). Dodatkowo per pracownik: `poziom_docelowy`,
 `cel_osiagniety` (gotowość względem celu) i `ccp_ogolem` — Panel od razu wie, kto spełnia
 kryteria. To eksport pliku, **nie** integracja live — Panel nie ma jeszcze buildu.
+
+## Kopia zapasowa i historia podejść
+
+- **Kopia zapasowa całego stanu** (Konfiguracja → „Pobierz/Wczytaj kopię zapasową"): pełny log
+  wyników + pracownicy + konfiguracja + bank w jednym pliku. Jedyna ochrona historii ewaluacji
+  przed czyszczeniem cache lub zmianą urządzenia — plik wczytany na innym komputerze odtwarza
+  stan 1:1. To co innego niż eksport M5 (ten nie zawiera pełnego logu). Wczytanie jest walidowane
+  (m.in. integralność banku) i wymaga potwierdzenia, bo zastępuje bieżące dane.
+- **Historia podejść** (log append-only = „wartość projektu" wg schematu): widoczna dla pracownika
+  („Mój poziom" → Moja historia) i dla Mentora/Właściciela (Zespół → Historia podejść). Pokazuje
+  kiedy, co, kto ocenił i z jaką notatką — **obiektywny dowód przy decyzji o awansie**, niezależny
+  od „wyczucia". To domyka sens M5: kryterium nie tylko obiektywne, ale i udokumentowane.
 
 ---
 

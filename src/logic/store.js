@@ -124,3 +124,45 @@ export function nastepneIdPracownika(pracownicy) {
 export function teraz() {
   return new Date().toISOString()
 }
+
+// --- KOPIA ZAPASOWA (pełny stan) ---
+// Log wyników to „wartość projektu" (schema) i żyje tylko w localStorage jednej
+// przeglądarki. Backup ratuje historię przed czyszczeniem cache / zmianą urządzenia.
+const WERSJA_KOPII = '2026-07-09'
+
+export function eksportKopii(stan) {
+  return {
+    typ: 'alterbake-kopia',
+    wersja: WERSJA_KOPII,
+    wygenerowano: teraz(),
+    konfig: stan.konfig,
+    pracownicy: stan.pracownicy,
+    wyniki: stan.wyniki,
+    kolejka: stan.kolejka,
+    bank: stan.bank // null = seed wbudowany
+  }
+}
+
+export function walidujKopie(obiekt) {
+  if (!obiekt || obiekt.typ !== 'alterbake-kopia') {
+    return 'To nie jest plik kopii zapasowej Alterbake.'
+  }
+  if (!Array.isArray(obiekt.pracownicy)) return 'Kopia bez listy pracowników.'
+  if (!Array.isArray(obiekt.wyniki)) return 'Kopia bez logu wyników.'
+  if (obiekt.bank) {
+    const err = walidujBank(obiekt.bank)
+    if (err) return 'Bank w kopii jest niepoprawny: ' + err
+  }
+  return null
+}
+
+export function kopieDoStanu(obiekt) {
+  return {
+    ...domyslnyStan(),
+    konfig: obiekt.konfig && typeof obiekt.konfig === 'object' ? obiekt.konfig : { PROG_ZALICZENIA: 0.8 },
+    pracownicy: obiekt.pracownicy,
+    wyniki: obiekt.wyniki,
+    kolejka: Array.isArray(obiekt.kolejka) ? obiekt.kolejka : [],
+    bank: obiekt.bank || null
+  }
+}

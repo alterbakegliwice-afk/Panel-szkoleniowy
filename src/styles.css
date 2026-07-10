@@ -145,6 +145,21 @@ button { font-family: inherit; }
 .przeglad-szczegol .twoja { color: var(--brak); }
 .przeglad-szczegol .poprawna { color: var(--ok); font-weight: 600; }
 
+/* --- historia podejść / details --- */
+details.historia-karta { margin-bottom: .7rem; }
+details summary { cursor: pointer; font-weight: 700; padding: .2rem 0; }
+details summary:hover { color: var(--akcent); }
+details[open] summary { margin-bottom: .6rem; }
+.historia { display: grid; gap: .45rem; }
+.hist-wiersz { display: flex; gap: .6rem; align-items: flex-start; padding: .5rem .7rem; border: 1px solid var(--linia); border-radius: 9px; background: var(--tlo); }
+.hist-znak { font-weight: 800; line-height: 1.4; }
+.hist-znak.ok { color: var(--ok); }
+.hist-znak.zle { color: var(--brak); }
+.hist-tresc { flex: 1; min-width: 0; }
+.hist-gora { display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
+.hist-pyt { font-weight: 600; font-size: .9rem; }
+.hist-meta { margin-top: .1rem; }
+
 /* --- quiz --- */
 .quiz-pasek { display: flex; justify-content: space-between; align-items: center; color: var(--cichy); font-size: .85rem; margin-bottom: .8rem; flex-wrap: wrap; gap: .5rem; }
 .quiz-meta { display: flex; gap: .4rem; align-items: center; }

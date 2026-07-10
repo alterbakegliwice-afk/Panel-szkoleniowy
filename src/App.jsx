@@ -4,6 +4,7 @@ import {
   zapiszStan,
   bankPytan,
   domyslnyStan,
+  kopieDoStanu,
   teraz
 } from './logic/store.js'
 import ProfilePicker from './components/ProfilePicker.jsx'
@@ -82,6 +83,12 @@ export default function App() {
   const przywrocSeed = () => setStan((s) => ({ ...s, bank: null }))
   const resetujWszystko = () => {
     setStan(domyslnyStan())
+    setSesja(null)
+    setEkran({ widok: 'profil' })
+  }
+
+  const wczytajKopie = (obiekt) => {
+    setStan(kopieDoStanu(obiekt))
     setSesja(null)
     setEkran({ widok: 'profil' })
   }
@@ -186,6 +193,7 @@ export default function App() {
           onBank={wgrajBank}
           onPrzywrocSeed={przywrocSeed}
           onReset={resetujWszystko}
+          onKopia={wczytajKopie}
         />
       )}
     </Powloka>

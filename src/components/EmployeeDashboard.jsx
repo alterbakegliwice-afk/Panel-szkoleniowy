@@ -1,9 +1,11 @@
-import { profilPracownika } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
 export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, konfig, onStartQuizu }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
+  const historia = historiaPracownika(wyniki, pytania, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const wKolejce = (tom) =>
     kolejka.filter(
@@ -83,6 +85,11 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
           {prof.nastepnyKrok.tekst}
         </p>
       </div>
+
+      <details className="karta historia-karta">
+        <summary>Moja historia podejść ({historia.length})</summary>
+        <HistoryList wpisy={historia} />
+      </details>
     </div>
   )
 }
