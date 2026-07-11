@@ -32,6 +32,7 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
   return (
     <div className="konfig">
       <Progi konfig={konfig} onKonfig={onKonfig} />
+      <DostepKiosk konfig={konfig} onKonfig={onKonfig} />
       <Pracownicy pracownicy={stan.pracownicy} onPracownicy={onPracownicy} />
       <BankPytan bank={bank} wgrany={!!stan.bank} onBank={onBank} onPrzywrocSeed={onPrzywrocSeed} pobierz={pobierz} />
 
@@ -44,7 +45,7 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
         <button className="glowny" onClick={eksportuj}>⬇ Eksportuj dla Panelu M5 (JSON)</button>
       </div>
 
-      <KopiaZapasowa stan={stan} pobierz={pobierz} onKopia={onKopia} />
+      <KopiaZapasowa stan={stan} pobierz={pobierz} onKopia={onKopia} onKonfig={onKonfig} />
 
       <div className="karta strefa-ryzyka">
         <h2>Reset danych</h2>
@@ -60,12 +61,23 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
   )
 }
 
-function KopiaZapasowa({ stan, pobierz, onKopia }) {
+// Ile dni temu zrobiono ostatnią kopię (null = nigdy).
+function dniOd(iso) {
+  if (!iso) return null
+  const teraz_ = new Date()
+  const wtedy = new Date(iso)
+  return Math.floor((teraz_ - wtedy) / 86400000)
+}
+
+function KopiaZapasowa({ stan, pobierz, onKopia, onKonfig }) {
   const [blad, setBlad] = useState('')
   const [info, setInfo] = useState('')
+  const dni = dniOd(stan.konfig?.ostatniaKopia)
+  const przypomnij = dni === null || dni >= 7
 
   const zrobKopie = () => {
     pobierz(eksportKopii(stan), `alterbake_kopia_${teraz().slice(0, 10)}.json`)
+    if (onKonfig) onKonfig({ ostatniaKopia: teraz() }) // stempel: data ostatniej kopii
     setInfo('Kopia zapisana. Przechowaj plik poza tym komputerem (dysk/chmura).')
     setBlad('')
   }
@@ -99,6 +111,16 @@ function KopiaZapasowa({ stan, pobierz, onKopia }) {
         Wyniki, pracownicy, konfiguracja i bank żyją w tej przeglądarce. Kopia to jedyna ochrona
         historii ewaluacji przed czyszczeniem cache lub zmianą urządzenia — rób ją regularnie.
       </p>
+      {przypomnij && (
+        <p className="blad przypomnienie-kopia">
+          ⚠ {dni === null
+            ? 'Nie zrobiono jeszcze kopii zapasowej. Zrób ją teraz — inaczej wyczyszczenie przeglądarki skasuje całą historię.'
+            : `Ostatnia kopia: ${dni} dni temu. Zrób świeżą kopię.`}
+        </p>
+      )}
+      {!przypomnij && (
+        <p className="cichy mini">Ostatnia kopia: {dni === 0 ? 'dziś' : `${dni} dni temu`}.</p>
+      )}
       <div className="rzad">
         <button className="glowny" onClick={zrobKopie}>⬇ Pobierz kopię zapasową</button>
         <label className="drugi jako-przycisk">
@@ -134,6 +156,38 @@ function Progi({ konfig, onKonfig }) {
       </label>
       <p className="cichy mini">
         Próg CCP = 100% i jest zablokowany — bezpieczeństwo żywności nie podlega negocjacji.
+      </p>
+    </div>
+  )
+}
+
+function DostepKiosk({ konfig, onKonfig }) {
+  const [pin, setPin] = useState(konfig.PIN_WLASCICIELA || '')
+  return (
+    <div className="karta">
+      <h2>Dostęp i tryb kiosku</h2>
+      <p className="cichy">
+        To jedno stanowisko szkoleniowe — dane żyją w tej przeglądarce, nie ma logowania z chmury.
+        PIN właściciela chroni konfigurację, eksport i akceptację tomów, gdy z urządzenia korzysta zespół.
+      </p>
+      <label className="pole-etykieta">
+        PIN właściciela (puste = bez PIN)
+        <input
+          className="pole waski"
+          inputMode="numeric"
+          maxLength={6}
+          value={pin}
+          placeholder="np. 1234"
+          onChange={(e) => {
+            const v = e.target.value.replace(/\D/g, '')
+            setPin(v)
+            onKonfig({ PIN_WLASCICIELA: v })
+          }}
+        />
+      </label>
+      <p className="cichy mini">
+        PIN to porządek i wygoda, nie zabezpieczenie kryptograficzne (działa po stronie przeglądarki).
+        PIN-y profili pracowników ustawisz w tabeli „Pracownicy" poniżej.
       </p>
     </div>
   )

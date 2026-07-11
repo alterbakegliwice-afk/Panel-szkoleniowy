@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 // Logowanie = prosty wybór profilu z listy + opcjonalny PIN (spec.md §2).
 // Bez OAuth. Piekarnia, nie bank.
-export default function ProfilePicker({ pracownicy, onWybor }) {
-  const [pinDla, setPinDla] = useState(null) // pracownik wymagający PIN
+export default function ProfilePicker({ pracownicy, ownerPin = '', onWybor }) {
+  const [pinDla, setPinDla] = useState(null) // profil wymagający PIN (pracownik lub właściciel)
   const [pin, setPin] = useState('')
   const [blad, setBlad] = useState('')
 
@@ -17,11 +17,23 @@ export default function ProfilePicker({ pracownicy, onWybor }) {
     }
   }
 
-  const potwierdzPin = () => {
-    if (pin === pinDla.pin) {
-      onWybor({ rodzaj: 'pracownik', idPrac: pinDla.id_prac })
+  const wejdzWlasciciel = () => {
+    if (ownerPin) {
+      setPinDla({ wlasciciel: true, imie: 'Właściciel (Piotr)', pin: ownerPin })
+      setPin('')
+      setBlad('')
     } else {
+      onWybor({ rodzaj: 'wlasciciel' })
+    }
+  }
+
+  const potwierdzPin = () => {
+    if (pin !== pinDla.pin) {
       setBlad('Błędny PIN.')
+    } else if (pinDla.wlasciciel) {
+      onWybor({ rodzaj: 'wlasciciel' })
+    } else {
+      onWybor({ rodzaj: 'pracownik', idPrac: pinDla.id_prac })
     }
   }
 
@@ -68,12 +80,16 @@ export default function ProfilePicker({ pracownicy, onWybor }) {
       <div className="separator"><span>lub</span></div>
       <button
         className="glowny szeroki"
-        onClick={() => onWybor({ rodzaj: 'wlasciciel' })}
+        onClick={wejdzWlasciciel}
       >
-        Wejdź jako Właściciel (Piotr)
+        Wejdź jako Właściciel (Piotr){ownerPin ? ' · 🔒' : ''}
       </button>
       <p className="cichy mini">
         Właściciel: pełny widok zespołu, ocena, konfiguracja progów i eksport do Panelu M5.
+      </p>
+      <p className="cichy mini kiosk-nota">
+        To jest jedno stanowisko szkoleniowe — dane żyją w tej przeglądarce. Ustaw PIN-y profili
+        (w Konfiguracji) i regularnie rób kopię zapasową, jeśli z urządzenia korzysta kilka osób.
       </p>
     </div>
   )

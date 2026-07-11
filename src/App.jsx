@@ -119,7 +119,9 @@ export default function App() {
   const cofnijTom = (tom) =>
     setStan((s) => ({ ...s, zatwierdzone: s.zatwierdzone.filter((t) => t !== tom) }))
 
-  const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig }))
+  // Scala pola konfiguracji (nie zastępuje całości) — inaczej suwak progu kasowałby
+  // PIN właściciela i datę ostatniej kopii.
+  const zapiszKonfig = (czesc) => setStan((s) => ({ ...s, konfig: { ...s.konfig, ...czesc } }))
   const zapiszPracownikow = (pracownicy) => setStan((s) => ({ ...s, pracownicy }))
   const wgrajBank = (nowyBank) => setStan((s) => ({ ...s, bank: nowyBank }))
   const przywrocSeed = () => setStan((s) => ({ ...s, bank: null }))
@@ -145,6 +147,7 @@ export default function App() {
       <Powloka naglowek={null}>
         <ProfilePicker
           pracownicy={stan.pracownicy}
+          ownerPin={stan.konfig.PIN_WLASCICIELA || ''}
           onWybor={(nowaSesja) => {
             setSesja(nowaSesja)
             setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'profil' })
