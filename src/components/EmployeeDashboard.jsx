@@ -69,6 +69,10 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
               ? 'Wszystkie punkty krytyczne (temperatura rdzenia pieczywa, krem) potwierdzone.'
               : 'Punkty krytyczne wymagają 100%. Bez kompletu CCP nie ma statusu „Samodzielny" — niezależnie od procentu ogólnego.'}
           </div>
+          <div className="ccp-opis haccp-nota">
+            To sprawdza <strong>wiedzę</strong> o progach — nie zastępuje rejestru HACCP. Realne
+            bezpieczeństwo to udokumentowany pomiar temperatur i działania korygujące w produkcji.
+          </div>
         </div>
       </div>
 

@@ -74,6 +74,8 @@ export default function TeamView({ pracownicy, pytania, wyniki, praktyka = [], k
         Kolumna „Cel / gotowość" pokazuje status względem <em>poziomu docelowego</em> pracownika
         (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
+        Kolumna CCP potwierdza <strong>wiedzę</strong> o progach — nie zastępuje rejestru HACCP
+        (udokumentowany pomiar temperatur i działania korygujące w produkcji).
       </p>
 
       {onPotwierdzPraktyke && (

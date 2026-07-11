@@ -289,7 +289,7 @@ function Powloka({ naglowek, children }) {
       </header>
       <main className="tresc">{children}</main>
       <footer className="stopka">
-        Złoty Standard Piekarstwa · pilot: Tom II Zakwas, IV Wypiek, V DDT · CCP = próg 100%, liczony osobno
+        Złoty Standard Piekarstwa · pilot: Tom II Zakwas, IV Wypiek, V DDT · CCP = próg 100%, liczony osobno · quiz CCP to szkolenie wiedzy, nie rejestr HACCP
       </footer>
     </div>
   )

@@ -205,6 +205,7 @@ button { font-family: inherit; }
 .ccp-tytul { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; }
 .ccp-brak .ccp-tytul { color: var(--brak-ciemny); }
 .ccp-opis { font-size: .88rem; color: var(--cichy); margin-top: .15rem; }
+.haccp-nota { margin-top: .4rem; padding-top: .35rem; border-top: 1px dashed var(--linia); font-size: .8rem; }
 .ccp-tag.toku { background: var(--toku-tlo); color: var(--toku); }
 
 /* zasady awansu (polityka w aplikacji) */
