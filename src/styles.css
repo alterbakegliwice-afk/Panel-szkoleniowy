@@ -382,6 +382,26 @@ details summary:hover { color: var(--akcent-ciemny); }
   .quiz { padding: 1.2rem 1.1rem; }
   .quiz-pytanie { font-size: 1.28rem; }
   h1 { font-size: 1.5rem; }
+
+  /* --- kompaktowy nagłówek mobilny: wiersz [logo · kto · Zmień profil] + przewijane zakładki --- */
+  .naglowek { padding: .5rem .7rem; gap: .35rem .6rem; }
+  .logo { gap: .5rem; }
+  .logo-znak { width: 2rem; height: 2rem; font-size: 1.15rem; }
+  .logo-nazwa { font-size: 1rem; }
+  .logo-pod { display: none; }               /* podtytuł niepotrzebny na wąskim ekranie */
+  .pasek { gap: .35rem .5rem; flex-basis: 100%; width: 100%; }  /* pasek pod logo, pełna szerokość — nic nie ucieka w bok */
+  .pasek-kto { flex: 1 1 auto; flex-direction: row; align-items: baseline; gap: .4rem; min-width: 0; }
+  .pasek-kto strong { font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pasek-rola { font-size: .6rem; white-space: nowrap; }
+  .pasek > .drugi { flex: 0 0 auto; padding: .45rem .7rem; font-size: .84rem; }
+  .zakladki {                                 /* jeden przewijany rząd zamiast zawijania w 5 wierszy */
+    order: 1; flex-basis: 100%; width: 100%;
+    flex-wrap: nowrap; overflow-x: auto; gap: .3rem;
+    padding-bottom: 3px; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .zakladki::-webkit-scrollbar { display: none; }
+  .zakladka { flex: 0 0 auto; white-space: nowrap; padding: .42rem .7rem; font-size: .82rem; }
 }
 
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */

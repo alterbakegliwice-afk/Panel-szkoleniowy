@@ -88,9 +88,11 @@ automatycznie pojawia się u pracowników (nauka → sprawdzenie). Zatwierdzenia
 
 Zasada bezpieczeństwa (baton): **drafty zawierają wyłącznie pytania wiedzy/jakości — zero pytań CCP**.
 Ewaluacja punktów krytycznych (≥92°C) pozostaje w zwalidowanym pilocie IV Wypiek; nowych pytań CCP nie
-tworzymy w kodzie. Gotowe drafty (z dokumentów): III Fermentacja odroczona (retard), VI Fermentacja
-i formowanie, VII Mąka i surowce, VIII Studzenie i świeżość, IX Laminowanie i viennoiserie,
-X Ciasto bazowe i wariacje — komplet tomów rdzeniowych ponad pilotem. Dane: `src/data/drafty_tomow.json`.
+tworzymy w kodzie. Gotowe drafty (z dokumentów): I Filozofia i 10 zasad mistrza, III Fermentacja
+odroczona (retard), VI Fermentacja i formowanie, VII Mąka i surowce, VIII Studzenie i świeżość,
+IX Laminowanie i viennoiserie, X Ciasto bazowe i wariacje — oraz linia cukiernicza: Cukiernictwo
+(podstawy i balans smaku) i Cukiernictwo (bezpieczeństwo i organizacja). Razem 9 tomów / 27 pytań.
+Dane: `src/data/drafty_tomow.json`.
 
 ## Moduł Przedsiębiorcy i Lidera Zespołu (tylko dla właściciela)
 

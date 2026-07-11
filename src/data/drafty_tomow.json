@@ -425,6 +425,222 @@
           "zrodlo": "Złoty Standard Tom IX, rozdz. 4 (Kanon 8)"
         }
       ]
+    },
+    {
+      "tom": "I Filozofia i 10 zasad mistrza",
+      "obszar": "Fundament myślenia rzemieślniczego",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Zanim technika — sposób myślenia. Tom I to synteza praktyk mistrzów piekarstwa (od szkoły francuskiej po azjatycką precyzję) sprowadzona do dziesięciu zasad-inwariantów. To rama, do której odwołują się wszystkie pozostałe tomy: co naprawdę decyduje o jakości i jak zrobić rzemiosło powtarzalnym oraz delegowalnym.",
+        "karty": [
+          {
+            "tytul": "Jakość: fermentacja, liczby i zmysły",
+            "punkty": [
+              "Zasada 1 — Fermentacja ważniejsza niż mieszanie: minimalizuj pracę mechaniczną, maksymalizuj czas. Dłuższa, chłodniejsza fermentacja = więcej smaku i lepsza trawienność.",
+              "Zasada 2 — Mistrz czyta ciasto, dokumentacja wyznacza granice: liczby dają punkt startowy i tolerancje, zmysły korygują w tych granicach (jak monitoring CCP: wartość docelowa / limit / obserwacja).",
+              "Zasada 5 — Jakość zaczyna się przed piekarnią, w ziarnie i mące (Tom VII): dobieraj surowiec do procesu, nie odwrotnie."
+            ],
+            "zrodlo": "Złoty Standard Tom I, Zasady 1, 2, 5"
+          },
+          {
+            "tytul": "Powtarzalność i skupienie",
+            "punkty": [
+              "Zasada 3 — Mniej produktów, głębiej opanowanych: szeroka karta jest wrogiem powtarzalności, marży i zdrowia zespołu (stąd analiza ABC asortymentu).",
+              "Zasada 4 — Powtarzalność bije geniusz: mistrzostwo to najmniejsza wariancja między bochenkami i między dniami; wprowadź tolerancje liczbowe i dziennik odchyleń.",
+              "Zasada 7 — Czas jest narzędziem organizacji, nie wrogiem: okna fermentacji i chłodny łańcuch planują dzień pracy."
+            ],
+            "zrodlo": "Złoty Standard Tom I, Zasady 3, 4, 7"
+          },
+          {
+            "tytul": "Firma: strata, ludzie, marka",
+            "punkty": [
+              "Zasada 6 — Zero waste to marża, nie ekologia: strata to koszt mąki; discard i czerstwe wracają jako produkty (Tom VIII).",
+              "Zasada 8 — Piekarnię projektuje się od przepływu (flow): układ pracy przed układem sprzętu.",
+              "Zasada 9 — Mistrz uczy, albo umiera z firmą: wiedza spisana i przekazana = delegowalność (sedno M5). Zasada 10 — Marka to spisany manifest, nie logo."
+            ],
+            "zrodlo": "Złoty Standard Tom I, Zasady 6, 8, 9, 10"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D1-1", "tom": "I Filozofia i 10 zasad mistrza", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co według Zasady 1 daje pieczywu najwięcej smaku?",
+          "opcje": [
+            "Intensywniejsze i dłuższe mieszanie ciasta",
+            "Dłuższa, chłodniejsza fermentacja — minimalizuj pracę mechaniczną, maksymalizuj czas",
+            "Więcej drożdży i wyższa temperatura",
+            "Droższa mąka"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Fermentacja jest ważniejsza niż mieszanie: dłuższa i chłodniejsza daje więcej smaku, lepszą trawienność, mniej drożdży i energii.",
+          "zrodlo": "Złoty Standard Tom I, Zasada 1"
+        },
+        {
+          "id": "D1-2", "tom": "I Filozofia i 10 zasad mistrza", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jak mistrz łączy liczby ze zmysłami (Zasada 2)?",
+          "opcje": [
+            "Ufa tylko liczbom, zmysły są nieistotne",
+            "Ufa tylko intuicji, liczby przeszkadzają",
+            "Liczby dają punkt startowy i granice tolerancji; zmysły korygują w tych granicach",
+            "Losowo, zależnie od dnia"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Liczby definiują cel i limity, obserwacja zmysłowa koryguje wewnątrz nich — filozoficznie jak monitoring CCP.",
+          "zrodlo": "Złoty Standard Tom I, Zasada 2"
+        },
+        {
+          "id": "D1-3", "tom": "I Filozofia i 10 zasad mistrza", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego „mniej produktów, głębiej opanowanych” (Zasada 3)?",
+          "opcje": [
+            "Bo klienci lubią mały wybór",
+            "Bo szeroka karta rozprasza jakość, marżę i zespół; wąska daje powtarzalność i niższą stratę",
+            "Bo drukowanie menu jest tańsze",
+            "To tylko kwestia gustu właściciela"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Szerokość asortymentu jest wrogiem powtarzalności, marży i zdrowia zespołu; stąd analiza ABC i wąska karta.",
+          "zrodlo": "Złoty Standard Tom I, Zasada 3"
+        }
+      ]
+    },
+    {
+      "tom": "Cukiernictwo: podstawy i balans smaku",
+      "obszar": "Cukiernik — fundament",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Cukiernictwo to chemia, nie „na oko”. Gram i stopień decydują o wyniku (±1°C w temperowaniu czekolady, ±5°C w kremie zmieniają efekt), a deser to montaż standaryzowanych komponentów. Ten materiał to destylat praktyk najlepszych cukierników sprowadzony do zasad, które przenoszą się na pracę zespołu.",
+        "karty": [
+          {
+            "tytul": "Smak prowadzi, precyzja rządzi",
+            "punkty": [
+              "Smak prowadzi, dekoracja służy: ładny, ale niesmaczny deser to porażka. Najpierw profil smaku, potem forma i kolor.",
+              "Waż w gramach, mierz w stopniach — cukiernictwo to chemia, nie pieczywo „na oko”. Waga (0,1 g do małych naważek) i termometr to narzędzia pierwszego wyboru.",
+              "Balans sześciu osi: słodycz — kwas — gorycz — tłuszcz — tekstura — temperatura. Za słodkie = brak kwasu; płaskie = brak kontrastu tekstur. To lista kontrolna, nie intuicja."
+            ],
+            "zrodlo": "Złoty Standard Cukiernictwa, Zasady 1–3"
+          },
+          {
+            "tytul": "Komponenty i kierunek marki",
+            "punkty": [
+              "Półprodukt jest jednostką systemu: deser to montaż komponentów (biszkopt, crémeux, insert, chrupkość, glazura, mus). Standaryzuj komponenty, nie całe ciasta.",
+              "Mniej cukru, więcej smaku — trend globalny (redukcja cukru intensyfikuje smak) i kierunek marki „pieczemy inaczej”.",
+              "Karta produktu: receptura w gramach + kolejność montażu + zdjęcie wzorca + tolerancje; jedna karta, jeden wzorzec, jeden smak — niezależnie kto dziś robi."
+            ],
+            "zrodlo": "Złoty Standard Cukiernictwa, Zasady 4, 5, 10"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "DC1-1", "tom": "Cukiernictwo: podstawy i balans smaku", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czym różni się prowadzenie wyrobu cukierniczego od pieczenia chleba „na oko”?",
+          "opcje": [
+            "Niczym — też robi się z wyczucia",
+            "Cukiernictwo to chemia: waż w gramach i mierz w stopniach; małe odchylenia (±1°C, ±5°C) zmieniają wynik",
+            "Liczy się tylko wygląd",
+            "Wystarczy dobra receptura, pomiary są zbędne"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Gram i stopień to nie pedanteria, lecz powtarzalność: ±1°C w temperowaniu, ±5°C w kremie zmieniają efekt.",
+          "zrodlo": "Złoty Standard Cukiernictwa, Zasada 2"
+        },
+        {
+          "id": "DC1-2", "tom": "Cukiernictwo: podstawy i balans smaku", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Które sześć osi świadomie waży cukiernik przy nowym deserze?",
+          "opcje": [
+            "Cena, marża, koszt, czas, waga, kolor",
+            "Słodycz, kwas, gorycz, tłuszcz, tekstura, temperatura",
+            "Mąka, woda, cukier, jajo, masło, sól",
+            "Wygląd, zapach, cena, świeżość, moda, trend"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Balans sześciu osi (słodycz, kwas, gorycz, tłuszcz, tekstura, temperatura) to lista kontrolna smaku, nie intuicja.",
+          "zrodlo": "Złoty Standard Cukiernictwa, Zasada 3"
+        },
+        {
+          "id": "DC1-3", "tom": "Cukiernictwo: podstawy i balans smaku", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co standaryzuje mistrz cukiernik, żeby wynik był powtarzalny?",
+          "opcje": [
+            "Całe gotowe ciasta, każde osobno",
+            "Półprodukty/komponenty (biszkopt, crémeux, insert, glazura), z których montuje desery",
+            "Wyłącznie dekorację",
+            "Nic — liczy się talent"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Deser to montaż standaryzowanych komponentów; mistrz standaryzuje półprodukty, nie całe ciasta.",
+          "zrodlo": "Złoty Standard Cukiernictwa, Zasada 5"
+        }
+      ]
+    },
+    {
+      "tom": "Cukiernictwo: bezpieczeństwo i organizacja",
+      "obszar": "Cukiernik — trwałość, chłód, mise en place",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "W cukierni o trwałości i bezpieczeństwie decyduje aktywność wody (aw) i łańcuch chłodniczy, nie „świeżość” w potocznym sensie. Kremy to krótka trwałość i realne ryzyko sanitarne — dlatego chłodnia to punkt krytyczny, a organizacja pracy (mise en place, komponenty z wyprzedzeniem) daje powtarzalność. Uwaga: obróbka kremów (CCP5: ≥85°C przez ≥1 min) i łańcuch chłodniczy (CCP4) są monitorowane osobno w systemie HACCP.",
+        "karty": [
+          {
+            "tytul": "Trwałość, aw i łańcuch chłodniczy",
+            "punkty": [
+              "Aktywność wody (aw) rządzi trwałością: dlatego bonbon żyje tygodnie, a krem patisserie godziny. Trwałość to dźwignia straty i bezpieczeństwa, nie dodatek.",
+              "Łańcuch chłodniczy jest święty: kremy, musy, bita śmietana — błąd temperatury to ryzyko sanitarne i strata. Chłodnię traktuj jak CCP, nie jak magazyn.",
+              "Kremy: obróbka termiczna (CCP5: ≥85°C przez ≥1 min) i kontrolowane schłodzenie — to fakt bezpieczeństwa żywności, monitorowany w HACCP."
+            ],
+            "zrodlo": "Złoty Standard Cukiernictwa, Zasady 6, 9"
+          },
+          {
+            "tytul": "Organizacja pracy i nawyki",
+            "punkty": [
+              "Mise en place totalne: przed startem wszystko odważone, opisane, w zasięgu ręki. W cukierni ważniejsze niż w piekarni — montaż deseru wymaga wielu komponentów w jednym oknie czasowym.",
+              "Praca komponentami z wyprzedzeniem: biszkopty, inserty i crémeux dzień wcześniej (mrożenie insertów to standard), montaż i glazura świeżo — rozkłada szczyt pracy i podnosi powtarzalność.",
+              "Każdy komponent ma etykietę z datą (FIFO/FEFO); clean as you go — cukiernia brudzi się szybciej (czekolada, kremy, barwniki), a alergen i strata lubią bałagan."
+            ],
+            "zrodlo": "Złoty Standard Cukiernictwa, rozdz. 4 (nawyki)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "DC2-1", "tom": "Cukiernictwo: bezpieczeństwo i organizacja", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego bonbon czekoladowy żyje tygodnie, a krem patisserie tylko godziny?",
+          "opcje": [
+            "Bo bonbon jest droższy",
+            "Bo o trwałości decyduje aktywność wody (aw) i łańcuch chłodniczy, nie potoczna „świeżość”",
+            "Bo krem jest zawsze zepsuty",
+            "Bo bonbon się nie je od razu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Aktywność wody (aw) rządzi trwałością i bezpieczeństwem; niska aw = długa trwałość, wysoka (krem) = krótka.",
+          "zrodlo": "Złoty Standard Cukiernictwa, Zasada 6"
+        },
+        {
+          "id": "DC2-2", "tom": "Cukiernictwo: bezpieczeństwo i organizacja", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jak traktować chłodnię z kremami, musami i bitą śmietaną?",
+          "opcje": [
+            "Jak zwykły magazyn na wszystko",
+            "Jak punkt krytyczny (CCP): błąd temperatury to ryzyko sanitarne i strata; komponenty z etykietą i datą, FIFO/FEFO",
+            "Trzymać tam też surowce suche dla oszczędności miejsca",
+            "Wyłączać na noc dla oszczędności prądu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Łańcuch chłodniczy jest święty — chłodnię traktuje się jak CCP, nie magazyn; dyscyplina etykiet i FIFO/FEFO.",
+          "zrodlo": "Złoty Standard Cukiernictwa, Zasada 9"
+        },
+        {
+          "id": "DC2-3", "tom": "Cukiernictwo: bezpieczeństwo i organizacja", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jak zorganizować pracę cukiernika, by wyrównać szczyt i podnieść powtarzalność?",
+          "opcje": [
+            "Robić wszystko na świeżo tuż przed sprzedażą",
+            "Mise en place totalne + przygotowanie komponentów (inserty mrożone, crémeux) z wyprzedzeniem; montaż i glazura świeżo",
+            "Improwizować zależnie od dnia",
+            "Zredukować liczbę pomiarów, żeby było szybciej"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Praca komponentami z wyprzedzeniem (mrożenie insertów to standard) rozkłada szczyt i podnosi powtarzalność; montaż świeżo.",
+          "zrodlo": "Złoty Standard Cukiernictwa, rozdz. 4"
+        }
+      ]
     }
   ]
 }
