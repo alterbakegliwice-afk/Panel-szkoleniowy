@@ -180,7 +180,7 @@ export default function App() {
           kolejka={stan.kolejka}
           nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
-          onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
+          onStartQuizu={(tom, tryb = 'cwiczenie') => setEkran({ widok: 'quiz', tom, tryb })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
         />
       )}
@@ -192,7 +192,7 @@ export default function App() {
           onWroc={() => setEkran({ widok: 'profil' })}
           onGotowe={() => {
             oznaczPrzerobiony(pracownik.id_prac, ekran.tom)
-            setEkran({ widok: 'quiz', tom: ekran.tom })
+            setEkran({ widok: 'quiz', tom: ekran.tom, tryb: 'cwiczenie' })
           }}
         />
       )}
@@ -201,6 +201,7 @@ export default function App() {
           pracownik={pracownik}
           tom={ekran.tom}
           pytania={pytania}
+          tryb={ekran.tryb || 'cwiczenie'}
           wyniki={stan.wyniki}
           kolejka={stan.kolejka}
           onWynik={dodajWynik}

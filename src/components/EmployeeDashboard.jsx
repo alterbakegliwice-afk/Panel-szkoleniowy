@@ -92,15 +92,23 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
                       📖 Ucz się{materialTomu(t.tom) ? '' : ' (wkrótce)'}
                     </button>
                     <button
+                      className="drugi"
+                      disabled={!przerobiony(t.tom)}
+                      onClick={() => onStartQuizu(t.tom, 'cwiczenie')}
+                    >
+                      Ćwicz
+                    </button>
+                    <button
                       className="glowny"
                       disabled={!przerobiony(t.tom)}
-                      onClick={() => onStartQuizu(t.tom)}
+                      onClick={() => onStartQuizu(t.tom, 'egzamin')}
+                      title="Podejście na ocenę — bez podpowiedzi, liczy się do awansu"
                     >
-                      Sprawdź wiedzę
+                      Egzamin
                     </button>
                   </div>
                   {!przerobiony(t.tom) && (
-                    <p className="cichy mini">🔒 Najpierw przerób materiał — potem sprawdzenie wiedzy.</p>
+                    <p className="cichy mini">🔒 Najpierw przerób materiał — potem ćwiczenie i egzamin.</p>
                   )}
                 </div>
               ))}
