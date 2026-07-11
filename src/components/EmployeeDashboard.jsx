@@ -1,14 +1,21 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
 import { czyPrzerobiono, materialTomu, grupujWgBlokow } from '../logic/nauka.js'
+import { aktywnePrzypisania, poTerminie } from '../logic/przypisania.js'
+import { teraz } from '../logic/store.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
-export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, praktyka = [], konfig, onStartQuizu, onUczSie }) {
+export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, praktyka = [], przypisania = [], konfig, onStartQuizu, onUczSie }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy, praktyka)
   const historia = historiaPracownika(wyniki, pytania, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
+  const teraziso = teraz()
+  const moje = aktywnePrzypisania(przypisania, pracownik.id_prac)
+    .slice()
+    .sort((a, b) => (a.termin || '').localeCompare(b.termin || ''))
+  const przypisanieTomu = (tom) => moje.find((m) => m.tom === tom)
   const wKolejce = (tom) =>
     kolejka.filter(
       (k) => k.id_prac === pracownik.id_prac && pytania.find((p) => p.id === k.id_pytania)?.tom === tom
@@ -39,6 +46,37 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
           )}
         </div>
       </div>
+
+      {/* PRZYDZIAŁY (adopcja) — konkretne „co teraz" z terminem, przyciąga uwagę. */}
+      {moje.length > 0 && (
+        <div className="karta przydzialy">
+          <h3>📌 Twoje przydziały</h3>
+          <ul className="przydzialy-lista">
+            {moje.map((m) => {
+              const spozniony = poTerminie(m.termin, teraziso)
+              const zaczete = przerobiony(m.tom)
+              return (
+                <li key={m.tom} className="przydzial-poz">
+                  <div>
+                    <strong>{m.tom}</strong>
+                    {m.termin && (
+                      <span className={spozniony ? 'przydzial-termin po' : 'przydzial-termin'}>
+                        {' '}· termin {m.termin}{spozniony ? ' (po terminie)' : ''}
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    className={zaczete ? 'drugi maly' : 'glowny maly'}
+                    onClick={() => (przerobiony(m.tom) ? onStartQuizu(m.tom, 'cwiczenie') : onUczSie(m.tom))}
+                  >
+                    {zaczete ? 'Kontynuuj' : 'Zacznij naukę'}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
 
       {/* OŚ PRAKTYCZNA — wiedza ≠ umiejętność. Wymagana od Samodzielnego (#3). */}
       {prof.praktykaWymagana && (
@@ -94,6 +132,11 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
                       {t.status}
                     </span>
                   </div>
+                  {przypisanieTomu(t.tom) && (
+                    <p className="cichy mini przydzial-tag">
+                      📌 przydzielone{przypisanieTomu(t.tom).termin ? ` · termin ${przypisanieTomu(t.tom).termin}` : ''}
+                    </p>
+                  )}
                   <div className="postep-tor">
                     <div className="postep-fill" style={{ width: proc(t.procent) + '%' }} />
                   </div>

@@ -102,6 +102,18 @@ export default function App() {
       ]
     }))
 
+  // Przydział nauki z terminem (adopcja) — log append-only; usunięcie = wpis usuniete:true.
+  const przypiszTom = (idPrac, tom, termin) =>
+    setStan((s) => ({
+      ...s,
+      przypisania: [...s.przypisania, { id_prac: idPrac, tom, termin, utworzono: teraz(), przez: oceniajacy }]
+    }))
+  const usunPrzypisanie = (idPrac, tom) =>
+    setStan((s) => ({
+      ...s,
+      przypisania: [...s.przypisania, { id_prac: idPrac, tom, usuniete: true, utworzono: teraz(), przez: oceniajacy }]
+    }))
+
   const zatwierdzTom = (tom) =>
     setStan((s) => (s.zatwierdzone.includes(tom) ? s : { ...s, zatwierdzone: [...s.zatwierdzone, tom] }))
   const cofnijTom = (tom) =>
@@ -193,6 +205,7 @@ export default function App() {
           kolejka={stan.kolejka}
           nauka={stan.nauka}
           praktyka={stan.praktyka}
+          przypisania={stan.przypisania}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onStartQuizu={(tom, tryb = 'cwiczenie') => setEkran({ widok: 'quiz', tom, tryb })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
@@ -243,8 +256,12 @@ export default function App() {
           pytania={pytania}
           wyniki={stan.wyniki}
           praktyka={stan.praktyka}
+          przypisania={stan.przypisania}
+          nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onPotwierdzPraktyke={jestWlascicielem || jestMentorem ? potwierdzPraktyke : null}
+          onPrzypisz={jestWlascicielem || jestMentorem ? przypiszTom : null}
+          onUsunPrzypisanie={jestWlascicielem || jestMentorem ? usunPrzypisanie : null}
         />
       )}
       {ekran.widok === 'zasady' && (jestMentorem || jestWlascicielem) && (

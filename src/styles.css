@@ -219,7 +219,18 @@ button { font-family: inherit; }
 .prakt-poz { display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .prakt-tom { font-weight: 600; }
 .prakt-akcje { display: flex; align-items: center; gap: .5rem; }
-.drugi.maly { padding: .3rem .7rem; font-size: .82rem; }
+.drugi.maly, .glowny.maly { padding: .3rem .7rem; font-size: .82rem; }
+
+/* przydziały (adopcja) */
+.przydzialy { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
+.przydzialy h3 { color: var(--akcent-ciemny); margin-bottom: .5rem; }
+.przydzialy-lista { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.przydzial-poz { display: flex; justify-content: space-between; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.przydzial-termin { color: var(--cichy); font-size: .85rem; }
+.przydzial-termin.po { color: var(--brak); font-weight: 700; }
+.przydzial-tag { margin-top: .35rem; }
+.przydzial-form { flex-wrap: wrap; align-items: center; gap: .5rem; margin: .6rem 0; }
+.przydzial-form .pole { width: auto; flex: 1 1 auto; min-width: 8rem; }
 
 .tomy-siatka { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 1.1rem; }
 .tom { display: flex; flex-direction: column; transition: transform .12s, box-shadow .15s; }

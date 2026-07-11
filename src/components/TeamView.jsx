@@ -1,14 +1,23 @@
+import { useState } from 'react'
 import { profilPracownika, historiaPracownika, tomCelOsiagniety } from '../logic/progress.js'
+import { aktywnePrzypisania, tomyZWynikamiPracownika, czyZaczal } from '../logic/przypisania.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, praktyka = [], konfig, onPotwierdzPraktyke }) {
+export default function TeamView({
+  pracownicy, pytania, wyniki, praktyka = [], przypisania = [], nauka = [], konfig,
+  onPotwierdzPraktyke, onPrzypisz, onUsunPrzypisanie
+}) {
   const proc = (x) => Math.round(x * 100)
   const wiersze = pracownicy.map((prac) => ({
     prac,
     prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy, praktyka)
   }))
+  const tomy = [...new Set(pytania.map((p) => p.tom))]
+  const [formPrac, setFormPrac] = useState('')
+  const [formTom, setFormTom] = useState('')
+  const [formTermin, setFormTermin] = useState('')
 
   return (
     <div className="zespol">
@@ -77,6 +86,67 @@ export default function TeamView({ pracownicy, pytania, wyniki, praktyka = [], k
         Kolumna CCP potwierdza <strong>wiedzę</strong> o progach — nie zastępuje rejestru HACCP
         (udokumentowany pomiar temperatur i działania korygujące w produkcji).
       </p>
+
+      {onPrzypisz && (
+        <div className="karta">
+          <h2>Przydziały nauki (adopcja)</h2>
+          <p className="cichy mini">
+            Bez przydziału z terminem platforma zostaje „na potem". Przypisz konkretny tom z datą —
+            pracownik zobaczy go na górze swojego ekranu.
+          </p>
+          <div className="rzad przydzial-form">
+            <select value={formPrac} onChange={(e) => setFormPrac(e.target.value)} className="pole">
+              <option value="">— pracownik —</option>
+              {pracownicy.map((p) => <option key={p.id_prac} value={p.id_prac}>{p.imie}</option>)}
+            </select>
+            <select value={formTom} onChange={(e) => setFormTom(e.target.value)} className="pole">
+              <option value="">— tom —</option>
+              {tomy.map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+            <input type="date" value={formTermin} onChange={(e) => setFormTermin(e.target.value)} className="pole" />
+            <button
+              className="glowny"
+              disabled={!formPrac || !formTom}
+              onClick={() => { onPrzypisz(formPrac, formTom, formTermin); setFormTom(''); setFormTermin('') }}
+            >
+              Przypisz
+            </button>
+          </div>
+
+          {pracownicy.map((prac) => {
+            const moje = aktywnePrzypisania(przypisania, prac.id_prac)
+            if (!moje.length) return null
+            const zWynikami = tomyZWynikamiPracownika(wyniki, pytania, prac.id_prac)
+            return (
+              <div key={prac.id_prac} className="prakt-prac">
+                <h3>{prac.imie}</h3>
+                <ul className="prakt-lista">
+                  {moje.map((m) => {
+                    const zaczal = czyZaczal(nauka, zWynikami, prac.id_prac, m.tom)
+                    return (
+                      <li key={m.tom} className="prakt-poz">
+                        <span className="prakt-tom">
+                          {m.tom}{m.termin ? <span className="cichy mini"> · termin {m.termin}</span> : ''}
+                        </span>
+                        <span className="prakt-akcje">
+                          <span className={zaczal ? 'ccp-tag ok' : 'ccp-tag brak'}>
+                            {zaczal ? 'zaczęte' : 'nie zaczął'}
+                          </span>
+                          {onUsunPrzypisanie && (
+                            <button className="cichy-link" onClick={() => onUsunPrzypisanie(prac.id_prac, m.tom)}>
+                              Usuń
+                            </button>
+                          )}
+                        </span>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )
+          })}
+        </div>
+      )}
 
       {onPotwierdzPraktyke && (
         <div className="karta">
