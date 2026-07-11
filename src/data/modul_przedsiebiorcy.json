@@ -1,0 +1,573 @@
+{
+  "wersja": "2026-07-10",
+  "tytul": "Moduł Przedsiębiorcy i Lidera Zespołu",
+  "opis": "Kompendium tylko dla właściciela. Zbudowane analogicznie do Złotego Standardu — synteza praktyk autorytetów i metaanaliz badań, z warstwą rozwiązań nieszablonowych o wysokim prawdopodobieństwie skuteczności. Najpierw uczysz się modułu, potem sprawdzasz wiedzę.",
+  "moduly": [
+    {
+      "id": "PRZ-BP",
+      "tytul": "Bezpieczeństwo psychologiczne",
+      "obszar": "Fundament zespołu",
+      "nauka": {
+        "intro": "Zanim zespół będzie wydajny, musi być bezpieczny. Bezpieczeństwo psychologiczne to wspólne przekonanie, że można zaryzykować odezwanie się — przyznać błąd, zadać pytanie, zgłosić problem — bez kary i ośmieszenia. To nie miękka „miłość”, tylko twardy warunek jakości i bezpieczeństwa (także żywności: ukryty błąd CCP zabija zaufanie klienta).",
+        "karty": [
+          {
+            "tytul": "Dlaczego to fundament (dowody)",
+            "punkty": [
+              "Amy Edmondson (Harvard) pokazała, że lepsze zespoły raportują WIĘCEJ błędów — nie dlatego, że popełniają więcej, lecz dlatego, że o nich mówią i się uczą.",
+              "Google, projekt Aristotle (analiza 180+ zespołów): bezpieczeństwo psychologiczne było zdecydowanie najsilniejszym predyktorem skuteczności zespołu — ważniejszym niż talent poszczególnych osób.",
+              "Mechanizm: strach wyłącza uczenie się i zgłaszanie problemów; w piekarni to znaczy ukryte odchyłki temperatury, przemilczane pomyłki, brak pytań przy nowej procedurze."
+            ],
+            "zrodlo": "Edmondson, „The Fearless Organization” (2019); Google re:Work / Project Aristotle (2015)"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Reaguj na zły news wdzięcznością, nie karą: „Dobrze, że to zgłosiłeś” — zanim rozwiążesz problem. Kara za prawdę uczy milczenia.",
+              "Modeluj omylność: mów o własnych błędach głośno („pomyliłem DDT, koryguję”). Lider, który nigdy nie błądzi, produkuje zespół, który nigdy nie przyznaje.",
+              "Oddziel osobę od problemu: rozliczaj proces i standard, nie godność człowieka.",
+              "Zadawaj pytania zapraszające: „czego nie widzę?”, „co może pójść źle?” — zamiast „czy wszystko jasne?”."
+            ],
+            "zrodlo": "Edmondson (2019); Schein, „Humble Inquiry”"
+          },
+          {
+            "tytul": "Nieszablonowe rozwiązanie o wysokiej skuteczności",
+            "punkty": [
+              "„Błąd tygodnia” na odprawie: Ty jako właściciel pierwszy opowiadasz o swojej pomyłce i wniosku. Normalizuje przyznawanie się i zamienia wstyd w naukę.",
+              "Zasada 24 godzin: każdy zgłoszony problem dostaje odpowiedź (choćby „zajmę się jutro”) w dobę — brak reakcji uczy, że zgłaszanie nie ma sensu."
+            ],
+            "zrodlo": "adaptacja praktyk high-reliability organizations (lotnictwo, medycyna)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-BP-1", "tom": "Bezpieczeństwo psychologiczne", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Pracownik przyznaje się, że wczoraj wyjął partię bez pomiaru sondą (możliwe naruszenie CCP1). Co robisz w pierwszej reakcji?",
+          "opcje": [
+            "Publicznie zwracasz mu uwagę, żeby inni widzieli konsekwencje",
+            "Dziękujesz za zgłoszenie, potem wspólnie ustalacie, jak zabezpieczyć proces, by się nie powtórzyło",
+            "Nic nie mówisz, ale zapamiętujesz przy ocenie",
+            "Wprowadzasz karę finansową za pominięcie pomiaru"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Najpierw wzmocnij zgłoszenie (bezpieczeństwo psychologiczne), potem napraw proces. Kara za prawdę uczy ukrywania — a ukryte CCP jest groźniejsze niż przyznane.",
+          "zrodlo": "Edmondson (2019); Google Aristotle"
+        },
+        {
+          "id": "PRZ-BP-2", "tom": "Bezpieczeństwo psychologiczne", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Zespół, który raportuje więcej błędów niż inny, najczęściej oznacza, że:",
+          "opcje": [
+            "Jest gorszy i mniej kompetentny",
+            "Ma niższe standardy jakości",
+            "Czuje się bezpiecznie, by mówić o błędach — co umożliwia uczenie się",
+            "Potrzebuje ściślejszej kontroli i kar"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Badania Edmondson: wyższy raportowany poziom błędów w dobrych zespołach wynika z otwartości, nie z gorszej pracy. Widoczny błąd można naprawić; ukryty — nie.",
+          "zrodlo": "Edmondson, badania nad zespołami szpitalnymi"
+        },
+        {
+          "id": "PRZ-BP-3", "tom": "Bezpieczeństwo psychologiczne", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Który Twój nawyk najsilniej BUDUJE bezpieczeństwo psychologiczne w zespole?",
+          "opcje": [
+            "Pokazujesz, że sam nigdy się nie mylisz — dajesz wzór doskonałości",
+            "Głośno mówisz o własnych błędach i wnioskach oraz pytasz „czego nie widzę?”",
+            "Nagradzasz tylko bezbłędne wykonania",
+            "Trzymasz dystans, żeby zachować autorytet"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Modelowanie omylności przez lidera i pytania zapraszające to najsilniejsze dźwignie. Nieomylny szef = zespół, który ukrywa problemy.",
+          "zrodlo": "Edmondson (2019); Schein, „Humble Inquiry”"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-MOT",
+      "tytul": "Motywacja wewnętrzna (autonomia, mistrzostwo, sens)",
+      "obszar": "Napęd zespołu",
+      "nauka": {
+        "intro": "Premie i kary (motywacja zewnętrzna) działają na proste, powtarzalne zadania, ale słabo — a często szkodliwie — na jakość, zaangażowanie i kreatywność. Trwały napęd daje motywacja wewnętrzna, oparta na trzech potrzebach: autonomii, kompetencji (mistrzostwie) i relacji/sensie.",
+        "karty": [
+          {
+            "tytul": "Teoria i dowody",
+            "punkty": [
+              "Self-Determination Theory (Deci & Ryan): ludzie działają trwale, gdy zaspokojone są autonomia, kompetencja i relacja.",
+              "Metaanaliza Cerasoli, Nicklin & Ford (2014, 40 lat badań): motywacja wewnętrzna silnie przewiduje jakość wykonania; nagrody zewnętrzne potrafią ją wypierać, zwłaszcza gdy są warunkowe („jeśli–to”).",
+              "Wniosek dla piekarni: płać uczciwie i zdejmij pieniądze ze stołu jako temat — potem buduj autonomię i mistrzostwo, bo to one dają jakość rzemieślniczą."
+            ],
+            "zrodlo": "Deci & Ryan (SDT); Cerasoli et al., Psychological Bulletin (2014); Pink, „Drive”"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Autonomia: dawaj cel i standard (np. „skórka wg karty”), zostaw drogę. Mikrozarządzanie zabija napęd i Twój czas.",
+              "Mistrzostwo: pokaż ścieżkę Junior→Samodzielny (dokładnie ta platforma) — widoczny postęp jest paliwem.",
+              "Sens: łącz zadanie z klientem („ten chleb je rodzina z dzieckiem — dlatego 92°C”), nie z abstrakcją.",
+              "Uważaj na premie za wynik jakościowy — potrafią przenieść uwagę z jakości na metrykę i psuć wewnętrzny napęd."
+            ],
+            "zrodlo": "Pink (2009); SDT"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-MOT-1", "tom": "Motywacja wewnętrzna (autonomia, mistrzostwo, sens)", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Chcesz trwale podnieść jakość pracy samodzielnego piekarza. Co zadziała najlepiej według badań?",
+          "opcje": [
+            "Premia za każdy dzień bez reklamacji",
+            "Autonomia w decyzjach + widoczna ścieżka mistrzostwa + sens (dla kogo pracuje)",
+            "Ścisła kontrola każdego kroku",
+            "Ranking pracowników co tydzień"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Przy zadaniach wymagających jakości i osądu motywacja wewnętrzna (autonomia/mistrzostwo/sens) bije bodźce zewnętrzne; warunkowe premie potrafią wypierać wewnętrzny napęd.",
+          "zrodlo": "Cerasoli et al. (2014); SDT; Pink"
+        },
+        {
+          "id": "PRZ-MOT-2", "tom": "Motywacja wewnętrzna (autonomia, mistrzostwo, sens)", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Kiedy nagrody finansowe „jeśli–to” są najbardziej ryzykowne?",
+          "opcje": [
+            "Przy prostych, powtarzalnych zadaniach mechanicznych",
+            "Przy zadaniach wymagających jakości, osądu i kreatywności",
+            "Nigdy nie są ryzykowne",
+            "Tylko gdy są zbyt małe"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Bodźce warunkowe pomagają przy prostych zadaniach, ale przy pracy wymagającej myślenia i jakości potrafią zawęzić uwagę i wyprzeć motywację wewnętrzną.",
+          "zrodlo": "Cerasoli et al. (2014); badania nad crowding-out"
+        },
+        {
+          "id": "PRZ-MOT-3", "tom": "Motywacja wewnętrzna (autonomia, mistrzostwo, sens)", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Które trzy potrzeby zaspokaja skuteczny lider, by dać zespołowi trwały napęd (SDT)?",
+          "opcje": [
+            "Kontrola, rywalizacja, presja",
+            "Autonomia, kompetencja (mistrzostwo), relacja/sens",
+            "Premie, benefity, awanse",
+            "Stabilność, cisza, brak zmian"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Self-Determination Theory: autonomia, kompetencja, relacja. To rdzeń trwałej motywacji, a nie kij i marchewka.",
+          "zrodlo": "Deci & Ryan, SDT"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-CEL",
+      "tytul": "Cele i wykonanie (od intencji do rezultatu)",
+      "obszar": "Egzekucja",
+      "nauka": {
+        "intro": "Mgliste postanowienia („róbmy lepszy chleb”) nie zmieniają zachowań. Zmieniają je cele konkretne i ambitne oraz zaplanowane wcześniej reakcje na przeszkody. To jedna z najlepiej udokumentowanych prawidłowości w naukach o zarządzaniu i psychologii.",
+        "karty": [
+          {
+            "tytul": "Dowody",
+            "punkty": [
+              "Locke & Latham (35+ lat, setki badań): cele konkretne i trudne dają wyższe wyniki niż „daj z siebie wszystko” — pod warunkiem informacji zwrotnej i zaangażowania.",
+              "Implementation intentions (Gollwitzer): plan „jeśli [sytuacja], to [działanie]” mocno zwiększa realizację zamiarów — metaanaliza Gollwitzer & Sheeran (2006) na 94 badaniach: efekt średni-duży (d≈0,65).",
+              "Innowacyjna rama WOOP (Oettingen): Wish–Outcome–Obstacle–Plan — łączy wizję z konkretnym planem na przeszkodę; skuteczniejsza niż samo „pozytywne myślenie”."
+            ],
+            "zrodlo": "Locke & Latham (Goal-Setting Theory); Gollwitzer & Sheeran, meta-analiza (2006); Oettingen, WOOP"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Zamień życzenia na cele mierzalne z terminem: „do końca miesiąca strata pieczywa < 4%”, nie „mniej marnujmy”.",
+              "Dla każdego celu spisz 1–2 „jeśli–to”: „Jeśli piec przeciąży o 15:00, to przełożę bagietki na dolny poziom”.",
+              "Kaskaduj rzadko, ale twardo: 3 cele kwartalne firmy > 15 rozmytych. (por. OKR — mało celów, jawne wyniki kluczowe.)",
+              "Zapewnij informację zwrotną — cel bez pomiaru postępu przestaje motywować."
+            ],
+            "zrodlo": "Locke & Latham; Doerr, „Measure What Matters” (OKR)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-CEL-1", "tom": "Cele i wykonanie (od intencji do rezultatu)", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Które sformułowanie celu najskuteczniej zmieni zachowanie zespołu?",
+          "opcje": [
+            "„Starajmy się marnować mniej pieczywa”",
+            "„Do końca lipca strata < 4%; jeśli zostają bochenki po 12:00, to trafiają do przeceny o 14:00”",
+            "„Marnowanie jest złe, uważajmy”",
+            "„Zobaczymy, jak pójdzie w tym miesiącu”"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Cel konkretny + mierzalny + termin, wsparty planem „jeśli–to” (implementation intention), realnie zmienia zachowanie. Mgliste postanowienia — nie.",
+          "zrodlo": "Locke & Latham; Gollwitzer & Sheeran (2006)"
+        },
+        {
+          "id": "PRZ-CEL-2", "tom": "Cele i wykonanie (od intencji do rezultatu)", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czym jest „implementation intention” i dlaczego działa?",
+          "opcje": [
+            "Ogólne pozytywne nastawienie do celu",
+            "Zawczasu ustalony plan „jeśli [sytuacja], to [działanie]”, który automatyzuje reakcję na przeszkodę",
+            "Lista życzeń na rok",
+            "Premia za osiągnięcie celu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Plan „jeśli–to” wiąże konkretną sytuację z działaniem, więc w chwili próby nie trzeba decydować od zera. Metaanaliza: efekt średni-duży.",
+          "zrodlo": "Gollwitzer & Sheeran, meta-analiza (2006), d≈0,65"
+        },
+        {
+          "id": "PRZ-CEL-3", "tom": "Cele i wykonanie (od intencji do rezultatu)", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego lepiej mieć 3 twarde cele kwartalne niż 15 rozmytych?",
+          "opcje": [
+            "Bo mniej pracy dla lidera",
+            "Bo skupienie i mierzalność zwiększają realizację; rozproszenie celów rozmywa wysiłek i informację zwrotną",
+            "Bo pracownicy nie lubią celów",
+            "Bo tak jest taniej"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Mało, konkretnych, mierzalnych celów z informacją zwrotną (logika OKR) bije listę życzeń. Uwaga zespołu jest zasobem ograniczonym.",
+          "zrodlo": "Locke & Latham; Doerr (OKR)"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-DEL",
+      "tytul": "Delegowanie i systemy zamiast bohaterstwa",
+      "obszar": "Redukcja zależności od właściciela (M5)",
+      "nauka": {
+        "intro": "Sedno M5: firma nie może zależeć od Twojej obecności i „wyczucia”. Delegowalność bierze się z systemów — spisanych standardów, list kontrolnych i obiektywnych kryteriów — a nie z nadziei, że ktoś „załapie”. Ta platforma jest częścią tego systemu.",
+        "karty": [
+          {
+            "tytul": "Idea i dowody",
+            "punkty": [
+              "Michael Gerber („E-Myth”): pracuj NAD firmą, nie tylko W firmie; buduj system, który działa bez geniusza właściciela.",
+              "Atul Gawande („The Checklist Manifesto”): proste listy kontrolne drastycznie redukują błędy nawet u ekspertów (chirurgia, lotnictwo) — bo zdejmują z pamięci kroki krytyczne (jak CCP).",
+              "Deliberate practice (Ericsson): mistrzostwo rośnie przez świadomy trening z informacją zwrotną, nie przez same lata stażu — dlatego kryterium awansu musi być obiektywne i ćwiczone, nie uznaniowe."
+            ],
+            "zrodlo": "Gerber, „E-Myth Revisited”; Gawande, „The Checklist Manifesto”; Ericsson, deliberate practice"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Deleguj rezultat i standard, nie kroki: „skórka i rdzeń wg karty”, z listą kontrolną punktów krytycznych.",
+              "Każdy powtarzalny proces = jedna kartka: wejście, kroki, znaki gotowości, punkty CCP. Jeśli nie ma kartki — nie ma delegacji.",
+              "Awans na obiektywnym kryterium (ta platforma), nie na „czuję, że gotowy”. To czyni decyzję delegowalną Mentorowi.",
+              "Reguła: rzecz robiona 3. raz zasługuje na spisany standard."
+            ],
+            "zrodlo": "Gerber; Gawande; zasada z Tomu I Złotego Standardu („Mistrz uczy — albo umiera z firmą”)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-DEL-1", "tom": "Delegowanie i systemy zamiast bohaterstwa", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jaki jest najpewniejszy sposób, by piekarnia działała bez Twojej codziennej obecności?",
+          "opcje": [
+            "Zatrudnić bardzo utalentowaną osobę i liczyć na jej wyczucie",
+            "Spisać standardy, listy kontrolne i obiektywne kryteria awansu — zbudować system",
+            "Częściej dzwonić i sprawdzać przez telefon",
+            "Obniżyć wymagania jakościowe"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Delegowalność bierze się z systemu (standardy, checklisty, obiektywne kryteria), nie z nadziei na cudzą intuicję. To rdzeń M5.",
+          "zrodlo": "Gerber, „E-Myth”; Gawande"
+        },
+        {
+          "id": "PRZ-DEL-2", "tom": "Delegowanie i systemy zamiast bohaterstwa", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego prosta lista kontrolna redukuje błędy nawet u doświadczonych mistrzów?",
+          "opcje": [
+            "Bo zastępuje wiedzę ekspercką",
+            "Bo zdejmuje z zawodnej pamięci kroki krytyczne i wymusza ich potwierdzenie (np. pomiar CCP)",
+            "Bo spowalnia pracę i zmusza do ostrożności",
+            "Bo motywuje finansowo"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Checklisty chronią przed pominięciem kroków krytycznych pod presją i rutyną — dowody z chirurgii i lotnictwa (Gawande).",
+          "zrodlo": "Gawande, „The Checklist Manifesto”"
+        },
+        {
+          "id": "PRZ-DEL-3", "tom": "Delegowanie i systemy zamiast bohaterstwa", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Kiedy proces zasługuje na spisany standard?",
+          "opcje": [
+            "Dopiero gdy pojawi się poważny błąd",
+            "Gdy robimy go co najmniej trzeci raz (albo jest krytyczny dla bezpieczeństwa)",
+            "Nigdy — rzemiosło ma być w głowie mistrza",
+            "Tylko dla nowych pracowników"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Reguła „trzeci raz = standard” plus obowiązkowo wszystko, co dotyka bezpieczeństwa (CCP). Spisany proces = delegowalny proces.",
+          "zrodlo": "praktyka lean/E-Myth; Złoty Standard Tom I"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-FB",
+      "tytul": "Informacja zwrotna i trudne rozmowy",
+      "obszar": "Rozwój ludzi",
+      "nauka": {
+        "intro": "Informacja zwrotna bywa mitologizowana jako zawsze dobra. Badania są ostrożniejsze: źle podana potrafi POGORSZYĆ wynik — zwłaszcza gdy uderza w „ja” osoby zamiast w zadanie. Dobra informacja zwrotna jest konkretna, oparta na obserwacji i skierowana na zachowanie oraz standard.",
+        "karty": [
+          {
+            "tytul": "Dowód, który zaskakuje",
+            "punkty": [
+              "Metaanaliza Kluger & DeNisi (1996, 600+ badań): interwencje z informacją zwrotną poprawiały wynik średnio, ALE w ok. 1/3 przypadków go POGARSZAŁY — najczęściej gdy uwaga przenosiła się na ego, nie na zadanie.",
+              "Wniosek: nie chodzi o „więcej feedbacku”, lecz o feedback skierowany na zachowanie i standard, z konkretem, nie na osobowość."
+            ],
+            "zrodlo": "Kluger & DeNisi, Psychological Bulletin (1996)"
+          },
+          {
+            "tytul": "Praktyki i modele",
+            "punkty": [
+              "SBI: Sytuacja–Zachowanie–Wpływ. „Dziś o 7:00 (S) wyjąłeś partię bez pomiaru sondą (Z); ryzyko niedopieczonego rdzenia i reklamacji (W)”. Konkret, nie etykieta.",
+              "Radical Candor (Kim Scott): łącz szczerość z troską. Bez troski to agresja; bez szczerości — zgubna uprzejmość.",
+              "Oddziel fakt od interpretacji; pytaj o perspektywę osoby, zanim ocenisz.",
+              "Chwal publicznie, koryguj na osobności — chroni to bezpieczeństwo psychologiczne."
+            ],
+            "zrodlo": "Kluger & DeNisi (1996); Scott, „Radical Candor”; model SBI (CCL)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-FB-1", "tom": "Informacja zwrotna i trudne rozmowy", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Która informacja zwrotna jest najskuteczniejsza?",
+          "opcje": [
+            "„Jesteś niedokładny i nie nadajesz się do wypieku”",
+            "„Dziś o 7:00 wyjąłeś partię bez pomiaru sondą — jest ryzyko niedopieczonego rdzenia; wróćmy do pomiaru za każdym razem”",
+            "„Musisz się bardziej starać”",
+            "„Wszystko źle robisz ostatnio”"
+          ],
+          "poprawne": [1],
+          "wzorzec": "SBI: konkretna sytuacja, zachowanie i wpływ, skierowane na proces/standard — nie na etykietę osoby. Atak na „ja” często pogarsza wynik.",
+          "zrodlo": "Kluger & DeNisi (1996); model SBI"
+        },
+        {
+          "id": "PRZ-FB-2", "tom": "Informacja zwrotna i trudne rozmowy", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co mówi metaanaliza o informacji zwrotnej?",
+          "opcje": [
+            "Zawsze poprawia wynik",
+            "Średnio pomaga, ale w około jednej trzeciej przypadków szkodzi — zwłaszcza gdy uderza w ego zamiast w zadanie",
+            "Nie ma żadnego wpływu",
+            "Działa tylko z premią"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Kluger & DeNisi: feedback bywa szkodliwy, gdy przenosi uwagę na „ja”. Dlatego forma i ukierunkowanie na zadanie są kluczowe.",
+          "zrodlo": "Kluger & DeNisi (1996)"
+        },
+        {
+          "id": "PRZ-FB-3", "tom": "Informacja zwrotna i trudne rozmowy", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jak pogodzić szczerość z relacją (Radical Candor)?",
+          "opcje": [
+            "Być miłym i unikać trudnych tematów",
+            "Mówić wprost i jednocześnie okazywać troskę o osobę; chwalić publicznie, korygować na osobności",
+            "Być twardym bez względu na uczucia",
+            "Przekazywać krytykę przez innych"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Radical Candor: szczerość + troska. Sama szczerość rani, sama troska usypia. Korekta na osobności chroni bezpieczeństwo.",
+          "zrodlo": "Scott, „Radical Candor”"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-REK",
+      "tytul": "Decyzje o ludziach: rekrutacja",
+      "obszar": "Dobór zespołu",
+      "nauka": {
+        "intro": "Najdroższy błąd małej firmy to zła rekrutacja. Intuicja („poczułem, że pasuje”) jest słabym predyktorem. Nauka o doborze personelu ma wyjątkowo mocne dane — warto z nich korzystać zamiast z przeczucia.",
+        "karty": [
+          {
+            "tytul": "Co naprawdę przewiduje wyniki (dowody)",
+            "punkty": [
+              "Schmidt & Hunter (1998), synteza 85 lat badań nad selekcją: najlepsze predyktory to zdolności poznawcze (GMA), próbka pracy (work sample) i ustrukturyzowany wywiad — a nie swobodna „rozmowa o życiu”.",
+              "Wywiad nieustrukturyzowany („pogadamy”) jest słabym i stronniczym predyktorem; ustrukturyzowany (te same pytania, jawna skala) bije go wyraźnie.",
+              "Dla piekarni: najlepszy test to realne zadanie na stanowisku (próbka pracy) + te same pytania sytuacyjne dla każdego kandydata."
+            ],
+            "zrodlo": "Schmidt & Hunter, Psychological Bulletin (1998); aktualizacje Sackett et al. (2022)"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Zrób próbkę pracy: pół dnia na stanowisku, obserwacja wg tych samych kryteriów (jak sprawdzian w tej platformie).",
+              "Ustrukturyzuj wywiad: 5–6 stałych pytań sytuacyjnych, oceniane wg jawnej skali; porównuj kandydatów na tych samych osiach.",
+              "Decyduj zespołowo i zapisuj oceny PRZED dyskusją, by uniknąć efektu pierwszej opinii (zakotwiczenie)."
+            ],
+            "zrodlo": "Schmidt & Hunter (1998); structured interviews (Google re:Work)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-REK-1", "tom": "Decyzje o ludziach: rekrutacja", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co najlepiej przewiduje przyszłą jakość pracy kandydata na piekarza?",
+          "opcje": [
+            "Miłe wrażenie z luźnej rozmowy",
+            "Próbka pracy na stanowisku + ustrukturyzowany wywiad wg tych samych kryteriów",
+            "Długość CV",
+            "To, czy nadajecie na tych samych falach"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Najmocniejsze predyktory to próbka pracy i ustrukturyzowany wywiad (Schmidt & Hunter). Luźne wrażenie jest stronnicze i słabe.",
+          "zrodlo": "Schmidt & Hunter (1998)"
+        },
+        {
+          "id": "PRZ-REK-2", "tom": "Decyzje o ludziach: rekrutacja", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego oceny kandydatów warto zapisać przed wspólną dyskusją?",
+          "opcje": [
+            "Żeby było szybciej",
+            "Żeby uniknąć zakotwiczenia na pierwszej wypowiedzianej opinii i grupowego myślenia",
+            "Żeby uniknąć formalności",
+            "To nie ma znaczenia"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Niezależna ocena przed dyskusją ogranicza zakotwiczenie i konformizm — decyzja jest mniej zaszumiona.",
+          "zrodlo": "Kahneman i in., „Noise” (2021); structured hiring"
+        },
+        {
+          "id": "PRZ-REK-3", "tom": "Decyzje o ludziach: rekrutacja", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czym różni się wywiad ustrukturyzowany od nieustrukturyzowanego i który jest lepszy?",
+          "opcje": [
+            "Niczym istotnym",
+            "Ustrukturyzowany = te same pytania i jawna skala dla wszystkich; jest wyraźnie lepszym i mniej stronniczym predyktorem",
+            "Nieustrukturyzowany jest lepszy, bo bardziej ludzki",
+            "Oba są równie słabe"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Ustrukturyzowany wywiad (stałe pytania, jawna skala) bije swobodną rozmowę pod względem trafności i sprawiedliwości.",
+          "zrodlo": "Schmidt & Hunter (1998); Google re:Work"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-SELF",
+      "tytul": "Zarządzanie sobą: uwaga, energia, decyzje",
+      "obszar": "Higiena lidera",
+      "nauka": {
+        "intro": "Lider małej firmy jest wąskim gardłem własnej uwagi. Zarządzaj energią i środowiskiem, nie tylko czasem — a decyzje traktuj jak proces, który da się odszumić. Szczególnie ważne przy uciekającej uwadze (ADHD): projektuj otoczenie tak, by właściwe działanie było domyślne.",
+        "karty": [
+          {
+            "tytul": "Jak myślimy i błądzimy (dowody)",
+            "punkty": [
+              "Kahneman: System 1 (szybki, intuicyjny) i System 2 (wolny, analityczny). Większość błędów bierze się z ufania szybkim skrótom tam, gdzie potrzebna jest analiza.",
+              "„Noise” (Kahneman, Sibony, Sunstein): te same dane dają różne decyzje w zależności od nastroju, pory dnia, kolejności — to szum, który da się redukować procedurą i checklistą decyzyjną.",
+              "Energia > czas: wykonanie zależy od stanu (sen, głód, przerwy). Decyzje krytyczne podejmuj w oknie wysokiej energii, nie na koniec dnia."
+            ],
+            "zrodlo": "Kahneman, „Pułapki myślenia” (2011); Kahneman/Sibony/Sunstein, „Noise” (2021)"
+          },
+          {
+            "tytul": "Praktyki (w tym pod ADHD)",
+            "punkty": [
+              "Dziennik decyzji: zapisz decyzję, oczekiwany wynik i termin przeglądu — uczy kalibracji i tłumi złudzenie „wiedziałem”.",
+              "Projektuj środowisko: narzędzia i checklisty w zasięgu ręki; jedno główne działanie na raz (jak tryb skupienia w tej platformie).",
+              "Blokuj okna głębokiej pracy i chroń je; batchuj drobne sprawy zamiast przełączać kontekst.",
+              "Premortem przed ważną decyzją: „wyobraź, że za rok to się nie udało — dlaczego?” — ujawnia ryzyka, które optymizm ukrywa."
+            ],
+            "zrodlo": "Klein, premortem; Newport, „Deep Work”; praktyki dla ADHD (environment design)"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-SELF-1", "tom": "Zarządzanie sobą: uwaga, energia, decyzje", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Kiedy najlepiej podejmować decyzje krytyczne (np. o dużym zamówieniu surowca)?",
+          "opcje": [
+            "Na koniec dnia, przy okazji sprzątania",
+            "W oknie wysokiej energii i uwagi, nie zmęczony i nie w pośpiechu",
+            "Zawsze natychmiast, intuicyjnie",
+            "Kiedy akurat ktoś naciska"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Jakość decyzji zależy od stanu (energia, uwaga). Krytyczne decyzje planuj na okno wysokiej energii, nie na resztki dnia.",
+          "zrodlo": "Kahneman; badania nad zmęczeniem decyzyjnym"
+        },
+        {
+          "id": "PRZ-SELF-2", "tom": "Zarządzanie sobą: uwaga, energia, decyzje", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czym jest „premortem” i po co go robić?",
+          "opcje": [
+            "Analizą po porażce",
+            "Wyobrażeniem sobie z góry, że decyzja zawiodła, by wcześniej wykryć ryzyka, które optymizm ukrywa",
+            "Rodzajem premii",
+            "Spotkaniem podsumowującym kwartał"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Premortem (Klein): zakładasz porażkę i szukasz przyczyn zawczasu — ujawnia ryzyka niewidoczne w trybie optymizmu.",
+          "zrodlo": "Gary Klein, premortem"
+        },
+        {
+          "id": "PRZ-SELF-3", "tom": "Zarządzanie sobą: uwaga, energia, decyzje", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Przy uciekającej uwadze najskuteczniejszą strategią lidera jest:",
+          "opcje": [
+            "Silniejsza wola i dłuższa praca",
+            "Projektowanie środowiska tak, by właściwe działanie było domyślne: jedno działanie na raz, checklisty pod ręką, chronione okna skupienia",
+            "Robienie wielu rzeczy naraz",
+            "Poleganie wyłącznie na pamięci"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Zamiast walczyć z uwagą — projektuj otoczenie (environment design): domyślne dobre działanie, jeden fokus, checklisty, batching. Skuteczniejsze niż sama siła woli.",
+          "zrodlo": "environment design; Newport, „Deep Work”"
+        }
+      ]
+    },
+    {
+      "id": "PRZ-ZM",
+      "tytul": "Zmiana i nawyki w zespole",
+      "obszar": "Wdrażanie zmian",
+      "nauka": {
+        "intro": "Większość zmian upada nie z braku racji, lecz z braku procesu i małych kroków. Zmiana trwała rośnie z nawyków, jasnego „dlaczego” i szybkich zwycięstw — nie z jednego wielkiego zrywu.",
+        "karty": [
+          {
+            "tytul": "Ramy i dowody",
+            "punkty": [
+              "Kotter (8 kroków): zmiana potrzebuje poczucia pilności, koalicji, jasnej wizji i widocznych krótkoterminowych zwycięstw.",
+              "Heath, „Switch”: kieruj Jeźdźcem (rozum: jasny kierunek), motywuj Słonia (emocje: sens), kształtuj Ścieżkę (środowisko: ułatw dobre zachowanie).",
+              "BJ Fogg, „Tiny Habits”: nowy nawyk przyczep do istniejącego (kotwica), zacznij od wersji minimalnej, świętuj natychmiast — to buduje trwałość."
+            ],
+            "zrodlo": "Kotter (1996); Heath & Heath, „Switch” (2010); Fogg, „Tiny Habits” (2019)"
+          },
+          {
+            "tytul": "Praktyki wdrożeniowe",
+            "punkty": [
+              "Wprowadzaj jedną zmianę na raz i pokaż szybkie zwycięstwo (np. jeden tom pilota, nie 20 naraz — dokładnie zasada tej platformy).",
+              "Przyczep nowy nawyk do istniejącego: „po odpaleniu pieca — wpis do dziennika DDT”.",
+              "Ułatw właściwe zachowanie (ścieżka): checklista na ścianie, sonda przy piecu, mniej tarcia = więcej wdrożenia.",
+              "Powtarzaj „dlaczego” — sens napędza Słonia; sama instrukcja nie wystarcza."
+            ],
+            "zrodlo": "Heath & Heath; Fogg; Kotter"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "PRZ-ZM-1", "tom": "Zmiana i nawyki w zespole", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Chcesz wdrożyć nowy standard w zespole. Co zwiększa szansę na trwałą zmianę?",
+          "opcje": [
+            "Wprowadzić wszystko naraz i wymagać natychmiast",
+            "Jedna zmiana na raz, jasne „dlaczego”, szybkie widoczne zwycięstwo i ułatwione otoczenie",
+            "Ogłosić zmianę mailem i liczyć na dyscyplinę",
+            "Karać za stare nawyki"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Zmiana trwała = małe kroki, sens, szybkie zwycięstwo i mniejsze tarcie w otoczeniu (Kotter, Heath, Fogg). Wielki zryw zwykle upada.",
+          "zrodlo": "Kotter; Heath & Heath, „Switch”; Fogg"
+        },
+        {
+          "id": "PRZ-ZM-2", "tom": "Zmiana i nawyki w zespole", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Najskuteczniejszy sposób na przyjęcie nowego nawyku w kuchni to:",
+          "opcje": [
+            "Silna motywacja na start",
+            "Przyczepienie go do istniejącego nawyku-kotwicy i zaczęcie od wersji minimalnej",
+            "Duża tablica z celami rocznymi",
+            "Przypomnienia co godzinę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Tiny Habits: kotwica (po X robię Y) + wersja minimalna + natychmiastowe „świętowanie” budują trwałość lepiej niż sama motywacja.",
+          "zrodlo": "Fogg, „Tiny Habits”"
+        },
+        {
+          "id": "PRZ-ZM-3", "tom": "Zmiana i nawyki w zespole", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Model „Switch” (Heath) mówi, że by zmienić zachowanie, trzeba zadbać o trzy rzeczy:",
+          "opcje": [
+            "Nagrody, kary, kontrolę",
+            "Jeźdźca (rozum/kierunek), Słonia (emocje/sens) i Ścieżkę (środowisko)",
+            "Budżet, czas, ludzi",
+            "Wizję, misję, wartości"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Switch: kieruj Jeźdźcem, motywuj Słonia, kształtuj Ścieżkę. Sama racja (Jeździec) bez emocji i łatwego otoczenia nie wystarcza.",
+          "zrodlo": "Heath & Heath, „Switch”"
+        }
+      ]
+    }
+  ]
+}
