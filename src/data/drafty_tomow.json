@@ -287,6 +287,144 @@
           "zrodlo": "Złoty Standard Tom X, sekcje 1.2, 9"
         }
       ]
+    },
+    {
+      "tom": "III Fermentacja odroczona (retard)",
+      "obszar": "Chłodny łańcuch — smak i harmonogram",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Retard (fermentacja odroczona w chłodni) pozwala uformować wieczorem i piec rano — daje głębszy smak i model pracy bez nocek. To narzędzie z oknem: chłód spowalnia, nie zatrzymuje, a zbyt długi retard psuje gluten. Uwaga: CCP1 (rdzeń ≥92°C, sonda) obowiązuje niezależnie — retard dotyczy etapu przed piecem.",
+        "karty": [
+          {
+            "tytul": "Co dzieje się w cieście w chłodzie",
+            "punkty": [
+              "Drożdże w chłodzie zwalniają wykładniczo poniżej ~10°C, ale nie ustają — ciasto pracuje całą noc. Dlatego to retard (spowolnienie), nie stop.",
+              "Chłodniej = bardziej octowo: niższa temperatura przesuwa profil kwasu ku octowemu, stąd ostrzejszy smak po długim retardzie.",
+              "Enzymy (proteazy) pracują dalej i stopniowo osłabiają gluten — dlatego retard ma okno: masa 12–24 h, kęsy 14–18 h. „Im dłużej, tym lepiej” to mit."
+            ],
+            "zrodlo": "Złoty Standard, Fermentacja odroczona, rozdz. 2, 5"
+          },
+          {
+            "tytul": "Masa vs kęsy — dwa różne narzędzia",
+            "punkty": [
+              "Retard MASY (w misce, przed podziałem) spowalnia fermentację wstępną; duża masa chłodzi się wolno w rdzeniu — rozdziel na płytsze pojemniki (≤10–12 cm) i temperuj 15–30 min przed dzieleniem.",
+              "Retard KĘSÓW (po uformowaniu) spowalnia rozrost końcowy; kęs wchodzi do chłodu NIEDOFERMENTOWANY (zakwasowe ~40–60% rozrostu), bo dojrzeje w chłodzie. Kęsy bez osłony wysychają — przykryj.",
+              "Wypiek z zimna (prosto z chłodni) daje lepsze nacięcie i skórkę; nie dogrzewaj kęsa „na wszelki wypadek” — to częsta przyczyna płaskiego bochenka."
+            ],
+            "zrodlo": "Złoty Standard, Fermentacja odroczona, rozdz. 3, 4, 8"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D3-1", "tom": "III Fermentacja odroczona (retard)", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czy retard (chłodnia) zatrzymuje fermentację ciasta?",
+          "opcje": [
+            "Tak — w chłodni ciasto całkowicie się zatrzymuje",
+            "Nie — chłód tylko spowalnia; ciasto pracuje całą noc",
+            "Tak, o ile temperatura jest poniżej 8°C",
+            "Zależy wyłącznie od mąki"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Retard = spowolnienie, nie stop. Drożdże zwalniają poniżej ~10°C, ale nie ustają aż do temperatur bliskich 0°C.",
+          "zrodlo": "Złoty Standard, Fermentacja odroczona, rozdz. 2a (Kanon 1)"
+        },
+        {
+          "id": "D3-2", "tom": "III Fermentacja odroczona (retard)", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Czy zasada „im dłużej w chłodni, tym lepiej” jest prawdziwa?",
+          "opcje": [
+            "Tak, dłuższy retard zawsze poprawia chleb",
+            "Nie — retard ma okno; po nim proteazy osłabiają gluten, a smak robi się nadmiernie kwaśny",
+            "Tak, ale tylko dla ciast drożdżowych",
+            "Nie ma to żadnego znaczenia"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Powyżej okna (masa 12–24 h, kęsy 14–18 h) korzyści smakowe płaskleją, a rośnie ryzyko strukturalne (proteoliza) i przekwaszenie.",
+          "zrodlo": "Złoty Standard, Fermentacja odroczona, rozdz. 5 (MIT)"
+        },
+        {
+          "id": "D3-3", "tom": "III Fermentacja odroczona (retard)", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Na jakim etapie rozrostu kęs zakwasowy powinien trafić do chłodni na noc?",
+          "opcje": [
+            "W pełni wyrośnięty, tuż przed pieczeniem",
+            "Niedofermentowany, na wczesnym etapie (ok. 40–60% rozrostu) — dojrzeje w chłodzie",
+            "Zaraz po uformowaniu, bez rozrostu, na 3 dni",
+            "Dopiero po dogrzaniu do 28°C"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Kęs wchodzi do chłodu niedofermentowany, bo fermentacja trwa dalej przez noc; pełen rozrost przed chłodem = przefermentowanie i płaski bochenek.",
+          "zrodlo": "Złoty Standard, Fermentacja odroczona, rozdz. 4"
+        }
+      ]
+    },
+    {
+      "tom": "IX Laminowanie i viennoiserie",
+      "obszar": "Ciasta maślane — fizyka temperatury",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Ciasta laminowane (croissant, pain au chocolat) rządzą się inną fizyką niż chleb — tu wszystko jest funkcją temperatury, nie fermentacji. Warstwy ciasta i masła muszą zostać oddzielne; masło nie może wsiąknąć. To rzemiosło pracochłonne i wrażliwe, ale przy ~18 pozycjach cukierniczych decyduje o marży.",
+        "karty": [
+          {
+            "tytul": "Mechanizm i temperatura",
+            "punkty": [
+              "W piecu woda paruje, masło się topi i para rozpycha warstwy — stąd wzrost i listkowanie. Warunek konieczny: warstwy muszą zostać oddzielne.",
+              "Temperatura jest wszystkim: masło robocze ~13–16°C, o zbliżonej plastyczności do ciasta; otoczenie chłodne, odpoczynek w chłodni między turami (20–30 min).",
+              "Za ciepło → masło wsiąka → brak listków, wyciek tłuszczu, twardy wyrób. Jeśli masło mięknie lub przebija — STOP, do chłodni. Nigdy nie wałkuj ciepłego."
+            ],
+            "zrodlo": "Złoty Standard Tom IX, rozdz. 1–3"
+          },
+          {
+            "tytul": "Détrempe, masło, gar i wypiek",
+            "punkty": [
+              "Détrempe na silniejszej mące (wyższe W), DDT niska (22–24°C), gluten celowo niedorozwinięty — wałkowanie go dokończy. Masło laminacyjne ≥82% tłuszczu (plastyczne, nie pęka na zimno).",
+              "Gar w temperaturze, w której masło nie topnieje: ≤26–28°C — to kotwica. Powyżej masło wycieka, wyrób oklapnie i traci listkowanie.",
+              "Viennoiserie pieczesz BEZ pary (para na maśle daje gumę); konwekcja daje równe brązowienie listków, a przed piecem mycie jajkiem (dorure) dla koloru."
+            ],
+            "zrodlo": "Złoty Standard Tom IX, rozdz. 2, 4"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D9-1", "tom": "IX Laminowanie i viennoiserie", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co jest najważniejsze w udanym laminowaniu?",
+          "opcje": [
+            "Jak najdłuższe wałkowanie",
+            "Kontrola temperatury — masło i ciasto o równej plastyczności; wałkujesz tylko schłodzone",
+            "Jak najwięcej mąki do podsypywania",
+            "Wysoka temperatura garowania, żeby szybciej rosło"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Laminowanie to fizyka temperatury: masło ma zostać warstwą, nie wsiąknąć. Wałkuj tylko schłodzone.",
+          "zrodlo": "Złoty Standard Tom IX, rozdz. 1 (Kanon 1–3)"
+        },
+        {
+          "id": "D9-2", "tom": "IX Laminowanie i viennoiserie", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "W garze spod croissantów wycieka masło (kałuża tłuszczu). Najczęstsza przyczyna i korekta?",
+          "opcje": [
+            "Za zimny gar; podnieść temperaturę powyżej 30°C",
+            "Gar za ciepły (>28°C) lub masło o niskim tłuszczu; gar ≤26–28°C, masło ≥82%",
+            "Za mało jajka na wierzchu; posmarować grubiej",
+            "Za dużo tur; zmniejszyć liczbę warstw"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Gar ≤26–28°C to kotwica — powyżej masło wycieka. Stosuj masło ≥82% tłuszczu.",
+          "zrodlo": "Złoty Standard Tom IX, rozdz. 4–5"
+        },
+        {
+          "id": "D9-3", "tom": "IX Laminowanie i viennoiserie", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jak piec viennoiserie (croissanty)?",
+          "opcje": [
+            "Z dużą ilością pary, jak chleb",
+            "Bez pary — para na maśle daje gumę; konwekcja na równe listki",
+            "W jak najniższej temperaturze, bardzo długo",
+            "Zawsze z zimnym startem, bez konwekcji"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Viennoiserie pieczesz bez pary (para na maśle daje gumę); konwekcja daje równe brązowienie listków.",
+          "zrodlo": "Złoty Standard Tom IX, rozdz. 4 (Kanon 8)"
+        }
+      ]
     }
   ]
 }

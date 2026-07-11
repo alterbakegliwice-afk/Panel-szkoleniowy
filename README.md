@@ -88,8 +88,9 @@ automatycznie pojawia się u pracowników (nauka → sprawdzenie). Zatwierdzenia
 
 Zasada bezpieczeństwa (baton): **drafty zawierają wyłącznie pytania wiedzy/jakości — zero pytań CCP**.
 Ewaluacja punktów krytycznych (≥92°C) pozostaje w zwalidowanym pilocie IV Wypiek; nowych pytań CCP nie
-tworzymy w kodzie. Gotowe drafty (v1): VI Fermentacja i formowanie, VII Mąka i surowce, VIII Studzenie
-i świeżość, X Ciasto bazowe i wariacje. Dane: `src/data/drafty_tomow.json`.
+tworzymy w kodzie. Gotowe drafty (z dokumentów): III Fermentacja odroczona (retard), VI Fermentacja
+i formowanie, VII Mąka i surowce, VIII Studzenie i świeżość, IX Laminowanie i viennoiserie,
+X Ciasto bazowe i wariacje — komplet tomów rdzeniowych ponad pilotem. Dane: `src/data/drafty_tomow.json`.
 
 ## Moduł Przedsiębiorcy i Lidera Zespołu (tylko dla właściciela)
 
