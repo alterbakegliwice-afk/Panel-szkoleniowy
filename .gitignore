@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.local
 .DS_Store
+# sekrety środowiskowe — commitujemy tylko .env.example
+.env
+.env.*
+!.env.example
