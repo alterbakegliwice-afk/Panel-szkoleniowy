@@ -16,6 +16,7 @@ import OwnerPanel from './components/OwnerPanel.jsx'
 import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
 import DraftReview from './components/DraftReview.jsx'
+import PromotionPolicy from './components/PromotionPolicy.jsx'
 import { materialTomu, ID_WLASCICIEL, pytaniaZatwierdzone, DRAFTY } from './logic/nauka.js'
 
 export default function App() {
@@ -149,6 +150,7 @@ export default function App() {
       id: 'ocena',
       etykieta: `Do oceny${stan.kolejka.length ? ` (${stan.kolejka.length})` : ''}`
     })
+    zakladki.push({ id: 'zasady', etykieta: 'Zasady awansu' })
   }
   if (jestWlascicielem) {
     const doAkceptacji = DRAFTY.filter((d) => !stan.zatwierdzone.includes(d.tom)).length
@@ -244,6 +246,9 @@ export default function App() {
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onPotwierdzPraktyke={jestWlascicielem || jestMentorem ? potwierdzPraktyke : null}
         />
+      )}
+      {ekran.widok === 'zasady' && (jestMentorem || jestWlascicielem) && (
+        <PromotionPolicy prog={stan.konfig.PROG_ZALICZENIA} />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (
         <ReviewQueue

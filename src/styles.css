@@ -207,6 +207,10 @@ button { font-family: inherit; }
 .ccp-opis { font-size: .88rem; color: var(--cichy); margin-top: .15rem; }
 .ccp-tag.toku { background: var(--toku-tlo); color: var(--toku); }
 
+/* zasady awansu (polityka w aplikacji) */
+.polityka-osie { margin: .5rem 0 .2rem 1.1rem; display: flex; flex-direction: column; gap: .5rem; }
+.polityka-osie li { line-height: 1.45; }
+
 /* potwierdzenia praktyczne (oś praktyczna) */
 .prakt-prac { padding: .7rem 0; border-top: 1px solid var(--linia); }
 .prakt-prac h3 { font-size: 1rem; margin-bottom: .4rem; }
