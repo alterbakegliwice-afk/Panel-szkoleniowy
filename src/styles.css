@@ -319,6 +319,8 @@ button { font-family: inherit; }
 .blok { margin: 1.4rem 0 .4rem; }
 .blok-naglowek { margin: 0 .2rem .5rem; padding-left: .7rem; border-left: 4px solid var(--akcent); }
 .blok-nazwa { font-size: 1.15rem; color: var(--akcent-ciemny); margin-bottom: .1rem; }
+.blok-nauka .blok-naglowek { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .3rem .7rem; }
+.blok-licznik { font-size: .82rem; color: var(--cichy); font-weight: 600; font-variant-numeric: tabular-nums; }
 .draft { border-left: 6px solid var(--toku); }
 .draft.draft-ok { border-left-color: var(--ok); }
 .draft-gora { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; margin-bottom: .6rem; }

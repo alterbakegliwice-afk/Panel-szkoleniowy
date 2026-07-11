@@ -16,21 +16,41 @@ export const DRAFTY = draftyTomow.tomy
 // weryfikowalną jednostką akceptacji; blok grupuje pokrewne tomy w ścieżkę nauki.
 export const BLOKI = draftyTomow.bloki || []
 
-export function blokTomu(tom) {
-  const d = DRAFTY.find((x) => x.tom === tom)
-  return d ? BLOKI.find((b) => b.id === d.blok) || null : null
+// Tomy pilota (bank bazowy, nie drafty) też należą do ścieżki — przypisujemy je
+// do bloków, żeby nawigacja pracownika była spójna. Zakwas, wypiek i DDT to rdzeń
+// łańcucha produkcji chleba.
+const PILOT_BLOK = {
+  'II Zakwas': 'lancuch',
+  'IV Wypiek': 'lancuch',
+  'V DDT': 'lancuch'
 }
 
-// Drafty pogrupowane w bloki, w kolejności zdefiniowanej w BLOKI; tomy bez
-// przypisanego bloku trafiają do „pozostałych”. Zachowuje kolejność tomów z pliku.
+export function blokTomu(tom) {
+  const d = DRAFTY.find((x) => x.tom === tom)
+  const id = d ? d.blok : PILOT_BLOK[tom]
+  return id ? BLOKI.find((b) => b.id === id) || null : null
+}
+
+// Grupuje dowolną listę obiektów z polem `.tom` w bloki, w kolejności BLOKI.
+// Elementy bez przypisanego bloku trafiają do „Pozostałych”. Zachowuje kolejność
+// wejściową w obrębie bloku.
+export function grupujWgBlokow(items) {
+  const idx = new Map(BLOKI.map((b, i) => [b.id, i]))
+  const grupy = BLOKI.map((b) => ({ blok: b, tomy: [] }))
+  const inne = { blok: { id: 'inne', nazwa: 'Pozostałe', opis: '' }, tomy: [] }
+  for (const it of items || []) {
+    const b = blokTomu(it.tom)
+    if (b && idx.has(b.id)) grupy[idx.get(b.id)].tomy.push(it)
+    else inne.tomy.push(it)
+  }
+  const out = grupy.filter((g) => g.tomy.length)
+  if (inne.tomy.length) out.push(inne)
+  return out
+}
+
+// Drafty pogrupowane w bloki (widok akceptacji właściciela).
 export function draftyWgBlokow() {
-  const grupy = BLOKI.map((b) => ({
-    blok: b,
-    tomy: DRAFTY.filter((d) => d.blok === b.id)
-  }))
-  const bezBloku = DRAFTY.filter((d) => !BLOKI.some((b) => b.id === d.blok))
-  if (bezBloku.length) grupy.push({ blok: { id: 'inne', nazwa: 'Pozostałe', opis: '' }, tomy: bezBloku })
-  return grupy.filter((g) => g.tomy.length)
+  return grupujWgBlokow(DRAFTY)
 }
 
 // Materiał do nauki: najpierw zwalidowany pilot, potem drafty (dostępne dopiero

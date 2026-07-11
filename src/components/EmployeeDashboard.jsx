@@ -1,5 +1,5 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
-import { czyPrzerobiono, materialTomu } from '../logic/nauka.js'
+import { czyPrzerobiono, materialTomu, grupujWgBlokow } from '../logic/nauka.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
@@ -55,47 +55,59 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
         </div>
       </div>
 
-      <div className="tomy-siatka">
-        {prof.tomy.map((t) => (
-          <div key={t.tom} className="karta tom">
-            <div className="tom-gora">
-              <h3>{t.tom}</h3>
-              <span className={t.status === 'OPANOWANY' ? 'plakietka ok' : 'plakietka toku'}>
-                {t.status}
-              </span>
+      {/* Ścieżka nauki: tomy pogrupowane w bloki merytoryczne. */}
+      {grupujWgBlokow(prof.tomy).map(({ blok, tomy }) => {
+        const opanowane = tomy.filter((t) => t.status === 'OPANOWANY').length
+        return (
+          <section key={blok.id} className="blok blok-nauka">
+            <div className="blok-naglowek">
+              <h2 className="blok-nazwa">{blok.nazwa}</h2>
+              <span className="blok-licznik">{opanowane}/{tomy.length} opanowane</span>
             </div>
-            <div className="postep-tor">
-              <div className="postep-fill" style={{ width: proc(t.procent) + '%' }} />
+            <div className="tomy-siatka">
+              {tomy.map((t) => (
+                <div key={t.tom} className="karta tom">
+                  <div className="tom-gora">
+                    <h3>{t.tom}</h3>
+                    <span className={t.status === 'OPANOWANY' ? 'plakietka ok' : 'plakietka toku'}>
+                      {t.status}
+                    </span>
+                  </div>
+                  <div className="postep-tor">
+                    <div className="postep-fill" style={{ width: proc(t.procent) + '%' }} />
+                  </div>
+                  <div className="tom-dol">
+                    <span>{proc(t.procent)}% · {t.zaliczonych}/{t.pytan} pytań</span>
+                    {t.ccp.pytania.length > 0 && (
+                      <span className={t.ccp.status === 'OK' ? 'ccp-tag ok' : 'ccp-tag brak'}>
+                        CCP {t.ccp.status === 'OK' ? 'OK' : 'BRAK'}
+                      </span>
+                    )}
+                  </div>
+                  {wKolejce(t.tom) > 0 && (
+                    <p className="cichy mini">⏳ {wKolejce(t.tom)} odp. czeka na ocenę Mentora</p>
+                  )}
+                  <div className="rzad tom-akcje">
+                    <button className="drugi" onClick={() => onUczSie(t.tom)}>
+                      📖 Ucz się{materialTomu(t.tom) ? '' : ' (wkrótce)'}
+                    </button>
+                    <button
+                      className="glowny"
+                      disabled={!przerobiony(t.tom)}
+                      onClick={() => onStartQuizu(t.tom)}
+                    >
+                      Sprawdź wiedzę
+                    </button>
+                  </div>
+                  {!przerobiony(t.tom) && (
+                    <p className="cichy mini">🔒 Najpierw przerób materiał — potem sprawdzenie wiedzy.</p>
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="tom-dol">
-              <span>{proc(t.procent)}% · {t.zaliczonych}/{t.pytan} pytań</span>
-              {t.ccp.pytania.length > 0 && (
-                <span className={t.ccp.status === 'OK' ? 'ccp-tag ok' : 'ccp-tag brak'}>
-                  CCP {t.ccp.status === 'OK' ? 'OK' : 'BRAK'}
-                </span>
-              )}
-            </div>
-            {wKolejce(t.tom) > 0 && (
-              <p className="cichy mini">⏳ {wKolejce(t.tom)} odp. czeka na ocenę Mentora</p>
-            )}
-            <div className="rzad tom-akcje">
-              <button className="drugi" onClick={() => onUczSie(t.tom)}>
-                📖 Ucz się{materialTomu(t.tom) ? '' : ' (wkrótce)'}
-              </button>
-              <button
-                className="glowny"
-                disabled={!przerobiony(t.tom)}
-                onClick={() => onStartQuizu(t.tom)}
-              >
-                Sprawdź wiedzę
-              </button>
-            </div>
-            {!przerobiony(t.tom) && (
-              <p className="cichy mini">🔒 Najpierw przerób materiał — potem sprawdzenie wiedzy.</p>
-            )}
-          </div>
-        ))}
-      </div>
+          </section>
+        )
+      })}
 
       <div className="karta nastepny">
         <h3>Następny krok</h3>
