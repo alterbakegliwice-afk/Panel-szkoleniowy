@@ -1,13 +1,13 @@
-import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika, tomCelOsiagniety } from '../logic/progress.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
+export default function TeamView({ pracownicy, pytania, wyniki, praktyka = [], konfig, onPotwierdzPraktyke }) {
   const proc = (x) => Math.round(x * 100)
   const wiersze = pracownicy.map((prac) => ({
     prac,
-    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
+    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy, praktyka)
   }))
 
   return (
@@ -75,6 +75,56 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
         (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
+
+      {onPotwierdzPraktyke && (
+        <div className="karta">
+          <h2>Potwierdzenia praktyczne (oś praktyczna)</h2>
+          <p className="cichy mini">
+            Wiedza z testu to nie to samo co samodzielna zmiana. Potwierdzaj <strong>tylko to, co
+            realnie widziałeś/aś</strong> na stanowisku. Wymagane do awansu na Samodzielnego/Mentora,
+            obok wiedzy i CCP.
+          </p>
+          {wiersze.filter(({ prof }) => prof.praktykaWymagana).length === 0 && (
+            <p className="cichy mini">Żaden pracownik nie ma celu wymagającego potwierdzenia praktycznego.</p>
+          )}
+          {wiersze
+            .filter(({ prof }) => prof.praktykaWymagana)
+            .map(({ prac, prof }) => {
+              const cel = prac.poziom_docelowy || 'SAMODZIELNY'
+              const gotowe = prof.tomy.filter((t) => tomCelOsiagniety(t, cel))
+              return (
+                <div key={prac.id_prac} className="prakt-prac">
+                  <h3>{prac.imie} <span className="cichy mini">· cel {cel}</span></h3>
+                  {gotowe.length === 0 ? (
+                    <p className="cichy mini">Brak tomów gotowych merytorycznie (wiedza + CCP) do potwierdzenia.</p>
+                  ) : (
+                    <ul className="prakt-lista">
+                      {gotowe.map((t) => (
+                        <li key={t.tom} className="prakt-poz">
+                          <span className="prakt-tom">{t.tom}</span>
+                          {t.praktyka.potwierdzona ? (
+                            <span className="prakt-akcje">
+                              <span className="ccp-tag ok">
+                                Potwierdzone{t.praktyka.oceniajacy ? ` · ${t.praktyka.oceniajacy}` : ''}
+                              </span>
+                              <button className="cichy-link" onClick={() => onPotwierdzPraktyke(prac.id_prac, t.tom, false)}>
+                                Cofnij
+                              </button>
+                            </span>
+                          ) : (
+                            <button className="drugi maly" onClick={() => onPotwierdzPraktyke(prac.id_prac, t.tom, true)}>
+                              ✓ Potwierdź pokaz
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )
+            })}
+        </div>
+      )}
 
       <div className="karta">
         <h2>Historia podejść (dowód przy awansie)</h2>

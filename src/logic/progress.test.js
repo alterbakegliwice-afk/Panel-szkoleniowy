@@ -4,7 +4,9 @@ import {
   ostatnieWyniki,
   ccpStatusTomu,
   postepTomu,
-  profilPracownika
+  profilPracownika,
+  praktykaStatus,
+  praktykaWymaganaDla
 } from './progress.js'
 import { historiaPracownika } from './progress.js'
 import { eksportPanelM5 } from './export.js'
@@ -153,6 +155,52 @@ describe('poziom docelowy — kryterium zależne od roli (schema: Pomocnik→JUN
     const prof = profilPracownika(PYTANIA, bezCcp, 'P-01', KONFIG, 'JUNIOR')
     expect(prof.cel.osiagniety).toBe(false)
     expect(prof.nastepnyKrok.typ).toBe('CCP')
+  })
+})
+
+describe('oś praktyczna — wiedza ≠ umiejętność (blind spot #3)', () => {
+  const TOMY = [...new Set(PYTANIA.map((p) => p.tom))]
+  const wszystkoZaliczone = PYTANIA.map((p) => wynik(p.id, true)) // wiedza + CCP wszędzie
+  const praktykaWszystkie = TOMY.map((tom) => ({
+    id_prac: 'P-01', tom, potwierdzil: true, data: '2026-07-08T10:00:00Z', oceniajacy: 'Mentor'
+  }))
+
+  it('praktykaWymaganaDla: Junior nie, Samodzielny/Mentor tak', () => {
+    expect(praktykaWymaganaDla('JUNIOR')).toBe(false)
+    expect(praktykaWymaganaDla('SAMODZIELNY')).toBe(true)
+    expect(praktykaWymaganaDla('MENTOR')).toBe(true)
+  })
+
+  it('praktykaStatus — liczy się ostatni wpis po dacie (można cofnąć)', () => {
+    const log = [
+      { id_prac: 'P-01', tom: 'II Zakwas', potwierdzil: true, data: '2026-07-01' },
+      { id_prac: 'P-01', tom: 'II Zakwas', potwierdzil: false, data: '2026-07-05' }
+    ]
+    expect(praktykaStatus(log, 'P-01', 'II Zakwas').potwierdzona).toBe(false) // cofnięte
+    expect(praktykaStatus([], 'P-01', 'II Zakwas').potwierdzona).toBe(false)
+  })
+
+  it('cel SAMODZIELNY: pełna wiedza + CCP, ale BEZ praktyki = cel nieosiągnięty, następny krok = PRAKTYKA', () => {
+    const prof = profilPracownika(PYTANIA, wszystkoZaliczone, 'P-01', KONFIG, 'SAMODZIELNY', [])
+    expect(prof.praktykaWymagana).toBe(true)
+    expect(prof.praktykaOk).toBe(false)
+    expect(prof.cel.osiagniety).toBe(false)
+    expect(prof.nastepnyKrok.typ).toBe('PRAKTYKA')
+    expect(prof.samodzielnyMozliwy).toBe(false)
+  })
+
+  it('cel SAMODZIELNY: po potwierdzeniu praktyki we wszystkich tomach = cel osiągnięty', () => {
+    const prof = profilPracownika(PYTANIA, wszystkoZaliczone, 'P-01', KONFIG, 'SAMODZIELNY', praktykaWszystkie)
+    expect(prof.praktykaOk).toBe(true)
+    expect(prof.cel.osiagniety).toBe(true)
+    expect(prof.nastepnyKrok.typ).toBe('GOTOWE')
+    expect(prof.samodzielnyMozliwy).toBe(true)
+  })
+
+  it('cel JUNIOR: praktyka NIE jest wymagana (junior wciąż się uczy)', () => {
+    const prof = profilPracownika(PYTANIA, wszystkoZaliczone, 'P-01', KONFIG, 'JUNIOR', [])
+    expect(prof.praktykaWymagana).toBe(false)
+    expect(prof.cel.osiagniety).toBe(true)
   })
 })
 

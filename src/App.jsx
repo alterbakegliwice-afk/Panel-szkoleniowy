@@ -90,6 +90,17 @@ export default function App() {
       }
     })
 
+  // Potwierdzenie praktyczne (oś praktyczna #3) — Mentor/Właściciel poświadcza pokaz
+  // na stanowisku. Log append-only; potwierdzil=false = cofnięcie.
+  const potwierdzPraktyke = (idPrac, tom, potwierdzil, notatka = '') =>
+    setStan((s) => ({
+      ...s,
+      praktyka: [
+        ...s.praktyka,
+        { id_prac: idPrac, tom, potwierdzil, data: teraz(), oceniajacy, notatka }
+      ]
+    }))
+
   const zatwierdzTom = (tom) =>
     setStan((s) => (s.zatwierdzone.includes(tom) ? s : { ...s, zatwierdzone: [...s.zatwierdzone, tom] }))
   const cofnijTom = (tom) =>
@@ -179,6 +190,7 @@ export default function App() {
           wyniki={stan.wyniki}
           kolejka={stan.kolejka}
           nauka={stan.nauka}
+          praktyka={stan.praktyka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onStartQuizu={(tom, tryb = 'cwiczenie') => setEkran({ widok: 'quiz', tom, tryb })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
@@ -228,7 +240,9 @@ export default function App() {
           pracownicy={stan.pracownicy}
           pytania={pytania}
           wyniki={stan.wyniki}
+          praktyka={stan.praktyka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+          onPotwierdzPraktyke={jestWlascicielem || jestMentorem ? potwierdzPraktyke : null}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

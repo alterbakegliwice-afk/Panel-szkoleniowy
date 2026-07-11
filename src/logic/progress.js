@@ -128,6 +128,30 @@ export function historiaPracownika(wyniki, pytania, idPrac) {
     .sort((a, b) => (a.data < b.data ? 1 : a.data > b.data ? -1 : 0))
 }
 
+// OŚ PRAKTYCZNA (blind spot #3): wiedza ≠ umiejętność przy piecu.
+// Awans na Samodzielnego/Mentora wymaga OSOBNEGO potwierdzenia praktycznego —
+// Mentor/Właściciel widział wykonanie na stanowisku. Log praktyki jest append-only
+// z możliwością cofnięcia (potwierdzil:false); liczy się ostatni wpis po dacie.
+export function praktykaStatus(praktyka, idPrac, tom) {
+  const wpisy = (praktyka || [])
+    .filter((p) => p.id_prac === idPrac && p.tom === tom)
+    .slice()
+    .sort((a, b) => (a.data < b.data ? -1 : a.data > b.data ? 1 : 0))
+  const ost = wpisy[wpisy.length - 1]
+  return {
+    potwierdzona: !!(ost && ost.potwierdzil),
+    data: ost ? ost.data : null,
+    oceniajacy: ost ? ost.oceniajacy || '' : '',
+    notatka: ost ? ost.notatka || '' : ''
+  }
+}
+
+// Czy potwierdzenie praktyczne jest wymagane dla danego poziomu docelowego
+// (dopiero od SAMODZIELNEGO — Junior wciąż się uczy, sama wiedza wystarcza do celu).
+export function praktykaWymaganaDla(poziomDocelowy) {
+  return (RANGA[poziomDocelowy] || RANGA.SAMODZIELNY) >= RANGA.SAMODZIELNY
+}
+
 // Czy w danym tomie pracownik osiągnął swój poziom docelowy:
 // wszystkie poziomy do celu opanowane ORAZ CCP tomu = OK.
 export function tomCelOsiagniety(tom, poziomDocelowy) {
@@ -140,34 +164,45 @@ export function tomCelOsiagniety(tom, poziomDocelowy) {
 
 // Pełny profil postępu pracownika: per tom + poziom ogólny + status CCP osobno
 // + status względem poziomu DOCELOWEGO (Pomocnik→JUNIOR, Piekarz→SAMODZIELNY itd.).
-export function profilPracownika(pytania, wyniki, idPrac, konfig, poziomDocelowy = 'SAMODZIELNY') {
+export function profilPracownika(pytania, wyniki, idPrac, konfig, poziomDocelowy = 'SAMODZIELNY', praktyka = []) {
   const ostatnie = ostatnieWyniki(wyniki)
-  const tomy = listaTomow(pytania).map((tom) =>
-    postepTomu(pytania, ostatnie, idPrac, tom, konfig)
-  )
+  const tomy = listaTomow(pytania).map((tom) => ({
+    ...postepTomu(pytania, ostatnie, idPrac, tom, konfig),
+    praktyka: praktykaStatus(praktyka, idPrac, tom)
+  }))
   const poziomOgolny = tomy.length
     ? tomy.reduce((s, t) => s + t.procent, 0) / tomy.length
     : 0
   const ccpOk = tomy.every((t) => t.ccp.status === 'OK')
-  const celOsiagniety = ccpOk && tomy.every((t) => tomCelOsiagniety(t, poziomDocelowy))
+  const praktykaWymagana = praktykaWymaganaDla(poziomDocelowy)
+  // „Praktyka OK" liczymy tylko dla tomów, w których pracownik osiągnął już wiedzę do celu —
+  // nie ma sensu żądać pokazu z tomu, którego jeszcze się uczy. Wymagana dopiero od Samodzielnego.
+  const tomyDoPraktyki = tomy.filter((t) => tomCelOsiagniety(t, poziomDocelowy))
+  const praktykaOk = !praktykaWymagana || tomyDoPraktyki.every((t) => t.praktyka.potwierdzona)
+  const celOsiagniety =
+    ccpOk && tomy.every((t) => tomCelOsiagniety(t, poziomDocelowy)) && praktykaOk
   return {
     tomy,
     poziomOgolny,
     ccpOk,
+    praktykaWymagana,
+    praktykaOk,
     cel: {
       poziomDocelowy,
       osiagniety: celOsiagniety,
       etykieta: celOsiagniety ? `Cel osiągnięty: ${poziomDocelowy}` : `W drodze do: ${poziomDocelowy}`
     },
-    // status „Samodzielny" wymaga TAKŻE ccp=OK we wszystkich tomach (spec.md §4)
-    samodzielnyMozliwy: ccpOk && tomy.every((t) => t.awansSamodzielny),
-    nastepnyKrok: nastepnyKrok(tomy, konfig, poziomDocelowy)
+    // status „Samodzielny" wymaga: wiedza (Junior+Samodzielny) + ccp=OK + potwierdzenie
+    // praktyczne we wszystkich tomach (spec.md §4 + oś praktyczna #3).
+    samodzielnyMozliwy:
+      ccpOk && tomy.every((t) => t.awansSamodzielny) && tomy.every((t) => t.praktyka.potwierdzona),
+    nastepnyKrok: nastepnyKrok(tomy, konfig, poziomDocelowy, praktykaWymagana)
   }
 }
 
 // „Następny krok" dla widoku Mój poziom — CCP zawsze ma pierwszeństwo,
 // potem wskazuje konkretny poziom do podciągnięcia w drodze do CELU pracownika.
-export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY') {
+export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY', praktykaWymagana = praktykaWymaganaDla(poziomDocelowy)) {
   const ccpBrak = tomy.filter((t) => t.ccp.status === 'BRAK')
   if (ccpBrak.length) {
     return {
@@ -192,6 +227,19 @@ export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY') {
         tekst:
           `Podciągnij poziom ${poz} w tomie „${tomBrak.tom}" — masz ` +
           `${Math.round((pp.procent || 0) * 100)}%, próg to ${Math.round(prog * 100)}%.`
+      }
+    }
+  }
+  // Wiedza i CCP domknięte — teraz oś praktyczna (dla Samodzielnego/Mentora).
+  if (praktykaWymagana) {
+    const bezPraktyki = tomy.filter((t) => !t.praktyka || !t.praktyka.potwierdzona)
+    if (bezPraktyki.length) {
+      return {
+        typ: 'PRAKTYKA',
+        tekst:
+          'Wiedza i CCP zaliczone. Umów z Mentorem pokaz na stanowisku (potwierdzenie praktyczne) w: ' +
+          bezPraktyki.map((t) => t.tom).join(', ') +
+          '. Sama wiedza to nie to samo co samodzielna zmiana.'
       }
     }
   }

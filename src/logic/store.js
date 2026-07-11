@@ -41,6 +41,7 @@ export function domyslnyStan() {
     wyniki: PRZYKLADOWE_WYNIKI,
     kolejka: [], // odpowiedzi otwarte/praktyczne czekające na ocenę Mentora
     nauka: [], // log przerobienia materiału: {id_prac, obszar, data} — quiz odblokowuje się po nauce
+    praktyka: [], // log potwierdzeń praktycznych: {id_prac, tom, potwierdzil, data, oceniajacy, notatka}
     zatwierdzone: [], // nazwy tomów-draftów zatwierdzonych przez właściciela (aktywne dla zespołu)
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
@@ -142,6 +143,7 @@ export function eksportKopii(stan) {
     wyniki: stan.wyniki,
     kolejka: stan.kolejka,
     nauka: stan.nauka,
+    praktyka: stan.praktyka,
     zatwierdzone: stan.zatwierdzone,
     bank: stan.bank // null = seed wbudowany
   }
@@ -168,6 +170,7 @@ export function kopieDoStanu(obiekt) {
     wyniki: obiekt.wyniki,
     kolejka: Array.isArray(obiekt.kolejka) ? obiekt.kolejka : [],
     nauka: Array.isArray(obiekt.nauka) ? obiekt.nauka : [],
+    praktyka: Array.isArray(obiekt.praktyka) ? obiekt.praktyka : [],
     zatwierdzone: Array.isArray(obiekt.zatwierdzone) ? obiekt.zatwierdzone : [],
     bank: obiekt.bank || null
   }

@@ -25,7 +25,7 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
   }
 
   const eksportuj = () => {
-    const dane = eksportPanelM5(bank.pytania, stan.wyniki, stan.pracownicy, konfig, teraz())
+    const dane = eksportPanelM5(bank.pytania, stan.wyniki, stan.pracownicy, konfig, teraz(), stan.praktyka)
     pobierz(dane, `alterbake_eksport_panel_M5_${teraz().slice(0, 10)}.json`)
   }
 

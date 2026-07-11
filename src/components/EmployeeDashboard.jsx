@@ -4,8 +4,8 @@ import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
-export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie }) {
-  const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
+export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, praktyka = [], konfig, onStartQuizu, onUczSie }) {
+  const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy, praktyka)
   const historia = historiaPracownika(wyniki, pytania, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
@@ -39,6 +39,23 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
           )}
         </div>
       </div>
+
+      {/* OŚ PRAKTYCZNA — wiedza ≠ umiejętność. Wymagana od Samodzielnego (#3). */}
+      {prof.praktykaWymagana && (
+        <div className={prof.praktykaOk ? 'karta ccp ccp-ok' : 'karta ccp ccp-toku'}>
+          <div className="ccp-ikona">{prof.praktykaOk ? '✓' : '🖐'}</div>
+          <div>
+            <div className="ccp-tytul">
+              Potwierdzenie praktyczne: {prof.praktykaOk ? 'KOMPLET' : 'W TOKU'}
+            </div>
+            <div className="ccp-opis">
+              {prof.praktykaOk
+                ? 'Mentor potwierdził wykonanie na stanowisku dla opanowanych tomów.'
+                : 'Do awansu na Samodzielnego nie wystarczy wiedza z testu — Mentor musi potwierdzić pokaz na stanowisku. Umów demonstrację dla tomów, które masz już opanowane merytorycznie.'}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* STATUS CCP — osobno, twardo, nigdy w średniej (AI_BATON §4) */}
       <div className={prof.ccpOk ? 'karta ccp ccp-ok' : 'karta ccp ccp-brak'}>
@@ -81,6 +98,11 @@ export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka,
                     {t.ccp.pytania.length > 0 && (
                       <span className={t.ccp.status === 'OK' ? 'ccp-tag ok' : 'ccp-tag brak'}>
                         CCP {t.ccp.status === 'OK' ? 'OK' : 'BRAK'}
+                      </span>
+                    )}
+                    {prof.praktykaWymagana && (
+                      <span className={t.praktyka.potwierdzona ? 'ccp-tag ok' : 'ccp-tag toku'}>
+                        Praktyka {t.praktyka.potwierdzona ? 'OK' : '—'}
                       </span>
                     )}
                   </div>
