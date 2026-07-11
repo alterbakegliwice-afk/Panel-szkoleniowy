@@ -8,6 +8,9 @@ import {
   postepPrzedsiebiorcy,
   materialTomu,
   DRAFTY,
+  BLOKI,
+  blokTomu,
+  draftyWgBlokow,
   pytaniaZatwierdzone,
   czyTomZatwierdzony
 } from './nauka.js'
@@ -78,6 +81,26 @@ describe('drafty tomów — DO AKCEPTACJI, bezpieczne domyślnie', () => {
   it('niezatwierdzone drafty NIE dokładają pytań do banku', () => {
     expect(pytaniaZatwierdzone([])).toEqual([])
     expect(czyTomZatwierdzony([], DRAFTY[0].tom)).toBe(false)
+  })
+
+  it('każdy tom pokrywa trzy poziomy zaawansowania (Junior/Samodzielny/Mentor)', () => {
+    for (const d of DRAFTY) {
+      for (const poz of ['JUNIOR', 'SAMODZIELNY', 'MENTOR']) {
+        const ile = d.pytania.filter((p) => p.poziom === poz).length
+        expect(ile, `${d.tom} — poziom ${poz}`).toBeGreaterThanOrEqual(1)
+      }
+    }
+  })
+
+  it('każdy tom jest przypisany do istniejącego bloku merytorycznego', () => {
+    expect(BLOKI.length).toBeGreaterThanOrEqual(2)
+    for (const d of DRAFTY) {
+      const b = blokTomu(d.tom)
+      expect(b, `${d.tom} bez bloku`).toBeTruthy()
+    }
+    // grupowanie nie gubi żadnego tomu
+    const wGrupach = draftyWgBlokow().reduce((s, g) => s + g.tomy.length, 0)
+    expect(wGrupach).toBe(DRAFTY.length)
   })
 
   it('zatwierdzenie tomu dokłada jego pytania i udostępnia materiał', () => {

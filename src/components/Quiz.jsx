@@ -11,12 +11,28 @@ function autoOceniany(p) {
   return (p.typ === 'jednokrotny' || p.typ === 'wielokrotny') && Array.isArray(p.opcje) && p.opcje.length > 0
 }
 
+// Kolejność pytań w tomie: od najprostszego do najtrudniejszego (poziom 1/2/3).
+// Uczeń przechodzi ścieżkę Junior → Samodzielny → Mentor w obrębie jednego tomu.
+const RANGA_POZIOMU = { JUNIOR: 1, SAMODZIELNY: 2, MENTOR: 3 }
+
 function idWpisu(idPrac, idPytania) {
   return `${idPrac}:${idPytania}:${teraz()}:${Math.random().toString(36).slice(2, 7)}`
 }
 
 export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, onKoniec }) {
-  const zestaw = useMemo(() => pytania.filter((p) => p.tom === tom), [pytania, tom])
+  const zestaw = useMemo(
+    () =>
+      pytania
+        .filter((p) => p.tom === tom)
+        .map((p, idx) => [p, idx])
+        .sort((a, b) => {
+          const ra = RANGA_POZIOMU[a[0].poziom] || 9
+          const rb = RANGA_POZIOMU[b[0].poziom] || 9
+          return ra - rb || a[1] - b[1] // przy równym poziomie zachowaj kolejność z banku
+        })
+        .map(([p]) => p),
+    [pytania, tom]
+  )
   const [i, setI] = useState(0)
   const [odp, setOdp] = useState({}) // indeksy zaznaczone (auto) lub tekst
   const [wyniki, setWyniki] = useState([]) // {p, stan:'auto-ok'|'auto-zle'|'do-oceny'}

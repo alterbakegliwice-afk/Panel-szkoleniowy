@@ -12,6 +12,27 @@ export const ID_WLASCICIEL = 'WLASCICIEL'
 // Drafty tomów (z dokumentów Złotego Standardu) — nieaktywne do zatwierdzenia przez właściciela.
 export const DRAFTY = draftyTomow.tomy
 
+// Bloki merytoryczne — warstwa nawigacji PONAD tomami. Tom pozostaje atomową,
+// weryfikowalną jednostką akceptacji; blok grupuje pokrewne tomy w ścieżkę nauki.
+export const BLOKI = draftyTomow.bloki || []
+
+export function blokTomu(tom) {
+  const d = DRAFTY.find((x) => x.tom === tom)
+  return d ? BLOKI.find((b) => b.id === d.blok) || null : null
+}
+
+// Drafty pogrupowane w bloki, w kolejności zdefiniowanej w BLOKI; tomy bez
+// przypisanego bloku trafiają do „pozostałych”. Zachowuje kolejność tomów z pliku.
+export function draftyWgBlokow() {
+  const grupy = BLOKI.map((b) => ({
+    blok: b,
+    tomy: DRAFTY.filter((d) => d.blok === b.id)
+  }))
+  const bezBloku = DRAFTY.filter((d) => !BLOKI.some((b) => b.id === d.blok))
+  if (bezBloku.length) grupy.push({ blok: { id: 'inne', nazwa: 'Pozostałe', opis: '' }, tomy: bezBloku })
+  return grupy.filter((g) => g.tomy.length)
+}
+
 // Materiał do nauki: najpierw zwalidowany pilot, potem drafty (dostępne dopiero
 // gdy tom jest zatwierdzony — bo tylko wtedy trafia do banku i listy pracownika).
 export function materialTomu(tom) {

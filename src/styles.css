@@ -316,6 +316,9 @@ button { font-family: inherit; }
 .przedsiebiorca .naglowek-prof { background: linear-gradient(180deg, #fffdf9, #f6efe0); }
 
 /* ---------- tomy do akceptacji (drafty) ---------- */
+.blok { margin: 1.4rem 0 .4rem; }
+.blok-naglowek { margin: 0 .2rem .5rem; padding-left: .7rem; border-left: 4px solid var(--akcent); }
+.blok-nazwa { font-size: 1.15rem; color: var(--akcent-ciemny); margin-bottom: .1rem; }
 .draft { border-left: 6px solid var(--toku); }
 .draft.draft-ok { border-left-color: var(--ok); }
 .draft-gora { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; margin-bottom: .6rem; }
