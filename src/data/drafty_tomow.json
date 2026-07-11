@@ -1,0 +1,292 @@
+{
+  "wersja": "2026-07-11",
+  "opis": "Drafty tomów przygotowane z dokumentów Złotego Standardu (Dysk). Status: DO AKCEPTACJI TECHNOLOGA. Nieaktywne dla pracowników do zatwierdzenia przez właściciela. Pytania draftów są wyłącznie ccp:false (wiedza/jakość) — nowych pytań CCP nie tworzymy w kodzie; ewaluacja punktów krytycznych pozostaje w zwalidowanym pilocie (IV Wypiek).",
+  "tomy": [
+    {
+      "tom": "VI Fermentacja i formowanie",
+      "obszar": "Rdzeń łańcucha produkcyjnego",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Między miesiarką (Tom V) a chłodnią jest etap, w którym powstaje większość smaku i cała struktura kęsa. Najczęściej dzieje się „na czas”, bez znaków — a powinien być czytany palcem, nie stoperem. Ten materiał zamienia pointage i formowanie w proces powtarzalny i delegowalny.",
+        "karty": [
+          {
+            "tytul": "Pointage — tu powstaje chleb",
+            "punkty": [
+              "Fermentacja masy (pointage) to praca, nie przerwa: drożdże i bakterie tworzą CO₂ (objętość) oraz kwasy i estry (smak), a gluten jednocześnie krzepnie i staje się rozciągliwy.",
+              "Biegną dwa zegary: gazu (objętość) i smaku/kwasu. Sztuka to ich zsynchronizowanie temperaturą ciasta z Tomu V (DDT) — nie zegarkiem na ścianie.",
+              "Większość tożsamości chleba powstaje w pointage, nie w piecu. Wypiek tylko utrwala to, co zbudowała fermentacja."
+            ],
+            "zrodlo": "Złoty Standard Tom VI, sekcje 1–2"
+          },
+          {
+            "tytul": "Czytanie dojrzałości i składanie",
+            "punkty": [
+              "Poke test: wciśnij palec — wgłębienie wraca powoli i lekko zostaje = w sam raz. Wraca natychmiast = za wcześnie (gęsty, blady, słaby smak). Nie wraca = za późno (kwaśny, słaby gluten, rozlewa się).",
+              "Objętość rośnie zwykle o +50–75% (nie zawsze podwojenie), z widocznymi bąblami pod powierzchnią.",
+              "Składanie (stretch & fold) zastępuje część mieszania — buduje siłę glutenu bez utleniania. Im wyższa hydracja i krótszy mix, tym więcej składań (bagietka 2–3; pełen rozwój 0–1)."
+            ],
+            "zrodlo": "Złoty Standard Tom VI, sekcje 2–3"
+          },
+          {
+            "tytul": "Formowanie — napięcie i szew",
+            "punkty": [
+              "Préshape nadaje kierunek glutenu; odpoczynek (détente) 15–30 min go uwalnia. Za krótki rest rwie skórkę, za długi rozlewa kęs.",
+              "Formowanie końcowe to budowa napięcia powierzchniowego: napięta skórka kieruje wzrost w piecu w górę, nie na boki.",
+              "Szew zawsze domknięty — otwarty rozejdzie się w piecu. Za luźno = wyrób płaski; za ciasno = rwie skórkę i daje nierówny miękisz."
+            ],
+            "zrodlo": "Złoty Standard Tom VI, sekcje 4–5"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D6-1", "tom": "VI Fermentacja i formowanie", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Gdzie powstaje większość smaku i struktury chleba?",
+          "opcje": [
+            "W piecu, podczas wypieku",
+            "W fermentacji masy (pointage) — wypiek tylko to utrwala",
+            "Podczas studzenia",
+            "Przy dzieleniu i formowaniu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Większość tożsamości chleba (smak, struktura) powstaje w pointage; wypiek utrwala to, co zbudowała fermentacja.",
+          "zrodlo": "Złoty Standard Tom VI, sekcja 1"
+        },
+        {
+          "id": "D6-2", "tom": "VI Fermentacja i formowanie", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Robisz poke test — wgłębienie po palcu wraca natychmiast. Co to znaczy?",
+          "opcje": [
+            "Ciasto jest w sam raz",
+            "Pointage za wczesny — ciasto niedojrzałe (będzie gęste, blade, o słabym smaku)",
+            "Pointage za późny — przefermentowane",
+            "Ciasto z za słabej mąki"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Szybki powrót = za wcześnie. Dojrzałe ciasto: wgłębienie wraca powoli i lekko zostaje.",
+          "zrodlo": "Złoty Standard Tom VI, sekcja 3 (poke test)"
+        },
+        {
+          "id": "D6-3", "tom": "VI Fermentacja i formowanie", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego szew przy formowaniu musi być domknięty?",
+          "opcje": [
+            "Dla ładniejszego wyglądu",
+            "Otwarty szew rozejdzie się w piecu — kęs się rozleje",
+            "Żeby ciasto szybciej rosło",
+            "Nie ma znaczenia przy dobrej mące"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Domknięty szew utrzymuje napięcie powierzchniowe; otwarty rozchodzi się podczas wypieku.",
+          "zrodlo": "Złoty Standard Tom VI, sekcja 5"
+        }
+      ]
+    },
+    {
+      "tom": "VII Mąka i surowce",
+      "obszar": "Jakość wejściowa",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Poprzednie tomy operują na surowcu, którego doboru nie opisano. Ten materiał zamyka fundament: jak czytać mąkę, wodę i sól zamiast ufać nazwie na worku. Zasada nadrzędna: dobieraj surowiec do procesu, nie odwrotnie.",
+        "karty": [
+          {
+            "tytul": "Mąkę się czyta, nie lubi — cztery liczby",
+            "punkty": [
+              "Typ (popiół): zawartość minerałów. Wyższy typ = więcej smaku i enzymów, ale słabszy gluten i większa chłonność. To kompromis, nie ranking jakości.",
+              "W (siła) / białko: zdolność trzymania gazu i zniesienia długiej fermentacji. Liczy się JAKOŚĆ białka (W, P/L), nie sama ilość.",
+              "Liczba opadania (FN): aktywność alfa-amylazy. Za niska = kleisty, ciemny miękisz; za wysoka = blady, szybko czerstwieje (~250–300 to optimum).",
+              "Reguła Alterbake: chłodna, długa fermentacja wymaga mąki o wyższym W — słaba mąka nie dotrwa do rana."
+            ],
+            "zrodlo": "Złoty Standard Tom VII, sekcja 1"
+          },
+          {
+            "tytul": "Woda i sól",
+            "punkty": [
+              "Woda to składnik i termostat: twardość kształtuje gluten, a temperatura (przez DDT, Tom V) kształtuje fermentację. Chlor z wodociągu potrafi spowalniać wrażliwy zakwas — odstań wodę lub filtruj.",
+              "Sól robi cztery rzeczy: smak, kontrola tempa fermentacji, wzmocnienie glutenu, wiązanie wody. Typowo 1,8–2,2% masy mąki.",
+              "Sól dodawaj po autolizie; nie sól bezpośrednio na skoncentrowane drożdże (kontakt szkodzi, samo spowolnienie jest normalne)."
+            ],
+            "zrodlo": "Złoty Standard Tom VII, sekcje 2–3"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D7-1", "tom": "VII Mąka i surowce", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Która mąka nadaje się do długiej, chłodnej fermentacji?",
+          "opcje": [
+            "Każda z najwyższą zawartością białka",
+            "O wyższym W (sile) wg karty technicznej — jakość białka, nie sama ilość",
+            "Najtańsza dostępna",
+            "O najniższej liczbie opadania"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Długa, chłodna fermentacja wymaga wyższego W; liczy się jakość białka (W, P/L), nie sama ilość.",
+          "zrodlo": "Złoty Standard Tom VII, sekcje 1, 6"
+        },
+        {
+          "id": "D7-2", "tom": "VII Mąka i surowce", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Jaki jest typowy zakres soli (% masy mąki) i kiedy ją dodać?",
+          "opcje": [
+            "0,5–1,0%, na początku razem z drożdżami",
+            "1,8–2,2%, po autolizie (nie bezpośrednio na drożdże)",
+            "3–4%, na końcu wypieku",
+            "Sól nie ma znaczenia dla fermentacji"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Typowo 1,8–2,2% masy mąki, dodawana po autolizie; sól kontroluje tempo fermentacji i wzmacnia gluten.",
+          "zrodlo": "Złoty Standard Tom VII, sekcja 3"
+        },
+        {
+          "id": "D7-3", "tom": "VII Mąka i surowce", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Bardzo niska liczba opadania (FN) mąki oznacza:",
+          "opcje": [
+            "Wysoką aktywność alfa-amylazy — ryzyko kleistego, ciemnego miękiszu",
+            "Za mało enzymów — chleb blady i szybko czerstwieje",
+            "Idealną mąkę do każdego pieczywa",
+            "Że mąka jest za droga"
+          ],
+          "poprawne": [0],
+          "wzorzec": "Niska FN = wysoka aktywność alfa-amylazy → kleisty, ciemny miękisz. Wysoka FN → blady, szybko czerstwiejący.",
+          "zrodlo": "Złoty Standard Tom VII, sekcja 1"
+        }
+      ]
+    },
+    {
+      "tom": "VIII Studzenie i świeżość",
+      "obszar": "Świeżość i straty",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Łańcuch nie kończy się na wyjęciu z pieca. To, co dzieje się przez kolejne godziny i dni, decyduje o świeżości w sprzedaży i o stratach — czyli o koszcie mąki, który wyrzucasz.",
+        "karty": [
+          {
+            "tytul": "Dlaczego chleb czerstwieje",
+            "punkty": [
+              "Czerstwienie to przede wszystkim retrogradacja skrobi (rekrystalizacja amylopektyny), nie wysychanie — dzieje się nawet w pełnej wilgoci.",
+              "Retrogradacja jest najszybsza w 0–7°C — czyli w lodówce. Lodówka czerstwi chleb SZYBCIEJ niż blat. To obala najpowszechniejszy mit.",
+              "Podgrzanie powyżej ~60°C częściowo odwraca czerstwienie (na krótko) — stąd sens odświeżania i odpieku."
+            ],
+            "zrodlo": "Złoty Standard Tom VIII, sekcje 1, 4"
+          },
+          {
+            "tytul": "Studzenie, przechowywanie, straty",
+            "punkty": [
+              "Studzenie to część procesu — miękisz stabilizuje się po piecu. Nie kroić i nie pakować gorącego: gorące + folia = kondensacja = gumowata skórka i ryzyko pleśni. Studzić na ruszcie.",
+              "Chleb zakwasowy z grubą skórką: nieopakowany / w papierze / lnie, 2–4 dni. Folia zmiękcza skórkę i grozi pleśnią. Bagietki — sprzedaż dnia.",
+              "Zamrażanie zatrzymuje retrogradację — mróź świeże; odpiek z mrożenia pozwala sprzedawać świeże bez nadprodukcji. Czerstwe wraca jako bułka tarta, grzanki, pain perdu (redukcja strat)."
+            ],
+            "zrodlo": "Złoty Standard Tom VIII, sekcje 2–4"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D8-1", "tom": "VIII Studzenie i świeżość", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Gdzie najlepiej przechowywać bochenek chleba zakwasowego?",
+          "opcje": [
+            "W lodówce — najdłużej zachowa świeżość",
+            "Na blacie, nieopakowany lub w papierze/lnie — nigdy w lodówce",
+            "Szczelnie w folii, w cieple",
+            "W zamrażarce, po pokrojeniu na kromki na co dzień"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Pieczywa nie chłodzi się w lodówce (0–7°C to optimum retrogradacji). Zakwas żyje 2–4 dni na blacie; skórka chroni miękisz.",
+          "zrodlo": "Złoty Standard Tom VIII, sekcje 1, 3"
+        },
+        {
+          "id": "D8-2", "tom": "VIII Studzenie i świeżość", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego lodówka czerstwi chleb szybciej niż blat?",
+          "opcje": [
+            "Bo wysusza chleb z wilgoci",
+            "Bo 0–7°C to optymalna temperatura retrogradacji (rekrystalizacji) skrobi",
+            "Bo zabija drożdże",
+            "To mit — lodówka przedłuża świeżość"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Retrogradacja skrobi jest najszybsza w 0–7°C; czerstwienie to rekrystalizacja, nie wysychanie.",
+          "zrodlo": "Złoty Standard Tom VIII, sekcja 1"
+        },
+        {
+          "id": "D8-3", "tom": "VIII Studzenie i świeżość", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Co zrobić z nadwyżką pieczywa, żeby ograniczyć straty?",
+          "opcje": [
+            "Zapakować ciepłe w folię i schować do lodówki",
+            "Zamrozić świeże (mróz zatrzymuje retrogradację) i/lub przerobić czerstwe na bułkę tartą, grzanki, pain perdu",
+            "Zostawić odkryte na kilka dni",
+            "Zawsze wyrzucać na koniec dnia"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Mróź świeże (mróz wstrzymuje rekrystalizację); czerstwe odzyskuj jako produkty wtórne. Strata to koszt mąki.",
+          "zrodlo": "Złoty Standard Tom VIII, sekcje 3–4"
+        }
+      ]
+    },
+    {
+      "tom": "X Ciasto bazowe i wariacje",
+      "obszar": "Architektura asortymentu (cukiernik/viennoiserie)",
+      "status": "do_akceptacji",
+      "nauka": {
+        "intro": "Warstwa organizująca nad całym łańcuchem: jak niewielki zestaw ciast bazowych (korzeni) generuje cały asortyment (liście). Mistrzowie nie pracują listą, lecz drzewem. Kotwica nienaruszalna pozostaje: każdy wypiek ≥ 92°C w środku (CCP1, sonda, nie skórka) — żadna wariacja tego progu nie zmienia.",
+        "karty": [
+          {
+            "tytul": "Drzewo, nie lista — i dwie klasy zmian",
+            "punkty": [
+              "Korzeń = ciasto bazowe (w pełni sparametryzowane). Liść = produkt = baza + transformacja. Tożsamość chleba siedzi w bazie; liść to operacja o niskim osądzie — dlatego łatwo delegowalna.",
+              "Wariancja systemu rośnie z liczbą baz, nie wariantów: cztery korzenie = cztery źródła zmienności do opanowania zamiast trzydziestu.",
+              "Wariacja w obrębie bazy (inkluzje, format, profil fermentacji, mąka ≤~30%, hydracja ±5–10%) jest tania i delegowalna. Wzbogacenie (tłuszcz/cukier/jajo), żyto >30%, laminacja to ZMIANA BAZY (nowy korzeń), nie wariant."
+            ],
+            "zrodlo": "Złoty Standard Tom X, sekcje 1–2"
+          },
+          {
+            "tytul": "Pułapki wariacji",
+            "punkty": [
+              "Inkluzje rozcieńczają i tną sieć glutenową. Suchy susz/nasiona kradną wodę — miękisz wychodzi suchy i zbity; namocz je lub dolicz +2–5% wody. Słone dodatki (oliwki, ser) podnoszą realny % soli — odejmij ich sól.",
+              "Inkluzje dodawaj późno (ostatnie składanie / laminacja), nigdy do miksu — wcześnie szatkują gluten i rozmazują owoc.",
+              "Format zmienia wypiek: inny stosunek powierzchnia/objętość = inna krzywa (bułka ≠ boule mimo tej samej bazy). Profil fermentacji to darmowy smak: młody levain — łagodny; dojrzały i zimny retard — kwaśny."
+            ],
+            "zrodlo": "Złoty Standard Tom X, sekcje 3, 7"
+          }
+        ]
+      },
+      "pytania": [
+        {
+          "id": "D10-1", "tom": "X Ciasto bazowe i wariacje", "poziom": "SAMODZIELNY", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dodajesz do bazy chudej masło i cukier (bułka maślana). To jest:",
+          "opcje": [
+            "Zwykła wariacja w obrębie tej samej bazy",
+            "Zmiana na poziomie bazy (nowy korzeń) — zmienia mieszanie, fermentację i wypiek naraz",
+            "Bez znaczenia dla procesu",
+            "Tylko zmiana nazwy produktu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Wzbogacenie (tłuszcz/cukier/jajo) to granica bazy, nie wariant — wymaga osobnej karty i kalibracji.",
+          "zrodlo": "Złoty Standard Tom X, sekcje 2, 3.6"
+        },
+        {
+          "id": "D10-2", "tom": "X Ciasto bazowe i wariacje", "poziom": "JUNIOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Kiedy dodawać inkluzje (nasiona, oliwki, orzechy) do ciasta?",
+          "opcje": [
+            "Na początku, do miksu razem z mąką",
+            "Późno — na ostatnim składaniu lub przy laminacji",
+            "Dopiero po uformowaniu, na wierzch",
+            "Zaraz po wyjęciu z pieca"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Inkluzje dodaje się późno; wczesne wprowadzenie szatkuje gluten i rozmazuje dodatek.",
+          "zrodlo": "Złoty Standard Tom X, sekcja 3.1"
+        },
+        {
+          "id": "D10-3", "tom": "X Ciasto bazowe i wariacje", "poziom": "MENTOR", "typ": "jednokrotny", "ccp": false,
+          "pytanie": "Dlaczego lepiej budować asortyment jak drzewo (kilka baz), a nie jak listę (każdy produkt = osobne ciasto)?",
+          "opcje": [
+            "Bo drzewo ładniej wygląda w menu",
+            "Bo wariancja i obciążenie rosną z liczbą baz, nie wariantów — mniej korzeni daje powtarzalność i delegowalność (Zasady 3, 4 i M5)",
+            "Bo lista jest droższa w druku",
+            "Nie ma różnicy, to kwestia gustu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Warianty dziedziczą jedną skontrolowaną bazę; liczba źródeł zmienności = liczba baz. Mniej korzeni = mniej wariancji, łatwiejsza delegacja.",
+          "zrodlo": "Złoty Standard Tom X, sekcje 1.2, 9"
+        }
+      ]
+    }
+  ]
+}

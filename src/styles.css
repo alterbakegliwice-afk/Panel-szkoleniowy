@@ -315,6 +315,16 @@ button { font-family: inherit; }
 .tom-akcje button { flex: 1; }
 .przedsiebiorca .naglowek-prof { background: linear-gradient(180deg, #fffdf9, #f6efe0); }
 
+/* ---------- tomy do akceptacji (drafty) ---------- */
+.draft { border-left: 6px solid var(--toku); }
+.draft.draft-ok { border-left-color: var(--ok); }
+.draft-gora { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; margin-bottom: .6rem; }
+.draft-gora h2 { margin-bottom: .1rem; }
+.draft-karta { margin: .6rem 0; padding: .7rem .9rem; background: var(--karta-inset); border-radius: 10px; }
+.draft-karta h3 { font-size: 1rem; color: var(--akcent-ciemny); margin-bottom: .4rem; }
+.draft-pyt { padding: .6rem .8rem; border: 1px solid var(--linia); border-radius: 9px; margin: .5rem 0; background: var(--karta-inset); }
+.draft-pyt-tresc { margin-bottom: .3rem; }
+
 /* ---------- historia / details ---------- */
 details.historia-karta { margin-bottom: .7rem; }
 .karta > details + details { margin-top: .5rem; }

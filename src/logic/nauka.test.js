@@ -6,7 +6,10 @@ import {
   czyPrzerobiono,
   postepModulu,
   postepPrzedsiebiorcy,
-  materialTomu
+  materialTomu,
+  DRAFTY,
+  pytaniaZatwierdzone,
+  czyTomZatwierdzony
 } from './nauka.js'
 import { walidujBank } from './store.js'
 
@@ -57,5 +60,33 @@ describe('materiał tomów pilota', () => {
       expect(m.karty.every((k) => k.zrodlo && k.zrodlo.length > 3)).toBe(true)
     }
     expect(materialTomu('Nieistniejący tom')).toBe(null)
+  })
+})
+
+describe('drafty tomów — DO AKCEPTACJI, bezpieczne domyślnie', () => {
+  it('drafty istnieją, mają materiał i pytania z poprawnym kluczem (jak bank)', () => {
+    expect(DRAFTY.length).toBeGreaterThanOrEqual(3)
+    const wszystkie = DRAFTY.flatMap((d) => d.pytania)
+    expect(walidujBank({ pytania: wszystkie })).toBe(null)
+  })
+
+  it('żaden draft nie zawiera pytań CCP (te zostają przy technologu/pilocie)', () => {
+    const ccp = DRAFTY.flatMap((d) => d.pytania).filter((p) => p.ccp)
+    expect(ccp.length).toBe(0)
+  })
+
+  it('niezatwierdzone drafty NIE dokładają pytań do banku', () => {
+    expect(pytaniaZatwierdzone([])).toEqual([])
+    expect(czyTomZatwierdzony([], DRAFTY[0].tom)).toBe(false)
+  })
+
+  it('zatwierdzenie tomu dokłada jego pytania i udostępnia materiał', () => {
+    const tom = DRAFTY[0].tom
+    const p = pytaniaZatwierdzone([tom])
+    expect(p.length).toBe(DRAFTY[0].pytania.length)
+    expect(p.every((x) => x.tom === tom)).toBe(true)
+    expect(czyTomZatwierdzony([tom], tom)).toBe(true)
+    // materiał draftu dostępny przez materialTomu (gdy tom aktywny, trafia na listę pracownika)
+    expect(materialTomu(tom)).toBeTruthy()
   })
 })

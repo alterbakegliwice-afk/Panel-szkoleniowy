@@ -15,7 +15,8 @@ import ReviewQueue from './components/ReviewQueue.jsx'
 import OwnerPanel from './components/OwnerPanel.jsx'
 import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
-import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
+import DraftReview from './components/DraftReview.jsx'
+import { materialTomu, ID_WLASCICIEL, pytaniaZatwierdzone, DRAFTY } from './logic/nauka.js'
 
 export default function App() {
   const [stan, setStan] = useState(wczytajStan)
@@ -39,7 +40,8 @@ export default function App() {
   }, [])
 
   const bank = stan.bank || bankZewnetrzny || bankPytan(stan)
-  const pytania = bank.pytania
+  // Bank efektywny = bank bazowy + pytania z tomów-draftów zatwierdzonych przez właściciela.
+  const pytania = [...bank.pytania, ...pytaniaZatwierdzone(stan.zatwierdzone)]
 
   const pracownik = useMemo(
     () =>
@@ -88,6 +90,11 @@ export default function App() {
       }
     })
 
+  const zatwierdzTom = (tom) =>
+    setStan((s) => (s.zatwierdzone.includes(tom) ? s : { ...s, zatwierdzone: [...s.zatwierdzone, tom] }))
+  const cofnijTom = (tom) =>
+    setStan((s) => ({ ...s, zatwierdzone: s.zatwierdzone.filter((t) => t !== tom) }))
+
   const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig }))
   const zapiszPracownikow = (pracownicy) => setStan((s) => ({ ...s, pracownicy }))
   const wgrajBank = (nowyBank) => setStan((s) => ({ ...s, bank: nowyBank }))
@@ -133,7 +140,12 @@ export default function App() {
     })
   }
   if (jestWlascicielem) {
+    const doAkceptacji = DRAFTY.filter((d) => !stan.zatwierdzone.includes(d.tom)).length
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
+    zakladki.push({
+      id: 'akceptacja',
+      etykieta: `Do akceptacji${doAkceptacji ? ` (${doAkceptacji})` : ''}`
+    })
     zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
   }
 
@@ -201,6 +213,13 @@ export default function App() {
           stan={stan}
           onWynik={dodajWynik}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(ID_WLASCICIEL, obszar)}
+        />
+      )}
+      {ekran.widok === 'akceptacja' && jestWlascicielem && (
+        <DraftReview
+          zatwierdzone={stan.zatwierdzone}
+          onZatwierdz={zatwierdzTom}
+          onCofnij={cofnijTom}
         />
       )}
       {ekran.widok === 'zespol' && (jestMentorem || jestWlascicielem) && (

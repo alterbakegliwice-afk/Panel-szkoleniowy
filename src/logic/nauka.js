@@ -2,14 +2,32 @@
 // Zasada: najpierw materiał do nauki, DOPIERO potem sprawdzenie wiedzy.
 import materialy from '../data/materialy_nauka.json'
 import modulPrzedsiebiorcy from '../data/modul_przedsiebiorcy.json'
+import draftyTomow from '../data/drafty_tomow.json'
 import { ostatnieWyniki, stanPytania } from './progress.js'
 
 export const PRZEDSIEBIORCA = modulPrzedsiebiorcy
 // Właściciel jako „uczeń" modułu przedsiębiorcy — osobne id, nie miesza się z zespołem.
 export const ID_WLASCICIEL = 'WLASCICIEL'
 
+// Drafty tomów (z dokumentów Złotego Standardu) — nieaktywne do zatwierdzenia przez właściciela.
+export const DRAFTY = draftyTomow.tomy
+
+// Materiał do nauki: najpierw zwalidowany pilot, potem drafty (dostępne dopiero
+// gdy tom jest zatwierdzony — bo tylko wtedy trafia do banku i listy pracownika).
 export function materialTomu(tom) {
-  return materialy.tomy[tom] || null
+  if (materialy.tomy[tom]) return materialy.tomy[tom]
+  const d = DRAFTY.find((x) => x.tom === tom)
+  return d ? d.nauka : null
+}
+
+// Pytania z zatwierdzonych draftów — doklejane do banku bazowego.
+export function pytaniaZatwierdzone(zatwierdzone) {
+  const zbior = new Set(zatwierdzone || [])
+  return DRAFTY.filter((d) => zbior.has(d.tom)).flatMap((d) => d.pytania)
+}
+
+export function czyTomZatwierdzony(zatwierdzone, tom) {
+  return (zatwierdzone || []).includes(tom)
 }
 
 export function programNauki() {

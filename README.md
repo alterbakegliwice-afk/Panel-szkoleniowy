@@ -77,6 +77,20 @@ zmyśleniach. Pełny program (pozostałe tomy piekarza + części cukiernika) je
 banki pytań dla nich wymagają eksportu treści technologa (zgodnie z zasadą: merytoryki nie tworzymy w kodzie).
 Dane: `src/data/materialy_nauka.json`.
 
+## Tomy do akceptacji (drafty z dokumentów Złotego Standardu)
+
+Kolejne tomy piekarza/cukiernika są przygotowywane **z realnych dokumentów Złotego Standardu**
+(Dysk właściciela) jako **drafty** — materiał do nauki + pytania — i trafiają do zakładki
+właściciela **„Do akceptacji"**. Draft jest **nieaktywny dla zespołu**, dopóki właściciel nie kliknie
+„Zatwierdź i aktywuj" (potwierdzając zgodność z dokumentem technologa). Po zatwierdzeniu tom
+automatycznie pojawia się u pracowników (nauka → sprawdzenie). Zatwierdzenia zapisują się w stanie
+(`zatwierdzone[]`) i w kopii zapasowej; można je cofnąć.
+
+Zasada bezpieczeństwa (baton): **drafty zawierają wyłącznie pytania wiedzy/jakości — zero pytań CCP**.
+Ewaluacja punktów krytycznych (≥92°C) pozostaje w zwalidowanym pilocie IV Wypiek; nowych pytań CCP nie
+tworzymy w kodzie. Gotowe drafty (v1): VI Fermentacja i formowanie, VII Mąka i surowce, VIII Studzenie
+i świeżość, X Ciasto bazowe i wariacje. Dane: `src/data/drafty_tomow.json`.
+
 ## Moduł Przedsiębiorcy i Lidera Zespołu (tylko dla właściciela)
 
 Osobne kompendium, widoczne wyłącznie dla właściciela — zbudowane **analogicznie do Złotego Standardu**:
