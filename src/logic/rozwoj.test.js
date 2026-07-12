@@ -14,7 +14,15 @@ import {
   filtrujProfile,
   poprawnyRekordPanelu,
   nazwaNarzedzia,
-  imionaPasuja
+  imionaPasuja,
+  wskazowkiCharakteru,
+  wskazowkiCharakteruZSerii,
+  trendObszarow,
+  mikropraktyki,
+  kluczPraktyki,
+  postepPraktyk,
+  statusRetestu,
+  przygotujPrzypisanie
 } from './rozwoj.js'
 import { walidujKopie, kopieDoStanu } from './store.js'
 
@@ -293,6 +301,152 @@ describe('hardening — złośliwe / zepsute dane (red team)', () => {
     expect(imionaPasuja('Weronika Kowalska', 'Weronika')).toBe(true)
     expect(imionaPasuja('', 'Weronika')).toBe(true) // brak danych — nie strasz
     expect(imionaPasuja('Weronika', 'Michał')).toBe(false) // realny konflikt
+  })
+})
+
+describe('wskazówki szkoleniowe z profilu charakteru', () => {
+  it('zwraca wskazówki tylko dla wyraźnych wymiarów (|v| >= prog)', () => {
+    const w = wskazowkiCharakteru({ uczenie: 1, tempo: -1, energia: 0.5, konflikt: 0 })
+    const klucze = w.map((x) => x.klucz)
+    expect(klucze).toContain('uczenie')
+    expect(klucze).toContain('tempo')
+    expect(klucze).not.toContain('energia') // 0.5 < prog(1)
+    expect(klucze).not.toContain('konflikt') // 0
+  })
+
+  it('wybiera właściwy biegun (hi vs lo) i dołącza wskazówkę „jak szkolić”', () => {
+    const [dzialanie] = wskazowkiCharakteru({ uczenie: 2 })
+    expect(dzialanie.biegun).toBe('Przez działanie')
+    expect(dzialanie.jakSzkolic).toMatch(/pokaż|stanowisk/i)
+    const [teoria] = wskazowkiCharakteru({ uczenie: -2 })
+    expect(teoria.biegun).toBe('Przez teorię')
+    expect(teoria.jakSzkolic).toMatch(/przeczytania|zrozumie/i)
+  })
+
+  it('styl uczenia się ma premię praktyczną — ląduje przed równie silnym wymiarem', () => {
+    // energia i uczenie oba |1|, ale uczenie ma wagę +0.5 → pierwsze
+    const w = wskazowkiCharakteru({ energia: 1, uczenie: 1 })
+    expect(w[0].klucz).toBe('uczenie')
+  })
+
+  it('odporność na brak/zepsuty charakter', () => {
+    expect(wskazowkiCharakteru(null)).toEqual([])
+    expect(wskazowkiCharakteru(undefined)).toEqual([])
+    expect(wskazowkiCharakteru({ uczenie: 'dużo', tempo: NaN })).toEqual([])
+  })
+
+  it('bierze charakter z ostatniego podejścia, które go niosło (retest bez charakteru nie kasuje)', () => {
+    const mapa = rekordProfilu(MAPA, 'P-01', '2026-07-05') // ma charakter
+    const ppRetest = rekordProfilu(
+      { ...PROFIL_PRACY, data: '2026-09-01T00:00:00.000Z' }, 'P-01', '2026-09-01'
+    ) // brak charakteru
+    const r = wskazowkiCharakteruZSerii([mapa, ppRetest], 'P-01')
+    expect(r).not.toBe(null)
+    expect(r.data).toBe(MAPA.data)
+    expect(r.wskazowki.length).toBeGreaterThan(0)
+    expect(wskazowkiCharakteruZSerii([ppRetest], 'P-01')).toBe(null)
+  })
+})
+
+describe('trend obszarów w czasie', () => {
+  const t = (data, wyn) => rekordProfilu({ ...PROFIL_PRACY, data, wyniki: wyn }, 'P-01', data)
+  const w = (initiative) => ({ ...PROFIL_PRACY.wyniki, initiative })
+
+  it('null gdy mniej niż 3 podejścia (wystarcza widok delty)', () => {
+    expect(trendObszarow([t('2026-01-01', w(30))], 'P-01')).toBe(null)
+    expect(trendObszarow([t('2026-01-01', w(30)), t('2026-02-01', w(40))], 'P-01')).toBe(null)
+  })
+
+  it('buduje serię czasową per obszar i zmianę od pierwszego do ostatniego', () => {
+    const tr = trendObszarow(
+      [t('2026-01-01', w(30)), t('2026-02-01', w(45)), t('2026-03-01', w(60))],
+      'P-01'
+    )
+    expect(tr.punkty.length).toBe(3)
+    const init = tr.obszary.find((o) => o.id === 'initiative')
+    expect(init.wartosci).toEqual([30, 45, 60])
+    expect(init.zmianaOgolna).toBe(30) // 60 - 30
+    const rel = tr.obszary.find((o) => o.id === 'reliability')
+    expect(rel.zmianaOgolna).toBe(0) // stałe 80
+  })
+
+  it('punkty niosą narzędzie (sygnał o mieszaniu skal w UI)', () => {
+    // data w środku serii, by kolejność po sortowaniu była jednoznaczna
+    const mapa = rekordProfilu({ ...MAPA, data: '2026-02-01T00:00:00.000Z' }, 'P-01', '2026-02-01')
+    const tr = trendObszarow(
+      [t('2026-01-01', w(30)), mapa, t('2026-03-01', w(60))],
+      'P-01'
+    )
+    expect(tr.punkty.map((p) => p.narzedzie)).toEqual(['profil-pracy', 'mapa-potencjalu', 'profil-pracy'])
+  })
+})
+
+describe('mikropraktyki i przypomnienie o reteście', () => {
+  it('mikropraktyki pobiera ostatnią kartę „Mikropraktyki” każdego obszaru', () => {
+    for (const o of ROZWOJ.obszary) {
+      const lista = mikropraktyki(o.id)
+      expect(lista.length).toBeGreaterThanOrEqual(3)
+      expect(lista.every((p) => typeof p === 'string' && p.length > 10)).toBe(true)
+    }
+    expect(mikropraktyki('nie-ma-takiego')).toEqual([])
+  })
+
+  it('postepPraktyk liczy odhaczone praktyki obszaru', () => {
+    const idO = 'initiative'
+    const k0 = kluczPraktyki('P-01', idO, 0)
+    const k1 = kluczPraktyki('P-01', idO, 1)
+    const pp = postepPraktyk([k0, k1, 'obce|x|9'], 'P-01', idO)
+    expect(pp.zrobione).toBe(2)
+    expect(pp.wszystkie).toBe(mikropraktyki(idO).length)
+    // klucz innego pracownika nie liczy się
+    expect(postepPraktyk([kluczPraktyki('P-02', idO, 0)], 'P-01', idO).zrobione).toBe(0)
+  })
+
+  it('statusRetestu: null bez nauki; termin = data nauki + tygodnie', () => {
+    const nauka = [{ id_prac: 'P-01', obszar: obszarNauki('initiative'), data: '2026-01-01T00:00:00.000Z' }]
+    expect(statusRetestu([], 'P-01', [])).toBe(null)
+    const przed = statusRetestu(nauka, 'P-01', [], 6, '2026-01-20T00:00:00.000Z')
+    expect(przed.dojrzaly).toBe(false) // nie minęło 6 tyg
+    expect(przed.celData.slice(0, 10)).toBe('2026-02-12') // +42 dni
+    const po = statusRetestu(nauka, 'P-01', [], 6, '2026-03-01T00:00:00.000Z')
+    expect(po.dojrzaly).toBe(true)
+  })
+
+  it('statusRetestu znika, gdy pojawił się test PO nauce (cykl domknięty)', () => {
+    const nauka = [{ id_prac: 'P-01', obszar: obszarNauki('initiative'), data: '2026-01-01T00:00:00.000Z' }]
+    const testPoNauce = rekordProfilu(
+      { ...PROFIL_PRACY, data: '2026-03-15T00:00:00.000Z' }, 'P-01', '2026-03-15'
+    )
+    const st = statusRetestu(nauka, 'P-01', [testPoNauce], 6, '2026-04-01T00:00:00.000Z')
+    expect(st.zrobionyPoNauce).toBe(true)
+    expect(st.dojrzaly).toBe(false)
+  })
+})
+
+describe('przygotujPrzypisanie (wspólne dla pracownika i Mentora)', () => {
+  const prac = { id_prac: 'P-01', imie: 'Weronika' }
+
+  it('błąd walidacji przechodzi', () => {
+    expect(przygotujPrzypisanie({ typ: 'złe' }, prac, []).ok).toBe(false)
+  })
+
+  it('duplikat blokuje', () => {
+    const profile = [rekordProfilu(PROFIL_PRACY, 'P-01', '2026-07-12')]
+    const r = przygotujPrzypisanie(PROFIL_PRACY, prac, profile)
+    expect(r.ok).toBe(false)
+    expect(r.blad).toMatch(/przypisany/)
+  })
+
+  it('zgodne imię: ok bez ostrzeżenia', () => {
+    const r = przygotujPrzypisanie(PROFIL_PRACY, prac, [])
+    expect(r.ok).toBe(true)
+    expect(r.ostrzezenieImienia).toBe(null)
+  })
+
+  it('niezgodne imię: ok, ale z ostrzeżeniem do potwierdzenia', () => {
+    const r = przygotujPrzypisanie(PROFIL_PRACY, { id_prac: 'P-02', imie: 'Michał' }, [])
+    expect(r.ok).toBe(true)
+    expect(r.ostrzezenieImienia).toBe('Weronika')
   })
 })
 

@@ -1,10 +1,11 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
-import { podsumowanieZespolu, nazwaNarzedzia, obszar } from '../logic/rozwoj.js'
+import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import HistoryList from './HistoryList.jsx'
+import ImportWyniku from './ImportWyniku.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile }) {
+export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile, onDodajProfil }) {
   const proc = (x) => Math.round(x * 100)
   const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
   const wiersze = pracownicy.map((prac) => ({
@@ -130,6 +131,49 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile 
             </tbody>
           </table>
         </div>
+      </div>
+
+      {onDodajProfil && (
+        <ImportWyniku
+          pracownicy={pracownicy}
+          profile={profile || []}
+          onDodajProfil={onDodajProfil}
+        />
+      )}
+
+      <div className="karta">
+        <h2>Jak szkolić — profil charakteru zespołu</h2>
+        <p className="cichy mini">
+          Dopasowanie <em>formy</em> szkolenia do charakteru pracownika (z Mapy Potencjału).
+          To nie ocena — te same treści, inna droga dotarcia. Widoczne dla pracowników,
+          którzy wykonali Mapę Potencjału.
+        </p>
+        {pracownicy.map((prac) => {
+          const ch = wskazowkiCharakteruZSerii(profile || [], prac.id_prac)
+          return (
+            <details key={prac.id_prac} className="historia-karta">
+              <summary>
+                {prac.imie} — {prac.rola}
+                {ch ? ` (${ch.wskazowki.length} wskazówek)` : ' (brak Mapy Potencjału)'}
+              </summary>
+              {ch ? (
+                <div className="charakter-lista">
+                  {ch.wskazowki.map((w) => (
+                    <div key={w.klucz} className="charakter-wiersz">
+                      <span className="charakter-biegun">{w.nazwa}: {w.biegun}</span>
+                      <span className="charakter-tip">{w.jakSzkolic}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="cichy mini">
+                  Ten pracownik nie ma jeszcze wyniku Mapy Potencjału (Profil Pracy nie mierzy
+                  charakteru). Poproś o wykonanie testu Mapa Potencjału, by zobaczyć wskazówki.
+                </p>
+              )}
+            </details>
+          )
+        })}
       </div>
 
       <div className="karta">

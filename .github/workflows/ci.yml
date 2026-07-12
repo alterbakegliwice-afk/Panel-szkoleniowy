@@ -1,0 +1,37 @@
+name: CI
+
+# Testy przy każdym pushu i PR: logika (vitest) + pełne ścieżki UI integracji
+# Work Profile (Playwright). Zielone CI = pętla test → nauka → praktyka → retest
+# działa, zanim cokolwiek trafi na produkcję.
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # testy logiki (CCP, progi, awans, rozwój Work Profile)
+      - run: npm test
+
+      # E2E: pobierz przeglądarkę pasującą do zainstalowanego @playwright/test.
+      # `test:e2e` sam buduje i uruchamia podgląd (webServer w playwright.config.js).
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14

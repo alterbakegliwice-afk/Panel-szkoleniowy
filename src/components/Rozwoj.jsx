@@ -5,24 +5,30 @@ import {
   TALENTY_NAZWY,
   obszar,
   obszarNauki,
-  walidujWynikWp,
   rekordProfilu,
-  czyDuplikatProfilu,
+  przygotujPrzypisanie,
   postepRozwoju,
   czekajaceWyniki,
   nazwaNarzedzia,
-  imionaPasuja
+  imionaPasuja,
+  wskazowkiCharakteruZSerii,
+  trendObszarow,
+  mikropraktyki,
+  kluczPraktyki,
+  postepPraktyk,
+  statusRetestu
 } from '../logic/rozwoj.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
 import { teraz } from '../logic/store.js'
 import Learning from './Learning.jsx'
+import Sparkline from './Sparkline.jsx'
 
 // Zakładka ROZWÓJ — most między testami Work Profile a szkoleniem.
 // Pętla: test diagnozuje → moduły rozwijają najsłabsze obszary → RETEST
 // jest ewaluacją (panel liczy deltę względem poprzedniego podejścia tego
 // samego narzędzia). Wyniki wpadają same przez wspólny localStorage
 // (ten sam origin GitHub Pages) albo z pliku JSON pobranego w raporcie testu.
-export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrzerobiony }) {
+export default function Rozwoj({ pracownik, profile, nauka, praktyki, onDodajProfil, onPrzerobiony, onPraktyka }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [komunikat, setKomunikat] = useState(null)
   const [odswiez, setOdswiez] = useState(0)
@@ -39,21 +45,16 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
   )
 
   const przyjmij = (surowy, zrodlo) => {
-    const blad = walidujWynikWp(surowy)
-    if (blad) {
-      setKomunikat({ typ: 'blad', tekst: blad })
-      return
-    }
-    if (czyDuplikatProfilu(profile, pracownik.id_prac, surowy)) {
-      setKomunikat({ typ: 'blad', tekst: 'Ten wynik jest już przypisany do Twojego profilu.' })
+    const gotowe = przygotujPrzypisanie(surowy, pracownik, profile)
+    if (!gotowe.ok) {
+      setKomunikat({ typ: 'blad', tekst: gotowe.blad })
       return
     }
     // Log jest wspólny dla całego stanowiska — nie pozwól jednym klikiem
     // przypisać sobie wyniku podpisanego cudzym imieniem.
-    const imieWyniku = (surowy.osoba?.imie || '').trim()
-    if (imieWyniku && !imionaPasuja(imieWyniku, pracownik.imie)) {
+    if (gotowe.ostrzezenieImienia) {
       const zgoda = window.confirm(
-        `Ten wynik jest podpisany „${imieWyniku}", a Ty pracujesz jako „${pracownik.imie}". ` +
+        `Ten wynik jest podpisany „${gotowe.ostrzezenieImienia}", a Ty pracujesz jako „${pracownik.imie}". ` +
         'Przypisać go mimo to do Twojego profilu?'
       )
       if (!zgoda) return
@@ -113,6 +114,9 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
 
   const dataTestu = (iso) => (iso || '').slice(0, 10)
   const ostatnieNarzedzie = postep ? nazwaNarzedzia(postep.ostatni.narzedzie) : null
+  const charakter = wskazowkiCharakteruZSerii(profile, pracownik.id_prac)
+  const trend = trendObszarow(profile, pracownik.id_prac)
+  const retest = statusRetestu(nauka, pracownik.id_prac, profile)
 
   return (
     <div className="rozwoj">
@@ -209,6 +213,48 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
         </div>
       </div>
 
+      {/* Jak najlepiej się uczysz — z profilu charakteru (Mapa Potencjału) */}
+      {charakter && (
+        <div className="karta charakter-karta">
+          <h3>Jak najlepiej się uczysz</h3>
+          <p className="cichy mini">
+            Na podstawie profilu charakteru z Mapy Potencjału. To nie ocena — pokazuje, którą
+            drogą wiedza wchodzi u Ciebie najszybciej. Pokaż to swojemu Mentorowi.
+          </p>
+          <div className="charakter-lista">
+            {charakter.wskazowki.map((w) => (
+              <div key={w.klucz} className="charakter-wiersz">
+                <span className="charakter-biegun">{w.biegun}</span>
+                <span className="charakter-tip">{w.jakSzkolic}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Przypomnienie o reteście — domyka pętlę nauka → praktyka → ewaluacja */}
+      {retest && !retest.zrobionyPoNauce && (
+        <div className={retest.dojrzaly ? 'karta ccp ccp-brak' : 'karta nastepny'}>
+          <div className={retest.dojrzaly ? 'ccp-ikona' : ''}>{retest.dojrzaly ? '⏰' : ''}</div>
+          <div>
+            {retest.dojrzaly ? (
+              <>
+                <div className="ccp-tytul">Czas na retest — ewaluację postępu</div>
+                <div className="ccp-opis">
+                  Materiał przerabiasz od {dataTestu(retest.naukaOd)}, minęło zalecane {retest.tygodnie} tyg.
+                  praktyki. Wykonaj ponownie test Work Profile — panel pokaże, czy szkolenie zadziałało.
+                </div>
+              </>
+            ) : (
+              <p className="cichy mini" style={{ margin: 0 }}>
+                📅 Retest (ewaluacja) zalecany od <strong>{dataTestu(retest.celData)}</strong> —
+                to ok. {retest.tygodnie} tyg. wdrażania mikropraktyk od rozpoczęcia nauki.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Obszary rozwojowe */}
       {postep ? (
         <>
@@ -258,6 +304,37 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
                     <p className="cichy mini">
                       Talenty (Mapa Potencjału): {def.talenty.map((t) => TALENTY_NAZWY[t]).join(', ')}
                     </p>
+                    {nauczony && (() => {
+                      const lista = mikropraktyki(o.id)
+                      const pp = postepPraktyk(praktyki, pracownik.id_prac, o.id)
+                      if (!lista.length) return null
+                      return (
+                        <details className="praktyki-blok" open={pp.zrobione < pp.wszystkie}>
+                          <summary>
+                            Mikropraktyki ({pp.zrobione}/{pp.wszystkie})
+                            {pp.zrobione === pp.wszystkie && ' ✓'}
+                          </summary>
+                          <ul className="praktyki-lista">
+                            {lista.map((p, i) => {
+                              const k = kluczPraktyki(pracownik.id_prac, o.id, i)
+                              const zrobiona = (praktyki || []).includes(k)
+                              return (
+                                <li key={i} className={zrobiona ? 'praktyka zrobiona' : 'praktyka'}>
+                                  <label>
+                                    <input
+                                      type="checkbox"
+                                      checked={zrobiona}
+                                      onChange={() => onPraktyka(k)}
+                                    />
+                                    <span>{p}</span>
+                                  </label>
+                                </li>
+                              )
+                            })}
+                          </ul>
+                        </details>
+                      )
+                    })()}
                     <div className="rzad">
                       <button className="drugi" onClick={() => setWidok({ typ: 'nauka', id: o.id })}>
                         📖 {nauczony ? 'Powtórz materiał' : 'Ucz się'}
@@ -267,6 +344,38 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
                 )
               })}
           </div>
+
+          {trend && (
+            <div className="karta">
+              <h3>Trend w czasie ({trend.punkty.length} podejść)</h3>
+              <p className="cichy mini">
+                Kierunek zmian od pierwszego do ostatniego testu. Linia łączy podejścia
+                z {trend.punkty.map((p) => dataTestu(p.data)).join(' → ')}. Różne narzędzia
+                mierzą nieco inaczej — patrz na kierunek, nie pojedynczy punkt.
+              </p>
+              <div className="trend-siatka">
+                {trend.obszary
+                  .slice()
+                  .sort((a, b) => (a.zmianaOgolna ?? 0) - (b.zmianaOgolna ?? 0))
+                  .map((o) => (
+                    <div key={o.id} className="trend-wiersz">
+                      <span className="trend-nazwa">{o.nazwa}</span>
+                      <Sparkline wartosci={o.wartosci} />
+                      {o.zmianaOgolna !== null && (
+                        <span
+                          className={
+                            o.zmianaOgolna > 0 ? 'delta-plus' : o.zmianaOgolna < 0 ? 'delta-minus' : 'cichy mini'
+                          }
+                        >
+                          {o.zmianaOgolna > 0 ? '▲ +' : o.zmianaOgolna < 0 ? '▼ ' : '= '}
+                          {o.zmianaOgolna !== 0 ? o.zmianaOgolna : 'bez zmian'}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
 
           <details className="karta historia-karta">
             <summary>Historia testów ({postep.seria.length})</summary>

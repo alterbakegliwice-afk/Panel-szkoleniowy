@@ -141,6 +141,7 @@ function Progi({ konfig, onKonfig }) {
 
 function Pracownicy({ pracownicy, onPracownicy }) {
   const [nowy, setNowy] = useState({ imie: '', rola: 'Piekarz', poziom_docelowy: 'SAMODZIELNY', pin: '' })
+  const [edycjaPin, setEdycjaPin] = useState(null) // { id, wartosc }
 
   const dodaj = () => {
     if (!nowy.imie.trim()) return
@@ -164,9 +165,20 @@ function Pracownicy({ pracownicy, onPracownicy }) {
     }
   }
 
+  const zapiszPin = () => {
+    const pin = (edycjaPin.wartosc || '').trim()
+    if (pin && pin.length < 4) return // 4 cyfry albo puste (bez PIN)
+    onPracownicy(pracownicy.map((p) => (p.id_prac === edycjaPin.id ? { ...p, pin } : p)))
+    setEdycjaPin(null)
+  }
+
   return (
     <div className="karta">
       <h2>Pracownicy</h2>
+      <p className="cichy mini">
+        PIN chroni indywidualny profil — w tym wyniki testów Work Profile (dane wrażliwsze niż quizy
+        wiedzy). Bez PIN każdy przy tym stanowisku może wejść na cudzy profil. 4 cyfry, puste = bez ochrony.
+      </p>
       <div className="tabela-otoczka">
         <table className="tabela">
           <thead>
@@ -179,7 +191,39 @@ function Pracownicy({ pracownicy, onPracownicy }) {
                 <td>{p.imie}</td>
                 <td>{p.rola}</td>
                 <td>{p.poziom_docelowy || '—'}</td>
-                <td>{p.pin ? '🔒' : '—'}</td>
+                <td>
+                  {edycjaPin?.id === p.id_prac ? (
+                    <span className="pin-edycja">
+                      <input
+                        className="pole waski"
+                        type="password"
+                        inputMode="numeric"
+                        maxLength={4}
+                        autoFocus
+                        placeholder="4 cyfry"
+                        value={edycjaPin.wartosc}
+                        onChange={(e) => setEdycjaPin({ id: p.id_prac, wartosc: e.target.value.replace(/\D/g, '') })}
+                        onKeyDown={(e) => e.key === 'Enter' && zapiszPin()}
+                      />
+                      <button className="link-akcja" onClick={zapiszPin}>zapisz</button>
+                      <button className="link-odrzuc" onClick={() => setEdycjaPin(null)}>anuluj</button>
+                    </span>
+                  ) : (
+                    <span className="pin-widok">
+                      {p.pin ? '🔒' : '—'}
+                      <button className="link-akcja" onClick={() => setEdycjaPin({ id: p.id_prac, wartosc: '' })}>
+                        {p.pin ? 'zmień' : 'ustaw'}
+                      </button>
+                      {p.pin && (
+                        <button className="link-odrzuc" onClick={() => {
+                          if (confirm(`Zdjąć PIN z profilu ${p.imie}? Profil będzie dostępny bez hasła.`)) {
+                            onPracownicy(pracownicy.map((x) => (x.id_prac === p.id_prac ? { ...x, pin: '' } : x)))
+                          }
+                        }}>zdejmij</button>
+                      )}
+                    </span>
+                  )}
+                </td>
                 <td><button className="link-odrzuc" onClick={() => usun(p.id_prac)}>usuń</button></td>
               </tr>
             ))}

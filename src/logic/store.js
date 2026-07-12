@@ -43,6 +43,7 @@ export function domyslnyStan() {
     kolejka: [], // odpowiedzi otwarte/praktyczne czekające na ocenę Mentora
     nauka: [], // log przerobienia materiału: {id_prac, obszar, data} — quiz odblokowuje się po nauce
     profile: [], // log wyników testów Work Profile: rekordy z logic/rozwoj.js (append-only, jak wyniki)
+    praktyki: [], // odhaczone mikropraktyki rozwojowe: lista kluczy „id_prac|obszar|idx”
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -147,6 +148,7 @@ export function eksportKopii(stan) {
     kolejka: stan.kolejka,
     nauka: stan.nauka,
     profile: stan.profile || [],
+    praktyki: Array.isArray(stan.praktyki) ? stan.praktyki : [],
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -178,6 +180,7 @@ export function kopieDoStanu(obiekt) {
     // filtr, nie tylko Array.isArray: pojedynczy zepsuty rekord w kopii
     // odpada zamiast wywalać zakładki Rozwój/Zespół po imporcie
     profile: filtrujProfile(obiekt.profile),
+    praktyki: Array.isArray(obiekt.praktyki) ? obiekt.praktyki.filter((k) => typeof k === 'string') : [],
     bank: obiekt.bank || null
   }
 }
