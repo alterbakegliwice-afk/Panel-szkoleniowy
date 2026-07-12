@@ -10,8 +10,13 @@ import {
   obszarNauki,
   NARZEDZIA,
   sredniaDelta,
-  podsumowanieZespolu
+  podsumowanieZespolu,
+  filtrujProfile,
+  poprawnyRekordPanelu,
+  nazwaNarzedzia,
+  imionaPasuja
 } from './rozwoj.js'
+import { walidujKopie, kopieDoStanu } from './store.js'
 
 // Przykładowe rekordy w formacie zapisywanym przez repo alterbake-work-profile.
 const PROFIL_PRACY = {
@@ -220,6 +225,74 @@ describe('podsumowanie zespołu (widok Mentora/Właściciela)', () => {
     expect(wiersze[0].sredniaZmiana).toBe(5)
     expect(wiersze[1].postep).toBe(null)
     expect(wiersze[1].sredniaZmiana).toBe(null)
+  })
+})
+
+describe('hardening — złośliwe / zepsute dane (red team)', () => {
+  it('klucz __proto__ w wynikach Mapy nie tworzy śmieciowych obszarów', () => {
+    // JSON.parse (jak przy realnym imporcie) tworzy WŁASNY klucz "__proto__" —
+    // literal obiektowy by go zjadł jako ustawienie prototypu
+    const wyniki = JSON.parse(
+      JSON.stringify(MAPA.wyniki).slice(0, -1) + ',"__proto__":4,"constructor":4,"toString":4}'
+    )
+    const zlosliwy = { ...MAPA, wyniki }
+    const o = naObszary(zlosliwy)
+    // wyłącznie 8 znanych obszarów — nic z prototypu
+    expect(Object.keys(o).sort()).toEqual(
+      ['collaboration', 'communication', 'initiative', 'integrity',
+        'learning', 'pressure', 'problemSolving', 'reliability'].sort()
+    )
+  })
+
+  it('filtrujProfile odrzuca zepsute wpisy i przycina wartości obszarów', () => {
+    const dobry = rekordProfilu(PROFIL_PRACY, 'P-01', '2026-07-12')
+    const wejscie = [
+      dobry,
+      null,
+      'napis',
+      { id_prac: 'P-01' }, // bez narzędzia/obszarów
+      { ...dobry, narzedzie: 'obcy-test' }, // nieznane narzędzie
+      { ...dobry, data: '2026-08-01', obszary: { reliability: 999, pressure: 'duzo', initiative: -5 } }
+    ]
+    const wynik = filtrujProfile(wejscie)
+    expect(wynik.length).toBe(2)
+    expect(wynik[1].obszary.reliability).toBe(100) // clamp z 999
+    expect(wynik[1].obszary.initiative).toBe(0) // clamp z -5
+    expect(wynik[1].obszary.pressure).toBeUndefined() // nie-liczba odpada
+    expect(filtrujProfile('nie-tablica')).toEqual([])
+    expect(filtrujProfile(undefined)).toEqual([])
+  })
+
+  it('postepRozwoju i seriaTestow nie wywalają się na nie-tablicy', () => {
+    expect(postepRozwoju('zepsute', 'P-01')).toBe(null)
+    expect(seriaTestow({ dziwne: true }, 'P-01')).toEqual([])
+  })
+
+  it('kopia zapasowa: nie-tablicowe profile odrzucone, zepsute wpisy filtrowane', () => {
+    const baza = { typ: 'alterbake-kopia', pracownicy: [], wyniki: [] }
+    expect(walidujKopie({ ...baza, profile: 'zepsute' })).toContain('profile')
+    expect(walidujKopie({ ...baza, profile: [] })).toBe(null)
+    expect(walidujKopie(baza)).toBe(null) // stara kopia bez pola profile
+    const stan = kopieDoStanu({
+      ...baza,
+      profile: [rekordProfilu(PROFIL_PRACY, 'P-01', '2026-07-12'), { zepsuty: true }]
+    })
+    expect(stan.profile.length).toBe(1)
+    expect(poprawnyRekordPanelu(stan.profile[0])).toBe(true)
+  })
+
+  it('nazwaNarzedzia nie wywala UI przy nieznanym narzędziu', () => {
+    expect(nazwaNarzedzia('mapa-potencjalu')).toBe('Mapa Potencjału')
+    expect(nazwaNarzedzia('cos-starego')).toBe('cos-starego')
+    expect(nazwaNarzedzia(undefined)).toBe('nieznane narzędzie')
+  })
+
+  it('imionaPasuja: dopiski, wielkość liter i polskie znaki nie robią fałszywego alarmu', () => {
+    expect(imionaPasuja('Weronika', '(przykład) Weronika')).toBe(true)
+    expect(imionaPasuja('MICHAŁ', 'michal')).toBe(true)
+    expect(imionaPasuja('Weronika Kowalska', 'Weronika')).toBe(true)
+    expect(imionaPasuja('', 'Weronika')).toBe(true) // brak danych — nie strasz
+    expect(imionaPasuja('Weronika', 'Michał')).toBe(false) // realny konflikt
   })
 })
 

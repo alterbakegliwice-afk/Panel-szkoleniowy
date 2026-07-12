@@ -51,9 +51,17 @@ export const TALENTY_NAZWY = {
 }
 
 // Mapa talent (Mapa Potencjału) → obszar rozwojowy, zbudowana z danych JSON.
-const TALENT_DO_OBSZARU = {}
+// Object.create(null): klucze rekordu przychodzą z zewnętrznego JSON-a, więc
+// lookup nie może trafiać w prototyp (np. klucz "__proto__" → Object.prototype).
+const TALENT_DO_OBSZARU = Object.create(null)
 for (const o of ROZWOJ.obszary) {
   for (const t of o.talenty) TALENT_DO_OBSZARU[t] = o.id
+}
+
+// Nazwa narzędzia odporna na rekordy spoza aktualnej listy (np. stara kopia
+// zapasowa z narzędziem, którego już nie znamy) — UI nie może się wywalić.
+export function nazwaNarzedzia(id) {
+  return NARZEDZIA[id]?.nazwa || String(id || 'nieznane narzędzie')
 }
 
 export function obszar(id) {
@@ -117,6 +125,56 @@ export function naObszary(rekord) {
   return wynik
 }
 
+// Rekord panelu musi być bezpieczny do renderowania. Log `profile` przychodzi
+// też z kopii zapasowej (dowolny plik od użytkownika) i ze starych stanów
+// localStorage — jeden zepsuty wpis nie może wywalić zakładki Rozwój/Zespół.
+export function poprawnyRekordPanelu(p) {
+  return !!(
+    p &&
+    typeof p === 'object' &&
+    typeof p.id_prac === 'string' &&
+    p.id_prac &&
+    NARZEDZIA[p.narzedzie] &&
+    typeof p.data === 'string' &&
+    p.obszary &&
+    typeof p.obszary === 'object' &&
+    !Array.isArray(p.obszary)
+  )
+}
+
+// Sanityzacja logu profili: nie-tablica → [], wpisy zepsute odpadają,
+// wartości obszarów przycinane do liczb 0–100.
+export function filtrujProfile(lista) {
+  if (!Array.isArray(lista)) return []
+  return lista.filter(poprawnyRekordPanelu).map((p) => {
+    const obszary = {}
+    for (const o of ROZWOJ.obszary) {
+      const v = p.obszary[o.id]
+      if (typeof v === 'number' && isFinite(v)) obszary[o.id] = ogranicz(v)
+    }
+    return { ...p, obszary }
+  })
+}
+
+// Zgodność imion (ostrzeżenie przed przypisaniem cudzego wyniku).
+// Porównanie miękkie: bez wielkości liter, polskich znaków i dopisków
+// w nawiasach — „(przykład) Weronika" pasuje do „weronika".
+export function imionaPasuja(a, b) {
+  const norm = (s) =>
+    String(s || '')
+      .toLowerCase()
+      .replace(/\(.*?\)/g, ' ')
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/ł/g, 'l')
+      .replace(/[^a-z0-9 ]/g, ' ')
+      .trim()
+  const na = norm(a)
+  const nb = norm(b)
+  if (!na || !nb) return true // brak danych = nie strasz dialogiem
+  return na === nb || na.split(/\s+/).some((t) => nb.split(/\s+/).includes(t))
+}
+
 // Rekord panelu (do append-only logu `profile` w stanie).
 export function rekordProfilu(surowy, idPrac, dataImportu) {
   return {
@@ -135,7 +193,7 @@ export function rekordProfilu(surowy, idPrac, dataImportu) {
 // Duplikat = ten sam pracownik + narzędzie + identyczne wyniki surowe
 // (albo identyczny znacznik czasu testu).
 export function czyDuplikatProfilu(profile, idPrac, surowy) {
-  return (profile || []).some(
+  return (Array.isArray(profile) ? profile : []).some(
     (p) =>
       p.id_prac === idPrac &&
       p.narzedzie === surowy.narzedzie &&
@@ -145,8 +203,8 @@ export function czyDuplikatProfilu(profile, idPrac, surowy) {
 
 // Podejścia pracownika, chronologicznie (log może być scalony poza kolejnością).
 export function seriaTestow(profile, idPrac) {
-  return (profile || [])
-    .filter((p) => p.id_prac === idPrac)
+  return (Array.isArray(profile) ? profile : [])
+    .filter((p) => p && p.id_prac === idPrac)
     .slice()
     .sort((a, b) => ((a.data || '') < (b.data || '') ? -1 : (a.data || '') > (b.data || '') ? 1 : 0))
 }
@@ -166,8 +224,8 @@ export function postepRozwoju(profile, idPrac) {
     .find((p) => p.narzedzie === ostatni.narzedzie) || null
 
   const obszary = ROZWOJ.obszary.map((o) => {
-    const aktualny = ostatni.obszary[o.id]
-    const bazowy = poprzedni ? poprzedni.obszary[o.id] : undefined
+    const aktualny = (ostatni.obszary || {})[o.id]
+    const bazowy = poprzedni ? (poprzedni.obszary || {})[o.id] : undefined
     return {
       id: o.id,
       nazwa: o.nazwa,

@@ -1,5 +1,5 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
-import { podsumowanieZespolu, NARZEDZIA, obszar } from '../logic/rozwoj.js'
+import { podsumowanieZespolu, nazwaNarzedzia, obszar } from '../logic/rozwoj.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
@@ -104,7 +104,7 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile 
                     <>
                       <td>{postep.liczbaTestow}</td>
                       <td>
-                        {NARZEDZIA[postep.ostatni.narzedzie].nazwa}
+                        {nazwaNarzedzia(postep.ostatni.narzedzie)}
                         <div className="cichy mini">{(postep.ostatni.data || '').slice(0, 10)}</div>
                       </td>
                       <td className="mini">

@@ -9,7 +9,9 @@ import {
   rekordProfilu,
   czyDuplikatProfilu,
   postepRozwoju,
-  czekajaceWyniki
+  czekajaceWyniki,
+  nazwaNarzedzia,
+  imionaPasuja
 } from '../logic/rozwoj.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
 import { teraz } from '../logic/store.js'
@@ -46,18 +48,34 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
       setKomunikat({ typ: 'blad', tekst: 'Ten wynik jest już przypisany do Twojego profilu.' })
       return
     }
+    // Log jest wspólny dla całego stanowiska — nie pozwól jednym klikiem
+    // przypisać sobie wyniku podpisanego cudzym imieniem.
+    const imieWyniku = (surowy.osoba?.imie || '').trim()
+    if (imieWyniku && !imionaPasuja(imieWyniku, pracownik.imie)) {
+      const zgoda = window.confirm(
+        `Ten wynik jest podpisany „${imieWyniku}", a Ty pracujesz jako „${pracownik.imie}". ` +
+        'Przypisać go mimo to do Twojego profilu?'
+      )
+      if (!zgoda) return
+    }
     onDodajProfil(rekordProfilu(surowy, pracownik.id_prac, teraz()))
     setKomunikat({
       typ: 'ok',
-      tekst: `Wynik testu „${NARZEDZIA[surowy.narzedzie].nazwa}" (${zrodlo}) przypisany. ` +
+      tekst: `Wynik testu „${nazwaNarzedzia(surowy.narzedzie)}" (${zrodlo}) przypisany. ` +
         'Poniżej zobaczysz obszary do rozwoju' +
         (postep ? ' i porównanie z poprzednim podejściem.' : '.')
     })
   }
 
+  const MAKS_PLIK = 512 * 1024 // wynik testu ma ~1 KB; większy plik to pomyłka
   const importujPlik = (e) => {
     const plik = e.target.files?.[0]
     if (!plik) return
+    if (plik.size > MAKS_PLIK) {
+      setKomunikat({ typ: 'blad', tekst: 'Plik jest za duży jak na wynik testu (limit 512 KB).' })
+      e.target.value = ''
+      return
+    }
     const czytnik = new FileReader()
     czytnik.onload = () => {
       try {
@@ -94,7 +112,7 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
   }
 
   const dataTestu = (iso) => (iso || '').slice(0, 10)
-  const ostatnieNarzedzie = postep ? NARZEDZIA[postep.ostatni.narzedzie] : null
+  const ostatnieNarzedzie = postep ? nazwaNarzedzia(postep.ostatni.narzedzie) : null
 
   return (
     <div className="rozwoj">
@@ -115,7 +133,7 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
               {postep.liczbaTestow === 1 ? 'wykonany test' : 'wykonane testy'}
             </div>
             <div className="cichy mini">
-              ostatni: {ostatnieNarzedzie.nazwa}, {dataTestu(postep.ostatni.data)}
+              ostatni: {ostatnieNarzedzie}, {dataTestu(postep.ostatni.data)}
             </div>
           </div>
         )}
@@ -140,7 +158,7 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
           {czekajace.map((w, i) => (
             <div key={i} className="rzad">
               <span>
-                <strong>{NARZEDZIA[w.narzedzie].nazwa}</strong>
+                <strong>{nazwaNarzedzia(w.narzedzie)}</strong>
                 {w.osoba?.imie ? ` · ${w.osoba.imie}` : ''} · {dataTestu(w.data)}
               </span>
               <button className="glowny" onClick={() => przyjmij(w, 'z tej przeglądarki')}>
@@ -261,7 +279,7 @@ export default function Rozwoj({ pracownik, profile, nauka, onDodajProfil, onPrz
                 {postep.seria.slice().reverse().map((s) => (
                   <tr key={s.id}>
                     <td>{dataTestu(s.data)}</td>
-                    <td>{NARZEDZIA[s.narzedzie].nazwa}</td>
+                    <td>{nazwaNarzedzia(s.narzedzie)}</td>
                     <td className="mini">
                       {ROZWOJ.obszary
                         .map((o) => `${o.nazwa}: ${s.obszary[o.id] ?? '—'}`)
