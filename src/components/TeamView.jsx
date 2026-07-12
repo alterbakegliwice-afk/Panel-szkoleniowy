@@ -1,10 +1,12 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import { podsumowanieZespolu, NARZEDZIA, obszar } from '../logic/rozwoj.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
+export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile }) {
   const proc = (x) => Math.round(x * 100)
+  const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
   const wiersze = pracownicy.map((prac) => ({
     prac,
     prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
@@ -75,6 +77,60 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig }) {
         (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
+
+      <div className="karta">
+        <h2>Rozwój kompetencji (Work Profile)</h2>
+        <p className="cichy mini">
+          Wyniki testów Work Profile per pracownik: priorytety rozwojowe z ostatniego podejścia
+          i średnia zmiana po reteście (ewaluacja szkolenia). Pracownik przypisuje sobie wynik
+          w zakładce „Rozwój".
+        </p>
+        <div className="tabela-otoczka">
+          <table className="tabela">
+            <thead>
+              <tr>
+                <th>Pracownik</th>
+                <th>Testy</th>
+                <th>Ostatni test</th>
+                <th>Priorytety rozwojowe</th>
+                <th>Zmiana po reteście</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rozwoj.map(({ prac, postep, sredniaZmiana }) => (
+                <tr key={prac.id_prac}>
+                  <td><strong>{prac.imie}</strong></td>
+                  {postep ? (
+                    <>
+                      <td>{postep.liczbaTestow}</td>
+                      <td>
+                        {NARZEDZIA[postep.ostatni.narzedzie].nazwa}
+                        <div className="cichy mini">{(postep.ostatni.data || '').slice(0, 10)}</div>
+                      </td>
+                      <td className="mini">
+                        {postep.priorytety.map((id) => obszar(id)?.nazwa).join(' · ')}
+                      </td>
+                      <td>
+                        {sredniaZmiana === null ? (
+                          <span className="cichy mini">pierwsze podejście — retest będzie ewaluacją</span>
+                        ) : sredniaZmiana === 0 ? (
+                          <span className="cichy">= bez zmian</span>
+                        ) : (
+                          <span className={sredniaZmiana > 0 ? 'delta-plus' : 'delta-minus'}>
+                            {sredniaZmiana > 0 ? '▲ +' : '▼ '}{sredniaZmiana} śr. / obszar
+                          </span>
+                        )}
+                      </td>
+                    </>
+                  ) : (
+                    <td colSpan={4} className="cichy mini">brak testu Work Profile</td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div className="karta">
         <h2>Historia podejść (dowód przy awansie)</h2>

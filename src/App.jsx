@@ -226,6 +226,7 @@ export default function App() {
           pytania={pytania}
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+          profile={stan.profile || []}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

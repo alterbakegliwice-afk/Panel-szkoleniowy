@@ -197,6 +197,27 @@ export function postepRozwoju(profile, idPrac) {
   }
 }
 
+// Średnia zmiana po reteście (tylko obszary z policzoną deltą) — skrót dla
+// widoku zespołu: jedna liczba odpowiadająca na „czy szkolenie działa?".
+export function sredniaDelta(obszary) {
+  const zDelta = (obszary || []).filter((o) => typeof o.delta === 'number')
+  if (!zDelta.length) return null
+  return Math.round((zDelta.reduce((s, o) => s + o.delta, 0) / zDelta.length) * 10) / 10
+}
+
+// Podsumowanie rozwoju całego zespołu (widok Mentora/Właściciela):
+// jeden wiersz na pracownika, postep=null gdy brak testów.
+export function podsumowanieZespolu(profile, pracownicy) {
+  return (pracownicy || []).map((prac) => {
+    const postep = postepRozwoju(profile, prac.id_prac)
+    return {
+      prac,
+      postep,
+      sredniaZmiana: postep ? sredniaDelta(postep.obszary) : null
+    }
+  })
+}
+
 // Odczyt wyników czekających we wspólnym localStorage (zapisanych przez testy).
 // Zwraca tylko poprawne rekordy, które nie są jeszcze przypisane pracownikowi.
 export function czekajaceWyniki(profile, idPrac, storage) {

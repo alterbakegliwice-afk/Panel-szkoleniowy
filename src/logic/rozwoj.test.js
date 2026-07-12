@@ -8,7 +8,9 @@ import {
   seriaTestow,
   postepRozwoju,
   obszarNauki,
-  NARZEDZIA
+  NARZEDZIA,
+  sredniaDelta,
+  podsumowanieZespolu
 } from './rozwoj.js'
 
 // Przykładowe rekordy w formacie zapisywanym przez repo alterbake-work-profile.
@@ -184,6 +186,40 @@ describe('retest = ewaluacja postępu w szkoleniu', () => {
   it('brak testów → null (zakładka pokazuje wtedy zaproszenie do testu)', () => {
     expect(postepRozwoju([], 'P-01')).toBe(null)
     expect(postepRozwoju([t1], 'P-02')).toBe(null)
+  })
+})
+
+describe('podsumowanie zespołu (widok Mentora/Właściciela)', () => {
+  const t1 = rekordProfilu(PROFIL_PRACY, 'P-01', '2026-07-12')
+  const retest = rekordProfilu(
+    {
+      ...PROFIL_PRACY,
+      data: '2026-09-01T10:00:00.000Z',
+      wyniki: { ...PROFIL_PRACY.wyniki, initiative: 55, pressure: 60 }
+    },
+    'P-01',
+    '2026-09-01'
+  )
+  const pracownicy = [
+    { id_prac: 'P-01', imie: 'Weronika' },
+    { id_prac: 'P-02', imie: 'Michał' }
+  ]
+
+  it('sredniaDelta liczy tylko obszary z deltą, null gdy pierwszego podejścia', () => {
+    const pierwsze = postepRozwoju([t1], 'P-01')
+    expect(sredniaDelta(pierwsze.obszary)).toBe(null)
+    const poReteste = postepRozwoju([t1, retest], 'P-01')
+    // delty: initiative +25, pressure +15, reszta 0 → (25+15)/8 = 5
+    expect(sredniaDelta(poReteste.obszary)).toBe(5)
+  })
+
+  it('daje wiersz per pracownik, z postep=null gdy brak testów', () => {
+    const wiersze = podsumowanieZespolu([t1, retest], pracownicy)
+    expect(wiersze.length).toBe(2)
+    expect(wiersze[0].postep.liczbaTestow).toBe(2)
+    expect(wiersze[0].sredniaZmiana).toBe(5)
+    expect(wiersze[1].postep).toBe(null)
+    expect(wiersze[1].sredniaZmiana).toBe(null)
   })
 })
 

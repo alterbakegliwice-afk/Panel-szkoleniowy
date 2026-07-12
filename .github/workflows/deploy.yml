@@ -7,7 +7,9 @@ name: Deploy do GitHub Pages
 
 on:
   push:
-    branches: [claude/new-session-b2lx4l]
+    # main = źródło produkcji; poprzedni trigger wskazywał zmergowaną gałąź
+    # roboczą, przez co strona przestałaby się aktualizować po kolejnych merge'ach.
+    branches: [main]
   workflow_dispatch:
 
 permissions:
