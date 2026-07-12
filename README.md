@@ -87,6 +87,34 @@ delegowanie i systemy (Gerber, Gawande), informacja zwrotna (Kluger & DeNisi 199
 Hunter 1998), zarządzanie sobą/uwagą (Kahneman; „Noise"), zmiana i nawyki (Kotter, Fogg, Heath). Wyniki
 właściciela logują się osobno (nie mieszają się z zespołem). Dane: `src/data/modul_przedsiebiorcy.json`.
 
+## Rozwój kompetencji — integracja z Work Profile (zakładka „Rozwój")
+
+Panel jest połączony z testami z repo `alterbake-work-profile` (**Profil Pracy**
+i **Mapa Potencjału**) w zamkniętą pętlę rozwojową:
+
+1. **Test diagnozuje** — wynik mapuje się na 8 obszarów rozwojowych (0–100):
+   niezawodność, stabilność pod presją, współpraca, uczenie się, inicjatywa,
+   uczciwość i odpowiedzialność, komunikacja, praktyczne rozwiązywanie problemów.
+   Kategorie Profilu Pracy przechodzą 1:1; 16 talentów Mapy Potencjału mapuje się
+   na obszary (każdy talent dokładnie raz, skala `[-2..4]` → procent).
+2. **Panel rozwija** — każdy obszar ma moduł nauki zbudowany jak moduł
+   Przedsiębiorcy (synteza badań z cytowanymi źródłami: Gollwitzer, Jamieson,
+   Grant, Dweck/Ericsson, Frese, Ariely, Rosenberg/CRM, Ohno/Deming) + kartę
+   **mikropraktyk** do wdrożenia w codziennej pracy. Trzy najsłabsze obszary
+   z ostatniego testu są oznaczone jako PRIORYTET.
+3. **Retest ewaluuje** — moduły rozwojowe *nie kończą się quizem*. Ewaluacją
+   szkolenia jest **ponowne wykonanie testu** (zalecane po 6–12 tygodniach
+   praktyki): panel porównuje wynik z poprzednim podejściem **tego samego
+   narzędzia** (skal różnych narzędzi nie porównujemy) i pokazuje deltę per obszar.
+
+Wyniki wpadają do panelu dwiema drogami: **automatycznie** przez wspólny
+`localStorage` (klucz `alterbake_work_profile_wyniki_v1` — działa, bo testy
+i panel stoją na tym samym originie GitHub Pages) albo **z pliku JSON**
+pobranego przyciskiem w raporcie testu (inne urządzenie / `file://`).
+Log wyników testów (`profile` w stanie) jest append-only jak WYNIK i wchodzi
+do kopii zapasowej. Dane: `src/data/rozwoj_kompetencji.json`, logika i mapowanie:
+`src/logic/rozwoj.js` (testy: `src/logic/rozwoj.test.js`), UI: `src/components/Rozwoj.jsx`.
+
 ## Warstwa graficzna (pod uciekającą uwagę / ADHD)
 
 Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.

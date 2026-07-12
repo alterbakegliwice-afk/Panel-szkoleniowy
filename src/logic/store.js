@@ -41,6 +41,7 @@ export function domyslnyStan() {
     wyniki: PRZYKLADOWE_WYNIKI,
     kolejka: [], // odpowiedzi otwarte/praktyczne czekające na ocenę Mentora
     nauka: [], // log przerobienia materiału: {id_prac, obszar, data} — quiz odblokowuje się po nauce
+    profile: [], // log wyników testów Work Profile: rekordy z logic/rozwoj.js (append-only, jak wyniki)
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -141,6 +142,7 @@ export function eksportKopii(stan) {
     wyniki: stan.wyniki,
     kolejka: stan.kolejka,
     nauka: stan.nauka,
+    profile: stan.profile || [],
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -166,6 +168,7 @@ export function kopieDoStanu(obiekt) {
     wyniki: obiekt.wyniki,
     kolejka: Array.isArray(obiekt.kolejka) ? obiekt.kolejka : [],
     nauka: Array.isArray(obiekt.nauka) ? obiekt.nauka : [],
+    profile: Array.isArray(obiekt.profile) ? obiekt.profile : [],
     bank: obiekt.bank || null
   }
 }

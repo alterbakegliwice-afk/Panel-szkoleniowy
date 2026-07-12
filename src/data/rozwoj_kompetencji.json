@@ -1,0 +1,416 @@
+{
+  "wersja": "2026-07-12",
+  "tytul": "Rozwój kompetencji Work Profile",
+  "opis": "Moduły rozwijające cechy i zachowania sprawdzane przez testy Work Profile (Profil Pracy i Mapa Potencjału). Każdy obszar: najpierw materiał i mikropraktyki do wdrożenia w codziennej pracy, potem ewaluacja — ponowne wykonanie testu Work Profile. Wynik retestu pokazuje, czy szkolenie przełożyło się na zachowanie.",
+  "ewaluacja": "Miarą postępu w tych modułach nie jest quiz, tylko ponowne wykonanie testu Work Profile po okresie praktyki (zalecane: 6–12 tygodni). Porównanie wyników liczy panel automatycznie.",
+  "obszary": [
+    {
+      "id": "reliability",
+      "nazwa": "Niezawodność",
+      "opis": "Dotrzymywanie terminów i obietnic, przewidywalność w trudnych momentach.",
+      "talenty": ["standards", "consistency"],
+      "nauka": {
+        "intro": "Niezawodność to nie cecha charakteru, tylko system nawyków: jak składasz obietnice, jak planujesz i co robisz, gdy plan się sypie. Badania pokazują, że można ją trenować — kluczem są intencje implementacyjne, bufory czasowe i checklisty. W piekarni niezawodność to konkret: ciasto nie poczeka, odbiór o 6:00 nie przesunie się na 7:00.",
+        "karty": [
+          {
+            "tytul": "Dlaczego zawodzimy — błąd planowania",
+            "punkty": [
+              "Kahneman i Tversky opisali „błąd planowania\": ludzie systematycznie zaniżają czas potrzebny na zadanie, bo planują scenariusz idealny, a realizują typowy (z awariami, przerwami, zmęczeniem).",
+              "Antidotum: planuj po „widoku z zewnątrz\" — nie „ile MI to zajmie\", tylko „ile takie zadanie ZWYKLE zajmuje\". Ostatnie 5 podobnych zadań to lepszy prognostyk niż optymizm.",
+              "Reguła bufora: do własnego szacunku dodaj 30–50%. Jeśli obiecujesz termin klientowi lub zmianie, obiecuj termin Z buforem — a dowieź wcześniej.",
+              "W piekarni: zamówienie specjalne na sobotę planuj tak, żeby próbny wypiek zmieścił się w czwartek — piątek zostaje na korektę."
+            ],
+            "zrodlo": "Kahneman i Tversky, „Intuitive prediction\" (1979); Kahneman, „Pułapki myślenia\" (2011), rozdz. o błędzie planowania"
+          },
+          {
+            "tytul": "Intencje implementacyjne — obietnica z mechanizmem",
+            "punkty": [
+              "Metaanaliza Gollwitzera i Sheerana (94 badania): plan w formule „JEŚLI sytuacja X, TO zrobię Y\" podnosi skuteczność realizacji celów o efekt średni-duży (d≈0.65) — samo „postaram się\" prawie nie działa.",
+              "Zamiast „ogarnę zakwas przed weekendem\" → „W piątek po wstawieniu ostatniego wypieku (sygnał) dokarmiam Tradilevain i wpisuję temperaturę do karty (działanie)\".",
+              "Każda obietnica bez zakotwiczenia w konkretnym momencie dnia to obietnica „z powietrza\" — dodaj kotwicę: po czym, gdzie, o której.",
+              "Obietnic składaj mniej, ale twardsze: „nie\" powiedziane od razu jest niezawodnością; „tak\", które upada, jest jej przeciwieństwem."
+            ],
+            "zrodlo": "Gollwitzer i Sheeran, „Implementation intentions and goal achievement\" — metaanaliza, Advances in Experimental Social Psychology (2006)"
+          },
+          {
+            "tytul": "Checklisty i domykanie pętli",
+            "punkty": [
+              "Gawande („The Checklist Manifesto\"): w chirurgii prosta checklista obniżyła powikłania o ok. 1/3 — nie dlatego, że ludzie nie wiedzą, co robić, tylko dlatego, że pod presją pomijają kroki oczywiste.",
+              "Zasada: wszystko, co obiecane, ląduje w JEDNYM miejscu (kartka na stanowisku, tablica zmiany) — nie w głowie. Głowa jest do pracy, nie do przechowywania.",
+              "Pętla musi być domknięta: zrobione → odhaczone → osoba, której obiecałeś, wie. Niedomknięta pętla („zrobiłem, ale nikomu nie powiedziałem\") na zewnątrz wygląda jak niezrobiona.",
+              "Gdy termin realnie się sypie: informuj NATYCHMIAST, nie w dniu terminu. Wczesny sygnał + plan B to zachowanie niezawodne; milczenie do końca — nie."
+            ],
+            "zrodlo": "Gawande, „The Checklist Manifesto\" (2009); Haynes i in., NEJM 360 (2009) — badanie checklisty chirurgicznej WHO"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Przez 2 tygodnie każdą obietnicę zapisuj w jednym miejscu w formule: CO / KOMU / NA KIEDY / PO CZYM POZNAM, ŻE ZROBIONE. Raz dziennie przejrzyj listę.",
+              "Do każdego szacunku czasu dodawaj 30% zanim podasz termin. Zapisuj estymat vs realny czas — po 2 tygodniach zobaczysz swój osobisty współczynnik.",
+              "Przećwicz jedno „nie\": odmów lub renegocjuj termin zadania, którego nie dasz rady zrobić dobrze, zamiast przyjąć i zawieść.",
+              "Jeśli jakikolwiek termin okaże się zagrożony — zgłoś to tego samego dnia, z propozycją planu B."
+            ],
+            "zrodlo": "Synteza: Gollwitzer (2006), Kahneman (2011), Gawande (2009)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pressure",
+      "nazwa": "Stabilność pod presją",
+      "opis": "Spokój i skuteczność w stresie, szybka adaptacja, powrót do formy po trudnym dniu.",
+      "talenty": ["regulation", "resilience"],
+      "nauka": {
+        "intro": "Odporność na presję to w większym stopniu umiejętność niż temperament. Trenuje się ją na trzech poziomach: ciało (oddech, sen), interpretacja (stres jako mobilizacja, nie zagrożenie) i ekspozycja (kontrolowany kontakt z trudnymi sytuacjami). Poranna zmiana z opóźnionym wypiekiem i kolejką klientów to naturalna siłownia tej kompetencji.",
+        "karty": [
+          {
+            "tytul": "Reinterpretacja stresu — pobudzenie to zasób",
+            "punkty": [
+              "Jamieson (Harvard/Rochester): osoby, którym wyjaśniono, że szybsze bicie serca i przyspieszony oddech to mobilizacja organizmu (a nie sygnał, że „sobie nie radzę\"), miały lepsze wyniki i zdrowszą reakcję układu krążenia w zadaniach pod presją.",
+              "Praktyka: gdy czujesz napięcie przed trudną rozmową lub w szczycie, powiedz sobie dosłownie: „to mobilizacja — organizm daje mi paliwo\". Ta jedna zmiana etykiety mierzalne poprawia wykonanie.",
+              "Crum (Stanford): samo nastawienie „stres mnie wzmacnia\" vs „stres mnie niszczy\" zmienia odpowiedź hormonalną i wyniki — nastawienie jest trenowalne.",
+              "Nie chodzi o udawanie spokoju — chodzi o to, żeby pobudzenie pracowało DLA zadania zamiast przeciw niemu."
+            ],
+            "zrodlo": "Jamieson i in., „Improving acute stress responses\" (2012); Crum i in., „Rethinking stress\" JPSP (2013)"
+          },
+          {
+            "tytul": "Ciało pierwsze — oddech, który działa w minutę",
+            "punkty": [
+              "Badanie Stanford (Balban i in., 2023): „cykliczne wzdychanie\" — podwójny wdech nosem + długi wydech ustami, 5 minut dziennie — obniżyło napięcie i poprawiło nastrój skuteczniej niż medytacja uważności.",
+              "Wersja awaryjna (fizjologiczne westchnienie): 2× wdech nosem, powolny pełny wydech — 1–3 powtórzenia. Działa w kilkadziesiąt sekund, można zrobić przy piecu, nikt nie zauważy.",
+              "Mechanizm: długi wydech aktywuje układ przywspółczulny (hamulec), rozprężenie pęcherzyków płucnych przy podwójnym wdechu wydajnie usuwa CO₂ — spada fizjologiczny napęd paniki.",
+              "Odporność zaczyna się przed zmianą: niedospany mózg ma silniejszą reakcję ciała migdałowatego na stresory (Walker) — ochrona snu to trening odporności, nie luksus."
+            ],
+            "zrodlo": "Balban i in., „Brief structured respiration practices\", Cell Reports Medicine (2023); Walker, „Why We Sleep\" (2017)"
+          },
+          {
+            "tytul": "Trening zaszczepiający i powrót do formy",
+            "punkty": [
+              "Meichenbaum — „stress inoculation training\": odporność buduje się przez stopniowaną ekspozycję na trudność + przygotowany plan reakcji, nie przez unikanie stresu ani rzucanie się na głęboką wodę.",
+              "Praktyka piekarniana: rozpisz swój „scenariusz kryzysowy\" (np. awaria pieca w szczycie): pierwsze 3 kroki, kto decyduje, co mówię klientom. Przećwiczony scenariusz zdejmuje 80% paniki, bo mózg ma gotową ścieżkę.",
+              "Po trudnym dniu: krótki rytuał zamknięcia (5 minut — co się stało, czego się nauczyłem, co jutro robię inaczej) przyspiesza powrót do formy; przeżuwanie w nieskończoność go blokuje.",
+              "Rozróżniaj regenerację od ucieczki: scrollowanie „odcina\", ale nie odnawia. Odnawiają: ruch, sen, kontakt z ludźmi, czas bez bodźców."
+            ],
+            "zrodlo": "Meichenbaum, „Stress Inoculation Training\" (1985); Nolen-Hoeksema — badania nad ruminacją (2000)"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Codziennie 5 minut cyklicznego wzdychania (np. przed zmianą) + fizjologiczne westchnienie za każdym razem, gdy poczujesz skok napięcia.",
+              "Przy pierwszym sygnale stresu w pracy powiedz sobie: „to mobilizacja\" — i wróć uwagą do NASTĘPNEGO pojedynczego kroku zadania, nie do całości problemu.",
+              "Rozpisz jeden scenariusz kryzysowy dla swojego stanowiska (3 pierwsze kroki, kto decyduje, co komunikuję) i przegadaj go z mentorem.",
+              "Po każdym trudnym dniu — 5-minutowe zamknięcie na piśmie zamiast wieczornego przeżuwania."
+            ],
+            "zrodlo": "Synteza: Jamieson (2012), Balban (2023), Meichenbaum (1985)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "collaboration",
+      "nazwa": "Współpraca",
+      "opis": "Dzielenie się wiedzą, słuchanie odmiennych opinii, granie na wspólny wynik.",
+      "talenty": ["empathy", "relations"],
+      "nauka": {
+        "intro": "Dobra współpraca to nie „bycie miłym\" — to zachowania, które podnoszą wynik całego zespołu: dawanie pomocy we właściwy sposób, słuchanie zanim się oceni, jasne granice. Zespół zmianowy w piekarni jest systemem naczyń połączonych: nieprzekazana informacja o zakwasie wraca jako czyjś zmarnowany wypiek.",
+        "karty": [
+          {
+            "tytul": "Dawanie, które nie wypala — mądra pomoc",
+            "punkty": [
+              "Adam Grant („Give and Take\"): najskuteczniejsi w organizacjach są „dawcy\" — ale tylko ci, którzy pomagają w sposób zorganizowany. Dawcy bez granic lądują na dole rankingu skuteczności, bo ich praca tonie w cudzych prośbach.",
+              "Pomoc „5-minutowa\" (Rifkin): domyślnie zgadzaj się na pomoc, która kosztuje Cię mało, a drugiemu daje dużo (pokazanie chwytu, kontakt, szablon). Duże prośby — planuj, nie łap w locie.",
+              "Dziel się wiedzą proaktywnie: jeśli odkryłeś lepszy sposób (np. składanie ciasta przy wysokiej hydracji), pokaż go na zmianie — wiedza trzymana dla siebie nie buduje pozycji, buduje wąskie gardło.",
+              "Współpraca to też branie: proszenie o pomoc wcześnie (zanim problem urośnie) jest zachowaniem zespołowym, nie słabością."
+            ],
+            "zrodlo": "Grant, „Give and Take\" (2013); praktyka „5-minute favor\" — Adam Rifkin"
+          },
+          {
+            "tytul": "Słuchanie odmiennego zdania — najpierw zrozum",
+            "punkty": [
+              "Badania nad „perspective taking\" pokazują: samo streszczenie cudzego stanowiska własnymi słowami („czyli mówisz, że...\") obniża temperaturę sporu i podnosi szansę na rozwiązanie — rozmówca przestaje walczyć o bycie usłyszanym.",
+              "Reguła Rapoporta (za Dennettem): zanim skrytykujesz, (1) streść stanowisko drugiej strony tak, żeby powiedziała „tak, dokładnie\", (2) wymień punkty zgody, (3) dopiero potem różnice.",
+              "Nie zgadzasz się z mentorem lub kolegą? Pytaj o dane, nie o intencje: „po czym poznajesz, że tak lepiej?\" zamiast „to bez sensu\".",
+              "Cisza po cudzej wypowiedzi (2–3 sekundy) zanim odpowiesz — najtańszy trening słuchania: sygnalizuje namysł i realnie daje czas na przetworzenie."
+            ],
+            "zrodlo": "Dennett, „Intuition Pumps\" (2013) — reguła Rapoporta; Itzchakov i Kluger — badania nad słuchaniem wysokiej jakości, HBR (2018)"
+          },
+          {
+            "tytul": "Zaufanie buduje się w małych pętlach",
+            "punkty": [
+              "Zaufanie w zespole to suma mikrozachowań: przyszedłem, gdy obiecałem; oddałem stanowisko czyste; powiedziałem o problemie zamiast go zostawić następnej zmianie.",
+              "Projekt Aristotle (Google): normy zespołu (równy udział w rozmowie, bezpieczeństwo odzywania się) przewidują wynik lepiej niż suma indywidualnych talentów — Twoje zachowanie współtworzy te normy każdego dnia.",
+              "Doceniaj konkretnie i publicznie: „dzięki, że przejąłeś piec, gdy obsługiwałem dostawę\" — konkret wzmacnia zachowanie; ogólnik („dobra robota\") znika bez śladu.",
+              "Konflikt interpersonalny adresuj w cztery oczy i wcześnie. Zgłoszenie problemu do przełożonego bez próby rozmowy bezpośredniej to eskalacja, która kosztuje zaufanie."
+            ],
+            "zrodlo": "Google re:Work, Project Aristotle (2015); Edmondson, „The Fearless Organization\" (2019)"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Raz dziennie jedna „5-minutowa pomoc\" — mała rzecz, która komuś oszczędza dużo (pokaż, podpowiedz, przekaż kontakt). Zapisuj, co to było.",
+              "W pierwszej rozmowie, w której się z kimś nie zgodzisz: najpierw streść jego stanowisko do potwierdzenia („czyli mówisz, że...\"), dopiero potem swoje argumenty.",
+              "Na koniec każdej zmiany przekaż następnej zmianie jedną informację, która ułatwi im pracę (stan zakwasu, kapryszący piec, braki surowca).",
+              "Raz w tygodniu doceń kogoś konkretnie za konkretne zachowanie — na głos, przy zespole."
+            ],
+            "zrodlo": "Synteza: Grant (2013), Dennett (2013), Google re:Work (2015)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "learning",
+      "nazwa": "Uczenie się",
+      "opis": "Szukanie lepszych sposobów pracy, wyciąganie wniosków z błędów, aktywne zdobywanie umiejętności.",
+      "talenty": ["curiosity", "flexibility"],
+      "nauka": {
+        "intro": "Tempo uczenia się to kompetencja, która procentuje we wszystkich pozostałych. Składa się z nastawienia (błąd = informacja), metody (świadomy trening zamiast samego powtarzania) i higieny (przestrzeń na wnioski). Rzemiosło piekarskie jest idealnym poligonem: każdy wypiek to pętla eksperyment → wynik → korekta.",
+        "karty": [
+          {
+            "tytul": "Nastawienie na rozwój — błąd to dane",
+            "punkty": [
+              "Dweck: osoby traktujące umiejętności jako rozwijalne („jeszcze nie umiem\") uczą się szybciej niż te, które traktują je jako stałe („nie umiem\") — bo błąd uruchamia u nich analizę, a nie obronę.",
+              "Badanie EEG (Moser i in.): mózg osób z nastawieniem rozwojowym silniej przetwarza informację o błędzie — dosłownie „słyszą\" więcej ze swoich pomyłek i dzięki temu szybciej korygują.",
+              "Praktyka językowa: po nieudanym wypieku pytanie brzmi „CO poszło nie tak w procesie?\" (temperatura? czas? hydracja?), nie „KTO jest słaby?\". Proces można poprawić jutro; etykieta zostaje.",
+              "Przyznanie się do błędu wcześnie to zachowanie eksperckie: w piekarni ukryty błąd (np. pominięte dokarmienie zakwasu) rośnie z każdą godziną milczenia."
+            ],
+            "zrodlo": "Dweck, „Mindset\" (2006); Moser i in., „Mind your errors\", Psychological Science (2011)"
+          },
+          {
+            "tytul": "Świadomy trening — nie powtarzanie, tylko celowanie",
+            "punkty": [
+              "Ericsson: mistrzostwo nie rośnie z samych godzin pracy, tylko z „deliberate practice\" — ćwiczenia ukierunkowanego na konkretny słaby element, z natychmiastową informacją zwrotną, lekko powyżej obecnych możliwości.",
+              "Zamiast „piekę od 3 lat\" → „w tym tygodniu trenuję nacinanie: 20 bochenków, po każdym patrzę na rozkwit i koryguję kąt\". Jeden element naraz.",
+              "Efekt testowania (Roediger i Karpicke): odpytanie samego siebie („jakie są objawy przegłodzonego zakwasu?\") utrwala wiedzę znacznie mocniej niż ponowne przeczytanie karty — dlatego panel wymusza sprawdzenie wiedzy po nauce.",
+              "Rozkładaj naukę w czasie: 3×20 minut w tygodniu bije 1×60 minut — przerwy wymuszają przypominanie, a przypominanie buduje pamięć."
+            ],
+            "zrodlo": "Ericsson i Pool, „Peak\" (2016); Roediger i Karpicke, „Test-enhanced learning\", Psychological Science (2006)"
+          },
+          {
+            "tytul": "Pętla po działaniu — AAR",
+            "punkty": [
+              "After Action Review (metoda armii USA, przejęta przez przemysł): po każdym istotnym zadaniu 4 pytania — Co miało się wydarzyć? Co się wydarzyło? Skąd różnica? Co zrobimy inaczej? Całość: 10 minut.",
+              "Kluczowa zasada AAR: stopnie i ego zostają za drzwiami — analizujemy proces, nie winnych. Inaczej ludzie przestają mówić prawdę i pętla umiera.",
+              "Notuj wnioski tam, gdzie wrócisz: karta produktu, notatnik stanowiska. Wniosek zapisany „w głowie\" znika do następnego razu — i błąd się powtarza.",
+              "Ucz się od innych zawodów i piekarni: jedna technika podpatrzona miesięcznie (film, wizyta, rozmowa) to 12 eksperymentów rocznie — przewaga, której nie da samo doświadczenie własne."
+            ],
+            "zrodlo": "US Army, „A Leader's Guide to After-Action Reviews\"; Edmondson — organizacyjne uczenie się na błędach (1999–2019)"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Wybierz JEDEN element warsztatu do świadomego treningu (np. ocena wyrośnięcia, nacinanie, laminacja) i ćwicz go codziennie z natychmiastową samooceną wyniku.",
+              "Po każdej nieudanej partii zrób 4 pytania AAR na piśmie (5–10 minut) i zapisz jeden wniosek procesowy.",
+              "Raz w tygodniu przetestuj się z materiału tomów (bez zaglądania!) — dopiero potem sprawdź odpowiedzi w kartach.",
+              "Znajdź w tym miesiącu jedną technikę spoza Alterbake (film, artykuł, inna piekarnia) i przetestuj ją na próbnej partii."
+            ],
+            "zrodlo": "Synteza: Ericsson (2016), Roediger (2006), US Army AAR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "initiative",
+      "nazwa": "Inicjatywa",
+      "opis": "Działanie zanim ktoś poprosi, proponowanie ulepszeń, branie odpowiedzialności za wynik.",
+      "talenty": ["initiative", "independence"],
+      "nauka": {
+        "intro": "Inicjatywa to nawyk zauważania i domykania luk między „jak jest\" a „jak powinno być\" — bez czekania na polecenie. Badania nad „inicjatywą osobistą\" (Frese) pokazują, że jest silnie trenowalna i że odróżnia ją od nadgorliwości jedno: dobre czytanie kontekstu. W piekarni inicjatywa ma niski próg wejścia: usprawnienia widać z bliska, a efekt — następnego ranka.",
+        "karty": [
+          {
+            "tytul": "Anatomia inicjatywy — trzy składniki",
+            "punkty": [
+              "Frese i Fay: inicjatywa osobista = działanie samostartujące (nikt nie kazał) + proaktywne (wyprzedza problem) + wytrwałe (nie gaśnie przy pierwszej przeszkodzie). Wszystkie trzy naraz — samo „mam pomysł\" to jeszcze nie inicjatywa.",
+              "Ich badania podłużne: inicjatywa pracowników przewiduje wyniki firm i karier lepiej niż sama sumienność — i rośnie wraz z poczuciem kontroli nad własnym odcinkiem pracy.",
+              "Najprostszy trening: reguła „widzisz — właścicielisz\". Zauważyłeś kończącą się mąkę T650, rozkalibrowany termometr, klienta czekającego bez kontaktu? To jest teraz Twoje: zrób albo zgłoś z propozycją.",
+              "Inicjatywa ≠ samowola przy procedurach krytycznych: przy CCP (temperatury bezpieczeństwa) inicjatywą jest zgłoszenie wątpliwości, nie zmiana procedury na własną rękę."
+            ],
+            "zrodlo": "Frese i Fay, „Personal initiative: An active performance concept\", Research in Organizational Behavior (2001)"
+          },
+          {
+            "tytul": "Job crafting — przesuwaj swoją rolę ku wartości",
+            "punkty": [
+              "Wrzesniewski i Dutton: pracownicy, którzy aktywnie „rzeźbią\" swoją pracę (dokładają zadania, w których są mocni; zmieniają sposób wykonywania; przeformułowują sens), mają wyższe zaangażowanie i wyniki — w każdym zawodzie, także fizycznym.",
+              "Praktyka: raz w miesiącu wypisz 3 czynności, które robisz najlepiej/najchętniej, i zaproponuj przełożonemu jedną zamianę lub rozszerzenie („mogę przejąć prowadzenie kart zakwasu\").",
+              "Propozycja ulepszenia ma format: PROBLEM (co kuleje, z danymi) → ROZWIĄZANIE (co konkretnie zmienić) → PIERWSZY KROK (co mogę zrobić sam w tym tygodniu). Sam problem bez rozwiązania to narzekanie; rozwiązanie bez pierwszego kroku to marzenie.",
+              "Zaczynaj od eksperymentów odwracalnych: zmiana ustawienia stanowiska na tydzień, próbna partia, nowy szablon zamówień — „przetestujmy tydzień\" przechodzi łatwiej niż „zmieńmy na stałe\"."
+            ],
+            "zrodlo": "Wrzesniewski i Dutton, „Crafting a job\", Academy of Management Review (2001)"
+          },
+          {
+            "tytul": "Wytrwałość i sojusznicy — żeby inicjatywa nie gasła",
+            "punkty": [
+              "Większość inicjatyw umiera nie od „nie\", tylko od braku follow-upu. Zgłosiłeś pomysł? Zapisz, wróć do tematu po tygodniu, pokaż mały dowód (próbkę, liczby z tygodnia testu).",
+              "Buduj poparcie zanim zadziałasz szeroko: przegadaj pomysł z jedną osobą, której to dotyczy („co by Ci to popsuło?\") — uwzględniona uwaga zamienia recenzenta w sojusznika.",
+              "Licz koszt zaniechania, nie tylko koszt zmiany: „ile tygodniowo kosztuje nas obecny układ chłodni?\" — to pytanie przełamuje status quo skuteczniej niż entuzjazm.",
+              "Odmowa = informacja: dopytaj, CO musiałoby być prawdą, żeby pomysł przeszedł (budżet? termin? dowód?), i wróć, gdy warunek spełnisz."
+            ],
+            "zrodlo": "Frese i Fay (2001) — komponent wytrwałości; Kotter, „Leading Change\" (1996) — budowanie koalicji"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Codziennie domknij jedną zauważoną lukę „widzisz — właścicielisz\" (zrób od razu albo zgłoś z propozycją). Notuj, co to było.",
+              "Przygotuj JEDNĄ propozycję ulepszenia w formacie problem → rozwiązanie → pierwszy krok i przedstaw ją mentorowi lub właścicielowi.",
+              "Do swojej propozycji znajdź wcześniej jednego sojusznika: pokaż pomysł osobie, której dotyczy, i wprowadź jej poprawkę.",
+              "Jeśli usłyszysz „nie\" — dopytaj o warunek („co musiałoby się zgadzać, żeby to miało sens?\") i zapisz go."
+            ],
+            "zrodlo": "Synteza: Frese i Fay (2001), Wrzesniewski (2001)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "integrity",
+      "nazwa": "Uczciwość i odpowiedzialność",
+      "opis": "Mówienie wprost, przyznawanie się do błędów, spójność słowa z działaniem — także gdy nikt nie patrzy.",
+      "talenty": ["drive", "purpose"],
+      "nauka": {
+        "intro": "Uczciwość w pracy to nie deklaracja, tylko zachowania powtarzane pod presją: powiedzieć o błędzie, którego nikt by nie wykrył; nie obiecać, czego się nie dowiezie; pracować tak samo, gdy nikt nie sprawdza. W piekarni ma wymiar twardy: zatajone odchylenie temperatury CCP to ryzyko zdrowotne klienta, nie „drobiazg\".",
+        "karty": [
+          {
+            "tytul": "Dlaczego dobrzy ludzie ścinają zakręty",
+            "punkty": [
+              "Ariely: większość nieuczciwości to nie wielkie oszustwa, tylko drobne „zaokrąglenia\", które umiemy przed sobą uzasadnić („wszyscy tak robią\", „to bez znaczenia\"). Skala rośnie tam, gdzie rośnie dystans od skutku.",
+              "Antidotum nr 1 — skróć dystans do skutku: pominięty pomiar DDT to nie „brak wpisu w karcie\", to bochenek, który klient położy dziecku na talerzu. Konkretny obraz skutku hamuje racjonalizację.",
+              "Antidotum nr 2 — moment przypomnienia: badania Ariely'ego pokazują, że przypomnienie zasad PRZED zadaniem (podpis na górze formularza, nie na dole) realnie zmniejsza oszustwa. Czytaj kartę kontrolną przed partią, nie po.",
+              "Zmęczenie i pośpiech osłabiają samokontrolę — najwięcej „skrótów\" powstaje pod koniec zmiany. Wiedząc to, właśnie wtedy włączaj checklistę zamiast pamięci."
+            ],
+            "zrodlo": "Ariely, „The (Honest) Truth About Dishonesty\" (2012); Shu, Mazar i in., PNAS (2012) — efekt podpisu na górze"
+          },
+          {
+            "tytul": "Przyznawanie się do błędu — protokół",
+            "punkty": [
+              "Sekwencja skutecznego przyznania: (1) fakt bez wybielania („przegrzałem krem, CCP5 nie był trzymany\"), (2) skutek i ryzyko, (3) co już zrobiłem, żeby ograniczyć szkodę, (4) co zmieniam, żeby się nie powtórzyło. Bez „ale\", bez współwinnych.",
+              "Badania nad zaufaniem (Kim i in.): przy błędach kompetencyjnych szczere przyznanie odbudowuje zaufanie SZYBCIEJ niż tłumaczenie się — zaprzeczanie pomaga tylko przy fałszywych oskarżeniach.",
+              "Błąd zgłoszony natychmiast jest tani; błąd odkryty po czasie jest drogi podwójnie — kosztuje naprawę i zaufanie. W kulturze Alterbake za prawdę się dziękuje (moduł Przedsiębiorcy: bezpieczeństwo psychologiczne).",
+              "Odpowiedzialność to też upominanie się o standard u innych: widzisz, że kolega pomija pomiar — mówisz jemu wprost, zanim pójdziesz wyżej. Milczenie czyni Cię współautorem."
+            ],
+            "zrodlo": "Kim, Ferrin i in., „Removing the shadow of suspicion\", JAP (2004); Edmondson (2019)"
+          },
+          {
+            "tytul": "Spójność słowa i działania — motywacja wewnętrzna",
+            "punkty": [
+              "Pink / Deci i Ryan: trwała rzetelność „gdy nikt nie patrzy\" bierze się z motywacji wewnętrznej — autonomii, mistrzostwa i sensu. Praca pilnowana wyłącznie kontrolą degeneruje się do „odhaczania\".",
+              "Praktyka sensu: łącz czynność ze skutkiem, któremu służy („ważę składniki dokładnie, bo powtarzalność smaku to nasza obietnica wobec klienta\") — zadanie z sensem mniej kusi do skrótów.",
+              "Test dwóch pytań przed każdym „tak\": (1) czy wiem, JAK to zrobię? (2) czy mam na to CZAS w kalendarzu? Dwa razy „nie\" = nie obiecuj. Spójność zaczyna się przy składaniu obietnic, nie przy ich łamaniu.",
+              "Traktuj sprawiedliwie niezależnie od sympatii: te same standardy dla kolegi, z którym się lubisz, i tego, z którym nie — zespół bezbłędnie widzi podwójne standardy i przestaje wierzyć w jakiekolwiek."
+            ],
+            "zrodlo": "Pink, „Drive\" (2009); Deci i Ryan — teoria autodeterminacji; Cialdini — zasada zaangażowania i konsekwencji (1984)"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Przy najbliższym własnym błędzie zastosuj protokół 4 kroków (fakt → skutek → co już zrobiłem → co zmieniam) — bez ani jednego „ale\".",
+              "Kartę kontrolną / standard czytaj PRZED rozpoczęciem partii (nie wypełniaj wstecz). Zauważ, kiedy kusi Cię wpis „z pamięci\" — to są Twoje momenty ryzyka.",
+              "Powiedz jedną trudną prawdę wprost i z szacunkiem (np. o niedziałającym procesie), zamiast omawiać ją za plecami.",
+              "Przed każdym „tak\" w tym tygodniu: test dwóch pytań (jak? kiedy?). Przynajmniej raz odpowiedz „nie mogę tego obiecać\" — i zaproponuj, co możesz."
+            ],
+            "zrodlo": "Synteza: Ariely (2012), Kim (2004), Pink (2009)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "communication",
+      "nazwa": "Komunikacja",
+      "opis": "Jasny przekaz, aktywne słuchanie, dopasowanie stylu do rozmówcy i sytuacji.",
+      "talenty": ["communication", "influence"],
+      "nauka": {
+        "intro": "Komunikacja zawodowa to rzemiosło z konkretnymi technikami: zamknięta pętla, streszczenie zwrotne, komunikat od faktów. Koszt złej komunikacji w piekarni jest mierzalny — źle przekazane zamówienie specjalne to strata surowca, czasu i klienta. Dobra wiadomość: to jedna z najszybciej trenowalnych kompetencji.",
+        "karty": [
+          {
+            "tytul": "Klątwa wiedzy i prosty język",
+            "punkty": [
+              "„Klątwa wiedzy\": gdy coś umiesz, nie pamiętasz, jak brzmi to dla kogoś, kto nie umie. Ekspert mówi „prowadź na 24 stopniach do podwojenia\", nowicjusz słyszy szum. Tłumacząc — schodź do konkretu i pokazuj.",
+              "Struktura instrukcji, która działa: (1) PO CO to robimy, (2) kroki po kolei — jeden krok = jedno zdanie, (3) po czym poznasz, że jest dobrze, (4) co najczęściej idzie źle. Potem pokaż, niech zrobi przy Tobie.",
+              "Najpierw sedno, potem szczegóły (zasada odwróconej piramidy): „Odbiór o 14, nie o 16 — bo klient przełożył. Szczegóły: ...\". W hałasie produkcji pierwsze zdanie musi nieść całą decyzję.",
+              "Pisemnie (grafik, tablica, wiadomość): liczby i daty zawsze konkretnie („piątek 18.07, 6:00\"), nigdy „jutro rano\" — „jutro\" przeczytane w sobotę znaczy co innego."
+            ],
+            "zrodlo": "Heath i Heath, „Made to Stick\" (2007) — klątwa wiedzy; Pinker, „The Sense of Style\" (2014)"
+          },
+          {
+            "tytul": "Zamknięta pętla — komunikacja krytyczna",
+            "punkty": [
+              "Lotnictwo i medycyna używają „closed-loop communication\": nadawca mówi → odbiorca powtarza własnymi słowami → nadawca potwierdza. Trzy sekundy, które eliminują większość błędów przekazu.",
+              "W piekarni pętlę zamykaj przy wszystkim, co kosztowne: zamówienia specjalne, zmiany receptur, temperatury CCP, przekazanie zmiany. „Powtórz proszę, co ustaliliśmy\" to profesjonalizm, nie brak zaufania.",
+              "Aktywne słuchanie (Rogers): streszczaj i dopytuj zanim odpowiesz („rozumiem, że najbardziej boli Cię X — tak?\"). Badania Itzchakova i Klugera: dobrze wysłuchany rozmówca mniej się broni i myśli jaśniej.",
+              "Słuchaj do końca: dokańczanie za kogoś i „już wiem, co powiesz\" to dwa nawyki, które najszybciej zamykają ludziom usta."
+            ],
+            "zrodlo": "Salas i in. — badania CRM w lotnictwie; Itzchakov i Kluger, „The power of listening\", HBR (2018); Rogers i Farson, „Active Listening\" (1957)"
+          },
+          {
+            "tytul": "Trudne rozmowy i dopasowanie stylu",
+            "punkty": [
+              "Komunikat od faktów (NVC, Rosenberg): OBSERWACJA („trzeci raz w tym tygodniu stanowisko nie było posprzątane po zmianie\") → SKUTEK („zaczynam pracę 20 minut później\") → PROŚBA („umówmy się, że...\"). Bez diagnoz charakteru („jesteś bałaganiarzem\").",
+              "Krytykuj zachowanie, nie osobę — i na osobności; doceniaj publicznie. Odwrotna kolejność niszczy i relację, i standard.",
+              "Dopasuj kanał i styl: analityk chce liczb i czasu na namysł, praktyk — konkretu „co mam zrobić\", klient zdenerwowany — najpierw uznania emocji, potem rozwiązania. Ten sam komunikat, różne opakowania.",
+              "Perswazja bez presji (Cialdini): pokaż interes drugiej strony, dowód z praktyki (próbna partia, liczby) i zostaw wybór. Argument, który wygrywa spór, ale upokarza — przegrywa współpracę."
+            ],
+            "zrodlo": "Rosenberg, „Porozumienie bez przemocy\" (1999); Stone, Patton, Heen, „Difficult Conversations\" (1999); Cialdini, „Influence\" (1984)"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Każde przekazanie zmiany i każde zamówienie specjalne domykaj pętlą: poproś o powtórzenie ustaleń własnymi słowami (i sam powtarzaj, gdy jesteś odbiorcą).",
+              "W rozmowach: zanim odpowiesz, streść usłyszane jednym zdaniem („czyli...\"). Minimum raz dziennie, świadomie.",
+              "Jedną trudną uwagę przekaż formułą obserwacja → skutek → prośba, w cztery oczy. Zapisz wcześniej pierwsze zdanie.",
+              "Ucząc kogoś dowolnej czynności, użyj struktury: po co → kroki → po czym poznać dobrze → typowe błędy. Sprawdź zrozumienie prośbą o pokazanie."
+            ],
+            "zrodlo": "Synteza: Salas (CRM), Rosenberg (1999), Heath (2007)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "problemSolving",
+      "nazwa": "Praktyczne rozwiązywanie problemów",
+      "opis": "Szukanie przyczyn zamiast objawów, skuteczność przy ograniczonych zasobach, testowanie podejść.",
+      "talenty": ["precision", "structure"],
+      "nauka": {
+        "intro": "Rozwiązywanie problemów to proces, nie błysk geniuszu: zdefiniuj, znajdź przyczynę, przetestuj małą korektę, sprawdź wynik. Przemysł nazywa to PDCA i 5×Dlaczego. Piekarnia dostarcza problemów idealnych do treningu: zapadnięty bochenek, kwaśniejący zakwas, kolejka przy jednej kasie — każdy ma przyczynę do znalezienia.",
+        "karty": [
+          {
+            "tytul": "5×Dlaczego — od objawu do przyczyny",
+            "punkty": [
+              "Metoda Toyoty (Taiichi Ohno): pytaj „dlaczego?\" aż dojdziesz do przyczyny PROCESOWEJ. Chleb zbity → bo słabo wyrósł → bo zakwas był słaby → bo pominięto wieczorne dokarmienie → bo przy zamknięciu nikt nie ma tego w obowiązkach. Prawdziwa naprawa: punkt w checkliście zamknięcia, nie „pilnujcie się\".",
+              "Sygnał ostrzegawczy: jeśli łańcuch „dlaczego\" kończy się na osobie („bo Michał zapomniał\") — pytaj dalej. Ludzie zapominają zawsze; dobre procesy to przewidują.",
+              "Rozdzielaj fakt od interpretacji: „miękisz zbity przy skórce\" to fakt; „za krótko pieczony\" to już hipoteza. Diagnozę zaczynaj od zebrania faktów (pomiary, karta partii), nie od pierwszej hipotezy.",
+              "Pareto: zwykle 20% przyczyn generuje 80% problemów. Zanim rzucisz się na wszystko — policz, co występuje najczęściej (tygodniowa kreska na tablicy wystarczy)."
+            ],
+            "zrodlo": "Ohno, „Toyota Production System\" (1988); Juran — zasada Pareto w zarządzaniu jakością"
+          },
+          {
+            "tytul": "PDCA — mały eksperyment zamiast wielkiej rewolucji",
+            "punkty": [
+              "Cykl Deminga: PLAN (hipoteza: „zbitość znika przy wydłużeniu garowania o 20 min\") → DO (test na JEDNEJ partii) → CHECK (porównaj z kontrolną) → ACT (wdroż albo odrzuć i testuj następną hipotezę).",
+              "Zmieniaj JEDNĄ zmienną naraz. Zmienisz temperaturę, czas i mąkę jednocześnie — wynik niczego Cię nie nauczy, bo nie wiesz, co zadziałało.",
+              "Zapisuj eksperymenty (hipoteza, zmiana, wynik) w karcie produktu — po 10 testach masz mapę zależności, której nie ma żaden podręcznik, bo dotyczy TWOJEGO pieca i TWOJEJ mąki.",
+              "Przy ograniczonych zasobach pytaj: „jaka jest najtańsza wersja tego testu?\" — próbna partia z połowy ciasta, godzina zamiast dnia, pożyczony termometr zamiast nowego sprzętu."
+            ],
+            "zrodlo": "Deming, „Out of the Crisis\" (1986); Rother, „Toyota Kata\" (2009)"
+          },
+          {
+            "tytul": "Definicja problemu i pułapki myślenia",
+            "punkty": [
+              "Dobrze zdefiniowany problem to połowa rozwiązania: „JEST: 15% bochenków z zakalcem w partiach porannych OD wtorku; POWINNO BYĆ: <2%\". Porównaj z „chleb nam nie wychodzi\" — z tym drugim nie da się pracować.",
+              "Pułapka potwierdzania: szukamy dowodów na pierwszą hipotezę, ignorując resztę. Antidotum: wypisz DWIE konkurencyjne hipotezy i aktywnie szukaj danych, które by je OBALIŁY.",
+              "Pytaj „co się zmieniło?\": problem, który pojawił się nagle, ma zwykle przyczynę w niedawnej zmianie (nowa dostawa mąki? inna temperatura na hali? nowy pracownik na zmianie?).",
+              "Wiedz, kiedy eskalować: problem dotykający bezpieczeństwa żywności (CCP) lub przekraczający Twój zakres decyzji zgłaszasz od razu — samodzielność to znajomość granic samodzielności."
+            ],
+            "zrodlo": "Kepner i Tregoe, „The New Rational Manager\" (1981); Kahneman (2011) — błąd potwierdzania"
+          },
+          {
+            "tytul": "Mikropraktyki na najbliższe 2 tygodnie",
+            "punkty": [
+              "Do pierwszego napotkanego problemu jakościowego zastosuj 5×Dlaczego na piśmie — zatrzymaj się dopiero na przyczynie procesowej, nie osobowej.",
+              "Przeprowadź jeden pełny cykl PDCA: hipoteza, test na jednej partii ze zmianą JEDNEJ zmiennej, porównanie, decyzja. Zapisz w karcie produktu.",
+              "Przez tydzień prowadź kreskową statystykę usterek (co i ile razy) — na koniec tygodnia wybierz cel numer 1 wg Pareto.",
+              "Najbliższy problem opisz formułą JEST / POWINNO BYĆ / OD KIEDY / CO SIĘ ZMIENIŁO, zanim zaproponujesz jakiekolwiek rozwiązanie."
+            ],
+            "zrodlo": "Synteza: Ohno (1988), Deming (1986), Kepner-Tregoe (1981)"
+          }
+        ]
+      }
+    }
+  ]
+}
