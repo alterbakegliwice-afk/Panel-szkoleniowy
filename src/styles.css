@@ -374,6 +374,14 @@ details summary:hover { color: var(--akcent-ciemny); }
   h1 { font-size: 1.5rem; }
 }
 
+/* ---------- rozwój kompetencji (Work Profile) ---------- */
+/* Priorytet = najsłabszy obszar z ostatniego testu — złota lewa krawędź,
+   jak karta „Następny krok": tu jest teraz praca do wykonania. */
+.rozwoj-priorytet { border-left: 6px solid var(--zloto); }
+.delta-plus { color: var(--ok); font-weight: 750; font-size: .78rem; white-space: nowrap; }
+.delta-minus { color: var(--brak); font-weight: 750; font-size: .78rem; white-space: nowrap; }
+.rozwoj .jako-przycisk { text-decoration: none; }
+
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

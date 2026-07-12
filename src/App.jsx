@@ -15,6 +15,7 @@ import ReviewQueue from './components/ReviewQueue.jsx'
 import OwnerPanel from './components/OwnerPanel.jsx'
 import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
+import Rozwoj from './components/Rozwoj.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 
 export default function App() {
@@ -58,6 +59,10 @@ export default function App() {
 
   const dodajDoKolejki = (wpis) =>
     setStan((s) => ({ ...s, kolejka: [...s.kolejka, wpis] }))
+
+  // Wynik testu Work Profile (zakładka Rozwój) — log append-only jak WYNIK.
+  const dodajProfil = (wpis) =>
+    setStan((s) => ({ ...s, profile: [...(s.profile || []), wpis] }))
 
   // Oznacz materiał jako przerobiony (odblokowuje sprawdzenie wiedzy).
   const oznaczPrzerobiony = (idUcznia, obszar) =>
@@ -124,7 +129,10 @@ export default function App() {
   }
 
   const zakladki = []
-  if (pracownik) zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
+  if (pracownik) {
+    zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
+    zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
+  }
   if (jestMentorem || jestWlascicielem) {
     zakladki.push({ id: 'zespol', etykieta: 'Zespół' })
     zakladki.push({
@@ -172,6 +180,15 @@ export default function App() {
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
         />
       )}
+      {ekran.widok === 'rozwoj' && pracownik && (
+        <Rozwoj
+          pracownik={pracownik}
+          profile={stan.profile || []}
+          nauka={stan.nauka}
+          onDodajProfil={dodajProfil}
+          onPrzerobiony={(obszar) => oznaczPrzerobiony(pracownik.id_prac, obszar)}
+        />
+      )}
       {ekran.widok === 'nauka' && pracownik && (
         <Learning
           tytul={ekran.tom}
@@ -209,6 +226,7 @@ export default function App() {
           pytania={pytania}
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+          profile={stan.profile || []}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

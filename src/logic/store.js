@@ -2,6 +2,7 @@
 // jedno stanowisko, zero zależności; eksport/backup przyciskiem).
 // WYNIK jest logiem append-only — akcje wyłącznie DOPISUJĄ, nigdy nie edytują.
 import seedWbudowany from '../data/bank_pytan_seed.json'
+import { filtrujProfile } from './rozwoj.js'
 
 const KLUCZ = 'alterbake-platforma-v1'
 
@@ -41,6 +42,7 @@ export function domyslnyStan() {
     wyniki: PRZYKLADOWE_WYNIKI,
     kolejka: [], // odpowiedzi otwarte/praktyczne czekające na ocenę Mentora
     nauka: [], // log przerobienia materiału: {id_prac, obszar, data} — quiz odblokowuje się po nauce
+    profile: [], // log wyników testów Work Profile: rekordy z logic/rozwoj.js (append-only, jak wyniki)
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -49,8 +51,11 @@ export function wczytajStan() {
   try {
     const surowe = localStorage.getItem(KLUCZ)
     if (!surowe) return domyslnyStan()
-    const stan = JSON.parse(surowe)
-    return { ...domyslnyStan(), ...stan }
+    const stan = { ...domyslnyStan(), ...JSON.parse(surowe) }
+    // Log profili Work Profile renderuje się bez dalszej walidacji — zepsuty
+    // wpis (ręczna edycja localStorage, stara wersja) nie może wywalić UI.
+    stan.profile = filtrujProfile(stan.profile)
+    return stan
   } catch {
     return domyslnyStan()
   }
@@ -141,6 +146,7 @@ export function eksportKopii(stan) {
     wyniki: stan.wyniki,
     kolejka: stan.kolejka,
     nauka: stan.nauka,
+    profile: stan.profile || [],
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -151,6 +157,9 @@ export function walidujKopie(obiekt) {
   }
   if (!Array.isArray(obiekt.pracownicy)) return 'Kopia bez listy pracowników.'
   if (!Array.isArray(obiekt.wyniki)) return 'Kopia bez logu wyników.'
+  if (obiekt.profile !== undefined && !Array.isArray(obiekt.profile)) {
+    return 'Pole „profile" (wyniki Work Profile) musi być listą.'
+  }
   if (obiekt.bank) {
     const err = walidujBank(obiekt.bank)
     if (err) return 'Bank w kopii jest niepoprawny: ' + err
@@ -166,6 +175,9 @@ export function kopieDoStanu(obiekt) {
     wyniki: obiekt.wyniki,
     kolejka: Array.isArray(obiekt.kolejka) ? obiekt.kolejka : [],
     nauka: Array.isArray(obiekt.nauka) ? obiekt.nauka : [],
+    // filtr, nie tylko Array.isArray: pojedynczy zepsuty rekord w kopii
+    // odpada zamiast wywalać zakładki Rozwój/Zespół po imporcie
+    profile: filtrujProfile(obiekt.profile),
     bank: obiekt.bank || null
   }
 }
