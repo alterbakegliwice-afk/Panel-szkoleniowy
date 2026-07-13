@@ -64,6 +64,15 @@ export default function App() {
   const dodajProfil = (wpis) =>
     setStan((s) => ({ ...s, profile: [...(s.profile || []), wpis] }))
 
+  // Odhaczenie/odznaczenie mikropraktyki rozwojowej (samoocena, toggle).
+  const przelaczPraktyke = (klucz) =>
+    setStan((s) => {
+      const zbior = new Set(s.praktyki || [])
+      if (zbior.has(klucz)) zbior.delete(klucz)
+      else zbior.add(klucz)
+      return { ...s, praktyki: [...zbior] }
+    })
+
   // Oznacz materiał jako przerobiony (odblokowuje sprawdzenie wiedzy).
   const oznaczPrzerobiony = (idUcznia, obszar) =>
     setStan((s) =>
@@ -185,8 +194,10 @@ export default function App() {
           pracownik={pracownik}
           profile={stan.profile || []}
           nauka={stan.nauka}
+          praktyki={stan.praktyki || []}
           onDodajProfil={dodajProfil}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(pracownik.id_prac, obszar)}
+          onPraktyka={przelaczPraktyke}
         />
       )}
       {ekran.widok === 'nauka' && pracownik && (
@@ -227,6 +238,7 @@ export default function App() {
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           profile={stan.profile || []}
+          onDodajProfil={dodajProfil}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

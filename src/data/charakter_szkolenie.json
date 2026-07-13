@@ -1,0 +1,95 @@
+{
+  "wersja": "2026-07-12",
+  "opis": "Wskazówki dla Mentora: jak dopasować FORMĘ szkolenia do profilu charakteru pracownika (8 wymiarów z Mapy Potencjału). To nie ocena — charakter nie jest lepszy ani gorszy; chodzi o to, którą drogą wiedza wchodzi najszybciej. Dane zasilane wynikiem testu Mapa Potencjału (pole „charakter”).",
+  "prog": 1,
+  "wymiary": {
+    "uczenie": {
+      "nazwa": "Styl uczenia się",
+      "hi": {
+        "biegun": "Przez działanie",
+        "jakSzkolic": "Najpierw pokaż i daj zrobić przy stanowisku, teorię dawkuj przy okazji. Ćwiczenie na próbnej partii wejdzie lepiej niż karta do przeczytania. Materiał do nauki traktuj jako uzupełnienie po pierwszym „dotknięciu”, nie jako wstęp."
+      },
+      "lo": {
+        "biegun": "Przez teorię",
+        "jakSzkolic": "Daj materiał do przeczytania i zrozumienia ZANIM stanie przy stanowisku — potrzebuje mapy, po co i dlaczego. Wejście od razu w działanie bez podstaw go kosztuje. Karty nauki i źródła to jego naturalny punkt startu."
+      }
+    },
+    "tempo": {
+      "nazwa": "Tempo decyzji",
+      "hi": {
+        "biegun": "Intuicyjny/a",
+        "jakSzkolic": "Pozwól próbować i korygować w ruchu — szybka pętla „zrób → zobacz wynik → popraw”. Nie wymagaj pełnej analizy przed startem; zaufaj wyczuciu, ale domykaj krótkim sprawdzeniem efektu."
+      },
+      "lo": {
+        "biegun": "Analityczny/a",
+        "jakSzkolic": "Daj czas na zrozumienie sytuacji przed działaniem i nie poganiaj przy nowej procedurze. Docenia komplet informacji z góry. „Zrób szybko, potem poprawimy” działa u niego gorzej niż „zrozum, potem zrób raz a dobrze”."
+      }
+    },
+    "ryzyko": {
+      "nazwa": "Tolerancja niepewności",
+      "hi": {
+        "biegun": "Eksperymentujący/a",
+        "jakSzkolic": "Daj przestrzeń na próby i własne warianty — nuda przy sztywnej procedurze go gasi. Kanalizuj to: eksperymenty na próbnych partiach, nie na produkcji ani przy CCP. Świetny do testowania usprawnień."
+      },
+      "lo": {
+        "biegun": "Ostrożny/a",
+        "jakSzkolic": "Ucz sprawdzonymi, jasnymi krokami i małymi przyrostami — potrzebuje pewności, że robi dobrze. Nie rzucaj na głęboką wodę. Bezpieczeństwo procedury działa u niego motywująco, nie ograniczająco."
+      }
+    },
+    "energia": {
+      "nazwa": "Energia społeczna",
+      "hi": {
+        "biegun": "Ekstrawertyczny/a",
+        "jakSzkolic": "Nauka na głos i w kontakcie: omawiajcie, pytaj o zdanie, ucz przez rozmowę. Wspólne przerabianie materiału i tłumaczenie innym utrwala u niego wiedzę. Długa cicha nauka solo męczy."
+      },
+      "lo": {
+        "biegun": "Introwertyczny/a",
+        "jakSzkolic": "Daj materiał do przerobienia samodzielnie, w skupieniu i we własnym tempie, najlepiej 1:1 zamiast w grupie. Czas na przetworzenie przed odpowiedzią to nie brak wiedzy — nie wywołuj do tablicy z zaskoczenia."
+      }
+    },
+    "konflikt": {
+      "nazwa": "Styl konfliktu",
+      "hi": {
+        "biegun": "Bezpośredni/a",
+        "jakSzkolic": "Feedback możesz dawać wprost — konkret bez owijania trafia najlepiej. Zniesie mocną korektę, o ile jest rzeczowa. Pytaj o zdanie: powie szczerze, co nie działa w procesie."
+      },
+      "lo": {
+        "biegun": "Dyplomatyczny/a",
+        "jakSzkolic": "Feedback podawaj miękko i osobno, nie na forum — ostra uwaga przy zespole zamyka go na długo. Aktywnie proś o zdanie, bo sam nie zgłosi sprzeciwu; ważne uwagi mogą utonąć w grzeczności."
+      }
+    },
+    "ekspresja": {
+      "nazwa": "Ekspresja emocjonalna",
+      "hi": {
+        "biegun": "Ekspresyjny/a",
+        "jakSzkolic": "Po jego reakcji od razu poznasz, czy rozumie i czy coś go frustruje — korzystaj z tego, koryguj na bieżąco. Emocje bierz jako dane o procesie nauki, nie o Tobie."
+      },
+      "lo": {
+        "biegun": "Powściągliwy/a",
+        "jakSzkolic": "Nie zakładaj, że milczenie = zrozumienie. Dopytuj wprost i proś o pokazanie/powtórzenie, bo po sobie nie da znać, że utknął. Spokój na zewnątrz nie znaczy, że wszystko jasne."
+      }
+    },
+    "orientacja": {
+      "nazwa": "Orientacja na pracę",
+      "hi": {
+        "biegun": "Zadaniowy/a",
+        "jakSzkolic": "Konkret i cel: „co ma być zrobione i po czym poznamy, że dobrze”. Nie potrzebuje długiego wstępu relacyjnego — docenia rzeczowość i jasny wynik do osiągnięcia."
+      },
+      "lo": {
+        "biegun": "Relacyjny/a",
+        "jakSzkolic": "Zbuduj relację i zaufanie zanim przejdziesz do wymagań — u niego dobra atmosfera przekłada się na efekt nauki. Sucha lista zadań bez kontaktu obniża zaangażowanie."
+      }
+    },
+    "kontekst": {
+      "nazwa": "Wrażliwość na kontekst",
+      "hi": {
+        "biegun": "Dopasowuje się do osoby",
+        "jakSzkolic": "Zachowuje się inaczej wobec Ciebie (przełożony) niż wobec kolegów — obserwuj też, jak działa bez Ciebie. Feedback od mentora i od rówieśnika mogą u niego działać różnie; korzystaj z obu kanałów."
+      },
+      "lo": {
+        "biegun": "Spójny/a z każdym",
+        "jakSzkolic": "Reaguje podobnie niezależnie od tego, kto uczy — to, co widzisz, jest reprezentatywne. Mówi wprost tak samo do Ciebie jak do kolegów; bierz jego uwagi dosłownie."
+      }
+    }
+  }
+}

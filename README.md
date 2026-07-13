@@ -115,6 +115,29 @@ Log wyników testów (`profile` w stanie) jest append-only jak WYNIK i wchodzi
 do kopii zapasowej. Dane: `src/data/rozwoj_kompetencji.json`, logika i mapowanie:
 `src/logic/rozwoj.js` (testy: `src/logic/rozwoj.test.js`), UI: `src/components/Rozwoj.jsx`.
 
+Co jeszcze daje zakładka:
+
+- **Jak najlepiej się uczysz** — 8 wymiarów charakteru z Mapy Potencjału (styl
+  uczenia, tempo, tolerancja niepewności…) zamienione na wskazówki *jak szkolić
+  tę osobę* (np. „uczy się przez działanie → pokazuj na stanowisku, nie dawaj
+  kart do czytania”). Dla Mentora widoczne też w zakładce **Zespół** per
+  pracownik. Dane: `src/data/charakter_szkolenie.json`.
+- **Checklist mikropraktyk** — po przerobieniu modułu pracownik odhacza wdrażanie
+  praktyk w codziennej pracy (log `praktyki`). To brakujące ogniwo między nauką
+  a retestem.
+- **Przypomnienie o reteście** — od daty nauki + 6 tyg. panel przypomina o
+  ewaluacji; znika, gdy pojawi się test po nauce (cykl domknięty).
+- **Trend w czasie** — po 3+ podejściach mini-wykresy (`Sparkline`) pokazują
+  kierunek zmian per obszar, nie tylko ostatnią deltę.
+- **Import przez Mentora/Właściciela** — w zakładce Zespół można przypisać wynik
+  testu wybranemu pracownikowi (gdy to prowadzący ma plik). `ImportWyniku.jsx`.
+- **PIN per pracownik** — Konfiguracja → Pracownicy: ustaw/zmień/zdejmij PIN
+  chroniący profil (wyniki Work Profile to dane wrażliwsze niż quizy wiedzy).
+
+Testy E2E (`e2e/*.spec.js`, Playwright) pokrywają pełne ścieżki UI integracji;
+CI (`.github/workflows/ci.yml`) odpala vitest + Playwright na każdym pushu i PR.
+Uruchomienie lokalne: `npm run test:e2e`.
+
 ## Warstwa graficzna (pod uciekającą uwagę / ADHD)
 
 Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.

@@ -13,8 +13,10 @@
 // 2) plik JSON pobrany przyciskiem w raporcie testu — dla innego urządzenia
 //    lub uruchomienia z dysku (file://).
 import rozwojKompetencji from '../data/rozwoj_kompetencji.json'
+import charakterSzkolenie from '../data/charakter_szkolenie.json'
 
 export const ROZWOJ = rozwojKompetencji
+export const CHARAKTER_SZKOLENIE = charakterSzkolenie
 
 // Klucz współdzielony z repo alterbake-work-profile (index.html, profil-pracy-mvp.html).
 export const WP_KLUCZ_WYNIKOW = 'alterbake_work_profile_wyniki_v1'
@@ -274,6 +276,153 @@ export function podsumowanieZespolu(profile, pracownicy) {
       sredniaZmiana: postep ? sredniaDelta(postep.obszary) : null
     }
   })
+}
+
+// --- MIKROPRAKTYKI I PRZYPOMNIENIE O RETEŚCIE ---
+// Każdy moduł rozwojowy kończy się kartą „Mikropraktyki na najbliższe 2 tygodnie”.
+// To ogniwo między nauką a retestem: pracownik odhacza wdrażanie w codziennej pracy.
+export function mikropraktyki(idObszaru) {
+  const o = obszar(idObszaru)
+  if (!o) return []
+  const karta = (o.nauka?.karty || []).find((k) => /Mikropraktyki/i.test(k.tytul || ''))
+  return karta ? karta.punkty.slice() : []
+}
+
+// Klucz pojedynczej praktyki w logu `praktyki` (append-only lista kluczy).
+export function kluczPraktyki(idPrac, idObszaru, idx) {
+  return idPrac + '|' + idObszaru + '|' + idx
+}
+
+// Ile praktyk obszaru odhaczonych (do paska postępu na karcie obszaru).
+export function postepPraktyk(praktyki, idPrac, idObszaru) {
+  const wszystkie = mikropraktyki(idObszaru)
+  const zbior = new Set(Array.isArray(praktyki) ? praktyki : [])
+  const zrobione = wszystkie.filter((_, i) => zbior.has(kluczPraktyki(idPrac, idObszaru, i))).length
+  return { zrobione, wszystkie: wszystkie.length }
+}
+
+// Data nauki danego obszaru (z logu `nauka`), jeśli przerobiony.
+export function dataNaukiObszaru(nauka, idPrac, idObszaru) {
+  const wpis = (nauka || []).find(
+    (n) => n.id_prac === idPrac && n.obszar === obszarNauki(idObszaru)
+  )
+  return wpis ? wpis.data : null
+}
+
+// Przypomnienie o reteście: od daty nauki + `tygodnie` (domyślnie 6) warto
+// wykonać test ponownie jako ewaluację. Znika, gdy pojawił się test PO nauce
+// (cykl domknięty). `terazISO` wstrzykiwalne dla testów.
+export function statusRetestu(nauka, idPrac, profile, tygodnie = 6, terazISO = null) {
+  const daty = ROZWOJ.obszary
+    .map((o) => dataNaukiObszaru(nauka, idPrac, o.id))
+    .filter(Boolean)
+    .sort()
+  if (!daty.length) return null
+  const naukaOd = daty[0]
+  const naukaDo = daty[daty.length - 1]
+  const cel = new Date(naukaDo)
+  cel.setDate(cel.getDate() + tygodnie * 7)
+  const celISO = cel.toISOString()
+  const seria = seriaTestow(profile, idPrac)
+  const ostatniTest = seria.length ? seria[seria.length - 1].data : null
+  const zrobionyPoNauce = !!(ostatniTest && ostatniTest > naukaDo)
+  const teraz = terazISO || new Date().toISOString()
+  return {
+    naukaOd,
+    naukaDo,
+    celData: celISO,
+    tygodnie,
+    zrobionyPoNauce,
+    dojrzaly: !zrobionyPoNauce && teraz >= celISO
+  }
+}
+
+// --- WSKAZÓWKI SZKOLENIOWE Z PROFILU CHARAKTERU ---
+// Charakter dostarcza tylko Mapa Potencjału (pole `charakter`). Dla każdego
+// wyraźnego wymiaru (|wartość| ≥ prog) zwraca wskazówkę dla Mentora „jak uczyć
+// tę osobę”. Kolejność: najsilniejsze sygnały pierwsze — one najbardziej zmieniają
+// formę szkolenia. Styl uczenia się i tempo dostają lekką premię (najpraktyczniejsze).
+const WAGA_PRAKTYCZNA = { uczenie: 0.5, tempo: 0.3, ryzyko: 0.2 }
+
+export function wskazowkiCharakteru(charakter) {
+  if (!charakter || typeof charakter !== 'object') return []
+  const prog = CHARAKTER_SZKOLENIE.prog ?? 1
+  const wynik = []
+  for (const [klucz, def] of Object.entries(CHARAKTER_SZKOLENIE.wymiary)) {
+    const v = charakter[klucz]
+    if (typeof v !== 'number' || !isFinite(v)) continue
+    const strona = v >= prog ? 'hi' : v <= -prog ? 'lo' : null
+    if (!strona) continue
+    wynik.push({
+      klucz,
+      nazwa: def.nazwa,
+      biegun: def[strona].biegun,
+      jakSzkolic: def[strona].jakSzkolic,
+      sila: Math.abs(v) + (WAGA_PRAKTYCZNA[klucz] || 0)
+    })
+  }
+  return wynik.sort((a, b) => b.sila - a.sila)
+}
+
+// Wskazówki z ostatniego podejścia, które niosło charakter (Mapa Potencjału).
+// Retest Profilem Pracy nie kasuje wcześniejszego profilu charakteru.
+export function wskazowkiCharakteruZSerii(profile, idPrac) {
+  const seria = seriaTestow(profile, idPrac)
+  for (let i = seria.length - 1; i >= 0; i--) {
+    const w = wskazowkiCharakteru(seria[i].charakter)
+    if (w.length) return { data: seria[i].data, wskazowki: w }
+  }
+  return null
+}
+
+// --- TREND OBSZARÓW W CZASIE ---
+// Po 3+ podejściach pojedyncza delta (ostatni vs poprzedni) to za mało — liczy się
+// kierunek. Zwraca serię czasową per obszar (wartości 0–100 z każdego podejścia).
+// UWAGA: łączy podejścia różnych narzędzi. Obszary są znormalizowane do 0–100,
+// więc trend „w górę/w dół” jest czytelny, ale punkty z różnych narzędzi nie są
+// idealnie porównywalne — dlatego każdy punkt niesie `narzedzie` (UI to sygnalizuje).
+export function trendObszarow(profile, idPrac) {
+  const seria = seriaTestow(profile, idPrac)
+  if (seria.length < 3) return null // do 2 testów wystarcza widok delty
+  const punkty = seria.map((s) => ({ data: s.data, narzedzie: s.narzedzie }))
+  const obszary = ROZWOJ.obszary
+    .map((o) => {
+      const wartosci = seria.map((s) => {
+        const v = (s.obszary || {})[o.id]
+        return typeof v === 'number' ? v : null
+      })
+      const konkretne = wartosci.filter((v) => v !== null)
+      const pierwszy = konkretne[0]
+      const ostatni = konkretne[konkretne.length - 1]
+      return {
+        id: o.id,
+        nazwa: o.nazwa,
+        wartosci,
+        // zmiana od pierwszego do ostatniego pomiaru (cały dotychczasowy postęp)
+        zmianaOgolna:
+          konkretne.length >= 2 && typeof pierwszy === 'number' && typeof ostatni === 'number'
+            ? ostatni - pierwszy
+            : null
+      }
+    })
+    .filter((o) => o.wartosci.some((v) => v !== null))
+  return { punkty, obszary }
+}
+
+// Przygotowanie przypisania wyniku do pracownika (wspólne dla samoprzypisania
+// w zakładce Rozwój i przypisania przez Mentora w Zespole). Czysta funkcja:
+// waliduje, wykrywa duplikat i niezgodność imienia — zapis i ewentualny confirm
+// zostają w komponencie.
+export function przygotujPrzypisanie(surowy, pracownik, profile) {
+  const blad = walidujWynikWp(surowy)
+  if (blad) return { ok: false, blad }
+  if (czyDuplikatProfilu(profile, pracownik.id_prac, surowy)) {
+    return { ok: false, blad: 'Ten wynik jest już przypisany do tego pracownika.' }
+  }
+  const imieWyniku = (surowy.osoba?.imie || '').trim()
+  const ostrzezenieImienia =
+    imieWyniku && !imionaPasuja(imieWyniku, pracownik.imie) ? imieWyniku : null
+  return { ok: true, imieWyniku, ostrzezenieImienia }
 }
 
 // Odczyt wyników czekających we wspólnym localStorage (zapisanych przez testy).
