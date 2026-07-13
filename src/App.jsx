@@ -16,7 +16,10 @@ import OwnerPanel from './components/OwnerPanel.jsx'
 import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
 import Rozwoj from './components/Rozwoj.jsx'
+import MojDzien from './components/MojDzien.jsx'
+import Zgloszenia from './components/Zgloszenia.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
+import { wczytajZgloszenia } from './logic/integracja.js'
 
 export default function App() {
   const [stan, setStan] = useState(wczytajStan)
@@ -102,7 +105,9 @@ export default function App() {
       }
     })
 
-  const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig }))
+  // merge, nie zastąpienie: Progi wysyłają sam PROG_ZALICZENIA i nie mogą
+  // skasować PIN_WLASCICIELA (i odwrotnie)
+  const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig: { ...s.konfig, ...konfig } }))
   const zapiszPracownikow = (pracownicy) => setStan((s) => ({ ...s, pracownicy }))
   const wgrajBank = (nowyBank) => setStan((s) => ({ ...s, bank: nowyBank }))
   const przywrocSeed = () => setStan((s) => ({ ...s, bank: null }))
@@ -128,9 +133,10 @@ export default function App() {
       <Powloka naglowek={null}>
         <ProfilePicker
           pracownicy={stan.pracownicy}
+          pinWlasciciela={stan.konfig.PIN_WLASCICIELA || ''}
           onWybor={(nowaSesja) => {
             setSesja(nowaSesja)
-            setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'profil' })
+            setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'dzien' })
           }}
         />
       </Powloka>
@@ -139,8 +145,10 @@ export default function App() {
 
   const zakladki = []
   if (pracownik) {
+    zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
     zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
+    zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
     zakladki.push({ id: 'zespol', etykieta: 'Zespół' })
@@ -150,6 +158,8 @@ export default function App() {
     })
   }
   if (jestWlascicielem) {
+    const nowych = wczytajZgloszenia().filter((z) => z.status === 'nowe').length
+    zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowych ? ` (${nowych})` : ''}` })
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
     zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
   }
@@ -177,6 +187,11 @@ export default function App() {
         </div>
       }
     >
+      {ekran.widok === 'dzien' && pracownik && <MojDzien pracownik={pracownik} />}
+      {ekran.widok === 'zgloszenia' && pracownik && (
+        <Zgloszenia tryb="pracownik" pracownik={pracownik} />
+      )}
+      {ekran.widok === 'zgloszenia' && jestWlascicielem && <Zgloszenia tryb="zarzad" />}
       {ekran.widok === 'profil' && pracownik && (
         <EmployeeDashboard
           pracownik={pracownik}

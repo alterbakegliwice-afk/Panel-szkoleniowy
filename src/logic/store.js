@@ -3,6 +3,7 @@
 // WYNIK jest logiem append-only — akcje wyłącznie DOPISUJĄ, nigdy nie edytują.
 import seedWbudowany from '../data/bank_pytan_seed.json'
 import { filtrujProfile } from './rozwoj.js'
+import { zapiszLustroZespolu } from './integracja.js'
 
 const KLUCZ = 'alterbake-platforma-v1'
 
@@ -68,6 +69,9 @@ export function zapiszStan(stan) {
   } catch (e) {
     console.error('Nie udało się zapisać stanu', e)
   }
+  // Lustro rejestru zespołu dla Planera Produkcji i AI Dashboardu — Panel jest
+  // jedynym źródłem prawdy o profilach (SPEC-APLIKACJA-PRACOWNIKA.md §2.1).
+  zapiszLustroZespolu(stan)
 }
 
 // Bank pytań: priorytet ma bank wgrany przez właściciela (rośnie bez zmiany kodu),

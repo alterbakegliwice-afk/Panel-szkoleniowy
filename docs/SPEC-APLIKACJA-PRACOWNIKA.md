@@ -1,0 +1,135 @@
+# SPEC: Aplikacja Pracownika Alterbake — integracja zadań, planu produkcji i szkoleń
+
+> Ustrukturyzowany prompt wykonawczy (Fable 5) na bazie strumienia pomysłów Właściciela, 2026-07-13.
+> Kontynuacja projektu „Work profile and training panel integration" (PR #2/#3 Panel-szkoleniowy, PR #2 alterbake-work-profile).
+
+## 1. Prompt wykonawczy (wersja kanoniczna)
+
+**Rola:** Jesteś inżynierem prowadzącym ekosystem aplikacji Alterbake (Panel Szkoleniowy,
+Profil Pracy, Planer Produkcji, AI Command Center). Wszystkie aplikacje są statyczne,
+publikowane na GitHub Pages pod wspólnym originem `alterbakegliwice-afk.github.io`,
+dane trzymają w `localStorage` (piekarnia, nie chmura).
+
+**Cel:** Rozszerz ekosystem o **wersję aplikacji dla każdego pracownika**:
+
+1. **Profile pracowników zakłada wyłącznie Właściciel** (istniejący panel Konfiguracja
+   w Panelu Szkoleniowym; profil = imię, rola, PIN, poziom docelowy).
+2. Pracownik po zalogowaniu (wybór profilu + PIN) widzi **do jakich zadań jest dziś
+   przydzielony** i **jak wygląda plan produkcji** (dane z Planera Produkcji).
+3. **Uprawnienia edycji:** harmonogram i delegowanie zadań może modyfikować wyłącznie
+   Właściciel oraz **wyznaczeni kierownicy** (cukiernia / piekarnia — nadaje Właściciel).
+   Pozostali pracownicy mają wgląd bez edycji; mogą jedynie odhaczać status **własnych** zadań.
+4. Aplikacja pracownika **łączy moduły szkoleniowe i Work Profile**: plan produkcji,
+   zadania dnia, nauka + quizy + ewaluacje, testy charakteru — w jednym miejscu.
+5. Pracownik może **zgłaszać potrzeby i uwagi** (append-only log, obsługiwany przez
+   Właściciela/kierowników).
+6. **AI Command Center (ai-dashboard)** dostaje moduł ZESPÓŁ: rejestr profili, przydziały
+   dnia i skrzynkę zgłoszeń.
+7. **NotebookLM (notebooklm-py)** służy do generowania treści szkoleniowych (bank pytań,
+   materiały) z **kompendium złotych standardów** (`plan-produkcji-cukiernia/docs/standardy/`
+   + `docs/baza-wiedzy/`).
+8. **grill-me-codex** stosuj jako proces jakości: plan → adwersaryjny przegląd Codex →
+   implementacja → przegląd diffu drugim modelem (gdy CLI Codex dostępne).
+
+**Ograniczenia twarde:**
+- Zero backendu, zero OAuth; kontrakty danych przez wspólny origin `localStorage`.
+- Nie łamać istniejących danych: nowe pola są opcjonalne, stare klucze migrowane łagodnie.
+- Bez rejestru pracowników (samodzielne użycie planera) wszystko działa jak dotąd.
+- PIN to ochrona przed wejściem „przez ramię", nie kryptografia — jak dotychczas w Panelu.
+- Język UI i kodu: polski (konwencje repozytoriów).
+
+## 2. Architektura integracji
+
+```
+                    wspólny origin: alterbakegliwice-afk.github.io
+┌─────────────────────────────────────────────────────────────────────┐
+│ localStorage                                                        │
+│                                                                     │
+│  alterbake-platforma-v1  ← Panel Szkoleniowy (źródło prawdy o       │
+│        │                    pracownikach: profile, PIN, kierownicy) │
+│        ▼ lustro przy każdym zapisie                                 │
+│  alterbake_zespol_v1     ← REJESTR (tylko-odczyt dla konsumentów)   │
+│  alterbake_zgloszenia_v1 ← ZGŁOSZENIA (pisze Panel, zarządza        │
+│                             Panel-Właściciel i AI Dashboard)        │
+│  alterbake_planer_v2     ← Planer (plan + zadania; Panel czyta      │
+│                             tylko-odczyt do widoku „Mój dzień")     │
+└─────────────────────────────────────────────────────────────────────┘
+   Panel Szkoleniowy          Planer Produkcji         AI Dashboard
+   (aplikacja pracownika)     (logowanie + gating      (moduł ZESPÓŁ:
+   Mój dzień · Rozwój ·        edycji wg rejestru;      rejestr, przydziały,
+   Nauka · Zgłoszenia          zespół ↔ id_prac)        zgłoszenia)
+```
+
+### 2.1 Klucz `alterbake_zespol_v1` (rejestr — pisze wyłącznie Panel Szkoleniowy)
+
+```json
+{
+  "wersja": 1,
+  "zaktualizowano": "2026-07-13T09:00:00.000Z",
+  "wlasciciel": { "imie": "Piotr", "pin": "" },
+  "pracownicy": [
+    { "id_prac": "P-01", "imie": "Weronika", "rola": "Piekarz",
+      "pin": "1234", "kierownik": ["piekarnia"] }
+  ]
+}
+```
+
+- `kierownik`: lista modułów planera (`"cukiernia"`, `"piekarnia"`), których harmonogram
+  dana osoba może edytować. Nadaje/odbiera Właściciel w Konfiguracji.
+- `wlasciciel.pin`: opcjonalny PIN wejścia właścicielskiego (Konfiguracja); pusty = bez PIN.
+
+### 2.2 Klucz `alterbake_zgloszenia_v1` (log append-only)
+
+```json
+{ "wersja": 1, "zgloszenia": [
+  { "id": "zg-…", "id_prac": "P-01", "imie": "Weronika", "typ": "potrzeba",
+    "tresc": "…", "data": "ISO", "status": "nowe", "odpowiedz": "" } ] }
+```
+
+`typ`: `potrzeba` | `uwaga` | `awaria`. `status`: `nowe` → `przyjete` → `zamkniete`
+(status i odpowiedź zmienia Właściciel/kierownik; treść wpisu nigdy nie jest edytowana).
+
+### 2.3 Powiązanie zespołu planera z rejestrem
+
+Wpis zespołu w planerze (`ustawienia.zespol[]`) dostaje opcjonalne pole `id_prac`.
+Mapowanie ustawia Właściciel/kierownik w Ustawieniach planera. Widok „Mój dzień"
+w Panelu pokazuje zadania i bloki planu, których `osoba` wskazuje wpis zespołu
+z `id_prac` zalogowanego pracownika.
+
+### 2.4 Uprawnienia w planerze
+
+- Rejestr **nieobecny** → tryb legacy: pełny dostęp (kompatybilność wstecz).
+- Rejestr obecny → ekran wyboru profilu (sessionStorage `alterbake_planer_sesja`):
+  - **Właściciel** i **kierownik aktywnego modułu**: pełna edycja.
+  - **Pozostali**: tylko odczyt + odhaczanie statusu wyłącznie własnych zadań;
+    ukryte akcje dodawania/przenoszenia/usuwania, edycji planu i ustawień zespołu.
+
+## 3. Podział prac na repozytoria
+
+| Repo | Zakres |
+|---|---|
+| `Panel-szkoleniowy` | rejestr-lustro, PIN właściciela, uprawnienia kierowników (Konfiguracja), zakładki „Mój dzień" i „Zgłoszenia", narzędzie NotebookLM (`tools/notebooklm/`) |
+| `plan-produkcji-cukiernia` | logowanie z rejestru, gating edycji, mapowanie zespół↔`id_prac` |
+| `alterbake-ai-dashboard` | moduł ZESPÓŁ (rejestr, przydziały dnia, zgłoszenia) |
+| `alterbake-work-profile` | bez zmian kodu — integracja z Panelem już działa (zakładka Rozwój) |
+| `notebooklm-py` | bez zmian — używany jako biblioteka/CLI przez `tools/notebooklm/` |
+| `grill-me-codex` | bez zmian — proces przeglądu planu/diffu (wymaga CLI Codex) |
+
+## 4. Fazy wdrożenia
+
+1. **Kontrakt danych** — moduł integracyjny w Panelu (lustro rejestru, zgłoszenia,
+   odczyt planera) + testy jednostkowe.
+2. **Aplikacja pracownika** — „Mój dzień" + „Zgłoszenia" w Panelu; PIN właściciela;
+   pole `kierownik` w Konfiguracji.
+3. **Planer** — sesja, gating edycji, mapowanie `id_prac`.
+4. **AI Command Center** — moduł ZESPÓŁ.
+5. **Treści** — `tools/notebooklm/generuj_tresci.py`: złote standardy → notatnik
+   NotebookLM → bank pytań JSON (format `walidujBank`) + materiały nauki.
+6. **Jakość** — testy `vitest`, e2e Playwright tam gdzie są; przegląd grill-me-codex
+   przy dostępnym CLI Codex; push na `claude/employee-app-tasks-training-pqsw3n`.
+
+## 5. Poza zakresem (świadomie)
+
+- Synchronizacja między urządzeniami (dane żyją per przeglądarka; transfer = kopia JSON).
+- Hasła/hash PIN, sesje serwerowe, RODO-grade audyt — skala mikropiekarni.
+- Automatyczne wywołania NotebookLM w CI (wymagają zalogowanej sesji Google).

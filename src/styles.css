@@ -418,6 +418,33 @@ details summary:hover { color: var(--akcent-ciemny); }
 .link-akcja:hover { color: var(--akcent); }
 .pin-edycja .pole.waski { width: 5rem; }
 
+/* ---------- Mój dzień (zadania i plan produkcji z Planera) ---------- */
+.dzien-nawigacja { justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+.dzien-data { text-align: center; flex: 1; }
+.chip-dzis { display: inline-block; margin-left: .4rem; padding: .1rem .5rem; border-radius: 999px; background: var(--ok-tlo); color: var(--ok); font-size: .72rem; font-weight: 700; }
+.lista-zadan { list-style: none; margin: .5rem 0; padding: 0; display: grid; gap: .5rem; }
+.lista-zadan li { border: 1px solid var(--linia); border-radius: var(--r-sm); padding: .6rem .8rem; background: var(--karta-inset); display: grid; gap: .2rem; }
+.lista-zadan label { display: inline-flex; align-items: center; gap: .55rem; cursor: pointer; }
+.lista-zadan input { accent-color: var(--akcent); width: 1.1rem; height: 1.1rem; flex: none; }
+.zadanie-zrobione .zadanie-tytul { text-decoration: line-through; color: var(--cichy); }
+.plan-modul { margin-top: .8rem; }
+.plan-modul h3 { margin: 0 0 .4rem; font-size: .95rem; }
+.wiersz-moj td { background: var(--zloto-tint); font-weight: 600; }
+
+/* ---------- zgłoszenia (potrzeby i uwagi) ---------- */
+.lista-zgloszen { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .7rem; }
+.lista-zgloszen li { border: 1px solid var(--linia); border-radius: var(--r-sm); padding: .7rem .9rem; background: var(--karta-inset); }
+.lista-zgloszen p { margin: .35rem 0; }
+.status-zgloszenia { padding: .1rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; }
+.status-nowe { background: var(--toku-tlo); color: var(--toku); }
+.status-przyjete { background: var(--zloto-tint); color: var(--zloto); }
+.status-zamkniete { background: var(--ok-tlo); color: var(--ok); }
+.odpowiedz-zgloszenia { color: var(--cichy); font-size: .85rem; border-left: 3px solid var(--linia-mocna); padding-left: .6rem; }
+
+/* przełączniki kierownika w tabeli pracowników */
+.kierownik-przelacznik { display: inline-flex; align-items: center; gap: .3rem; margin-right: .7rem; font-size: .8rem; white-space: nowrap; cursor: pointer; }
+.kierownik-przelacznik input { accent-color: var(--akcent); }
+
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
