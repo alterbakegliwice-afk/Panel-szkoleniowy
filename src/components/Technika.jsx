@@ -70,6 +70,7 @@ export default function Technika({ uczen, wyniki, nauka, konfig, onWynik, onPrze
             <p className="cichy mini">
               DTR i karty produktu — do sięgnięcia PRZED rozkręceniem czegokolwiek i przy każdym
               zgłoszeniu serwisowym (numer modelu + objaw z karty diagnostycznej = krótsza wizyta).
+              Linki zewnętrzne: jeśli któryś wygaśnie, szukaj po tytule u producenta.
             </p>
             <ul className="nauka-punkty">
               {m.dokumentacja.map((d, i) => (

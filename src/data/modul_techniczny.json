@@ -40,6 +40,8 @@
               "SAM: odkamienianie dyszy pary (kamień kotłowy to najczęstsza śmierć zaparowania), czyszczenie trzonu szczotką mosiężną (nigdy wodą — szok termiczny pęka płytę), test uszczelki drzwi (kartka papieru: ma stawiać opór przy wyciąganiu na całym obwodzie).",
               "SAM: kalibracja „domowa” termometru — niezależny termometr piecowy na środku pokładu, porównaj z wyświetlaczem przy 220–250°C, zapisz różnicę na karcie pieca i piecz wg realnej temperatury.",
               "SERWIS (nie ruszaj): grzałki i ich styczniki, termostat bezpieczeństwa, elektryka za panelem, wymiana płyty. Objaw „piec grzeje wolniej niż miesiąc temu przy tym samym nagrzewie” = zużyta grzałka — zgłoś z danymi (czas nagrzewu do 250°C teraz vs kiedyś).",
+              "Piece rurowe IBIS (seria RRK „VapoTech”) grzeją rurami Perkinsa: hermetyczne stalowe rury częściowo wypełnione wodą destylowaną oddają ciepło równomiernie z każdej strony. To układ ZAMKNIĘTY — operatorowi nie wolno w niego ingerować; uszkodzoną rurę wymienia wyłącznie serwis.",
+              "Kalendarz producenta (poradnik IBIS): codziennie komora i uszczelki, co tydzień panel sterowania, co miesiąc kalibracja niezależną sondą, raz w roku pełny przegląd z PISEMNYM raportem serwisowym — ten dokument bywa wymagany przez ubezpieczyciela.",
               "ULEPSZENIE: prowadź log nagrzewania (godzina włączenia → minuty do stabilnych 250°C). Rosnący czas = wcześniejsze wykrycie padającej grzałki niż czekanie na awarię w sobotni poranek.",
               "ULEPSZENIE: pirometr (termometr bezdotykowy ~150 zł) raz w tygodniu na płytę każdego pokładu — wykrywa nierówności trzonu zanim zobaczysz je na chlebie."
             ],
@@ -129,8 +131,14 @@
         { "co": "Trzon: czyszczenie szczotką mosiężną na sucho", "kiedy": "codziennie po ostatnim wsadzie", "kto": "pracownik" },
         { "co": "Test uszczelki drzwi (kartka papieru po obwodzie)", "kiedy": "co tydzień", "kto": "pracownik" },
         { "co": "Odkamienianie dyszy pary", "kiedy": "co miesiąc (twarda woda: co 2 tygodnie)", "kto": "pracownik" },
-        { "co": "Pirometr na płyty pokładów + wpis do logu nagrzewania", "kiedy": "co tydzień", "kto": "kierownik" },
-        { "co": "Przegląd grzałek, styczników, termostatu bezpieczeństwa", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+        { "co": "Pirometr na płyty pokładów + wpis do logu nagrzewania; kalibracja niezależną sondą (poradnik IBIS)", "kiedy": "co tydzień/miesiąc", "kto": "kierownik" },
+        { "co": "Pełny przegląd (grzałki, styczniki, termostat bezpieczeństwa, rury Perkinsa) zakończony PISEMNYM raportem serwisowym", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "IBIS (Szubin) — piece rurowe wsadowe RRK „VapoTech”", "url": "https://ibis.pl/product/piece-rurowe/", "typ": "strona producenta" },
+        { "tytul": "Katalog IBIS 2026 (PDF producenta)", "url": "https://ibis.pl/wp-content/uploads/2026/01/Katalog-IBIS-2026.pdf", "typ": "katalog PDF" },
+        { "tytul": "Konserwacja pieców piekarniczych krok po kroku — oficjalny poradnik IBIS", "url": "https://ibis.pl/news/konserwacja-piecow-piekarniczych-krok-po-kroku-jak-dbac-o-piec-by-sluzyl-latami/", "typ": "poradnik producenta" },
+        { "tytul": "Pełna DTR: dostarczana z urządzeniem — do pozyskania od producenta (tel. 530-188-187)", "url": "https://ibis.pl/", "typ": "DTR", "uwaga": "producent nie publikuje DTR w sieci" }
       ],
       "pytania": [
         {
@@ -258,7 +266,8 @@
               "Mgła tłuszczu z croissantów + pył mąki = filc na łopatkach wentylatora. Czyszczenie łopatek i osłon co tydzień (piec ZIMNY, wyłączony z prądu) to najtańsza inwestycja w równomierność.",
               "Uszczelka drzwi: test kartki jak przy IBIS. Wymiana we własnym zakresie, koszt kilkudziesięciu złotych, oszczędza minuty każdego wypieku.",
               "Zawiasy i domyk drzwi: drzwi „łapiące” na klamce = mikroszczelina = ucieczka ciepła. Regulacja zawiasów to klucz płaski, nie serwis.",
-              "SERWIS: silnik wentylatora, grzałki, elektronika panelu, czujnik temperatury.",
+              "SERWIS: silnik wentylatora, grzałki, elektronika panelu, czujnik temperatury. W piecach Bongard z wytwornicą pary KAMIEŃ to usterka nr 1: kwartalne odkamienianie wytwornicy i wymiana wkładu filtra antywapiennego wg zużycia (kalendarz producenta).",
+              "Sterowniki Bongard (Opticom/Intuitiv) wyświetlają KODY BŁĘDÓW — zanim zrestartujesz piec, SPISZ kod. Kod + objaw skracają diagnozę serwisu z godzin do minut.",
               "ULEPSZENIE: raz na kwartał test tostowy każdego poziomu — zdjęcie do DZIENNIKA. Porównanie map w czasie wykrywa degradację przepływu zanim zepsuje produkcję."
             ],
             "zrodlo": "DTR producenta + praktyka warsztatowa"
@@ -335,7 +344,15 @@
         { "co": "Test kartki na uszczelce drzwi", "kiedy": "co tydzień", "kto": "pracownik" },
         { "co": "Kontrola domyku drzwi i zawiasów", "kiedy": "co miesiąc", "kto": "pracownik" },
         { "co": "Test tostowy poziomów + zdjęcie do DZIENNIKA", "kiedy": "co kwartał", "kto": "kierownik" },
+        { "co": "Kontrola elektrozaworu wody i rurek wtrysku pary (drożność, kamień)", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Odkamienianie wytwornicy pary + wymiana wkładu filtra antywapiennego", "kiedy": "co kwartał / wg zużycia", "kto": "serwis" },
         { "co": "Przegląd silnika, grzałek, elektroniki", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Bongard Krystal — fiche produit (PDF producenta, FR)", "url": "https://www.bongard.fr/wp-content/uploads/fiches-produits/fp-ventile-krystal-fr.pdf", "typ": "karta produktu PDF" },
+        { "tytul": "Bongard Orion EvO (trzonowy) — dokumentacja (PDF producenta, FR)", "url": "https://www.bongard.fr/wp-content/uploads/2018/11/fr-doccom-orion-evo.pdf", "typ": "katalog PDF" },
+        { "tytul": "Bongard 8.63 E — notice technique z kalendarzem konserwacji (ManualsLib)", "url": "https://www.manualslib.fr/manual/436541/Bongard-8-63-E.html", "typ": "DTR" },
+        { "tytul": "Koma-maszyny — dystrybutor i serwis Bongard w Polsce", "url": "https://koma-maszyny.pl/kategoria-produktu/piece/", "typ": "serwis PL" }
       ],
       "pytania": [
         {
@@ -445,7 +462,8 @@
               "CCP4 = kontrola temperatury przechowywania. Log temperatury 2× dziennie (rano przy otwarciu, po południu przy domknięciu) — zapis, nie pamięć.",
               "Stała temperatura >8°C = eskalacja do lead NATYCHMIAST + decyzja o wsadzie (przełożenie do drugiej chłodni, skrócenie retardu). Wpis do DZIENNIKA obowiązkowy.",
               "SAM: czyszczenie skraplacza pędzlem/odkurzaczem, uszczelki, udrożnienie odpływu, rozmieszczenie wsadu z luzem, walidacja Testo.",
-              "SERWIS: czynnik chłodniczy (spadek wydajności przy czystym skraplaczu), sprężarka, termostat, wentylator parownika. Ubytek czynnika poznasz po: agregat chodzi, skraplacz czysty, a temperatura nie schodzi.",
+              "SERWIS: czynnik chłodniczy (spadek wydajności przy czystym skraplaczu), sprężarka, termostat, wentylator parownika. Ubytek czynnika poznasz po: agregat chodzi, skraplacz czysty, a temperatura nie schodzi. UWAGA: nowe urządzenia Asber pracują na czynnikach PALNYCH (R600a/R290) — przy układzie chłodniczym pracuje wyłącznie autoryzowany serwis, a lodu nie skrobiemy niczym ostrym.",
+              "Klasa klimatyczna: producent gwarantuje zakres przy otoczeniu do +32°C. W upalne dni przy piecach chłodnia może fizycznie nie utrzymać 4°C — to nie awaria, tylko warunki; pomaga wentylacja cokołu (nie zastawiać kratki agregatu).",
               "ULEPSZENIE: rejestrator temperatury z alarmem (termometr min/max za kilkadziesiąt złotych) — powie ci rano, co działo się w nocy. Nocny skok, którego nie widziałeś, to nocny skok, którego nie było w decyzjach."
             ],
             "zrodlo": "DESTYLAT ZŁOTYCH STANDARDÓW (CCP4 — funkcja Chłodnia, eskalacja do lead)"
@@ -526,7 +544,13 @@
         { "co": "Skraplacz: pędzel + odkurzacz (zasilanie odłączone)", "kiedy": "co tydzień", "kto": "pracownik" },
         { "co": "Walidacja czujnika: Testo w słoiku z wodą vs wyświetlacz", "kiedy": "co tydzień", "kto": "kierownik" },
         { "co": "Test kartki na uszczelce, kontrola odpływu skroplin", "kiedy": "co miesiąc", "kto": "pracownik" },
-        { "co": "Przegląd czynnika, sprężarki, sterownika odszraniania", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+        { "co": "Przegląd czynnika (R600a/R290 — palny!), sprężarki, sterownika odszraniania", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Asber (Onnera Group) — stoły chłodnicze i mroźne (strona PL)", "url": "https://www.asberprofessional.pl/productos.aspx?IG=13&IF=115", "typ": "strona producenta" },
+        { "tytul": "Asber — katalog techniczny stołów chłodniczych (PDF, PL)", "url": "https://www.asberprofessional.pl/docs/Documentos/3543.pdf", "typ": "katalog PDF" },
+        { "tytul": "Asber — instrukcja instalacji, użytkowania i konserwacji (PDF, EN)", "url": "https://www.wasserstrom.com/wcsstore/WasserstromCatalogAssetStore/Attachment/AsberARF23Manual.pdf", "typ": "instrukcja PDF" },
+        { "tytul": "Asber America — wyszukiwarka dokumentów po numerze modelu", "url": "https://asberamerica.com/en/help-center/end-user-tools/", "typ": "portal dokumentacji" }
       ],
       "pytania": [
         {
@@ -615,8 +639,10 @@
               "Płaszcz wodny wokół zbiornika grzeje/chłodzi zawartość; czujnik mierzy przy ścianie zbiornika — przy pełnym wsadzie środek masy może różnić się o 1–2°C od wyświetlacza.",
               "Przed odczytem „decyzyjnym” (karmienie, ocena) uruchom mieszadło na chwilę — wyrównuje temperaturę i strukturę; odczyt bez mieszania bywa odczytem ściany, nie levainu.",
               "Walidacja co tydzień: Testo w masie (zdezynfekowana sonda!) vs wyświetlacz. Karta I-OBS-TRADILEVAIN-A: M = 25°C ±1.",
-              "Zawór dozujący to najczęstszy punkt zapchania: levain zasycha na gnieździe. Płukanie bezpośrednio po KAŻDYM dozowaniu — 30 sekund, które oszczędza rozbieranie zaworu.",
-              "Mieszadło nie służy do „ratowania” zbyt gęstego levainu: praca na oporze grzeje silnik i ścina sprzęgło. Gęstość reguluje karta karmienia (hydracja), nie siła silnika."
+              "Zawór dozujący to najczęstszy punkt zapchania: levain zasycha na gnieździe (mimo fabrycznego samooczyszczania). Płukanie bezpośrednio po KAŻDYM poborze — 30 sekund, które oszczędza rozbieranie zaworu.",
+              "TL40 ma DWA punkty poboru (DTR JAC): górny kran zostawia „poziom bezpieczeństwa” — minimum kultury na odświeżenie (nigdy nie opróżniaj go do zera!); dolny zawór służy WYŁĄCZNIE do całkowitego opróżnienia przy myciu zbiornika.",
+              "Pokrywa jest HERMETYCZNA (fermentacja beztlenowa) — jej uszczelka to element krytyczny: zużyta/zabrudzona psuje szczelność i profil kwasowości. Woda dolewana do zbiornika: maks. ~45°C (cieplejsza parzy kulturę przy ścianie).",
+              "Mieszadło śmigłowe siedzi przy dnie i nie wymaga czyszczenia między cyklami — ale nie wkładaj do zbiornika narzędzi, które mogą trafić w śmigło. Mieszadło nie służy do „ratowania” zbyt gęstego levainu: gęstość reguluje karta karmienia (hydracja), nie siła silnika."
             ],
             "zrodlo": "Karta I-OBS-TRADILEVAIN-A; DTR JAC Tradilevain"
           },
@@ -707,7 +733,14 @@
         { "co": "Mycie zbiornika i wału mieszadła wg karty", "kiedy": "przy karmieniu wg karty", "kto": "pracownik" },
         { "co": "Walidacja: Testo w masie vs wyświetlacz (M=25°C ±1)", "kiedy": "co tydzień", "kto": "kierownik" },
         { "co": "Odświeżenie backupu zakwasu (lodówka + suszony)", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Kontrola i mycie uszczelki hermetycznej pokrywy", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Kalibracja sondy temperatury (menu serwisowe) po potwierdzonym rozjeździe z Testo", "kiedy": "wg wyniku walidacji", "kto": "kierownik/serwis" },
         { "co": "Przegląd agregatu płaszcza, mieszadła, sterownika", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "JAC Tradilevain TL40 — strona produktu (user guide i karta do pobrania)", "url": "https://www.jac-machines.com/us/tradilevain-tl40-2021", "typ": "strona producenta" },
+        { "tytul": "Tradilevain 40 — Specification Sheet (oficjalna karta techniczna)", "url": "https://www.southernhospitality.co.nz/documentation/product/open/id/5214/ESA102%20-%20Specification%20Sheet.pdf", "typ": "karta techniczna PDF" },
+        { "tytul": "JAC Tradilevain TL40/TL105/TL220 — instrukcja obsługi (ManualsLib)", "url": "https://www.manualslib.com/manual/1660472/Jac-Tradilevain-Tl40.html", "typ": "DTR" }
       ],
       "pytania": [
         {
@@ -796,7 +829,8 @@
           {
             "tytul": "Granice samodzielności",
             "punkty": [
-              "SAM: czyszczenie po zmianie (dzieża, spirala, osłony — bez lania wody na korpus i łożyska), kontrola naciągu paska (ugięcie kciukiem ~1 cm przy wyłączonej maszynie), test wyłącznika krańcowego osłony (maszyna MUSI stanąć po podniesieniu osłony).",
+              "SAM: czyszczenie po zmianie (dzieża, spirala, osłony — bez lania wody na korpus i łożyska), kontrola naciągu paska (ugięcie kciukiem ~1 cm przy wyłączonej maszynie), test wyłącznika krańcowego osłony: maszyna MUSI stanąć już po uniesieniu osłony o 10–15 mm (DTR producenta).",
+              "Kalendarz producenta (DTR klasy MSP): naciąg pasa klinowego kontrola co miesiąc (nakrętka regulacyjna za tylnym panelem — technik); smarowanie i naciąg łańcuchów napędu co 6 miesięcy (zdjęcie osłon — wyłącznie serwis). Smary tylko spożywcze, bez nadmiaru.",
               "SERWIS: przekładnia, silnik, wymiana łożysk, elektryka. Wyłącznik krańcowy nie działa = maszyna wyłączona z użytku do naprawy — bez wyjątków, to ochrona rąk.",
               "ULEPSZENIE: karta maszyny z friction factor (lato/zima), standardowe czasy biegów per receptura i data ostatniej wymiany paska — trzy linijki, które robią z „jakiejś miesiarki” maszynę znaną i przewidywalną."
             ],
@@ -872,7 +906,12 @@
         { "co": "Test wyłącznika krańcowego osłony (maszyna staje po podniesieniu)", "kiedy": "co tydzień", "kto": "pracownik" },
         { "co": "Kontrola naciągu paska (maszyna wyłączona)", "kiedy": "co miesiąc", "kto": "kierownik" },
         { "co": "Pomiar friction factor (lato i zima) → karta maszyny", "kiedy": "2× w roku", "kto": "kierownik" },
+        { "co": "Smarowanie i kontrola naciągu łańcuchów napędu (zdjęcie osłon)", "kiedy": "co 6 miesięcy", "kto": "serwis" },
         { "co": "Przekładnia, łożyska, silnik, elektryka", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "MAC.PAN seria MSP — instrukcja obsługi i konserwacji (PDF producenta, EN)", "url": "https://support.macpan.com/images/manual-book/MSP/manual-book/Manual-books_MSP_en.pdf", "typ": "DTR", "uwaga": "dokumentacja reprezentatywna dla klasy miesiarek spiralnych" },
+        { "tytul": "Diosna SP 24–160 — parametry miesiarek spiralnych (strona producenta)", "url": "https://www.diosna.com/products/kneading-machines/spiral-kneader/sp-24-160/", "typ": "strona producenta" }
       ],
       "pytania": [
         {
@@ -972,7 +1011,8 @@
               "Garowanie trwa dłużej niż zwykle przy tych samych nastawach → realna temperatura niższa niż wyświetlacz: walidacja Testo na półce (nie przy grzałce), porównanie, ewentualnie korekta nastawy o zmierzoną różnicę.",
               "Croissanty błyszczą się w garze → NATYCHMIAST wyjmij, zmierz realną temperaturę; jeśli >28°C — nastawa/czujnik do korekty. Każda minuta powyżej to masło uciekające z laminacji.",
               "Pleśń w rogach komory → wilgoć + resztki organiczne; mycie i wietrzenie komory po zmianie (drzwi uchylone na noc). Pleśń w garowni to skażenie krzyżowe wszystkich kęsów.",
-              "SAM: woda w wannie, mycie, wietrzenie, walidacja Testo. SERWIS: grzałka, termostat, elektronika.",
+              "SAM: woda w wannie, mycie, wietrzenie, walidacja Testo. SERWIS: grzałka, termostat, elektronika; w komorach klimatycznych z agregatem (typu MIWE GVA) układ chłodniczy podlega przepisom F-gazowym — wyłącznie uprawniony chłodnik.",
+              "Nie zastawiaj wózkami kanałów nawiewu — nierówny obieg powietrza to nierówny gar na wózku (góra/dół). Skórka mimo poprawnego RH na wyświetlaczu = zwykle zakamieniony układ nawilżania albo czujnik wilgotności do kalibracji — zgłoszenie, nie „podkręcanie” wilgotności.",
               "ULEPSZENIE: higrometr za kilkadziesiąt złotych obok wyświetlacza — drugi parametr przestaje być zgadywanką."
             ],
             "zrodlo": "Diagnostyka garowni; praktyka warsztatowa"
@@ -1032,7 +1072,11 @@
         { "co": "Poziom wody w wannie nawilżania", "kiedy": "start każdej zmiany", "kto": "pracownik" },
         { "co": "Mycie komory + wietrzenie (drzwi uchylone na noc)", "kiedy": "po każdej zmianie", "kto": "pracownik" },
         { "co": "Walidacja Testo na półce vs wyświetlacz", "kiedy": "co tydzień", "kto": "kierownik" },
-        { "co": "Grzałka, termostat, elektronika", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+        { "co": "Grzałka, termostat, elektronika; układ chłodniczy komór klimatycznych (F-gazy)", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "MIWE GVA e+ — garownia pełnoautomatyczna (strona producenta)", "url": "https://www.miwe.de/us-en/produkte/produktion/baeckereikaeltetechnik/prozesskaelte/miwe-gva-eplus.php", "typ": "strona producenta", "uwaga": "dokumentacja reprezentatywna dla klasy komór garowniczych" },
+        { "tytul": "MIWE GVA/GUV/GV — prospekt techniczny (PDF producenta)", "url": "https://www.miwe.de/media/docs/produkte/prospekt/en/produktinformation-gva-en.pdf", "typ": "prospekt PDF" }
       ],
       "pytania": [
         {
@@ -1114,7 +1158,8 @@
               "Test lodowy: szklanka drobnego lodu + odrobina wody, zamieszać, sonda w środek, 30 sekund → 0,0°C ±0,5. To najpewniejszy punkt odniesienia w każdej kuchni.",
               "Test wrzątku: świeżo zagotowana woda → ~100°C (na poziomie morza; ciśnienie zmienia o ułamki stopnia). Mniej pewny niż lód, ale sprawdza drugi koniec skali.",
               "Oba testy co tydzień + po każdym upadku sondy na posadzkę. Wynik poza tolerancją = sonda wycofana z decyzji CCP do wymiany/kalibracji.",
-              "Słaba bateria = wolne, dryfujące odczyty ZANIM pojawi się ikona baterii — sonda „myśli” coraz dłużej. Zapasowa bateria w szufladzie to element bezpieczeństwa żywności.",
+              "Słaba bateria = wolne, dryfujące odczyty ZANIM pojawi się ikona baterii — sonda „myśli” coraz dłużej. Zapasowa bateria (2× CR2032) w szufladzie to element bezpieczeństwa żywności.",
+              "Parametry z karty Testo 106: zakres −50…+275°C, dokładność ±0,5°C w zakresie roboczym, czas reakcji ~10 s. Szczelność IP67 obowiązuje TYLKO z założonym futerałem TopSafe — bez niego nie myjemy sondy pod wodą. Wzorcowanie okresowe (EN 13486) raz w roku to element dokumentacji HACCP.",
               "Zasada dwóch termometrów: rozstrzygające pomiary (spór z wyświetlaczem maszyny, decyzja CCP na granicy) potwierdzaj drugim urządzeniem."
             ],
             "zrodlo": "Praktyka metrologiczna; DTR Testo 106"
@@ -1158,8 +1203,13 @@
       "konserwacja": [
         { "co": "Dezynfekcja szpica między produktami", "kiedy": "przy każdym użyciu", "kto": "pracownik" },
         { "co": "Test lodowy 0°C (±0,5)", "kiedy": "co tydzień i po każdym upadku", "kto": "pracownik" },
-        { "co": "Wymiana baterii profilaktyczna", "kiedy": "co 6 miesięcy", "kto": "kierownik" },
-        { "co": "Kalibracja fabryczna / wymiana przy dryfie", "kiedy": "wg wyniku testów", "kto": "serwis/dostawca" }
+        { "co": "Wymiana baterii (2× CR2032, ~350 h pracy) — obie naraz, pilnując biegunowości i domknięcia komory (szczelność)", "kiedy": "co 6 miesięcy", "kto": "kierownik" },
+        { "co": "Wzorcowanie okresowe (EN 13486, dokumentacja HACCP) — świadectwo do segregatora audytowego", "kiedy": "co 12 miesięcy", "kto": "serwis/dostawca" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Testo 106 — karta produktu i instrukcja (PL)", "url": "https://www.testo.com/pl-PL/testo-106/p/0560-1063", "typ": "karta produktu + instrukcja PDF" },
+        { "tytul": "Testo 106 — zestaw HACCP z futerałem TopSafe (EN)", "url": "https://www.testo.com/en-US/set-testo-106/p/0563-1063", "typ": "karta produktu" },
+        { "tytul": "Testo 106 — karta katalogowa (PDF, mirror dystrybutora)", "url": "https://www.manoraz.com/_Uploads/dbsAttachedFiles/testo-106-Data-sheet.pdf", "typ": "karta katalogowa", "uwaga": "jeśli link nie działa, szukaj: „testo 106 data sheet”" }
       ],
       "pytania": [
         {
@@ -1241,8 +1291,9 @@
               "Osłony walców i wyłącznik krańcowy: maszyna MUSI stanąć po podniesieniu osłony. Test co tydzień, jak przy miesiarce. Niedziałający = maszyna poza użyciem.",
               "Czyszczenie: taśmy i skrobaki po każdej zmianie (resztki ciasta twardnieją w kamień i odciskają się w kolejnych partiach); NIGDY nie czyścić walców przy włączonej maszynie.",
               "Ręce trzymamy za podajnikiem, ciasto prowadzi taśma — nie palce. Długie rękawy i luźne sznurki fartucha to przy walcach realne ryzyko wciągnięcia.",
-              "SAM: czyszczenie, kontrola skrobaków, test paska ciasta z suwmiarką, drobna regulacja naciągu taśmy wg DTR.",
-              "SERWIS: łożyska walców, regulacja równoległości walców, napęd."
+              "SAM: czyszczenie, kontrola skrobaków, test paska ciasta z suwmiarką, drobna regulacja naciągu taśmy wg DTR. Czyszczenie skrobaków wg DTR RONDO: rozewrzeć walce maksymalnie, zablokować osłonę w pozycji górnej, dopiero wtedy zdjąć skrobaki (bez narzędzi).",
+              "ZAKAZY z DTR producenta: praca bez założonych skrobaków jest zabroniona; szczelinę zmniejszaj stopniowo (klasyczna praktyka: nie więcej niż o połowę na przejście) — wciskanie grubego ciasta w małą szczelinę przeciąża napęd i rwie ciasto.",
+              "SERWIS: łożyska walców, regulacja równoległości walców, napęd, wymiana taśmy."
             ],
             "zrodlo": "BHP stanowiska; DTR producenta"
           }
@@ -1300,6 +1351,11 @@
         { "co": "Test wyłącznika krańcowego osłon", "kiedy": "co tydzień", "kto": "pracownik" },
         { "co": "Test paska ciasta + suwmiarka (równoległość walców)", "kiedy": "co miesiąc", "kto": "kierownik" },
         { "co": "Łożyska walców, napęd, regulacja równoległości", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "RONDO Ecomat STM/SSO — instrukcja obsługi (PDF, dystrybutor Moffat)", "url": "https://moffat.global.ssl.fastly.net/sites/default/files/products/manual/UM_Rondo_Ecomat_STM_SSO_BC520501_BA_e.pdf", "typ": "DTR" },
+        { "tytul": "RONDO Econom STM51x/SSO514 — instrukcja obsługi (PDF)", "url": "https://moffat.global.ssl.fastly.net/sites/default/files/products/manual/UM_Rondo_Econom_STM51+_SSO514_BD519402_BA_e.pdf", "typ": "DTR" },
+        { "tytul": "RONDO — broszura wałkownic mechanicznych (PDF producenta)", "url": "https://www.rondo-online.com/sites/default/files/2022-10/50840_RONDO_MAM_EN_10.2022.pdf", "typ": "katalog PDF" }
       ],
       "pytania": [
         {

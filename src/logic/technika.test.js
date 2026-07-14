@@ -55,6 +55,18 @@ describe('dane modułu technicznego', () => {
   it('są pytania CCP (chłodnia/sonda) — bezpieczeństwo żywności liczone progiem 100%', () => {
     expect(pytaniaTechniki().some((p) => p.ccp === true)).toBe(true)
   })
+
+  it('dokumentacja producenta (gdy jest) ma tytuł i URL http(s)', () => {
+    let zLinkami = 0
+    for (const m of TECHNIKA.maszyny) {
+      for (const d of m.dokumentacja || []) {
+        expect(d.tytul, m.id).toBeTruthy()
+        expect(d.url, m.id).toMatch(/^https?:\/\//)
+        zLinkami++
+      }
+    }
+    expect(zLinkami).toBeGreaterThan(0)
+  })
 })
 
 describe('maszynaTechniczna', () => {
