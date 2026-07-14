@@ -147,7 +147,11 @@ granica samodzielnej naprawy vs serwis, ulepszenia.
 - Zasada: nauka → quiz (jak tomy), ale **diagnostyka dostępna zawsze** —
   objaw na hali nie czeka na zaliczenie quizu.
 - Wyniki quizów logują się do wspólnego `WYNIKI` (append-only), więc
-  Właściciel widzi postęp techniczny zespołu tak samo jak merytoryczny.
+  Właściciel widzi postęp techniczny zespołu tak samo jak merytoryczny
+  (tabela „Technika — znajomość parku maszynowego" w widoku Zespół).
+- Widok diagnostyki maszyny ma wersję do druku (`@media print`) — karta
+  wisi przy maszynie na hali; oraz opcjonalną sekcję `dokumentacja[]`
+  (linki do DTR/kart producenta: `{tytul, url, typ, uwaga}`).
 
 ## 5. Poza zakresem (świadomie)
 
