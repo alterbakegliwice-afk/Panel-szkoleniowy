@@ -16,7 +16,9 @@ import {
   mikropraktyki,
   kluczPraktyki,
   postepPraktyk,
-  statusRetestu
+  statusRetestu,
+  triangulacja,
+  KIERUNKI_OBSERWACJI
 } from '../logic/rozwoj.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
 import { teraz } from '../logic/store.js'
@@ -28,7 +30,7 @@ import Sparkline from './Sparkline.jsx'
 // jest ewaluacją (panel liczy deltę względem poprzedniego podejścia tego
 // samego narzędzia). Wyniki wpadają same przez wspólny localStorage
 // (ten sam origin GitHub Pages) albo z pliku JSON pobranego w raporcie testu.
-export default function Rozwoj({ pracownik, profile, nauka, praktyki, onDodajProfil, onPrzerobiony, onPraktyka }) {
+export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje, onDodajProfil, onPrzerobiony, onPraktyka }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [komunikat, setKomunikat] = useState(null)
   const [odswiez, setOdswiez] = useState(0)
@@ -43,6 +45,13 @@ export default function Rozwoj({ pracownik, profile, nauka, praktyki, onDodajPro
     // odswiez: ręczne „sprawdź ponownie" po wykonaniu testu w drugiej karcie
     [profile, pracownik.id_prac, odswiez] // eslint-disable-line react-hooks/exhaustive-deps
   )
+  // triangulacja: samoocena (delta) obok obserwacji Mentora, per obszar.
+  // MUSI być przed wczesnym return dla widoku nauki (kolejność hooków).
+  const triangMap = useMemo(() => {
+    const m = {}
+    for (const o of triangulacja(postep, obserwacje || [], pracownik.id_prac)) m[o.id] = o
+    return m
+  }, [postep, obserwacje, pracownik.id_prac])
 
   const przyjmij = (surowy, zrodlo) => {
     const gotowe = przygotujPrzypisanie(surowy, pracownik, profile)
@@ -301,6 +310,15 @@ export default function Rozwoj({ pracownik, profile, nauka, praktyki, onDodajPro
                       </span>
                       {nauczony && <span className="ccp-tag ok">nauka ✓</span>}
                     </div>
+                    {triangMap[o.id]?.obserwacja && (
+                      <p className={'obs-inline' + (triangMap[o.id].rozjazd ? ' obs-inline-rozjazd' : '')}>
+                        👁 Mentor w praktyce: {KIERUNKI_OBSERWACJI[triangMap[o.id].obserwacja.kierunek].etykieta.toLowerCase()}
+                        {triangMap[o.id].rozjazd && triangMap[o.id].typRozjazdu === 'zawyzona' &&
+                          ' — Twoja samoocena rośnie szybciej; pogadajcie o konkretach z praktyki.'}
+                        {triangMap[o.id].rozjazd && triangMap[o.id].typRozjazdu === 'zanizona' &&
+                          ' — oceniasz się surowiej, niż widać w praktyce. Doceń swój postęp.'}
+                      </p>
+                    )}
                     <p className="cichy mini">
                       Talenty (Mapa Potencjału): {def.talenty.map((t) => TALENTY_NAZWY[t]).join(', ')}
                     </p>

@@ -64,6 +64,10 @@ export default function App() {
   const dodajProfil = (wpis) =>
     setStan((s) => ({ ...s, profile: [...(s.profile || []), wpis] }))
 
+  // Obserwacja Mentora (triangulacja samooceny Work Profile) — append-only.
+  const dodajObserwacje = (wpis) =>
+    setStan((s) => ({ ...s, obserwacje: [...(s.obserwacje || []), wpis] }))
+
   // Odhaczenie/odznaczenie mikropraktyki rozwojowej (samoocena, toggle).
   const przelaczPraktyke = (klucz) =>
     setStan((s) => {
@@ -187,6 +191,7 @@ export default function App() {
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
+          onPowtorka={(idPytan) => setEkran({ widok: 'powtorka', idPytan })}
         />
       )}
       {ekran.widok === 'rozwoj' && pracownik && (
@@ -195,6 +200,7 @@ export default function App() {
           profile={stan.profile || []}
           nauka={stan.nauka}
           praktyki={stan.praktyki || []}
+          obserwacje={stan.obserwacje || []}
           onDodajProfil={dodajProfil}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(pracownik.id_prac, obszar)}
           onPraktyka={przelaczPraktyke}
@@ -224,6 +230,19 @@ export default function App() {
           onKoniec={() => setEkran({ widok: 'profil' })}
         />
       )}
+      {ekran.widok === 'powtorka' && pracownik && (
+        <Quiz
+          pracownik={pracownik}
+          tytul="Powtórka (utrwalenie)"
+          zestawPytan={ekran.idPytan.map((id) => pytania.find((p) => p.id === id)).filter(Boolean)}
+          pytania={pytania}
+          wyniki={stan.wyniki}
+          kolejka={stan.kolejka}
+          onWynik={dodajWynik}
+          onDoKolejki={dodajDoKolejki}
+          onKoniec={() => setEkran({ widok: 'profil' })}
+        />
+      )}
       {ekran.widok === 'przedsiebiorca' && jestWlascicielem && (
         <EntrepreneurPanel
           stan={stan}
@@ -238,7 +257,10 @@ export default function App() {
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           profile={stan.profile || []}
+          obserwacje={stan.obserwacje || []}
+          oceniajacy={oceniajacy}
           onDodajProfil={dodajProfil}
+          onDodajObserwacje={dodajObserwacje}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

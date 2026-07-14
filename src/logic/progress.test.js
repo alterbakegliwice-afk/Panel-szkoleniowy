@@ -6,7 +6,7 @@ import {
   postepTomu,
   profilPracownika
 } from './progress.js'
-import { historiaPracownika } from './progress.js'
+import { historiaPracownika, pozycjeDoPowtorki, podsumowaniePowtorek, INTERWALY_POWTOREK_DNI } from './progress.js'
 import { eksportPanelM5 } from './export.js'
 import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
@@ -237,5 +237,62 @@ describe('kopia zapasowa — pełny round-trip stanu', () => {
   it('odrzuca kopię z niepoprawnym bankiem', () => {
     const kopia = eksportKopii({ ...stan, bank: { pytania: [{ id: 'X', tom: 'T', poziom: 'JUNIOR', typ: 'jednokrotny', ccp: false, pytanie: '?', wzorzec: 'w', opcje: ['a', 'b'], poprawne: [9] }] } })
     expect(walidujKopie(kopia)).toMatch(/Bank w kopii/)
+  })
+})
+
+describe('spaced retrieval — rozłożone powtórki wiedzy', () => {
+  const pytania = [
+    { id: 'A1', tom: 'II Zakwas', poziom: 'JUNIOR', ccp: false, typ: 'jednokrotny', pytanie: 'A1?', opcje: ['x', 'y'], poprawne: [0] },
+    { id: 'C1', tom: 'IV Wypiek', poziom: 'JUNIOR', ccp: true, typ: 'jednokrotny', pytanie: 'C1?', opcje: ['x', 'y'], poprawne: [0] },
+    { id: 'O1', tom: 'II Zakwas', poziom: 'JUNIOR', ccp: false, typ: 'otwarty', pytanie: 'O1?' } // bez opcji → nie powtarzalne
+  ]
+  const w = (id, data, zaliczyl) => ({ data, id_prac: 'P-01', id_pytania: id, zaliczyl, oceniajacy: 'auto', notatka: '' })
+  const TERAZ = '2026-07-01T00:00:00.000Z'
+
+  it('pozycja zaliczona świeżo NIE jest jeszcze do powtórki (przed odstępem)', () => {
+    const wyniki = [w('A1', '2026-06-28T00:00:00.000Z', true)] // 3 dni temu, interwał 7
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('pozycja zaliczona dawniej niż odstęp serii wraca do powtórki', () => {
+    const wyniki = [w('A1', '2026-06-20T00:00:00.000Z', true)] // 11 dni temu > 7 (seria 1)
+    const due = pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)
+    expect(due.map((d) => d.id)).toEqual(['A1'])
+    expect(due[0].seria).toBe(1)
+  })
+
+  it('rozszerzający harmonogram: 2 zaliczenia z rzędu → dłuższy odstęp (30 dni)', () => {
+    const wyniki = [w('A1', '2026-05-01T00:00:00.000Z', true), w('A1', '2026-06-15T00:00:00.000Z', true)]
+    // 16 dni od ostatniego, seria 2 → interwał 30 → jeszcze nie
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+    // ale 40 dni od ostatniego → tak
+    const pozniej = pozycjeDoPowtorki(pytania, wyniki, 'P-01', '2026-07-25T00:00:00.000Z')
+    expect(pozniej.map((d) => d.id)).toEqual(['A1'])
+    expect(pozniej[0].seria).toBe(2)
+  })
+
+  it('oblanie kasuje serię — ostatni wpis niezaliczony nie idzie do powtórki (to nauka)', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('A1', '2026-06-01T00:00:00.000Z', false)]
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('CCP pierwsze na liście (bezpieczeństwo najważniejsze)', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('C1', '2026-01-01T00:00:00.000Z', true)]
+    const due = pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)
+    expect(due[0].id).toBe('C1')
+    expect(due[0].ccp).toBe(true)
+  })
+
+  it('pytania bez opcji (otwarte/praktyczne) nie wchodzą do powtórek', () => {
+    const wyniki = [w('O1', '2026-01-01T00:00:00.000Z', true)]
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('podsumowaniePowtorek liczy pozycje i CCP', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('C1', '2026-01-01T00:00:00.000Z', true)]
+    const pod = podsumowaniePowtorek(pytania, wyniki, 'P-01', TERAZ)
+    expect(pod.liczba).toBe(2)
+    expect(pod.ccp).toBe(1)
+    expect(INTERWALY_POWTOREK_DNI[0]).toBe(7)
   })
 })
