@@ -18,6 +18,7 @@ import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
 import Rozwoj from './components/Rozwoj.jsx'
 import MojDzien from './components/MojDzien.jsx'
 import Zgloszenia from './components/Zgloszenia.jsx'
+import Technika from './components/Technika.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
 
@@ -148,6 +149,7 @@ export default function App() {
     zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
     zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
+    zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
@@ -160,6 +162,7 @@ export default function App() {
   if (jestWlascicielem) {
     const nowych = wczytajZgloszenia().filter((z) => z.status === 'nowe').length
     zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowych ? ` (${nowych})` : ''}` })
+    zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
     zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
   }
@@ -237,6 +240,20 @@ export default function App() {
           onWynik={dodajWynik}
           onDoKolejki={dodajDoKolejki}
           onKoniec={() => setEkran({ widok: 'profil' })}
+        />
+      )}
+      {ekran.widok === 'technika' && (pracownik || jestWlascicielem) && (
+        <Technika
+          uczen={
+            pracownik || { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
+          }
+          wyniki={stan.wyniki}
+          nauka={stan.nauka}
+          konfig={stan.konfig}
+          onWynik={dodajWynik}
+          onPrzerobiony={(obszar) =>
+            oznaczPrzerobiony(pracownik ? pracownik.id_prac : ID_WLASCICIEL, obszar)
+          }
         />
       )}
       {ekran.widok === 'przedsiebiorca' && jestWlascicielem && (

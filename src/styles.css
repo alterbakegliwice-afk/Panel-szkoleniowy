@@ -441,6 +441,23 @@ details summary:hover { color: var(--akcent-ciemny); }
 .status-zamkniete { background: var(--ok-tlo); color: var(--ok); }
 .odpowiedz-zgloszenia { color: var(--cichy); font-size: .85rem; border-left: 3px solid var(--linia-mocna); padding-left: .6rem; }
 
+/* ---------- panel techniczny (park maszynowy) ---------- */
+.diag-szukaj .pole { margin-top: .5rem; }
+.diag-karta { border-left: 4px solid var(--linia-mocna); margin-top: .8rem; }
+.diag-gora { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.diag-gora h3 { margin: 0; }
+.diag-ryzyko { padding: .1rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+.diag-ryzyko.jakosc { background: var(--toku-tlo); color: var(--toku); }
+.diag-ryzyko.awaria { background: var(--zloto-tint); color: var(--zloto); }
+.diag-ryzyko.bezp { background: var(--brak-tlo); color: var(--brak); }
+.diag-odczyt { font-style: italic; color: var(--cichy); margin: .5rem 0; }
+.diag-sekcje { display: grid; gap: .4rem 1.4rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.diag-sekcje h4 { margin: .4rem 0 .2rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--cichy); }
+.diag-serwis { margin: .6rem 0 0; font-size: .88rem; border-left: 3px solid var(--zloto); padding-left: .6rem; }
+.diag-serwis.ok { border-left-color: var(--ok); color: var(--ok); }
+.diag-kto { padding: .1rem .5rem; border-radius: 999px; font-size: .74rem; font-weight: 700; background: var(--ok-tlo); color: var(--ok); }
+.diag-kto.serwis { background: var(--zloto-tint); color: var(--zloto); }
+
 /* przełączniki kierownika w tabeli pracowników */
 .kierownik-przelacznik { display: inline-flex; align-items: center; gap: .3rem; margin-right: .7rem; font-size: .8rem; white-space: nowrap; cursor: pointer; }
 .kierownik-przelacznik input { accent-color: var(--akcent); }

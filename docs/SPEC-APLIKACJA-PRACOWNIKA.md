@@ -128,6 +128,27 @@ z `id_prac` zalogowanego pracownika.
 6. **Jakość** — testy `vitest`, e2e Playwright tam gdzie są; przegląd grill-me-codex
    przy dostępnym CLI Codex; push na `claude/employee-app-tasks-training-pqsw3n`.
 
+## 4a. Panel Techniczny (rozszerzenie 2026-07-14)
+
+Zakładka **Technika** w Panelu (pracownik i Właściciel): park maszynowy na
+poziomie praktycznym — czytanie zachowania maszyny, diagnoza „co ją boli",
+granica samodzielnej naprawy vs serwis, ulepszenia.
+
+- Dane: `src/data/modul_techniczny.json` — 8 maszyn (piec trzonowy IBIS,
+  piec konwekcyjny Bongard, chłodnia Asber, Tradilevain 40L, miesiarka
+  spiralna, garownia, sonda Testo 106, wałkownica). Każda maszyna:
+  `nauka` (jak działa — format `Learning`), `diagnostyka[]`
+  (objaw → odczyt → przyczyny → działania → kiedy serwis, ryzyko:
+  jakość/awaria/bezpieczeństwo), `konserwacja[]` (co/kiedy/kto),
+  `pytania[]` (format `walidujBank`; pytania CCP1/CCP4 z `ccp: true`).
+- Logika: `src/logic/technika.js` — postęp per maszyna (reguły tomów)
+  + wyszukiwarka objawów `szukajObjawow()` (dopasowanie per słowo,
+  bez diakrytyki — „blady spod" znajduje „Blady spód").
+- Zasada: nauka → quiz (jak tomy), ale **diagnostyka dostępna zawsze** —
+  objaw na hali nie czeka na zaliczenie quizu.
+- Wyniki quizów logują się do wspólnego `WYNIKI` (append-only), więc
+  Właściciel widzi postęp techniczny zespołu tak samo jak merytoryczny.
+
 ## 5. Poza zakresem (świadomie)
 
 - Synchronizacja między urządzeniami (dane żyją per przeglądarka; transfer = kopia JSON).
