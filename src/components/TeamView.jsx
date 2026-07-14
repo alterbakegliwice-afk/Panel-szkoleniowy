@@ -1,5 +1,6 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
+import { TECHNIKA, postepTechniki } from '../logic/technika.js'
 import HistoryList from './HistoryList.jsx'
 import ImportWyniku from './ImportWyniku.jsx'
 
@@ -78,6 +79,48 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
         (Pomocnik → JUNIOR, Piekarz → SAMODZIELNY itd.). „✓" = kryteria spełnione w systemie;
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
+
+      <div className="karta">
+        <h2>Technika — znajomość parku maszynowego</h2>
+        <p className="cichy mini">
+          Postęp quizów Panelu Technicznego per maszyna (próg jak w tomach). Kto „czyta" maszyny,
+          ten diagnozuje objawy zamiast dzwonić po serwis — kolumny to maszyny, najedź na ikonę.
+        </p>
+        <div className="tabela-otoczka">
+          <table className="tabela">
+            <thead>
+              <tr>
+                <th>Pracownik</th>
+                <th>Ogólny</th>
+                {TECHNIKA.maszyny.map((m) => (
+                  <th key={m.id} title={m.nazwa}>{m.ikona}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {pracownicy.map((prac) => {
+                const pt = postepTechniki(wyniki, prac.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
+                return (
+                  <tr key={prac.id_prac}>
+                    <td><strong>{prac.imie}</strong></td>
+                    <td><strong>{proc(pt.procent)}%</strong></td>
+                    {pt.maszyny.map(({ maszyna: m, postep: pm }) => (
+                      <td key={m.id} title={`${m.nazwa}: ${pm.zaliczonych}/${pm.pytan} pytań`}>
+                        <div className="komorka-tom">
+                          <div className="mini-pasek">
+                            <div className="mini-wypelnienie" style={{ width: proc(pm.procent) + '%' }} />
+                          </div>
+                          <span className="mini-proc">{proc(pm.procent)}%</span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div className="karta">
         <h2>Rozwój kompetencji (Work Profile)</h2>

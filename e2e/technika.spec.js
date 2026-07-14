@@ -24,6 +24,17 @@ test('Technika: wyszukiwarka objawów prowadzi do diagnozy właściwej maszyny',
   await expect(page.getByText(/Kiedy serwis:/).first()).toBeVisible()
 })
 
+test('Technika: Właściciel widzi postęp techniczny zespołu w widoku Zespół', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await expect(page.getByText('Technika — znajomość parku maszynowego')).toBeVisible()
+  // kolumny maszyn (ikony z tytułami) + wiersz przykładowego pracownika
+  await expect(page.locator('th[title*="IBIS"]')).toBeVisible()
+  // Właściciel też ma swoją zakładkę Technika (uczy się pod osobnym id)
+  await page.getByRole('button', { name: 'Technika', exact: true }).click()
+  await expect(page.getByRole('heading', { name: /Panel Techniczny/ })).toBeVisible()
+})
+
 test('Technika: quiz odblokowuje się dopiero po nauce „Jak działa"', async ({ page }) => {
   await page.goto('/')
   await page.locator('.profil-kafel').first().click()

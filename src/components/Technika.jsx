@@ -47,9 +47,13 @@ export default function Technika({ uczen, wyniki, nauka, konfig, onWynik, onPrze
 
   if (widok.typ === 'diagnoza') {
     const m = maszynaTechniczna(widok.id)
+    const nauczony = czyPrzerobiono(nauka, uczen.id_prac, m.nazwa)
     return (
       <div className="technika">
-        <button className="cichy-link" onClick={() => setWidok({ typ: 'lista' })}>← Wróć do parku maszyn</button>
+        <div className="rzad bez-druku">
+          <button className="cichy-link" onClick={() => setWidok({ typ: 'lista' })}>← Wróć do parku maszyn</button>
+          <button className="cichy-link" onClick={() => window.print()}>🖨 Wydrukuj kartę maszyny</button>
+        </div>
         <div className="karta nauka-naglowek">
           <span className="eyebrow">Diagnostyka · {m.kategoria}</span>
           <h1>{m.ikona} {m.nazwa}</h1>
@@ -59,6 +63,25 @@ export default function Technika({ uczen, wyniki, nauka, konfig, onWynik, onPrze
         {m.diagnostyka.map((d, i) => (
           <KartaDiagnozy key={i} d={d} />
         ))}
+
+        {m.dokumentacja?.length > 0 && (
+          <div className="karta">
+            <h3>📄 Dokumentacja producenta</h3>
+            <p className="cichy mini">
+              DTR i karty produktu — do sięgnięcia PRZED rozkręceniem czegokolwiek i przy każdym
+              zgłoszeniu serwisowym (numer modelu + objaw z karty diagnostycznej = krótsza wizyta).
+            </p>
+            <ul className="nauka-punkty">
+              {m.dokumentacja.map((d, i) => (
+                <li key={i}>
+                  <a href={d.url} target="_blank" rel="noreferrer">{d.tytul}</a>
+                  {d.typ && <span className="cichy mini"> · {d.typ}</span>}
+                  {d.uwaga && <span className="cichy mini"> — {d.uwaga}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="karta">
           <h3>Konserwacja — kto, co, kiedy</h3>
@@ -77,6 +100,20 @@ export default function Technika({ uczen, wyniki, nauka, konfig, onWynik, onPrze
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <div className="karta nauka-cta bez-druku">
+          <p className="cichy">
+            {nauczony
+              ? 'Materiał „Jak działa" masz przerobiony — sprawdź, czy umiesz czytać tę maszynę.'
+              : 'Zanim quiz: przerób materiał „Jak działa" — diagnostyka mówi CO robić, materiał tłumaczy DLACZEGO.'}
+          </p>
+          <div className="rzad">
+            <button className="drugi" onClick={() => setWidok({ typ: 'nauka', id: m.id })}>📖 Jak działa</button>
+            <button className="glowny" disabled={!nauczony} onClick={() => setWidok({ typ: 'quiz', id: m.id })}>
+              Sprawdź wiedzę →
+            </button>
           </div>
         </div>
       </div>

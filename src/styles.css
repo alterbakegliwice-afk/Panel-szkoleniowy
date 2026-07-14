@@ -462,6 +462,13 @@ details summary:hover { color: var(--akcent-ciemny); }
 .kierownik-przelacznik { display: inline-flex; align-items: center; gap: .3rem; margin-right: .7rem; font-size: .8rem; white-space: nowrap; cursor: pointer; }
 .kierownik-przelacznik input { accent-color: var(--akcent); }
 
+/* druk karty maszyny: sama treść diagnostyczna, bez nawigacji i przycisków */
+@media print {
+  .naglowek, .stopka, .bez-druku, .diag-szukaj, button { display: none !important; }
+  .karta, .diag-karta { break-inside: avoid; box-shadow: none; }
+  body { background: #fff; }
+}
+
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
