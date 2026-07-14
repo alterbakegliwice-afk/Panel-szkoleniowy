@@ -2,10 +2,11 @@ import { profilPracownika, historiaPracownika } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import HistoryList from './HistoryList.jsx'
 import ImportWyniku from './ImportWyniku.jsx'
+import ObserwacjeMentora from './ObserwacjeMentora.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile, onDodajProfil }) {
+export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile, obserwacje, oceniajacy, onDodajProfil, onDodajObserwacje }) {
   const proc = (x) => Math.round(x * 100)
   const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
   const wiersze = pracownicy.map((prac) => ({
@@ -138,6 +139,16 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
           pracownicy={pracownicy}
           profile={profile || []}
           onDodajProfil={onDodajProfil}
+        />
+      )}
+
+      {onDodajObserwacje && (
+        <ObserwacjeMentora
+          pracownicy={pracownicy}
+          profile={profile || []}
+          obserwacje={obserwacje || []}
+          oceniajacy={oceniajacy}
+          onDodajObserwacje={onDodajObserwacje}
         />
       )}
 

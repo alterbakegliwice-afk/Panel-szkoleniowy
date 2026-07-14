@@ -418,6 +418,23 @@ details summary:hover { color: var(--akcent-ciemny); }
 .link-akcja:hover { color: var(--akcent); }
 .pin-edycja .pole.waski { width: 5rem; }
 
+/* spaced retrieval — karta „Do powtórki" */
+.powtorki-karta { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
+.powtorki-lista { list-style: none; margin: .6rem 0 .8rem; padding: 0; display: grid; gap: .35rem; }
+.powtorki-lista li { display: flex; align-items: center; gap: .5rem; font-size: .84rem; }
+.powtorki-tom { font-weight: 650; }
+
+/* triangulacja — obserwacja Mentora vs samoocena */
+.obs-form { display: flex; flex-wrap: wrap; gap: .8rem; margin: .6rem 0; }
+.obs-zestawienia { margin-top: 1rem; }
+.obs-lista { display: grid; gap: .4rem; margin-top: .5rem; }
+.obs-wiersz { display: flex; flex-wrap: wrap; gap: .3rem 1rem; align-items: center; padding: .45rem .6rem; border-radius: var(--r); background: var(--karta-inset); font-size: .82rem; }
+.obs-wiersz.obs-rozjazd { background: var(--brak-tlo); border-left: 3px solid var(--brak); }
+.obs-obszar { font-weight: 700; min-width: 12ch; }
+.obs-flaga { color: var(--brak-ciemny); font-weight: 650; width: 100%; }
+.obs-inline { font-size: .8rem; color: var(--akcent-ciemny); background: var(--akcent-tint); padding: .4rem .6rem; border-radius: var(--r); margin: .3rem 0; line-height: 1.45; }
+.obs-inline-rozjazd { color: var(--brak-ciemny); background: var(--brak-tlo); }
+
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
