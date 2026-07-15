@@ -19,6 +19,7 @@ import Rozwoj from './components/Rozwoj.jsx'
 import MojDzien from './components/MojDzien.jsx'
 import Zgloszenia from './components/Zgloszenia.jsx'
 import Technika from './components/Technika.jsx'
+import Sprzatanie from './components/Sprzatanie.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
 
@@ -150,6 +151,7 @@ export default function App() {
     zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
     zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
@@ -163,6 +165,7 @@ export default function App() {
     const nowych = wczytajZgloszenia().filter((z) => z.status === 'nowe').length
     zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowych ? ` (${nowych})` : ''}` })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
     zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
   }
@@ -244,6 +247,20 @@ export default function App() {
       )}
       {ekran.widok === 'technika' && (pracownik || jestWlascicielem) && (
         <Technika
+          uczen={
+            pracownik || { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
+          }
+          wyniki={stan.wyniki}
+          nauka={stan.nauka}
+          konfig={stan.konfig}
+          onWynik={dodajWynik}
+          onPrzerobiony={(obszar) =>
+            oznaczPrzerobiony(pracownik ? pracownik.id_prac : ID_WLASCICIEL, obszar)
+          }
+        />
+      )}
+      {ekran.widok === 'sprzatanie' && (pracownik || jestWlascicielem) && (
+        <Sprzatanie
           uczen={
             pracownik || { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
           }

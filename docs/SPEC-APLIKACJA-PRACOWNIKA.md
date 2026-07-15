@@ -153,6 +153,26 @@ granica samodzielnej naprawy vs serwis, ulepszenia.
   wisi przy maszynie na hali; oraz opcjonalną sekcję `dokumentacja[]`
   (linki do DTR/kart producenta: `{tytul, url, typ, uwaga}`).
 
+## 4b. Moduł Sprzątanie (rozszerzenie 2026-07-14)
+
+Zakładka **Sprzątanie** — higiena produkcji „skutecznie i wydajnie",
+zbudowana analogicznie do Panelu Technicznego i na tym samym silniku:
+
+- Wspólny silnik: `src/logic/panelPraktyczny.js` (wyszukiwarka
+  objawów/problemów, postęp per pozycja) + `src/components/PanelPraktyczny.jsx`
+  (siatka pozycji, karty diagnostyczne, rytm, druk, quiz). Technika
+  i Sprzątanie to cienkie wrappery z etykietami domeny.
+- Dane: `src/data/modul_sprzatanie.json` — 8 stref (metoda i chemia
+  z kołem Sinnera, stanowisko/clean-as-you-go + alergeny, strefa pieców
+  i okap, chłodnie i magazyn/FIFO, strefy wilgotne, drobny sprzęt,
+  posadzki i odpływy, odpady i szkodniki). Każda strefa: nauka, karty
+  problemów (objaw → odczyt → przyczyny → działania → granica serwisu),
+  rytm sprzątania (co/kiedy/kto), pytania (format `walidujBank`;
+  pytanie CCP4 o mycie chłodni z `ccp: true`).
+- Widok Zespół Właściciela: tabela „Sprzątanie — higiena skuteczna
+  i wydajna" (postęp per pracownik × strefa), obok tabeli Techniki
+  (wspólny komponent `TabelaPraktyczna`).
+
 ## 5. Poza zakresem (świadomie)
 
 - Synchronizacja między urządzeniami (dane żyją per przeglądarka; transfer = kopia JSON).

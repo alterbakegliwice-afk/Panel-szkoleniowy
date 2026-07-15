@@ -1,6 +1,8 @@
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
-import { TECHNIKA, postepTechniki } from '../logic/technika.js'
+import { TECHNIKA } from '../logic/technika.js'
+import { SPRZATANIE } from '../logic/sprzatanie.js'
+import { postepPozycji } from '../logic/panelPraktyczny.js'
 import HistoryList from './HistoryList.jsx'
 import ImportWyniku from './ImportWyniku.jsx'
 
@@ -80,47 +82,23 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
         formalne nadanie statusu to akcja Właściciela. Brak CCP blokuje niezależnie od procentu ogólnego.
       </p>
 
-      <div className="karta">
-        <h2>Technika — znajomość parku maszynowego</h2>
-        <p className="cichy mini">
-          Postęp quizów Panelu Technicznego per maszyna (próg jak w tomach). Kto „czyta" maszyny,
-          ten diagnozuje objawy zamiast dzwonić po serwis — kolumny to maszyny, najedź na ikonę.
-        </p>
-        <div className="tabela-otoczka">
-          <table className="tabela">
-            <thead>
-              <tr>
-                <th>Pracownik</th>
-                <th>Ogólny</th>
-                {TECHNIKA.maszyny.map((m) => (
-                  <th key={m.id} title={m.nazwa}>{m.ikona}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {pracownicy.map((prac) => {
-                const pt = postepTechniki(wyniki, prac.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
-                return (
-                  <tr key={prac.id_prac}>
-                    <td><strong>{prac.imie}</strong></td>
-                    <td><strong>{proc(pt.procent)}%</strong></td>
-                    {pt.maszyny.map(({ maszyna: m, postep: pm }) => (
-                      <td key={m.id} title={`${m.nazwa}: ${pm.zaliczonych}/${pm.pytan} pytań`}>
-                        <div className="komorka-tom">
-                          <div className="mini-pasek">
-                            <div className="mini-wypelnienie" style={{ width: proc(pm.procent) + '%' }} />
-                          </div>
-                          <span className="mini-proc">{proc(pm.procent)}%</span>
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <TabelaPraktyczna
+        tytul="Technika — znajomość parku maszynowego"
+        opis="Postęp quizów Panelu Technicznego per maszyna (próg jak w tomach). Kto „czyta&quot; maszyny, ten diagnozuje objawy zamiast dzwonić po serwis — kolumny to maszyny, najedź na ikonę."
+        pozycje={TECHNIKA.maszyny}
+        pracownicy={pracownicy}
+        wyniki={wyniki}
+        konfig={konfig}
+      />
+
+      <TabelaPraktyczna
+        tytul="Sprzątanie — higiena skuteczna i wydajna"
+        opis="Postęp quizów modułu Sprzątania per strefa. Kolumny to strefy higieny — najedź na ikonę."
+        pozycje={SPRZATANIE.strefy}
+        pracownicy={pracownicy}
+        wyniki={wyniki}
+        konfig={konfig}
+      />
 
       <div className="karta">
         <h2>Rozwój kompetencji (Work Profile)</h2>
@@ -234,6 +212,52 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
             </details>
           )
         })}
+      </div>
+    </div>
+  )
+}
+
+// Tabela postępu panelu praktycznego (Technika/Sprzątanie): pracownik ×
+// pozycja (maszyna/strefa). Kolumny to ikony pozycji z pełną nazwą w title.
+function TabelaPraktyczna({ tytul, opis, pozycje, pracownicy, wyniki, konfig }) {
+  const proc = (x) => Math.round(x * 100)
+  return (
+    <div className="karta">
+      <h2>{tytul}</h2>
+      <p className="cichy mini">{opis}</p>
+      <div className="tabela-otoczka">
+        <table className="tabela">
+          <thead>
+            <tr>
+              <th>Pracownik</th>
+              <th>Ogólny</th>
+              {pozycje.map((m) => (
+                <th key={m.id} title={m.nazwa}>{m.ikona}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {pracownicy.map((prac) => {
+              const pt = postepPozycji(pozycje, wyniki, prac.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
+              return (
+                <tr key={prac.id_prac}>
+                  <td><strong>{prac.imie}</strong></td>
+                  <td><strong>{proc(pt.procent)}%</strong></td>
+                  {pt.maszyny.map(({ maszyna: m, postep: pm }) => (
+                    <td key={m.id} title={`${m.nazwa}: ${pm.zaliczonych}/${pm.pytan} pytań`}>
+                      <div className="komorka-tom">
+                        <div className="mini-pasek">
+                          <div className="mini-wypelnienie" style={{ width: proc(pm.procent) + '%' }} />
+                        </div>
+                        <span className="mini-proc">{proc(pm.procent)}%</span>
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   )

@@ -1,0 +1,1167 @@
+{
+  "wersja": "2026-07-14",
+  "tytul": "Sprzątanie — skutecznie i wydajnie",
+  "opis": "Higiena produkcji od strony rzemiosła: jak sprzątać, żeby było CZYSTO (skuteczność — mycie, dezynfekcja, chemia dobrana do brudu) i SZYBKO (wydajność — koło Sinnera, sprzątanie w rytmie produkcji, właściwa kolejność). Cel: pracownik, który patrzy na brud i wie, czym go zdjąć, w jakiej kolejności — i czego NIGDY nie mieszać.",
+  "strefy": [
+    {
+      "id": "SPRZ-METODA",
+      "nazwa": "Metoda i chemia mycia",
+      "kategoria": "Fundament",
+      "ikona": "🧪",
+      "rola": "Fundament wszystkich stref: dobór chemii do brudu, kolejność mycie→dezynfekcja i koło Sinnera. Kto to rozumie, sprząta 2× szybciej z lepszym efektem — kto nie, poleruje brud.",
+      "nauka": {
+        "intro": "Sprzątanie to technologia, nie machanie ścierką. Dwie zasady rządzą wszystkim: (1) brud rozpuszcza się chemią DOBRANĄ do jego natury — tłuszcz zasadą, kamień kwasem; (2) skuteczność to koło Sinnera: Czas × Temperatura × Chemia × Tarcie = 100%. Ujmiesz jednego składnika — musisz dodać innych. To jest cała „magia” szybkiego i skutecznego sprzątania.",
+        "karty": [
+          {
+            "tytul": "Koło Sinnera — silnik wydajności",
+            "punkty": [
+              "Cztery dźwignie: CZAS działania, TEMPERATURA wody, CHEMIA (rodzaj i stężenie), TARCIE (mechanika). Suma zawsze = 100%: dłuższe namoczenie = mniej szorowania; gorętsza woda = mniej chemii.",
+              "Najtańsza dźwignia to CZAS: nanieś środek i zostaw na czas z etykiety (spienione blachy niech PRACUJĄ, gdy ty robisz co innego) — wracasz i spłukujesz zamiast szorować.",
+              "Najdroższa dźwignia to TARCIE (twoje ręce i minuty). Jeśli szorujesz z wysiłkiem — źle dobrałeś pozostałe trzy, nie „za słabo się starasz”.",
+              "Temperatura ma granice: białko (jajko, ciasto) ścina się powyżej ~60°C i PRZYKLEJA — zmywanie resztek ciasta zaczynaj letnią wodą, gorąca na tłuszcz.",
+              "Stężenie z etykiety, nie „na oko”: za mało = nie działa, za dużo = smugi, koszt i chemia zostająca na powierzchni kontaktu z żywnością."
+            ],
+            "zrodlo": "Koło Sinnera (podstawa technologii mycia); karty charakterystyki środków"
+          },
+          {
+            "tytul": "Chemia dobrana do brudu (i czego nigdy nie mieszać)",
+            "punkty": [
+              "TŁUSZCZ (blachy, okap, filtry) → ZASADA (alkaliczny odtłuszczacz) + ciepła woda. KAMIEŃ i naloty mineralne (zmywak, dysze, wytwornice pary) → KWAS (odkamieniacz). Odwrotnie nie zadziała — będziesz szorował godzinami.",
+              "CZYSTO ≠ ZDEZYNFEKOWANE. Dezynfekcja działa tylko na UMYTEJ powierzchni — na brudzie środek wiąże się z brudem, nie z bakteriami. Kolejność zawsze: mycie → spłukanie → dezynfekcja → czas kontaktu → (spłukanie, jeśli etykieta wymaga).",
+              "CZAS KONTAKTU dezynfekcji to parametr z etykiety (typowo 5–15 min) — psiknięcie i natychmiastowe wytarcie to teatr, nie dezynfekcja.",
+              "NIGDY nie mieszaj chemii: chlor (podchloryn) + kwas (odkamieniacz, ocet) = trujący gazowy chlor; chlor + amoniak = chloraminy. Objaw pomyłki: ostry zapach, pieczenie oczu/gardła → natychmiast wyjść, wywietrzyć, zgłosić.",
+              "Karty charakterystyki chemii w segregatorze przy stanowisku chemicznym; środki TYLKO w oryginalnych, opisanych opakowaniach — przelewanie do butelek po napojach to prosta droga do wypadku."
+            ],
+            "zrodlo": "Karty charakterystyki (MSDS); zasady BHP chemii; plan higieny"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Biały nalot / smugi na powierzchniach po umyciu",
+          "odczyt": "To nie „źle umyte” — to osad mineralny (kamień z twardej wody) albo nadmiar chemii, którego nie spłukano.",
+          "przyczyny": [
+            "Kamień z twardej wody — mycie zasadą/płynem go nie ruszy (zła chemia do tego brudu)",
+            "Za duże stężenie środka („na oko”) i brak spłukania",
+            "Wycieranie brudną/nasyconą ścierką — rozprowadzasz, nie zbierasz"
+          ],
+          "dzialania": [
+            "Nalot mineralny → środek KWAŚNY wg etykiety, czas działania, spłukać",
+            "Dozuj wg etykiety (miarka/dozownik, nie chlust) i spłukuj powierzchnie kontaktowe",
+            "Ścierki zmieniaj, gdy przestają zbierać — nasycona ścierka smaruje"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Tłusty film mimo mycia — powierzchnia „ciągnie” pod palcem",
+          "odczyt": "Tłuszcz nie został zmydlony: za zimna woda, za słaba chemia albo za krótki czas — koło Sinnera się nie domknęło.",
+          "przyczyny": [
+            "Mycie zimną wodą (tłuszcz tężeje zamiast się rozpuszczać)",
+            "Płyn uniwersalny tam, gdzie trzeba alkalicznego odtłuszczacza",
+            "Brak czasu działania — nałożone i od razu starte"
+          ],
+          "dzialania": [
+            "Gorąca woda + odtłuszczacz zasadowy wg etykiety",
+            "Nanieś, odczekaj czas z etykiety, dopiero wtedy zbieraj",
+            "Przy grubym nalocie (okap): namoczyć/napienić dwukrotnie zamiast trzeć raz „na siłę”"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Ostry zapach chemii, pieczenie oczu lub gardła przy sprzątaniu",
+          "odczyt": "ALARM: prawdopodobnie zmieszały się środki (chlor + kwas/amoniak) — powstaje trujący gaz. To wypadek chemiczny, nie „mocny zapach”.",
+          "przyczyny": [
+            "Dezynfekcja chlorowa nałożona na nieopłukany odkamieniacz (lub odwrotnie)",
+            "Zlane resztki różnych środków do jednego wiadra/butelki",
+            "Sprzątanie bez wietrzenia w małym pomieszczeniu"
+          ],
+          "dzialania": [
+            "NATYCHMIAST przerwij, wyjdź z pomieszczenia, otwórz okna/drzwi",
+            "Nie wracaj do odczuwalnego ustąpienia zapachu; przy duszności/kaszlu — pomoc medyczna",
+            "Zgłoś do lead + wpis do DZIENNIKA; powierzchnię obficie spłukać wodą po wywietrzeniu",
+            "Systemowo: między kwasem a chlorem ZAWSZE pełne spłukanie; nigdy nie mieszaj środków"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Dezynfekcja „nie działa” — wymazy/kontrole wykazują zanieczyszczenie",
+          "odczyt": "Dezynfekcja na brudzie albo bez czasu kontaktu = brak dezynfekcji, choć czynność „wykonano”.",
+          "przyczyny": [
+            "Pominięte mycie przed dezynfekcją (środek związał się z brudem)",
+            "Czas kontaktu skrócony do zera (psik-wytarcie)",
+            "Środek przeterminowany / roztwór roboczy sprzed dni (traci moc)"
+          ],
+          "dzialania": [
+            "Wróć do sekwencji: mycie → spłukanie → dezynfekcja → CZAS z etykiety",
+            "Roztwory robocze przygotowuj świeże wg planu higieny (data na spryskiwaczu)",
+            "Zweryfikuj daty ważności koncentratów"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Kontrola stanu i dat roztworów roboczych (spryskiwacze z datą przygotowania)", "kiedy": "start zmiany", "kto": "pracownik" },
+        { "co": "Uzupełnienie dozowników, kontrola miarek", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Przegląd segregatora kart charakterystyki + stan magazynu chemii (oryginalne opakowania, opisy)", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Rewizja planu higieny (czy odpowiada realnej produkcji)", "kiedy": "co 6 miesięcy", "kto": "kierownik/Właściciel" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-MET-1",
+          "tom": "Sprzątanie: Metoda i chemia",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Blachy po croissantach są tłuste. Które podejście jest zgodne z kołem Sinnera i najmniej cię zmęczy?",
+          "opcje": [
+            "Zimna woda i mocne szorowanie od razu",
+            "Gorąca woda + odtłuszczacz zasadowy wg etykiety, odczekać czas działania, potem zebrać i spłukać",
+            "Odkamieniacz, bo jest najmocniejszy",
+            "Dezynfekcja bez mycia — zabije bakterie, to wystarczy"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Tłuszcz = zasada + temperatura + CZAS (najtańsza dźwignia). Kwas nie rozpuszcza tłuszczu, a dezynfekcja nie jest myciem. Szorowanie na zimno to płacenie tarciem za złą chemię.",
+          "zrodlo": "Koło Sinnera; karta chemii"
+        },
+        {
+          "id": "SPRZ-MET-2",
+          "tom": "Sprzątanie: Metoda i chemia",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Podczas mycia zmywaka poczułeś ostry zapach i pieczenie w gardle. Co robisz NAJPIERW?",
+          "opcje": [
+            "Dokańczam — zostało niewiele",
+            "Otwieram kran z zimną wodą, żeby spłukać zapach",
+            "Natychmiast wychodzę z pomieszczenia, otwieram drzwi/okna i zgłaszam — to objaw zmieszania chemii (trujący gaz)",
+            "Zakładam maseczkę i sprzątam dalej"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Chlor + kwas = gazowy chlor; chlor + amoniak = chloraminy. Pieczenie oczu/gardła to wypadek chemiczny — najpierw ludzie (wyjść, wywietrzyć), potem procedura (zgłoszenie, DZIENNIK).",
+          "zrodlo": "BHP chemii; diagnostyka SPRZ-METODA"
+        },
+        {
+          "id": "SPRZ-MET-3",
+          "tom": "Sprzątanie: Metoda i chemia",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które zdania o dezynfekcji są PRAWDZIWE? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Dezynfekcja działa tylko na wcześniej umytej powierzchni",
+            "Czas kontaktu z etykiety (np. 5–15 min) jest częścią procedury",
+            "Psiknięcie i natychmiastowe wytarcie wystarcza",
+            "Roztwór roboczy sprzed tygodnia działa tak samo jak świeży",
+            "Po dezynfekcji spłukujemy, jeśli etykieta środka tego wymaga"
+          ],
+          "poprawne": [0, 1, 4],
+          "wzorzec": "Sekwencja: mycie → dezynfekcja → CZAS → ewentualne spłukanie. Na brudzie środek wiąże się z brudem; stare roztwory tracą moc; „psik-wytarcie” to teatr higieny.",
+          "zrodlo": "Plan higieny; karty środków"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-STANOWISKO",
+      "nazwa": "Stanowisko pracy w cyklu produkcji",
+      "kategoria": "Produkcja",
+      "ikona": "🧹",
+      "rola": "Clean-as-you-go: stanowisko sprzątane W TRAKCIE pracy, nie po niej. To największa dźwignia wydajności całego dnia — i pierwsza bariera alergenowa.",
+      "nauka": {
+        "intro": "Najdroższe sprzątanie to „wielkie sprzątanie po wszystkim”: zaschnięte ciasto, zasypana mąka i godzina nadgodzin. Zawodowiec sprząta w mikroprzerwach cyklu (ciasto się miesi = blat już czysty) i zostawia stanowisko gotowe dla następnego. Druga rola stanowiska: to tu krzyżują się alergeny — sezam, orzechy, mak — i to tu porządek jest bezpieczeństwem, nie estetyką.",
+        "karty": [
+          {
+            "tytul": "Clean-as-you-go — rytm, nie zryw",
+            "punkty": [
+              "Reguła mikroprzerw: każde „czekam na maszynę” (miesienie, garowanie, wypiek) to okno na 2–5 min sprzątania strefy roboczej. Po zmianie zostaje TYLKO przegląd, nie sprzątanie.",
+              "Świeże ciasto schodzi skrobką w 10 sekund; zaschnięte — w 10 minut z namaczaniem. Sprzątanie odroczone to sprzątanie pomnożone.",
+              "Zasada „czyste wchodzi, brudne schodzi”: kończysz komponent → brudne naczynia OD RAZU do zmywaka (nie „na później” na blacie), narzędzia wracają na swoje miejsce (5S — miejsce oznaczone, brak szukania).",
+              "Mąka z blatu: NA SUCHO skrobką i zmiotką do kosza. Mokra ścierka na mąkę robi klej, który potem zdzierasz — to klasyczny błąd nowicjusza.",
+              "Koniec zmiany = stanowisko gotowe do startu NASTĘPNEJ zmiany (blat czysty, narzędzia na miejscach, ścierki świeże). Oceniaj po tym, czy poranny piekarz może zacząć bez przygotowań."
+            ],
+            "zrodlo": "Praktyka lean (5S, muda ruchu); model jednozmianowy Alterbake"
+          },
+          {
+            "tytul": "Alergeny i strefy — porządek jako bezpieczeństwo",
+            "punkty": [
+              "Alergeny w piekarni: sezam, mak, orzechy, mleko, jaja. Po pracy z nimi: umyć blat i narzędzia PRZED następnym produktem — ślad sezamu w chlebie „bez sezamu” to realne zagrożenie zdrowia klienta.",
+              "Kolorystyka ścierek/desek wg planu higieny (np. strefa ciasta / strefa kremów / strefa surowych jaj) — kolor mówi, gdzie ścierka może pracować; prania nie przeżywa żadna tajemnica.",
+              "Osobne pojemniki i miarki do alergenów sypkich (mak, sezam) — oznaczone, z pokrywą; nie przesypujemy „na chwilę” do nieopisanych.",
+              "Jaja surowe: po naważeniu/wybiciu mycie rąk i wymiana ścierki — salmonella wędruje ścierką szybciej niż rękami.",
+              "Ścierka ma godziny pracy: nasiąknięta i szara NIE czyści, tylko rozprowadza. Wymiana wg planu (min. w połowie zmiany), do prania — nie „dopierze się sama”."
+            ],
+            "zrodlo": "Plan higieny; zasady alergenowe HACCP"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Koniec zmiany i godzina sprzątania „zaległości”",
+          "odczyt": "To nie problem pracowitości — to brak rytmu clean-as-you-go. Sprzątanie odkładane rośnie z odsetkami (zasychanie).",
+          "przyczyny": [
+            "Mikroprzerwy cyklu (miesienie, gar, wypiek) spędzane bez planu",
+            "Brudne naczynia odkładane „na później” na blaty",
+            "Brak miejsca na narzędzia (szukanie = bałagan = odkładanie)"
+          ],
+          "dzialania": [
+            "Przypisz czynność do każdej mikroprzerwy (miesi się → skrobka na blat; garuje → zmywak)",
+            "Wprowadź zasadę „brudne od razu schodzi” — zero parkowania naczyń",
+            "Oznacz miejsca narzędzi (5S): haczyk/cień na ścianie — odkładanie trwa sekundę"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Zaschnięte ciasto na blacie/narzędziach",
+          "odczyt": "Świeże ciasto to 10 sekund skrobką; zaschnięte to sygnał, że sprzątanie przyszło za późno.",
+          "przyczyny": [
+            "Odroczone sprzątanie po komponencie",
+            "Próba mycia mąki/ciasta gorącą wodą (białko się ścina i przykleja)"
+          ],
+          "dzialania": [
+            "Zaschnięte: namoczyć LETNIĄ wodą (nie gorącą!), po zmięknięciu zejść skrobką",
+            "Nie skrobać metalem po powierzchniach rysujących się (deski, teflon)",
+            "Systemowo: skrobka wisi PRZY blacie, użycie od razu po komponencie"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Ślady maku/sezamu na blacie przy produkcie „bez alergenu”",
+          "odczyt": "Kontaminacja krzyżowa w toku — dla alergika ilości śladowe też są groźne. To bezpieczeństwo żywności, nie estetyka.",
+          "przyczyny": [
+            "Brak mycia blatu/narzędzi po pracy z alergenem",
+            "Wspólne miarki/pojemniki bez oznaczeń",
+            "Ścierka wędrująca między strefami"
+          ],
+          "dzialania": [
+            "STOP dla bieżącego produktu: oceń ryzyko z lead (czy partia miała kontakt)",
+            "Umyj blat i narzędzia; wymień ścierkę; dopiero wznów",
+            "Systemowo: sekwencjonuj produkcję (alergeny na koniec bloku) i oznacz pojemniki"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Blat + narzędzia po każdym komponencie (skrobka, na sucho przy mące)", "kiedy": "w cyklu pracy", "kto": "pracownik" },
+        { "co": "Wymiana ścierek na świeże", "kiedy": "min. w połowie zmiany i po alergenach/jajach", "kto": "pracownik" },
+        { "co": "Pełne mycie stanowiska + dezynfekcja powierzchni kontaktowych", "kiedy": "koniec zmiany", "kto": "pracownik" },
+        { "co": "Audyt 5S stanowisk (miejsca narzędzi, oznaczenia pojemników)", "kiedy": "co miesiąc", "kto": "kierownik" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-STA-1",
+          "tom": "Sprzątanie: Stanowisko pracy",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Rozsypałeś mąkę na blacie. Jak ją sprzątasz?",
+          "opcje": [
+            "Mokrą ścierką — od razu czysto",
+            "Na sucho: skrobka/zmiotka do kosza, dopiero POTEM ewentualnie wilgotna ścierka",
+            "Gorącą wodą z płynem",
+            "Zdmuchuję na podłogę i zamiatam na koniec dnia"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Mąka + woda = klej, który trzeba zdzierać. Najpierw sucho, potem mokro — ta kolejność obowiązuje wszędzie, gdzie jest mąka (blaty, posadzki, maszyny).",
+          "zrodlo": "Nauka SPRZ-STANOWISKO"
+        },
+        {
+          "id": "SPRZ-STA-2",
+          "tom": "Sprzątanie: Stanowisko pracy",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Skończyłeś posypywać chałki sezamem, następne w kolejce są bułki „czyste”. Co robisz między produktami?",
+          "opcje": [
+            "Nic — sezam to nie brud",
+            "Strzepuję blat ręką i jadę dalej",
+            "Myję blat i narzędzia, wymieniam ścierkę — sezam to alergen, a ilości śladowe też szkodzą alergikowi",
+            "Wystarczy przetrzeć suchą ścierką, którą mam pod ręką"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Alergeny (sezam, mak, orzechy) wymagają umycia powierzchni i narzędzi przed następnym produktem. Sekwencjonowanie (alergeny na koniec bloku) zmniejsza liczbę takich myć — to wydajność przez plan.",
+          "zrodlo": "Zasady alergenowe; plan higieny"
+        },
+        {
+          "id": "SPRZ-STA-3",
+          "tom": "Sprzątanie: Stanowisko pracy",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Jak najskuteczniej skrócić sprzątanie końcowe zmiany o połowę?",
+          "opcje": [
+            "Zatrudnić osobę tylko do sprzątania",
+            "Mocniejsza chemia na koniec dnia",
+            "Wpleść sprzątanie w mikroprzerwy cyklu (czekasz na miesiarkę/gar/piec = sprzątasz strefę) i odsyłać brudne od razu do zmywaka",
+            "Sprzątać co drugi dzień, ale porządnie"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Clean-as-you-go: świeży brud schodzi w sekundy, zaschnięty w minuty. Mikroprzerwy są „darmowe” — maszyna i tak pracuje. Wielkie sprzątanie na koniec to najdroższa forma higieny.",
+          "zrodlo": "Nauka SPRZ-STANOWISKO; lean 5S"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-PIECE",
+      "nazwa": "Strefa pieców i okap",
+      "kategoria": "Produkcja",
+      "ikona": "🔥",
+      "rola": "Czystość strefy gorącej to jakość wypieku (spalenizna dymi i gorzknieje), żywotność pieców i ochrona przeciwpożarowa (tłuszcz w okapie to paliwo).",
+      "nauka": {
+        "intro": "Strefa pieców rządzi się jedną zasadą nadrzędną: WODA I GORĄCE SIĘ WYKLUCZAJĄ. Zimna woda na gorący trzon pęka płytę, na gorącą szybę — pęka szyba. Sprzątanie strefy gorącej planuje się wg temperatury: co na zimno, co na ciepło, co na sucho. Drugi bohater tej strefy jest niewidoczny: tłuszcz w okapie i filtrach, który odkłada się miesiącami — aż staje się paliwem.",
+        "karty": [
+          {
+            "tytul": "Piec: co na sucho, co na zimno",
+            "punkty": [
+              "Trzon IBIS: WYŁĄCZNIE na sucho szczotką mosiężną (zasada z karty maszyny — woda = szok termiczny = pęknięta płyta). Spaloną mąkę z trzonu ściągaj po każdym dniu — zwęglona warstwa dymi i gorzknieje spody.",
+              "Szyby drzwi: tylko na ZIMNYM piecu; zaschnięte odpryski namoczyć, skrobak do szyb pod kątem (nie rysować). Czysta szyba to nie estetyka — przez brudną nie widzisz koloru wypieku i otwierasz drzwi „na sprawdzenie” (strata pary i temperatury).",
+              "Komora Bongarda: resztki i tłuszcz z blach wypalają się i osiadają na wentylatorze — cotygodniowe czyszczenie łopatek (karta maszyny) to też czynność higieniczna.",
+              "Uszczelki drzwi: mycie łagodnym środkiem, bez ostrych narzędzi — naderwana uszczelka to strata energii i pary (patrz Technika).",
+              "Front i panele: na zimno, wilgotną ścierką — nigdy strumieniem wody (elektryka za panelem)."
+            ],
+            "zrodlo": "Karty maszyn (Technika: IBIS/Bongard); poradnik konserwacji IBIS"
+          },
+          {
+            "tytul": "Okap i filtry — niewidoczne ryzyko pożarowe",
+            "punkty": [
+              "Filtry okapu zbierają mgłę tłuszczową (croissanty!) zmieszaną z pyłem mącznym — powstaje filc, który (1) dusi ciąg, (2) jest paliwem. Zapchany okap = para i dym zostają na hali.",
+              "Filtry aluminiowe: wyjąć, namoczyć w gorącym roztworze odtłuszczacza (koło Sinnera: czas!), spłukać, wysuszyć przed założeniem. Rytm: co 1–2 tygodnie przy produkcji laminatów.",
+              "Okap od środka (rynienki, króćce): raz w miesiącu na zimno; kanały wentylacyjne głębiej — to usługa specjalistyczna (firma, dokument z przeglądu — wymagany przez ubezpieczyciela jak raport pieca).",
+              "Objaw zapchania: para „wisi” nad piecami, zaparowane okna, zapach spalenizny utrzymuje się — sprawdź filtry ZANIM zgłosisz „słabą wentylację”.",
+              "Nigdy nie uruchamiaj okapu bez filtrów — tłuszcz osiada wtedy prosto w kanałach, których nie umyjesz."
+            ],
+            "zrodlo": "Praktyka ppoż. kuchni/piekarń; DTR okapu"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Dym i gorzki zapach ze spodu pieczywa",
+          "odczyt": "Na trzonie/blachach wypala się stara mąka lub tłuszcz — spalenizna dymi i przechodzi w smak spodów.",
+          "przyczyny": [
+            "Trzon nieczyszczony po dniach z podsypką (mąka zwęgla się warstwami)",
+            "Blachy z wypalonym tłuszczem (czarny, lepki nalot)"
+          ],
+          "dzialania": [
+            "Trzon: szczotka mosiężna na sucho po ostatnim wsadzie (rytm dzienny)",
+            "Blachy: gorący roztwór odtłuszczacza + namoczenie; mocno wypalonych nie ratować w nieskończoność — zgłoś do wymiany",
+            "Sprawdź, czy podsypka nie jest nadmierna (mniej mąki = mniej spalenizny)"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Para i zapachy „wiszą” na hali, zaparowane okna",
+          "odczyt": "Okap nie ciągnie. W 80% przypadków to filtry-filc, nie wentylator.",
+          "przyczyny": [
+            "Filtry zapchane tłuszczem z mąką (mycie za rzadkie względem produkcji laminatów)",
+            "Rynienki okapu pełne",
+            "Dopiero na końcu: silnik/wentylator okapu"
+          ],
+          "dzialania": [
+            "Wyjmij i umyj filtry (namoczenie w gorącym odtłuszczaczu), wysusz, załóż",
+            "Umyj rynienki i króćce od środka (okap zimny)",
+            "Bez poprawy po czystych filtrach — zgłoś: silnik/kanały to serwis"
+          ],
+          "serwis": "Czyszczenie kanałów wentylacyjnych i silnika okapu — firma specjalistyczna z dokumentem przeglądu (ppoż./ubezpieczyciel).",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Pęknięta szyba drzwi pieca po myciu",
+          "odczyt": "Szok termiczny: zimna woda/zimny środek na gorące szkło. Szyby myjemy tylko na zimnym piecu.",
+          "przyczyny": [
+            "Mycie „przy okazji” między wsadami na gorąco",
+            "Psiknięcie zimnym środkiem na ciepłą szybę"
+          ],
+          "dzialania": [
+            "Mycie szyb wyłącznie rano przed nagrzaniem albo wieczorem po wystygnięciu",
+            "Pękniętą szybę zgłoś — nie pracuj z pękniętą (traci izolację i może się wysypać)"
+          ],
+          "serwis": "Wymiana szyby — serwis producenta (szkło żaroodporne + uszczelnienie).",
+          "ryzyko": "awaria"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Trzon szczotką mosiężną na sucho; front pieca na zimno", "kiedy": "codziennie po wypieku", "kto": "pracownik" },
+        { "co": "Szyby drzwi (zimny piec), uszczelki łagodnym środkiem", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Filtry okapu: namoczenie w gorącym odtłuszczaczu, suszenie", "kiedy": "co 1–2 tygodnie", "kto": "pracownik" },
+        { "co": "Okap od środka (rynienki, króćce) na zimno", "kiedy": "co miesiąc", "kto": "pracownik/kierownik" },
+        { "co": "Czyszczenie kanałów wentylacyjnych z dokumentem przeglądu", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-PIE-1",
+          "tom": "Sprzątanie: Strefa pieców",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Kiedy i czym czyścisz trzon IBIS-a?",
+          "opcje": [
+            "Mokrym mopem zaraz po ostatnim wsadzie — na gorąco brud schodzi łatwiej",
+            "Szczotką mosiężną NA SUCHO po wypieku; woda nigdy — szok termiczny pęka płytę",
+            "Odkamieniaczem raz w tygodniu",
+            "Nie czyści się — spalona mąka to naturalna patyna"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Woda i gorący trzon się wykluczają (pęknięta płyta = wymiana przez serwis). Zwęglona mąka dymi i gorzknieje spody — dlatego rytm dzienny, na sucho.",
+          "zrodlo": "Karta maszyny IBIS; nauka SPRZ-PIECE"
+        },
+        {
+          "id": "SPRZ-PIE-2",
+          "tom": "Sprzątanie: Strefa pieców",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Para z pieców „wisi” na hali i okna parują. Jaka jest właściwa kolejność działań?",
+          "opcje": [
+            "Zgłaszam awarię wentylatora okapu",
+            "Otwieram drzwi na oścież i pracuję dalej",
+            "Sprawdzam i myję filtry okapu (najczęstsza przyczyna: filc tłuszczowo-mączny), potem rynienki; dopiero bez poprawy zgłaszam silnik/kanały",
+            "Zmniejszam zaparowanie pieców przy wypieku chleba"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Diagnoza od najtańszego i najczęstszego: filtry → rynienki → dopiero serwis. Ograniczanie pary chleba to psucie produktu dla ukrycia objawu.",
+          "zrodlo": "Diagnostyka SPRZ-PIECE"
+        },
+        {
+          "id": "SPRZ-PIE-3",
+          "tom": "Sprzątanie: Strefa pieców",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego zapchane filtry okapu to coś więcej niż problem komfortu?",
+          "opcje": [
+            "Bo brzydko wyglądają przy klientach",
+            "Bo tłuszcz zmieszany z pyłem mącznym w filtrach i kanałach to materiał palny — a przegląd kanałów z dokumentem bywa warunkiem ubezpieczenia",
+            "Bo hałasują przy pracy",
+            "Bo zwiększają zużycie prądu pieca"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Filc tłuszczowo-mączny = paliwo nad źródłem ciepła. Rytm mycia filtrów + roczny przegląd kanałów z dokumentem to ochrona ppoż., nie kosmetyka.",
+          "zrodlo": "Nauka SPRZ-PIECE (okap i filtry)"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-CHLOD",
+      "nazwa": "Chłodnie i magazyn",
+      "kategoria": "Chłód i magazyn",
+      "ikona": "❄️",
+      "rola": "Higiena chłodni to połowa CCP4: czysty skraplacz utrzymuje temperaturę, czysta komora nie hoduje pleśni, a FIFO pilnuje, żeby nic nie „umarło” w kącie.",
+      "nauka": {
+        "intro": "Chłodnia myta „kiedyś” zdradza się dwa razy: raz temperaturą (brudny skraplacz — patrz Technika), drugi raz pleśnią i zapachem w komorze. Sprzątanie chłodni wymaga planu, bo wsad musi gdzieś przeczekać mycie — a retard z kęsami nie może wyjść powyżej 8°C. Dlatego chłodnie myje się PARTIAMI i szybko, z przygotowaną wcześniej logistyką.",
+        "karty": [
+          {
+            "tytul": "Mycie komory bez naruszania CCP4",
+            "punkty": [
+              "Plan przed myciem: dokąd idzie wsad (druga chłodnia/najchłodniejsze okno dnia), ile masz czasu (kęsy w retardzie: liczone minuty, nie godziny poza chłodem).",
+              "Rytm partiami: jedna półka/sekcja na raz — wsad wraca zanim się ogrzeje; pełne mycie całej komory planuj na okno z najmniejszym wsadem (po porannym odpieku).",
+              "Środek łagodny (nie chlorowy o silnym zapachu — komora trzyma zapachy i odda je do ciasta!), spłukać, WYSUSZYĆ przed włożeniem wsadu — wilgoć na ściankach = szron na parowniku.",
+              "Uszczelki drzwi: mycie + kontrola (test kartki z karty maszyny); w zagięciach uszczelki najpierw rośnie pleśń.",
+              "Odpływ skroplin i kratka parownika: udrożnić przy każdym pełnym myciu — kałuża pod chłodnią to najczęściej ten odpływ (Technika: diagnostyka Asber)."
+            ],
+            "zrodlo": "Karta maszyny Asber (Technika); CCP4 — funkcja Chłodnia"
+          },
+          {
+            "tytul": "Magazyn suchy: FIFO i wróg nr 1 — wilgoć",
+            "punkty": [
+              "FIFO/FEFO: nowa dostawa ZA starą, nie przed nią — data na froncie każdego opakowania; „znalezisko z tyłu półki” to porażka systemu, nie przypadek.",
+              "Mąka i sypkie: pojemniki z pokrywą, nad podłogą (paleta/półka, nie beton — beton ciągnie wilgoć), z dala od ściany zewnętrznej.",
+              "Rozsypane sypkie sprzątaj od razu NA SUCHO — okruchy i pył to stołówka dla szkodników (patrz strefa Odpady i szkodniki).",
+              "Regały: przecieraj przy rotacji towaru (naturalna okazja — półka pusta przy dostawie = półka przetarta).",
+              "Chemia NIGDY nie magazynuje się nad/obok żywności — osobna półka/szafka, najlepiej zamykana."
+            ],
+            "zrodlo": "Plan higieny magazynu; zasady HACCP"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Pleśń lub czarne punkty w komorze chłodni (rogi, uszczelki)",
+          "odczyt": "Wilgoć + resztki organiczne + rzadkie mycie. Pleśń w chłodni sąsiaduje z NIEOKRYTYM wsadem — to skażenie, nie brzydota.",
+          "przyczyny": [
+            "Mycie komory za rzadkie względem obłożenia",
+            "Wsad nieokryty (parowanie = wilgoć na ścianach)",
+            "Zagięcia uszczelek pomijane przy myciu"
+          ],
+          "dzialania": [
+            "Mycie komory środkiem wg planu, doczyszczenie uszczelek (miękka szczotka w zagięciach), wysuszenie",
+            "Przejrzyj wsad: co miało kontakt/sąsiedztwo — decyzja z lead",
+            "Systemowo: okrywanie wsadu + rytm mycia z tabeli (nie „jak będzie chwila”)"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Obcy zapach w cieście/kęsach po nocy w retardzie",
+          "odczyt": "Komora trzyma zapachy (chemia chlorowa, cebula, wędliny...) i oddaje je do odkrytego ciasta — ciasto to gąbka zapachowa.",
+          "przyczyny": [
+            "Mycie silnie pachnącą chemią bez wywietrzenia komory",
+            "Przechowywanie aromatycznych produktów obok odkrytych kęsów",
+            "Zapach z zapchanego odpływu skroplin"
+          ],
+          "dzialania": [
+            "Komorę po myciu wywietrzyć (drzwi otwarte) do zaniku zapachu, dopiero wsad",
+            "Kęsy i masy ZAWSZE okryte; produkty aromatyczne w zamkniętych pojemnikach lub osobnej lodówce",
+            "Udrożnij odpływ skroplin (kwaśny zapach stęchlizny = zwykle on)"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Przeterminowany produkt znaleziony w głębi półki",
+          "odczyt": "FIFO nie zadziałało: nowe stanęło przed starym. To błąd układania dostawy, nie „pech”.",
+          "przyczyny": [
+            "Dostawa układana przed starą partią (szybciej)",
+            "Brak dat na froncie opakowań po przesypaniu",
+            "Półki zbyt głębokie bez rotacji przy dostawie"
+          ],
+          "dzialania": [
+            "Produkt: decyzja wg procedury (utylizacja + wpis strat)",
+            "Rotacja półki przy najbliższej dostawie: stare na front, data na froncie każdego opakowania",
+            "Wpis do DZIENNIKA — powtarzalność wskazuje półkę/osobę do doszkolenia"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Przegląd wsadu: okrycia, daty na frontach, kałuże", "kiedy": "codziennie (przy logu CCP4)", "kto": "pracownik" },
+        { "co": "Mycie sekcji komory partiami (rotacyjnie) + uszczelki", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Pełne mycie komory + odpływ skroplin + wietrzenie (okno po odpieku)", "kiedy": "co miesiąc", "kto": "pracownik/kierownik" },
+        { "co": "Rotacja FIFO regałów magazynu przy dostawie + przetarcie półek", "kiedy": "każda dostawa", "kto": "pracownik" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-CHL-1",
+          "tom": "Sprzątanie: Chłodnie i magazyn",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": true,
+          "pytanie": "Planowane pełne mycie chłodni z kęsami w retardzie. Jak to zrobić bez naruszenia CCP4?",
+          "opcje": [
+            "Wyjąć wszystko na halę, umyć spokojnie i dokładnie całość, włożyć z powrotem",
+            "Zaplanować przeniesienie wsadu (druga chłodnia/najzimniejsze okno), myć sekcjami tak, by kęsy nie przekroczyły 8°C, komorę wysuszyć i wywietrzyć przed powrotem wsadu",
+            "Myć z wsadem w środku, szybko i cicho",
+            "Odpuścić mycie, póki są kęsy — higiena może poczekać"
+          ],
+          "poprawne": [1],
+          "wzorzec": "CCP4 obowiązuje też podczas sprzątania: logistyka wsadu PRZED myciem, sekcje zamiast „wszystko na halę”, suchość i brak zapachu przed powrotem kęsów.",
+          "zrodlo": "CCP4; nauka SPRZ-CHLOD"
+        },
+        {
+          "id": "SPRZ-CHL-2",
+          "tom": "Sprzątanie: Chłodnie i magazyn",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego chłodni nie myjemy silnie pachnącą chemią chlorową?",
+          "opcje": [
+            "Bo chlor niszczy stal nierdzewną od razu",
+            "Bo komora trzyma zapachy i odda je do odkrytego ciasta — ciasto chłonie zapachy jak gąbka",
+            "Bo chlor zamarza w chłodni",
+            "Można — byle szybko"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Zapach chemii w zamkniętej zimnej komorze wchodzi w kęsy i masy. Środek łagodny/bezzapachowy + wywietrzenie przed wsadem. (Osobno: chlor + kwaśne pozostałości = ryzyko chemiczne.)",
+          "zrodlo": "Diagnostyka SPRZ-CHLOD"
+        },
+        {
+          "id": "SPRZ-CHL-3",
+          "tom": "Sprzątanie: Chłodnie i magazyn",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Przyszła dostawa mąki. Jak układasz worki, żeby FIFO działało samo?",
+          "opcje": [
+            "Nowe na przód — będą pod ręką",
+            "Nowe ZA starymi (stare schodzą pierwsze), data widoczna na froncie; nad podłogą, nie pod ścianą zewnętrzną",
+            "Wszystko jedno, mąka to mąka",
+            "Nowe do osobnego kąta „na zapas”"
+          ],
+          "poprawne": [1],
+          "wzorzec": "FIFO robi się rękami przy dostawie, nie pamięcią przy pobraniu. Beton i ściana zewnętrzna ciągną wilgoć — worki na paletach/półkach.",
+          "zrodlo": "Nauka SPRZ-CHLOD (magazyn)"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-WILGOC",
+      "nazwa": "Strefy wilgotne: garownia i zmywak",
+      "kategoria": "Strefy wilgotne",
+      "ikona": "💧",
+      "rola": "Ciepło + wilgoć = inkubator pleśni i bakterii. Garownia i zmywak to strefy, gdzie „czysto na oko” najszybciej rozjeżdża się z „czysto naprawdę”.",
+      "nauka": {
+        "intro": "Pleśń nie pyta, czy było ładnie — pyta, czy było wilgotno i czy zostały resztki organiczne. Strefy wilgotne sprząta się inaczej: tu suszenie i wietrzenie są częścią sprzątania, a nie „miłym dodatkiem”. Zmywak dokłada drugi temat: kamień z twardej wody, który dusi wydajność zmywania.",
+        "karty": [
+          {
+            "tytul": "Zasada suchego finiszu",
+            "punkty": [
+              "Sprzątanie strefy wilgotnej kończy się SUSZENIEM: garownia z uchylonymi drzwiami przez noc (karta maszyny), zmywak z odsłoniętymi ociekaczami, ścierki rozwieszone — nie w kłębku.",
+              "Pleśń zaczyna od rogów, silikonów i zagięć uszczelek — tam kieruj szczotkę, nie na środek ściany, który i tak jest czysty.",
+              "Wodę stojącą (ociekacze, wanny, podstawki) wylewamy na koniec zmiany — stojąca doba woda to hodowla.",
+              "Naczynia i pojemniki składamy DO SUCHA: mokre wieże pojemników = pleśń między dnami w 2 dni.",
+              "Rytm wietrzenia pomieszczeń wilgotnych (okno/wentylacja po myciu) — wilgotność względna spada, pleśń głoduje."
+            ],
+            "zrodlo": "Karta garowni (Technika); praktyka higieny stref wilgotnych"
+          },
+          {
+            "tytul": "Zmywak: kamień i organizacja przepływu",
+            "punkty": [
+              "Kamień na grzałkach/ściankach zmywarki i na armaturze → KWAS (odkamieniacz) wg etykiety; kamień dusi grzałkę (dłuższe cykle) i zostawia biały nalot na naczyniach.",
+              "Przepływ w zmywaku jak na produkcji: strefa brudna → mycie → czysta, bez krzyżowania. Czyste naczynie nie wraca przez brudny blat.",
+              "Namaczanie to koło Sinnera w praktyce: wanna z gorącym roztworem na zaschnięte dzieże/blachy PRZED zmywaniem — czas pracuje za ciebie.",
+              "Sitka odpływu zmywaka czyść w rytmie zmiany — pełne sitko = woda stoi = zapach i cofka.",
+              "Syfon i odpływ: kwaśny zapach stęchlizny z kratki to zwykle wyschnięty lub zabrudzony syfon — przelej wodą, umyj kratkę, zgłoś jeśli wraca."
+            ],
+            "zrodlo": "DTR zmywarki; plan higieny zmywaka"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Pleśń w rogach garowni / na uszczelkach",
+          "odczyt": "Standardowy inkubator: ciepło + wilgoć + resztki. Zagrożenie dla WSZYSTKICH kęsów przechodzących przez komorę.",
+          "przyczyny": [
+            "Komora domykana na wilgotno na noc (brak suszenia)",
+            "Rogi i silikony pomijane przy myciu",
+            "Resztki ciasta w prowadnicach"
+          ],
+          "dzialania": [
+            "Pełne mycie + doczyszczenie rogów i uszczelek miękką szczotką, spłukanie, WYSUSZENIE",
+            "Nawyk: po ostatnim garowaniu drzwi uchylone — komora schnie przez noc",
+            "Wpis do DZIENNIKA (higiena, skażenie krzyżowe)"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Biały nalot na naczyniach po zmywarce / dłuższe cykle zmywania",
+          "odczyt": "Kamień: na naczyniach kosmetyka, na grzałce — dławienie maszyny (grzałka pod kamieniem grzeje wolniej i krócej żyje).",
+          "przyczyny": [
+            "Twarda woda + brak rytmu odkamieniania",
+            "Brak/pusty zmiękczacz (sól) — jeśli zmywarka go ma",
+            "Za niska temperatura mycia (tłuszcz zostaje i wiąże osady)"
+          ],
+          "dzialania": [
+            "Odkamienianie KWASEM wg DTR zmywarki (rytm z tabeli, częściej przy twardej wodzie)",
+            "Uzupełnij sól zmiękczacza, sprawdź nastawy temperatur",
+            "Nalot na armaturze zdejmuj odkamieniaczem przy myciu tygodniowym"
+          ],
+          "serwis": "Grzałka zmywarki obrośnięta kamieniem na grubo / cykle wciąż długie po odkamienieniu — przegląd serwisowy grzałki i czujnika temperatury.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Kwaśny/stęchły zapach z kratki odpływowej",
+          "odczyt": "Syfon przestał robić swoją robotę: wysechł, zabrudził się albo cofa. Zapach to bakterie, nie „taka uroda kanalizacji”.",
+          "przyczyny": [
+            "Wyschnięty syfon (rzadko używany odpływ)",
+            "Osad organiczny w syfonie i na kratce",
+            "Cofka z niedrożnej kanalizacji"
+          ],
+          "dzialania": [
+            "Kratka: wyjąć, umyć, odłożyć; syfon przelać gorącą wodą z odtłuszczaczem",
+            "Rzadko używane odpływy: raz w tygodniu szklanka wody (utrzymuje zamknięcie wodne)",
+            "Zapach wraca mimo czyszczenia → zgłoś (kanalizacja/wentylacja pionu — poza zakresem operatora)"
+          ],
+          "serwis": "Cofki i niedrożność pionu — hydraulik; nie lać agresywnej chemii „na ślepo” do kanalizacji.",
+          "ryzyko": "jakość"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Sitka odpływu zmywaka + wylanie wód stojących", "kiedy": "każda zmiana", "kto": "pracownik" },
+        { "co": "Garownia: mycie + suszenie z uchylonymi drzwiami", "kiedy": "po każdej zmianie", "kto": "pracownik" },
+        { "co": "Rogi, silikony, uszczelki stref wilgotnych (miękka szczotka)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Odkamienianie zmywarki i armatury", "kiedy": "co miesiąc (twarda woda: częściej)", "kto": "pracownik/kierownik" },
+        { "co": "Przegląd zmywarki (grzałka, dozowniki, czujniki)", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-WIL-1",
+          "tom": "Sprzątanie: Strefy wilgotne",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Czym kończy się poprawne sprzątanie garowni na koniec dnia?",
+          "opcje": [
+            "Zamknięciem drzwi, żeby nie kurzyło",
+            "Suszeniem: drzwi zostają uchylone na noc — wilgoć ucieka, pleśń głoduje",
+            "Psiknięciem odświeżacza",
+            "Wyłączeniem z prądu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "W strefie wilgotnej suszenie JEST częścią sprzątania. Komora domknięta na mokro przez noc to inkubator — pleśń zaczyna od rogów i uszczelek.",
+          "zrodlo": "Karta garowni; nauka SPRZ-WILGOC"
+        },
+        {
+          "id": "SPRZ-WIL-2",
+          "tom": "Sprzątanie: Strefy wilgotne",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Naczynia wychodzą ze zmywarki z białym nalotem, cykle trwają dłużej niż kiedyś. Co jest pod spodem i jaka chemia to zdejmie?",
+          "opcje": [
+            "Za dużo płynu — myć bez chemii",
+            "Kamień z twardej wody: odkamienianie KWASEM wg DTR; kamień na grzałce dodatkowo wydłuża cykle i skraca jej życie",
+            "Tłuszcz: więcej odtłuszczacza zasadowego",
+            "Zmywarka po prostu się starzeje"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Biały mineralny nalot = kamień = kwas (zasada go nie ruszy). Dłuższe cykle to grzałka grzejąca przez warstwę kamienia — odkamienianie to konserwacja, nie kosmetyka.",
+          "zrodlo": "Diagnostyka SPRZ-WILGOC; koło Sinnera (chemia)"
+        },
+        {
+          "id": "SPRZ-WIL-3",
+          "tom": "Sprzątanie: Strefy wilgotne",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Z kratki odpływowej w rogu hali (rzadko używanej) ciągnie stęchlizną. Najprostsze trwałe rozwiązanie?",
+          "opcje": [
+            "Wlać mocny środek chlorowy",
+            "Zakleić kratkę taśmą",
+            "Umyć kratkę, przelać syfon gorącą wodą z odtłuszczaczem i wpisać do rytmu: szklanka wody do rzadko używanych odpływów raz w tygodniu",
+            "Postawić na kratce odświeżacz"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Rzadko używany syfon wysycha i puszcza zapach kanalizacji. Woda raz w tygodniu utrzymuje zamknięcie wodne — zero kosztu, koniec problemu. Chlor „na ślepo” do kanalizacji to ryzyko chemiczne.",
+          "zrodlo": "Diagnostyka SPRZ-WILGOC"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-NARZEDZIA",
+      "nazwa": "Dzieże, blachy i drobny sprzęt",
+      "kategoria": "Produkcja",
+      "ikona": "🥣",
+      "rola": "Sprzęt roboczy myje się codziennie dziesiątki razy — tu każda zła technika (skrobanie teflonu, moczenie desek, mokre wieże pojemników) mnoży się przez 365 dni.",
+      "nauka": {
+        "intro": "Drobny sprzęt niszczy się nie od używania, tylko od złego mycia: metal na teflonie, gorąca woda na cieście, mokre składowanie. Zasada nadrzędna: dobierz technikę do MATERIAŁU (teflon ≠ stal ≠ drewno ≠ tworzywo) i do BRUDU (ciasto ≠ tłuszcz ≠ kamień). Druga zasada: sprzęt myty ma być też SUCHY — bo mokry pleśnieje w szafce.",
+        "karty": [
+          {
+            "tytul": "Materiał dyktuje technikę",
+            "punkty": [
+              "BLACHY powlekane (teflon/silikon): nigdy metalowa skrobka ani druciak — rysa w powłoce to miejsce przywierania na zawsze. Namoczyć (koło Sinnera: czas), miękka gąbka. Blachy mocno wypalone zgłaszać do wymiany, nie drapać do metalu.",
+              "DZIEŻE i stal nierdzewna: znoszą wiele, ale nie chlor pozostawiony bez spłukania (wżery) — po dezynfekcji chlorowej zawsze spłukać.",
+              "DESKI i sprzęt drewniany: nie namaczać (pęcznieje i pęka), myć szybko, suszyć na sztorc; rysy głębokie = wymiana (w rysach mieszka flora, której nie domyjesz).",
+              "TWORZYWO (pojemniki, skrobki): rysy i zmatowienia jak w drewnie — mocno porysowane wymieniać; myć bez ostrych narzędzi.",
+              "ŚCIERKI i gąbki: gąbka ma tydzień życia w kuchni zawodowej; ścierki do prania wg planu — „jeszcze dobra” gąbka o zapachu stęchlizny jest już hodowlą."
+            ],
+            "zrodlo": "DTR sprzętu; praktyka warsztatowa"
+          },
+          {
+            "tytul": "Suchy finisz i składowanie",
+            "punkty": [
+              "Pojemniki składamy do sucha, wieże z przekładką powietrza — mokre dna sklejone na sobie pleśnieją od środka w 48 h.",
+              "Sita i tarki: przedmuchać/wytrzepać z mąki NA SUCHO przed myciem (mokra mąka zakleja oczka), suszyć zawieszone.",
+              "Kosze rozrostowe (bannetony): NIE myć wodą po każdym użyciu — wytrzepać mąkę, wysuszyć, okresowo zeskrobać; mokry rattan pleśnieje. Przy nalocie pleśni: sucha szczotka + wygrzanie w piecu resztkowym ~120°C.",
+              "Miejsce sprzętu po myciu jest CZĘŚCIĄ mycia (5S): ociekacz → suchość → półka z oznaczeniem. Sprzęt „chwilowo tu” to sprzęt zgubiony.",
+              "Termometry, skrobki, pędzle — myte i odkładane do SWOICH pojemników; pędzel po jajku nieumyty od razu = pędzel do wyrzucenia (białko zasycha w szczecinie)."
+            ],
+            "zrodlo": "Plan higieny; 5S; praktyka prowadzenia koszy rozrostowych"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Ciasto przywiera do blachy powlekanej, mimo że jest „czysta”",
+          "odczyt": "Powłoka porysowana albo pokryta cienkim wypalonym filmem tłuszczu — blacha wygląda czysto, ale powierzchnia już nie jest gładka.",
+          "przyczyny": [
+            "Metalowe skrobki/druciaki na powłoce (mikrorysy)",
+            "Film spolimeryzowanego tłuszczu (za słabe odtłuszczanie przez tygodnie)",
+            "Powłoka po prostu zużyta (wiek)"
+          ],
+          "dzialania": [
+            "Film tłuszczu: namoczenie w gorącym odtłuszczaczu, miękka strona gąbki",
+            "Porysowane do metalu: zgłoś do wymiany — rys nie cofniesz",
+            "Systemowo: skrobki tylko z tworzywa, druciaki zakazane przy powłokach"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Pleśń wewnątrz wieży pojemników / stęchły zapach w szafce",
+          "odczyt": "Sprzęt składowany na mokro. Mycie było OK — składowanie je zmarnowało.",
+          "przyczyny": [
+            "Pojemniki sklejone dnami na mokro",
+            "Szafka bez cyrkulacji z wilgotnym sprzętem",
+            "Gąbki/ścierki „parkujące” w szafce"
+          ],
+          "dzialania": [
+            "Wszystko z powrotem do zmywaka (pleśń = mycie od zera, nie przetarcie)",
+            "Suszenie przed składowaniem; wieże z przesunięciem/przekładką",
+            "Ścierki i gąbki nigdy do zamkniętych szafek — wiszą albo idą do prania"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Kosze rozrostowe łapią pleśń / ciasto klei się do rattanu",
+          "odczyt": "Kosze potraktowane jak naczynia (mycie wodą po każdym użyciu) — a to sprzęt „suchy”, prowadzony mąką.",
+          "przyczyny": [
+            "Mycie wodą po każdym użyciu (rattan nasiąka)",
+            "Składowanie mokrych koszy w stosie",
+            "Za mało mąki przy prowadzeniu / za wilgotne kęsy"
+          ],
+          "dzialania": [
+            "Rytm prawidłowy: wytrzepać po użyciu, suszyć na powietrzu, okresowo zeskrobać nadmiar",
+            "Pleśń punktowa: sucha szczotka + wygrzanie w stygnącym piecu (~120°C); rozległa = wymiana kosza",
+            "Nigdy nie składować wilgotnych — stojak z cyrkulacją"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Mycie sprzętu na bieżąco w cyklu (brudne schodzi do zmywaka od razu)", "kiedy": "w cyklu pracy", "kto": "pracownik" },
+        { "co": "Kosze rozrostowe: wytrzepanie + suszenie na stojaku", "kiedy": "po każdym użyciu", "kto": "pracownik" },
+        { "co": "Przegląd blach (powłoki) i desek (rysy) — selekcja do wymiany", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Wymiana gąbek; pranie ścierek wg planu", "kiedy": "gąbki co tydzień, ścierki wg planu", "kto": "pracownik" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-NAR-1",
+          "tom": "Sprzątanie: Dzieże i drobny sprzęt",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Na blasze powlekanej zostało przypieczone ciasto. Jak je zdejmujesz?",
+          "opcje": [
+            "Metalową skrobką — szybko i skutecznie",
+            "Druciakiem z płynem",
+            "Namaczam w gorącym roztworze odtłuszczacza i zbieram miękką gąbką/plastikową skrobką — metal rysuje powłokę na zawsze",
+            "Wypalam w piecu na 250°C"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Rysa w powłoce = wieczne przywieranie w tym miejscu. Czas namaczania (koło Sinnera) zastępuje tarcie. Blachy zajechane do metalu zgłasza się do wymiany.",
+          "zrodlo": "Nauka SPRZ-NARZEDZIA"
+        },
+        {
+          "id": "SPRZ-NAR-2",
+          "tom": "Sprzątanie: Dzieże i drobny sprzęt",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Jak dbasz o kosze rozrostowe (bannetony), żeby nie łapały pleśni?",
+          "opcje": [
+            "Mycie wodą z płynem po każdym użyciu",
+            "Wytrzepać mąkę po użyciu, suszyć na powietrzu, okresowo zeskrobać; wody unikać — mokry rattan pleśnieje",
+            "Trzymać w chłodni między wypiekami",
+            "Wkładać do zmywarki raz w tygodniu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Kosz to sprzęt „suchy”, prowadzony mąką. Woda po każdym użyciu = nasiąknięty rattan = pleśń. Punktowy nalot ratuje sucha szczotka i wygrzanie ~120°C.",
+          "zrodlo": "Praktyka prowadzenia koszy; nauka SPRZ-NARZEDZIA"
+        },
+        {
+          "id": "SPRZ-NAR-3",
+          "tom": "Sprzątanie: Dzieże i drobny sprzęt",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które praktyki składowania sprzętu są POPRAWNE? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Pojemniki w wieżę dopiero po wyschnięciu (lub z przekładką powietrza)",
+            "Deski i sita suszone na sztorc / zawieszone",
+            "Gąbka używana, aż się rozpadnie — szkoda wyrzucać",
+            "Ścierki na noc rozwieszone albo do prania, nigdy w kłębku w szafce",
+            "Mokre pojemniki w stos, wyschną same"
+          ],
+          "poprawne": [0, 1, 3],
+          "wzorzec": "Suchy finisz: mokre + zamknięte = pleśń w 48 h. Gąbka ma tydzień życia — stęchła gąbka „myje” brudem. Kłębek mokrych ścierek w szafce to inkubator.",
+          "zrodlo": "Nauka SPRZ-NARZEDZIA (składowanie)"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-POSADZKI",
+      "nazwa": "Posadzki i odpływy",
+      "kategoria": "Hala",
+      "ikona": "🪣",
+      "rola": "Posadzka w piekarni to strefa mąki — a mąka zmienia zasady: najpierw sucho, potem mokro. Mokra posadzka to też najczęstszy wypadek w gastronomii: poślizg.",
+      "nauka": {
+        "intro": "Dwa fakty ustawiają całe sprzątanie posadzek: (1) mąka + woda = klej — mycie zasypanej mąką podłogi na mokro robi ślizgawkę z kleju, którą potem zdzierasz na kolanach; (2) pył mączny uniesiony w powietrze osiada wszędzie (w tym w skraplaczu chłodni i na łopatkach wentylatorów — patrz Technika) i jest atmosferą wybuchową w dużych stężeniach. Dlatego: zbieranie na sucho, bez wzbijania, dopiero potem mop.",
+        "karty": [
+          {
+            "tytul": "Kolejność: sucho → mokro, góra → dół",
+            "punkty": [
+              "Najpierw NA SUCHO: zmiotka/szufelka lub odkurzacz przemysłowy na rozsypaną mąkę i okruchy. Miotła „zamiatająca z rozmachem” wzbija pył — prowadź przy podłodze, krótkimi ruchami, albo użyj odkurzacza.",
+              "Dopiero potem NA MOKRO: mop z roztworem wg planu (odtłuszczacz w strefie pieców, łagodny środek gdzie indziej). Dwa wiadra (roztwór/płukanie) albo mopy płaskie z zapasem nakładek — brudny mop rozprowadza, nie myje.",
+              "Zawsze GÓRA → DÓŁ w pomieszczeniu: półki/parapety przed posadzką — inaczej strącasz brud na umyte.",
+              "Mokra podłoga = znak ostrzegawczy „śliska podłoga” ZAWSZE, także „na chwilę” — poślizg to wypadek nr 1 w gastronomii.",
+              "Myj falami w rytmie produkcji: strefa pieców po ostatnim wsadzie, ciągi komunikacyjne gdy ruch mały — nie „wszystko na koniec”, gdy wszyscy chcą wyjść."
+            ],
+            "zrodlo": "Praktyka higieny hal spożywczych; BHP (poślizgi)"
+          },
+          {
+            "tytul": "Odpływy, listwy i miejsca „pod”",
+            "punkty": [
+              "Kratki i odpływy posadzkowe: kratka wyjęta i umyta przy każdym myciu strefi; syfon przelany — zapach z posadzki to prawie zawsze odpływ, nie posadzka.",
+              "Miejsca „POD”: pod stołami, regałami, maszynami — tam osiada mąka i tam gnieżdżą się szkodniki. Raz w tygodniu odsuń co się da (albo sięgnij szczotką na wysięgniku) — „czysto” liczy się też tam, gdzie nie widać.",
+              "Listwy przypodłogowe i cokoły maszyn: zbieracze pyłu — przecieraj przy myciu tygodniowym.",
+              "Odkurzacz przemysłowy po mące: opróżniaj zbiornik/wymieniaj worek zanim strat mocy — pełny odkurzacz dmucha pyłem z powrotem.",
+              "Uwaga na wodę przy maszynach: mycie posadzki NIE oznacza chlapania po cokołach miesiarki i pieców — elektryka i łożyska (patrz karty maszyn w Technice)."
+            ],
+            "zrodlo": "Plan higieny hali; karty maszyn (Technika)"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Kleista, śliska warstwa na posadzce po myciu",
+          "odczyt": "Klasyka: mąka myta na mokro bez zebrania na sucho. Powstał klej — i ślizgawka.",
+          "przyczyny": [
+            "Pominięty etap suchy (zmiotka/odkurzacz)",
+            "Brudny mop/roztwór (rozprowadzanie zamiast zbierania)"
+          ],
+          "dzialania": [
+            "Zdejmij klej: namoczyć ciepłym roztworem, zebrać, spłukać, zebrać do sucha",
+            "Ustaw znak „śliska podłoga” na czas schnięcia",
+            "Systemowo: sucho → mokro, świeży roztwór, wymiana nakładek mopa"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Zapach kanalizacji na hali mimo czystej posadzki",
+          "odczyt": "To nie posadzka — to odpływ. Kratka, syfon albo cofka.",
+          "przyczyny": [
+            "Osad na kratce i w syfonie",
+            "Wyschnięty syfon rzadko zalewanego odpływu",
+            "Cofka/niedrożność pionu"
+          ],
+          "dzialania": [
+            "Kratka: wyjąć, umyć; syfon przelać gorącą wodą z odtłuszczaczem",
+            "Rzadko używane odpływy: szklanka wody co tydzień (zamknięcie wodne)",
+            "Wraca mimo czyszczenia → zgłoszenie (hydraulik)"
+          ],
+          "serwis": "Niedrożność/cofka pionu — hydraulik.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Szara „wata” mączna pod maszynami i regałami",
+          "odczyt": "Pył mączny osiada tam, gdzie nikt nie sprząta — a stamtąd wędruje do skraplaczy, wentylatorów i... myszy mają stołówkę.",
+          "przyczyny": [
+            "Sprzątanie tylko „widocznej” posadzki",
+            "Brak rytmu odsuwania/podsprzątywania stref POD"
+          ],
+          "dzialania": [
+            "Raz w tygodniu strefy POD: odsuń/sięgnij szczotką na wysięgniku, zbierz na sucho",
+            "Sprawdź przy okazji skraplacz chłodni (filc — karta Asber) i cokoły maszyn",
+            "Znalezione ślady gryzoni (odchody, podgryzione worki) → natychmiast lead (strefa Odpady i szkodniki)"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Posadzka strefy produkcji: sucho (zmiotka/odkurzacz) → mokro (mop, znak ostrzegawczy)", "kiedy": "codziennie po produkcji", "kto": "pracownik" },
+        { "co": "Kratki odpływowe + przelanie syfonów", "kiedy": "przy każdym myciu strefy", "kto": "pracownik" },
+        { "co": "Strefy POD (maszyny, regały) + listwy i cokoły", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Maszynowe doczyszczanie posadzki całej hali", "kiedy": "co miesiąc", "kto": "pracownik/kierownik" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-POS-1",
+          "tom": "Sprzątanie: Posadzki i odpływy",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Posadzka przy miesiarce zasypana mąką. Od czego zaczynasz?",
+          "opcje": [
+            "Mokry mop z płynem — za jednym zamachem",
+            "Wiadro wody z chlusta i ściągaczka",
+            "Zbieram mąkę NA SUCHO (zmiotka/odkurzacz przemysłowy, bez wzbijania pyłu), dopiero potem mop",
+            "Zostawiam — mąka to nie brud, wchłonie się"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Mąka + woda = klej-ślizgawka. Sucho → mokro to żelazna kolejność strefy mącznej. Pył wzbity w powietrze osiada w skraplaczach i wentylatorach maszyn.",
+          "zrodlo": "Nauka SPRZ-POSADZKI"
+        },
+        {
+          "id": "SPRZ-POS-2",
+          "tom": "Sprzątanie: Posadzki i odpływy",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Myjesz „na chwilę” kawałek posadzki w przejściu w środku zmiany. Znak „śliska podłoga”…",
+          "opcje": [
+            "…jest potrzebny tylko przy dużym myciu wieczornym",
+            "…stawiam ZAWSZE, nawet na 5 minut — poślizg to wypadek nr 1 w gastronomii, a zdarza się właśnie „na chwilę”",
+            "…zbędny, przecież widać że mokre",
+            "…stawiam tylko gdy jest kontrola"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Mokro + pośpiech + ręce zajęte blachą = upadek. Znak kosztuje 5 sekund; wypadek — zwolnienie lekarskie i wyrwę w grafiku.",
+          "zrodlo": "BHP; nauka SPRZ-POSADZKI"
+        },
+        {
+          "id": "SPRZ-POS-3",
+          "tom": "Sprzątanie: Posadzki i odpływy",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego cotygodniowe sprzątanie stref POD maszynami jest ważniejsze niż codzienny połysk środka hali?",
+          "opcje": [
+            "Nie jest — liczy się to, co widzą klienci",
+            "Bo pod maszynami zbiera się pył mączny: stołówka dla szkodników i źródło filcu w skraplaczach/wentylatorach; środek hali i tak jest czyszczony ruchem",
+            "Bo tak każe plan higieny",
+            "Bo tam najłatwiej o poślizg"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Brud niewidoczny robi realne szkody: szkodniki (żywność + kryjówka) i maszyny (filc na skraplaczu Asber, łopatkach Bongarda). „Czysto” mierzy się pod regałem, nie na środku.",
+          "zrodlo": "Nauka SPRZ-POSADZKI; karty maszyn (Technika)"
+        }
+      ]
+    },
+    {
+      "id": "SPRZ-ODPADY",
+      "nazwa": "Odpady i szkodniki",
+      "kategoria": "Hala",
+      "ikona": "🗑️",
+      "rola": "Śmieci i szkodniki to system naczyń połączonych: każdy okruch na podłodze i otwarty kosz to zaproszenie. Prewencja kosztuje minuty; zwalczanie — tygodnie i reputację.",
+      "nauka": {
+        "intro": "Szkodnik nie przychodzi „znikąd” — przychodzi po jedzenie (okruchy, otwarte worki, kosz bez pokrywy) i zostaje tam, gdzie ma spokój (strefy POD, kartony, szczeliny). Cała strategia to odciąć bufet i kryjówki oraz WIDZIEĆ wcześnie: monitoring to codzienna spostrzegawczość, nie tylko pułapki firmy DDD.",
+        "karty": [
+          {
+            "tytul": "Odpady: rytm i separacja",
+            "punkty": [
+              "Kosze na hali TYLKO z pokrywą (pedał/wahadło), opróżniane min. raz na zmianę i ZAWSZE na koniec dnia — nocny pełny kosz to bufet nocny.",
+              "Worek wiązany i wynoszony trasą „brudną” (nie przez strefę czystą); pojemnik zewnętrzny zamknięty, z dala od drzwi produkcji.",
+              "Sam kosz też się myje: raz w tygodniu z odtłuszczaczem — śmierdzi pojemnik, nie worek.",
+              "Odpady po produkcji (discard zakwasu, czerstwe) wg zasad ZS: co się da — przetworzyć/sprzedać (zero waste to też mniej odpadów do pilnowania), reszta szybko poza halę.",
+              "Karton z dostaw od razu do zgniatarki/magazynu opakowań — kartony na hali to hotel dla szkodników (ciepło, ciemno, celuloza)."
+            ],
+            "zrodlo": "Plan higieny; zasady zero waste ZS (Poilâne)"
+          },
+          {
+            "tytul": "Szkodniki: czytanie śladów i prewencja",
+            "punkty": [
+              "Mól mączny/spożywczy: obłoczki „pajęczynki” w szczelinach worków i na suficie magazynu, larwy w mące — sygnał: przegląd całej strefy sypkiej, szczelne pojemniki, feromonowe pułapki monitorujące.",
+              "Gryzonie: odchody (czarne ziarenka), podgryzione worki, ścieżki w kurzu przy ścianach — każdy taki ślad = NATYCHMIAST lead + firma DDD; nie „poczekamy czy się powtórzy”.",
+              "Owady biegające (prusaki): aktywne nocą — ślad to widok o świcie przy włączeniu światła; wilgotne, ciepłe zakamarki (zmywak!) sprzątane na sucho to ich odcięcie.",
+              "Bramy i drzwi: siatki/kurtyny w sezonie, drzwi produkcji nie „na klamkę otwarte” — mucha to też skażenie, a wchodzi drzwiami.",
+              "Punkty monitoringu DDD (pułapki, stacje): NIE przestawiać i nie zastawiać — mapa punktów jest częścią dokumentacji HACCP; zgłaszaj naruszone/pełne."
+            ],
+            "zrodlo": "Program DDD; dokumentacja HACCP (monitoring szkodników)"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "„Pajęczynki” i drobne larwy w worku mąki lub na półce sypkich",
+          "odczyt": "Mól mączny w strefie sypkiej. Jeden worek to nigdy nie jest jeden worek — przegląd całej strefy.",
+          "przyczyny": [
+            "Przeterminowane/długo otwarte opakowania sypkich (FIFO kulało)",
+            "Rozsypki niezbierane (pożywka poza pojemnikami)",
+            "Dostawa już zainfestowana (zdarza się!)"
+          ],
+          "dzialania": [
+            "Zainfestowane opakowania szczelnie zapakować i USUNĄĆ z budynku (nie do kosza na hali)",
+            "Przegląd sąsiadujących opakowań; strefa: odkurzyć szczeliny półek, umyć, wysuszyć",
+            "Pułapki feromonowe monitorujące; wpis do DZIENNIKA + informacja do dostawcy przy podejrzeniu dostawy"
+          ],
+          "serwis": "Nawroty mimo czyszczenia i FIFO — program DDD (firma) rozszerzony o strefę sypką.",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Czarne „ziarenka” (odchody) przy ścianie / podgryziony worek",
+          "odczyt": "Gryzoń już JEST w środku. To nie temat na obserwację — to temat na dziś.",
+          "przyczyny": [
+            "Dostępne jedzenie (rozsypki, otwarte worki, kosz bez pokrywy)",
+            "Szczeliny przy drzwiach/przepustach instalacji",
+            "Kryjówki: kartony, nieruszane strefy POD"
+          ],
+          "dzialania": [
+            "NATYCHMIAST lead + firma DDD; wpis do DZIENNIKA",
+            "Produkty z podgryzionych opakowań do utylizacji; strefa umyta i zdezynfekowana",
+            "Odcięcie: rozsypki na bieżąco, worki w szczelnych pojemnikach, kartony precz, przegląd uszczelnień drzwi"
+          ],
+          "serwis": "Zwalczanie i uszczelnienie budynku — firma DDD; monitoring wg mapy punktów HACCP.",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Zapach zgnilizny przy koszach mimo świeżych worków",
+          "odczyt": "Śmierdzi POJEMNIK (przecieki pod workiem), nie zawartość.",
+          "przyczyny": [
+            "Kosz nigdy nie myty w środku (soki spod worka)",
+            "Pęknięte worki, przecieki na dno",
+            "Kosz zewnętrzny w słońcu przy drzwiach produkcji"
+          ],
+          "dzialania": [
+            "Umyj kosz w środku i z zewnątrz odtłuszczaczem, wysusz",
+            "Podwójne worki przy odpadach mokrych",
+            "Pojemnik zewnętrzny: cień, z dala od nawiewu i drzwi; rytm odbioru dopasować do sezonu"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Opróżnienie koszy hali (koniec dnia: obowiązkowo wszystkie)", "kiedy": "min. raz na zmianę", "kto": "pracownik" },
+        { "co": "Obchód „śladów”: strefy POD, magazyn sypkich, szczeliny (odchody? pajęczynki? podgryzienia?)", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Mycie koszy (wewnątrz i z zewnątrz)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Kontrola stanu pułapek/stacji monitoringu + zapis", "kiedy": "wg programu DDD", "kto": "kierownik/firma DDD" },
+        { "co": "Przegląd uszczelnień drzwi, siatek, przepustów", "kiedy": "co kwartał", "kto": "kierownik/serwis" }
+      ],
+      "pytania": [
+        {
+          "id": "SPRZ-ODP-1",
+          "tom": "Sprzątanie: Odpady i szkodniki",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Przy ścianie za regałem znajdujesz czarne „ziarenka” i podgryziony róg worka z mąką. Co robisz?",
+          "opcje": [
+            "Sprzątam ziarenka i obserwuję tydzień, czy się powtórzy",
+            "Zgłaszam NATYCHMIAST do lead (gryzoń jest w środku): produkty z naruszonych opakowań do utylizacji, strefa umyta, firma DDD, wpis do DZIENNIKA",
+            "Stawiam własną łapkę z serem i czekam",
+            "Przenoszę worek w inne miejsce"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Ślady gryzonia = zwierzę już w budynku; obserwacja to strata czasu, w którym rośnie skażenie. Procedura: lead → utylizacja naruszonych → DDD → dokumentacja.",
+          "zrodlo": "Diagnostyka SPRZ-ODPADY; program DDD"
+        },
+        {
+          "id": "SPRZ-ODP-2",
+          "tom": "Sprzątanie: Odpady i szkodniki",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego kartony z dostaw nie mogą zostać na hali produkcyjnej?",
+          "opcje": [
+            "Bo zajmują miejsce",
+            "Bo karton to hotel dla szkodników (ciepło, ciemno, celuloza) i wnosi zarodniki/kurz z transportu — rozpakować i wynieść od razu",
+            "Bo się palą",
+            "Mogą zostać, jeśli są złożone na płasko"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Prusaki i mole podróżują kartonami i w nich mieszkają. Reguła: towar z kartonu do pojemników/półek, karton tą samą godziną poza halę.",
+          "zrodlo": "Nauka SPRZ-ODPADY"
+        },
+        {
+          "id": "SPRZ-ODP-3",
+          "tom": "Sprzątanie: Odpady i szkodniki",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Pułapka monitoringowa DDD przeszkadza ci przy myciu posadzki. Co z nią robisz?",
+          "opcje": [
+            "Przestawiam pod ścianę obok — co za różnica",
+            "Wyrzucam, jeśli jest zakurzona",
+            "Myję wokół, pułapki NIE przestawiam (mapa punktów to dokumentacja HACCP); naruszoną/pełną zgłaszam kierownikowi",
+            "Zastawiam regałem, żeby nie przeszkadzała"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Punkty monitoringu mają numerację i mapę w dokumentacji — przestawienie fałszuje odczyt programu DDD i wywraca dowód dla sanepidu. Zgłoszenie zamiast samowolki.",
+          "zrodlo": "Program DDD; dokumentacja HACCP"
+        }
+      ]
+    }
+  ]
+}
