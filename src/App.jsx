@@ -21,7 +21,13 @@ import Zgloszenia from './components/Zgloszenia.jsx'
 import Technika from './components/Technika.jsx'
 import Sprzatanie from './components/Sprzatanie.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
+import { pytaniaTechniki } from './logic/technika.js'
+import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
+
+// Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
+// logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
+const WLASCICIEL_UCZEN = { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
 
 export default function App() {
   const [stan, setStan] = useState(wczytajStan)
@@ -46,6 +52,24 @@ export default function App() {
 
   const bank = stan.bank || bankZewnetrzny || bankPytan(stan)
   const pytania = bank.pytania
+
+  // Pytania WSZYSTKICH źródeł (bank + panele praktyczne) — wyłącznie do
+  // opisywania wpisów historii (WYNIK trzyma tylko id_pytania). Progi, tomy
+  // i CCP banku liczą się dalej z samego `pytania`.
+  const pytaniaOpisowe = useMemo(
+    () => [...pytania, ...pytaniaTechniki(), ...pytaniaSprzatania()],
+    [pytania]
+  )
+
+  // Licznik „nowych" zgłoszeń: localStorage czytamy przy zmianie widoku
+  // i po każdej akcji w skrzynce (znacznik), nie przy każdym renderze App.
+  const [zgloszeniaZnacznik, setZgloszeniaZnacznik] = useState(0)
+  const odswiezZgloszenia = () => setZgloszeniaZnacznik((n) => n + 1)
+  const nowychZgloszen = useMemo(
+    () => wczytajZgloszenia().filter((z) => z.status === 'nowe').length,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [ekran.widok, zgloszeniaZnacznik]
+  )
 
   const pracownik = useMemo(
     () =>
@@ -162,8 +186,7 @@ export default function App() {
     })
   }
   if (jestWlascicielem) {
-    const nowych = wczytajZgloszenia().filter((z) => z.status === 'nowe').length
-    zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowych ? ` (${nowych})` : ''}` })
+    zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowychZgloszen ? ` (${nowychZgloszen})` : ''}` })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
@@ -195,9 +218,11 @@ export default function App() {
     >
       {ekran.widok === 'dzien' && pracownik && <MojDzien pracownik={pracownik} />}
       {ekran.widok === 'zgloszenia' && pracownik && (
-        <Zgloszenia tryb="pracownik" pracownik={pracownik} />
+        <Zgloszenia tryb="pracownik" pracownik={pracownik} onAktualizacja={odswiezZgloszenia} />
       )}
-      {ekran.widok === 'zgloszenia' && jestWlascicielem && <Zgloszenia tryb="zarzad" />}
+      {ekran.widok === 'zgloszenia' && jestWlascicielem && (
+        <Zgloszenia tryb="zarzad" onAktualizacja={odswiezZgloszenia} />
+      )}
       {ekran.widok === 'profil' && pracownik && (
         <EmployeeDashboard
           pracownik={pracownik}
@@ -206,6 +231,7 @@ export default function App() {
           kolejka={stan.kolejka}
           nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+          pytaniaOpisowe={pytaniaOpisowe}
           onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
         />
@@ -245,34 +271,23 @@ export default function App() {
           onKoniec={() => setEkran({ widok: 'profil' })}
         />
       )}
-      {ekran.widok === 'technika' && (pracownik || jestWlascicielem) && (
-        <Technika
-          uczen={
-            pracownik || { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
-          }
-          wyniki={stan.wyniki}
-          nauka={stan.nauka}
-          konfig={stan.konfig}
-          onWynik={dodajWynik}
-          onPrzerobiony={(obszar) =>
-            oznaczPrzerobiony(pracownik ? pracownik.id_prac : ID_WLASCICIEL, obszar)
-          }
-        />
-      )}
-      {ekran.widok === 'sprzatanie' && (pracownik || jestWlascicielem) && (
-        <Sprzatanie
-          uczen={
-            pracownik || { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
-          }
-          wyniki={stan.wyniki}
-          nauka={stan.nauka}
-          konfig={stan.konfig}
-          onWynik={dodajWynik}
-          onPrzerobiony={(obszar) =>
-            oznaczPrzerobiony(pracownik ? pracownik.id_prac : ID_WLASCICIEL, obszar)
-          }
-        />
-      )}
+      {(ekran.widok === 'technika' || ekran.widok === 'sprzatanie') &&
+        (pracownik || jestWlascicielem) &&
+        (() => {
+          const uczen = pracownik || WLASCICIEL_UCZEN
+          const Panel = ekran.widok === 'technika' ? Technika : Sprzatanie
+          return (
+            <Panel
+              uczen={uczen}
+              wyniki={stan.wyniki}
+              nauka={stan.nauka}
+              konfig={stan.konfig}
+              onWynik={dodajWynik}
+              onDoKolejki={dodajDoKolejki}
+              onPrzerobiony={(obszar) => oznaczPrzerobiony(uczen.id_prac, obszar)}
+            />
+          )
+        })()}
       {ekran.widok === 'przedsiebiorca' && jestWlascicielem && (
         <EntrepreneurPanel
           stan={stan}
@@ -284,6 +299,7 @@ export default function App() {
         <TeamView
           pracownicy={stan.pracownicy}
           pytania={pytania}
+          pytaniaOpisowe={pytaniaOpisowe}
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           profile={stan.profile || []}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { eksportPanelM5 } from '../logic/export.js'
+import { MODULY_PLANERA } from '../logic/integracja.js'
 import {
   ROLE,
   walidujBank,
@@ -184,10 +185,13 @@ function PinWlasciciela({ konfig, onKonfig }) {
   )
 }
 
-const MODULY_KIEROWNIKA = [
-  { klucz: 'cukiernia', etykieta: '🍰 cukiernia' },
-  { klucz: 'piekarnia', etykieta: '🥖 piekarnia' }
-]
+// Jedno źródło prawdy o modułach planera: MODULY_PLANERA z integracja.js —
+// po tych samych kluczach zbudujRejestr filtruje uprawnienia kierownika,
+// więc lokalna kopia listy rozjechałaby się z rejestrem po cichu.
+const MODULY_KIEROWNIKA = MODULY_PLANERA.map((m) => ({
+  klucz: m.klucz,
+  etykieta: m.ikona + ' ' + m.klucz
+}))
 
 function Pracownicy({ pracownicy, onPracownicy }) {
   const [nowy, setNowy] = useState({ imie: '', rola: 'Piekarz', poziom_docelowy: 'SAMODZIELNY', pin: '' })

@@ -18,19 +18,25 @@ function nazwaTypu(klucz) {
 // (alterbake_zgloszenia_v1) — czytany też przez AI Command Center.
 // tryb 'pracownik': formularz + własne zgłoszenia. tryb 'zarzad': skrzynka
 // (Właściciel/Mentor) — zmiana statusu i odpowiedź, bez edycji treści.
-export default function Zgloszenia({ tryb, pracownik }) {
+export default function Zgloszenia({ tryb, pracownik, onAktualizacja = () => {} }) {
   const [zgloszenia, setZgloszenia] = useState(wczytajZgloszenia)
+  // onAktualizacja: App odświeża licznik „nowych" na zakładce — zmiany robimy
+  // lokalnym setState, więc bez sygnału badge pokazywałby starą liczbę.
+  const zastosuj = (lista) => {
+    setZgloszenia(lista)
+    onAktualizacja()
+  }
 
   if (tryb === 'pracownik') {
     return (
       <Formularz
         pracownik={pracownik}
         zgloszenia={zgloszenia.filter((z) => z.id_prac === pracownik.id_prac)}
-        onNowe={(wpis) => setZgloszenia(dodajZgloszenie(wpis))}
+        onNowe={(wpis) => zastosuj(dodajZgloszenie(wpis))}
       />
     )
   }
-  return <Skrzynka zgloszenia={zgloszenia} onZmiana={setZgloszenia} />
+  return <Skrzynka zgloszenia={zgloszenia} onZmiana={zastosuj} />
 }
 
 function Formularz({ pracownik, zgloszenia, onNowe }) {

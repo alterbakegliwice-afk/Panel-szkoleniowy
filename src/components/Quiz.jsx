@@ -15,7 +15,7 @@ function idWpisu(idPrac, idPytania) {
   return `${idPrac}:${idPytania}:${teraz()}:${Math.random().toString(36).slice(2, 7)}`
 }
 
-export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, onKoniec }) {
+export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, onKoniec, koniecTekst = 'Wróć do „Mój poziom"' }) {
   const zestaw = useMemo(() => pytania.filter((p) => p.tom === tom), [pytania, tom])
   const [i, setI] = useState(0)
   const [odp, setOdp] = useState({}) // indeksy zaznaczone (auto) lub tekst
@@ -119,7 +119,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
             ))}
           </div>
         )}
-        <button className="glowny" onClick={onKoniec}>Wróć do „Mój poziom"</button>
+        <button className="glowny" onClick={onKoniec}>{koniecTekst}</button>
       </div>
     )
   }

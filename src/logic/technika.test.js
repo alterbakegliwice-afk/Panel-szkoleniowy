@@ -56,6 +56,36 @@ describe('dane modułu technicznego', () => {
     expect(pytaniaTechniki().some((p) => p.ccp === true)).toBe(true)
   })
 
+  it('REGUŁA CCP: oblane pytanie ccp blokuje status OPANOWANY mimo progu zwykłych pytań', () => {
+    // Asber ma 4 pytania, w tym 1 CCP (TECH-ASB-1). Zaliczamy wszystkie
+    // poza CCP → zwykłe 100%, ale status musi zostać W TOKU (CCP osobno,
+    // próg 100% — reguła nienaruszalna z progress.js).
+    const asber = maszynaTechniczna('TECH-ASBER')
+    const wyniki = asber.pytania.map((p) => ({
+      data: '2026-07-14',
+      id_prac: 'P-01',
+      id_pytania: p.id,
+      zaliczyl: !p.ccp,
+      oceniajacy: 'auto',
+      notatka: ''
+    }))
+    const postep = postepTechniki(wyniki, 'P-01')
+    const wpis = postep.maszyny.find((x) => x.maszyna.id === 'TECH-ASBER')
+    expect(wpis.postep.procent).toBe(1)
+    expect(wpis.postep.ccpOk).toBe(false)
+    expect(wpis.postep.status).toBe('W TOKU')
+
+    // po zaliczeniu CCP (późniejszy wpis w logu) status się domyka
+    const poprawka = [...wyniki, {
+      data: '2026-07-15', id_prac: 'P-01',
+      id_pytania: asber.pytania.find((p) => p.ccp).id,
+      zaliczyl: true, oceniajacy: 'auto', notatka: ''
+    }]
+    const po = postepTechniki(poprawka, 'P-01').maszyny.find((x) => x.maszyna.id === 'TECH-ASBER')
+    expect(po.postep.ccpOk).toBe(true)
+    expect(po.postep.status).toBe('OPANOWANY')
+  })
+
   it('dokumentacja producenta (gdy jest) ma tytuł i URL http(s)', () => {
     let zLinkami = 0
     for (const m of TECHNIKA.maszyny) {

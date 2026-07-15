@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { profilPracownika, historiaPracownika } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import { TECHNIKA } from '../logic/technika.js'
@@ -8,7 +9,7 @@ import ImportWyniku from './ImportWyniku.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile, onDodajProfil }) {
+export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, konfig, profile, onDodajProfil }) {
   const proc = (x) => Math.round(x * 100)
   const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
   const wiersze = pracownicy.map((prac) => ({
@@ -204,7 +205,7 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
           o awansie, niezależna od „wyczucia".
         </p>
         {pracownicy.map((prac) => {
-          const wpisy = historiaPracownika(wyniki, pytania, prac.id_prac)
+          const wpisy = historiaPracownika(wyniki, pytaniaOpisowe || pytania, prac.id_prac)
           return (
             <details key={prac.id_prac} className="historia-karta">
               <summary>{prac.imie} — {prac.rola} ({wpisy.length} podejść)</summary>
@@ -221,6 +222,16 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
 // pozycja (maszyna/strefa). Kolumny to ikony pozycji z pełną nazwą w title.
 function TabelaPraktyczna({ tytul, opis, pozycje, pracownicy, wyniki, konfig }) {
   const proc = (x) => Math.round(x * 100)
+  // postepPozycji sortuje cały log wyników — licz tylko przy zmianie danych,
+  // nie przy każdym renderze widoku Zespół
+  const wiersze = useMemo(
+    () =>
+      pracownicy.map((prac) => ({
+        prac,
+        pt: postepPozycji(pozycje, wyniki, prac.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
+      })),
+    [pozycje, pracownicy, wyniki, konfig?.PROG_ZALICZENIA]
+  )
   return (
     <div className="karta">
       <h2>{tytul}</h2>
@@ -237,25 +248,26 @@ function TabelaPraktyczna({ tytul, opis, pozycje, pracownicy, wyniki, konfig }) 
             </tr>
           </thead>
           <tbody>
-            {pracownicy.map((prac) => {
-              const pt = postepPozycji(pozycje, wyniki, prac.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
-              return (
-                <tr key={prac.id_prac}>
-                  <td><strong>{prac.imie}</strong></td>
-                  <td><strong>{proc(pt.procent)}%</strong></td>
-                  {pt.maszyny.map(({ maszyna: m, postep: pm }) => (
-                    <td key={m.id} title={`${m.nazwa}: ${pm.zaliczonych}/${pm.pytan} pytań`}>
-                      <div className="komorka-tom">
-                        <div className="mini-pasek">
-                          <div className="mini-wypelnienie" style={{ width: proc(pm.procent) + '%' }} />
-                        </div>
-                        <span className="mini-proc">{proc(pm.procent)}%</span>
+            {wiersze.map(({ prac, pt }) => (
+              <tr key={prac.id_prac}>
+                <td><strong>{prac.imie}</strong></td>
+                <td><strong>{proc(pt.procent)}%</strong></td>
+                {pt.maszyny.map(({ maszyna: m, postep: pm }) => (
+                  <td
+                    key={m.id}
+                    title={`${m.nazwa}: ${pm.zaliczonych}/${pm.pytan} pytań` +
+                      (pm.ccpPytan ? ` · CCP ${pm.ccpOk ? 'OK' : 'do zaliczenia'}` : '')}
+                  >
+                    <div className="komorka-tom">
+                      <div className="mini-pasek">
+                        <div className="mini-wypelnienie" style={{ width: proc(pm.procent) + '%' }} />
                       </div>
-                    </td>
-                  ))}
-                </tr>
-              )
-            })}
+                      <span className="mini-proc">{proc(pm.procent)}%</span>
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

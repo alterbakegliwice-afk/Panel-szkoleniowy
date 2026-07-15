@@ -2,7 +2,8 @@
 // maszyna/strefa z nauką, kartami diagnostycznymi (objaw → odczyt → przyczyny
 // → działania → granica serwisu), rytmem konserwacji/sprzątania i quizem.
 // Moduły domenowe (technika.js, sprzatanie.js) dostarczają dane i nazwy.
-import { postepModulu } from './nauka.js'
+import { postepModuluZOst } from './nauka.js'
+import { ostatnieWyniki } from './progress.js'
 
 // Normalizacja do wyszukiwania: bez wielkości liter i polskich znaków,
 // żeby „blady spod" znalazło „Blady spód".
@@ -34,11 +35,14 @@ export function szukajObjawow(fraza, pozycje) {
   return wynik
 }
 
-// Postęp ucznia per pozycja + zbiorczy (te same reguły co tomy: próg 0,8).
+// Postęp ucznia per pozycja + zbiorczy (te same reguły co tomy: próg 0,8;
+// pytania CCP osobno, próg 100% — patrz postepModuluZOst). Mapę ostatnich
+// wyników liczymy RAZ dla wszystkich pozycji (sortowanie całego logu).
 export function postepPozycji(pozycje, wyniki, idUcznia, prog = 0.8) {
+  const ost = ostatnieWyniki(wyniki)
   const lista = pozycje.map((m) => ({
     maszyna: m,
-    postep: postepModulu(m, wyniki, idUcznia, prog)
+    postep: postepModuluZOst(m, ost, idUcznia, prog)
   }))
   const procent = lista.length
     ? lista.reduce((s, x) => s + x.postep.procent, 0) / lista.length

@@ -63,6 +63,11 @@ export function wczytajStan() {
   }
 }
 
+// Lustro zależy tylko od pracowników i PIN-u właściciela — pomijamy zapis,
+// gdy się nie zmieniły (większość zapisów stanu to wynik quizu), żeby nie
+// emitować zbędnych zdarzeń `storage` do Planera/Dashboardu na tym originie.
+let odciskLustra = null
+
 export function zapiszStan(stan) {
   try {
     localStorage.setItem(KLUCZ, JSON.stringify(stan))
@@ -71,7 +76,11 @@ export function zapiszStan(stan) {
   }
   // Lustro rejestru zespołu dla Planera Produkcji i AI Dashboardu — Panel jest
   // jedynym źródłem prawdy o profilach (SPEC-APLIKACJA-PRACOWNIKA.md §2.1).
-  zapiszLustroZespolu(stan)
+  const odcisk = JSON.stringify([stan.pracownicy, stan.konfig?.PIN_WLASCICIELA || ''])
+  if (odcisk !== odciskLustra) {
+    odciskLustra = odcisk
+    zapiszLustroZespolu(stan)
+  }
 }
 
 // Bank pytań: priorytet ma bank wgrany przez właściciela (rośnie bez zmiany kodu),

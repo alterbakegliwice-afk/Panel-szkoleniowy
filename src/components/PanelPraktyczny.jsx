@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { szukajObjawow, postepPozycji } from '../logic/panelPraktyczny.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
 import Learning from './Learning.jsx'
@@ -11,11 +11,17 @@ import Quiz from './Quiz.jsx'
 // nie czeka na zaliczenie quizu). Teksty domeny przychodzą w `etykiety`.
 export default function PanelPraktyczny({
   tytul, opis, pozycje, etykiety: e,
-  uczen, wyniki, nauka, konfig, onWynik, onPrzerobiony
+  uczen, wyniki, nauka, konfig, onWynik, onDoKolejki = () => {}, onPrzerobiony
 }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [fraza, setFraza] = useState('')
-  const postep = postepPozycji(pozycje, wyniki, uczen.id_prac, konfig?.PROG_ZALICZENIA ?? 0.8)
+  const prog = konfig?.PROG_ZALICZENIA ?? 0.8
+  // postęp nie zależy od frazy szukania — bez memo każda literka w polu
+  // sortowałaby od nowa cały append-only log wyników
+  const postep = useMemo(
+    () => postepPozycji(pozycje, wyniki, uczen.id_prac, prog),
+    [pozycje, wyniki, uczen.id_prac, prog]
+  )
   const proc = (x) => Math.round(x * 100)
   const trafienia = szukajObjawow(fraza, pozycje)
   const pozycja = (id) => pozycje.find((m) => m.id === id) || null
@@ -41,11 +47,12 @@ export default function PanelPraktyczny({
     return (
       <Quiz
         pracownik={uczen}
-        tom={m.pytania[0].tom}
+        tom={m.pytania[0]?.tom}
         pytania={m.pytania}
         onWynik={onWynik}
-        onDoKolejki={() => {}}
+        onDoKolejki={onDoKolejki}
         onKoniec={() => setWidok({ typ: 'lista' })}
+        koniecTekst={e.wrocLista.replace('← ', '')}
       />
     )
   }
@@ -97,7 +104,7 @@ export default function PanelPraktyczny({
                   <tr key={i}>
                     <td>{k.co}</td>
                     <td>{k.kiedy}</td>
-                    <td><span className={'diag-kto ' + (k.kto.startsWith('serwis') || k.kto.includes('DDD') ? 'serwis' : '')}>{k.kto}</span></td>
+                    <td><span className={'diag-kto ' + (czyZewnetrzny(k.kto) ? 'serwis' : '')}>{String(k.kto || '—')}</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -109,7 +116,7 @@ export default function PanelPraktyczny({
           <p className="cichy">{nauczony ? e.ctaNauczony : e.ctaBrak}</p>
           <div className="rzad">
             <button className="drugi" onClick={() => setWidok({ typ: 'nauka', id: m.id })}>{e.naukaBtn}</button>
-            <button className="glowny" disabled={!nauczony} onClick={() => setWidok({ typ: 'quiz', id: m.id })}>
+            <button className="glowny" disabled={!nauczony || !m.pytania.length} onClick={() => setWidok({ typ: 'quiz', id: m.id })}>
               Sprawdź wiedzę →
             </button>
           </div>
@@ -168,6 +175,11 @@ export default function PanelPraktyczny({
               </div>
               <div className="tom-dol">
                 <span>{proc(pm.procent)}% · {pm.zaliczonych}/{pm.pytan} pytań</span>
+                {pm.ccpPytan > 0 && (
+                  <span className={pm.ccpOk ? 'ccp-tag ok' : 'ccp-tag brak'}>
+                    CCP {pm.ccpOk ? 'OK' : 'DO ZALICZENIA'}
+                  </span>
+                )}
                 {nauczony && <span className="ccp-tag ok">nauka ✓</span>}
               </div>
               <div className="rzad">
@@ -179,7 +191,7 @@ export default function PanelPraktyczny({
                 </button>
                 <button
                   className="glowny"
-                  disabled={!nauczony}
+                  disabled={!nauczony || !m.pytania.length}
                   onClick={() => setWidok({ typ: 'quiz', id: m.id })}
                 >
                   Sprawdź wiedzę
@@ -194,6 +206,14 @@ export default function PanelPraktyczny({
       </div>
     </div>
   )
+}
+
+// „Kto" to wolny tekst z danych (bywa mieszany: „kierownik/serwis",
+// „kierownik/firma DDD"); wyróżniamy każdy wpis angażujący wykonawcę
+// zewnętrznego — to informacja o granicy kompetencji pracownika.
+// Odporne na brak pola (String(undefined) nie rzuca).
+function czyZewnetrzny(kto) {
+  return /serwis|ddd|dostawc|hydraulik|firma/i.test(String(kto || ''))
 }
 
 const RYZYKO = {
@@ -212,7 +232,7 @@ function KartaDiagnozy({ d, maszyna, onOtworz, otworzTekst }) {
       </div>
       {maszyna && (
         <button className="cichy-link" onClick={onOtworz}>
-          {maszyna.ikona} {maszyna.nazwa} {otworzTekst || '— otwórz pełną diagnostykę →'}
+          {maszyna.ikona} {maszyna.nazwa} {otworzTekst}
         </button>
       )}
       <p className="diag-odczyt">{d.odczyt}</p>

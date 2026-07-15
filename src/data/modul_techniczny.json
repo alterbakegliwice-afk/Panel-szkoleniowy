@@ -151,7 +151,7 @@
           "opcje": [
             "Piec jest gotowy do wypieku chleba na trzonie",
             "Powietrze ma 250°C, ale płyta jest jeszcze niedogrzana — pierwszy chleb miałby blady spód",
-            "Termometr jest zepsuty, bo piec nagrzewa się минимум 3 godziny",
+            "Termometr jest zepsuty, bo piec nagrzewa się minimum 3 godziny",
             "Trzeba natychmiast podać parę, żeby wyrównać temperaturę"
           ],
           "poprawne": [1],

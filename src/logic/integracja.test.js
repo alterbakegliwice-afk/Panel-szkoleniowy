@@ -105,6 +105,29 @@ describe('zgłoszenia (alterbake_zgloszenia_v1)', () => {
     ).toEqual([dobry])
   })
 
+  it('odrzuca wpis bez pola data (UI renderuje data.slice — brak pola wywalał widok)', () => {
+    const dobry = noweZgloszenie({ id_prac: 'P-01', imie: 'W', typ: 'uwaga', tresc: 'ok' })
+    const bezDaty = { ...dobry, id: 'zg-x' }
+    delete bezDaty.data
+    expect(filtrujZgloszenia([dobry, bezDaty, { ...dobry, id: 'zg-y', data: 123 }])).toEqual([dobry])
+  })
+
+  it('zapis NIE kasuje cudzych wpisów nierozpoznanych przez tę wersję (append-only dla całego originu)', () => {
+    // wpis „z przyszłości"/z innej aplikacji: typ spoza słownika tej wersji
+    const obcy = { id: 'zg-obcy', id_prac: 'P-09', imie: 'Bot', typ: 'pochwala', tresc: 'super', data: 't', status: 'nowe', odpowiedz: '' }
+    localStorage.setItem(KLUCZ_ZGLOSZENIA, JSON.stringify({ wersja: 1, zgloszenia: [obcy] }))
+
+    const moj = noweZgloszenie({ id_prac: 'P-01', imie: 'W', typ: 'uwaga', tresc: 'moje' })
+    dodajZgloszenie(moj)
+    ustawStatusZgloszenia(moj.id, 'przyjete')
+
+    const naDysku = JSON.parse(localStorage.getItem(KLUCZ_ZGLOSZENIA)).zgloszenia
+    expect(naDysku.find((z) => z.id === 'zg-obcy')).toEqual(obcy)
+    expect(naDysku).toHaveLength(2)
+    // a UI dalej widzi tylko wpisy poprawne dla tej wersji
+    expect(wczytajZgloszenia().map((z) => z.id)).toEqual([moj.id])
+  })
+
   it('dopisuje i aktualizuje status bez edycji treści', () => {
     const wpis = noweZgloszenie({ id_prac: 'P-02', imie: 'Michał', typ: 'potrzeba', tresc: ' Brak pistacji ' })
     expect(wpis.tresc).toBe('Brak pistacji')

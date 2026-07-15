@@ -82,12 +82,20 @@ def waliduj_pytania(pytania: list) -> str | None:
                 return f"Pytanie {p['id']}: każda opcja musi być niepustym tekstem."
             if not isinstance(poprawne, list) or not poprawne:
                 return f"Pytanie {p['id']}: „opcje” bez „poprawne”."
-            if any(not isinstance(i, int) or i < 0 or i >= len(opcje) for i in poprawne):
+            # uwaga: bool jest podklasą int w Pythonie — odrzucamy jawnie
+            # (JS-owe Number.isInteger(true) === false, lustro musi się zgadzać)
+            if any(
+                not isinstance(i, int) or isinstance(i, bool) or i < 0 or i >= len(opcje)
+                for i in poprawne
+            ):
                 return f"Pytanie {p['id']}: „poprawne” wskazuje nieistniejącą opcję."
             if len(set(poprawne)) != len(poprawne):
                 return f"Pytanie {p['id']}: zduplikowane indeksy w „poprawne”."
             if p["typ"] == "jednokrotny" and len(poprawne) != 1:
                 return f"Pytanie {p['id']}: „jednokrotny” wymaga dokładnie 1 poprawnej."
+        elif p["typ"] in ("jednokrotny", "wielokrotny") and poprawne is not None:
+            # lustro store.js walidujBank: „poprawne” bez „opcje” to błąd klucza
+            return f"Pytanie {p['id']}: „poprawne” bez „opcje”."
     idki = [p["id"] for p in pytania]
     if len(set(idki)) != len(idki):
         return "Zduplikowane ID pytań."
@@ -95,11 +103,22 @@ def waliduj_pytania(pytania: list) -> str | None:
 
 
 def wytnij_json(tekst: str):
-    """Model bywa gadatliwy — wytnij pierwszą tablicę JSON z odpowiedzi."""
-    dopasowanie = re.search(r"\[.*\]", tekst, re.DOTALL)
-    if not dopasowanie:
-        raise ValueError("Brak tablicy JSON w odpowiedzi:\n" + tekst[:400])
-    return json.loads(dopasowanie.group(0))
+    """Model bywa gadatliwy — wytnij pierwszą tablicę obiektów z odpowiedzi.
+
+    Zachłanny regex `\\[.*\\]` łapał od pierwszego do ostatniego nawiasu w całej
+    odpowiedzi, więc znaczniki cytowań NotebookLM (np. „[1]” w prozie) psuły
+    parsowanie. Zamiast tego dekodujemy od kolejnych „[” raw_decode'em i bierzemy
+    pierwszą poprawną listę słowników.
+    """
+    dekoder = json.JSONDecoder()
+    for kandydat in re.finditer(r"\[", tekst):
+        try:
+            wynik, _ = dekoder.raw_decode(tekst, kandydat.start())
+        except json.JSONDecodeError:
+            continue
+        if isinstance(wynik, list) and wynik and all(isinstance(x, dict) for x in wynik):
+            return wynik
+    raise ValueError("Brak tablicy JSON w odpowiedzi:\n" + tekst[:400])
 
 
 def bezpieczna_nazwa(obszar: str) -> str:
@@ -150,8 +169,13 @@ async def main() -> None:
             odp = await client.chat.ask(
                 nb.id, PROMPT_PYTANIA.format(n=args.pytan_na_obszar, obszar=obszar)
             )
-            pytania = wytnij_json(odp.answer)
-            blad = waliduj_pytania(pytania)
+            # błąd parsowania jednej partii nie może wywalić skryptu i utopić
+            # wyników wcześniejszych obszarów — odrzucamy partię jak przy walidacji
+            try:
+                pytania = wytnij_json(odp.answer)
+                blad = waliduj_pytania(pytania)
+            except ValueError as e:
+                blad = f"parsowanie: {e}"
             if blad:
                 print(f"  ⚠ odrzucono partię ({blad}) — popraw prompt/model i ponów")
             else:

@@ -93,14 +93,23 @@ export function filtrujZgloszenia(lista) {
       typeof z.id_prac === 'string' &&
       typeof z.tresc === 'string' &&
       z.tresc.trim() !== '' &&
+      typeof z.data === 'string' &&
       TYPY_ZGLOSZEN.some((t) => t.klucz === z.typ) &&
       STATUSY_ZGLOSZEN.includes(z.status)
   )
 }
 
-export function wczytajZgloszenia() {
+// Surowa lista z klucza — BEZ filtrowania. Zapisy (dopisanie, zmiana statusu)
+// operują na surowej liście, żeby wpisy nierozpoznane przez tę wersję Panelu
+// (np. nowy typ zapisany przez AI Dashboard) przetrwały zapis — log jest
+// append-only dla WSZYSTKICH aplikacji originu, nie tylko dla nas.
+function suroweZgloszenia() {
   const dane = czytajJSON(KLUCZ_ZGLOSZENIA)
-  return filtrujZgloszenia(dane && dane.zgloszenia)
+  return Array.isArray(dane && dane.zgloszenia) ? dane.zgloszenia : []
+}
+
+export function wczytajZgloszenia() {
+  return filtrujZgloszenia(suroweZgloszenia())
 }
 
 function zapiszZgloszenia(zgloszenia) {
@@ -121,22 +130,22 @@ export function noweZgloszenie({ id_prac, imie, typ, tresc }, terazISO = new Dat
   }
 }
 
-// Dopisanie wpisu (log append-only) — zwraca zaktualizowaną listę.
+// Dopisanie wpisu (log append-only) — zwraca zaktualizowaną listę do UI.
 export function dodajZgloszenie(wpis) {
-  const zgloszenia = [...wczytajZgloszenia(), wpis]
-  zapiszZgloszenia(zgloszenia)
-  return zgloszenia
+  const surowe = [...suroweZgloszenia(), wpis]
+  zapiszZgloszenia(surowe)
+  return filtrujZgloszenia(surowe)
 }
 
 // Zmiana statusu/odpowiedzi (jedyna dozwolona modyfikacja istniejącego wpisu).
 export function ustawStatusZgloszenia(id, status, odpowiedz) {
-  const zgloszenia = wczytajZgloszenia().map((z) =>
-    z.id === id
+  const surowe = suroweZgloszenia().map((z) =>
+    z && z.id === id
       ? { ...z, status, odpowiedz: odpowiedz !== undefined ? odpowiedz : z.odpowiedz }
       : z
   )
-  zapiszZgloszenia(zgloszenia)
-  return zgloszenia
+  zapiszZgloszenia(surowe)
+  return filtrujZgloszenia(surowe)
 }
 
 // --- ODCZYT PLANERA PRODUKCJI (tylko-odczyt + status własnego zadania) ---
