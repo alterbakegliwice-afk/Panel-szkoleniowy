@@ -238,6 +238,41 @@ describe('kopia zapasowa — pełny round-trip stanu', () => {
     const kopia = eksportKopii({ ...stan, bank: { pytania: [{ id: 'X', tom: 'T', poziom: 'JUNIOR', typ: 'jednokrotny', ccp: false, pytanie: '?', wzorzec: 'w', opcje: ['a', 'b'], poprawne: [9] }] } })
     expect(walidujKopie(kopia)).toMatch(/Bank w kopii/)
   })
+
+  it('round-trip zachowuje nowe logi: profile (Work Profile), praktyki, obserwacje', () => {
+    const stanPelny = {
+      ...stan,
+      profile: [{
+        id: 'WP-P-01-profil-pracy-2026-08-01', id_prac: 'P-01', narzedzie: 'profil-pracy',
+        data: '2026-08-01T00:00:00.000Z', osoba: { imie: 'Ala' },
+        wyniki: { reliability: 80 }, obszary: { reliability: 80, initiative: 30 }
+      }],
+      praktyki: ['P-01|initiative|0', 'P-01|initiative|1'],
+      obserwacje: [{ id: 'OBS-P-01-initiative-x', id_prac: 'P-01', obszar: 'initiative', kierunek: 'bez_zmian', oceniajacy: 'Piotr', notatka: '', data: '2026-08-02T00:00:00.000Z' }]
+    }
+    const kopia = eksportKopii(stanPelny)
+    expect(walidujKopie(kopia)).toBe(null)
+    const odtw = kopieDoStanu(kopia)
+    expect(odtw.profile).toHaveLength(1)
+    expect(odtw.profile[0].obszary.reliability).toBe(80)
+    expect(odtw.praktyki).toEqual(['P-01|initiative|0', 'P-01|initiative|1'])
+    expect(odtw.obserwacje).toHaveLength(1)
+    expect(odtw.obserwacje[0].kierunek).toBe('bez_zmian')
+  })
+
+  it('round-trip odsiewa zepsute wpisy w nowych logach (nie wywala importu)', () => {
+    const kopia = eksportKopii({
+      ...stan,
+      profile: [null, { id_prac: 'P-01' }], // zepsute → odpadną (filtrujProfile)
+      praktyki: ['ok|x|0', 123, null], // tylko string przechodzi
+      obserwacje: [{ id_prac: 'P-01', obszar: 'initiative', kierunek: 'wzrost' }, {}, 'zły']
+    })
+    expect(walidujKopie(kopia)).toBe(null)
+    const odtw = kopieDoStanu(kopia)
+    expect(odtw.profile).toEqual([])
+    expect(odtw.praktyki).toEqual(['ok|x|0'])
+    expect(odtw.obserwacje).toHaveLength(1) // tylko wpis z id_prac+obszar
+  })
 })
 
 describe('spaced retrieval — rozłożone powtórki wiedzy', () => {
@@ -286,6 +321,12 @@ describe('spaced retrieval — rozłożone powtórki wiedzy', () => {
   it('pytania bez opcji (otwarte/praktyczne) nie wchodzą do powtórek', () => {
     const wyniki = [w('O1', '2026-01-01T00:00:00.000Z', true)]
     expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('pytanie z opcjami, ale typu „otwarty”, NIE wchodzi (zgodność z Quiz.autoOceniany)', () => {
+    const dziwne = [{ id: 'D1', tom: 'X', poziom: 'JUNIOR', ccp: false, typ: 'otwarty', pytanie: '?', opcje: ['a', 'b'], poprawne: [0] }]
+    const wyniki = [w('D1', '2026-01-01T00:00:00.000Z', true)]
+    expect(pozycjeDoPowtorki(dziwne, wyniki, 'P-01', TERAZ)).toEqual([])
   })
 
   it('podsumowaniePowtorek liczy pozycje i CCP', () => {

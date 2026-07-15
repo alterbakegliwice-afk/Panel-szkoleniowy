@@ -1,4 +1,4 @@
-import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika, podsumowaniePowtorek } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import HistoryList from './HistoryList.jsx'
 import ImportWyniku from './ImportWyniku.jsx'
@@ -11,8 +11,11 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
   const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
   const wiersze = pracownicy.map((prac) => ({
     prac,
-    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
+    prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy),
+    powtorki: podsumowaniePowtorek(pytania, wyniki, prac.id_prac)
   }))
+  // Zaległe powtórki CCP w całym zespole = sygnał bezpieczeństwa żywności dla właściciela.
+  const zalegleCcp = wiersze.reduce((s, w) => s + w.powtorki.ccp, 0)
 
   return (
     <div className="zespol">
@@ -24,6 +27,20 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
         </p>
       </div>
 
+      {zalegleCcp > 0 && (
+        <div className="karta ccp ccp-brak">
+          <div className="ccp-ikona">⚠</div>
+          <div>
+            <div className="ccp-tytul">Wiedza CCP do odświeżenia w zespole: {zalegleCcp}</div>
+            <div className="ccp-opis">
+              Pytania o bezpieczeństwo żywności zaliczone dawno temu wymagają powtórki — wiedza
+              zanika. Kolumna „Do powtórki" wskazuje, kto i ile. To nie oblane CCP (status wyżej),
+              tylko sygnał do zaplanowania krótkiego odświeżenia, zanim stanie się luką.
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="tabela-otoczka">
         <table className="tabela">
           <thead>
@@ -34,11 +51,12 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
               {pytania.length > 0 &&
                 [...new Set(pytania.map((p) => p.tom))].map((tom) => <th key={tom}>{tom}</th>)}
               <th>CCP</th>
+              <th>Do powtórki</th>
               <th>Cel / gotowość</th>
             </tr>
           </thead>
           <tbody>
-            {wiersze.map(({ prac, prof }) => (
+            {wiersze.map(({ prac, prof, powtorki }) => (
               <tr key={prac.id_prac}>
                 <td>
                   <strong>{prac.imie}</strong>
@@ -60,6 +78,17 @@ export default function TeamView({ pracownicy, pytania, wyniki, konfig, profile,
                   <span className={prof.ccpOk ? 'ccp-tag ok' : 'ccp-tag brak'}>
                     {prof.ccpOk ? 'OK' : 'BRAK'}
                   </span>
+                </td>
+                <td>
+                  {powtorki.liczba === 0 ? (
+                    <span className="cichy mini">—</span>
+                  ) : powtorki.ccp > 0 ? (
+                    <span className="ccp-tag brak" title="Wiedza CCP wymaga odświeżenia — ryzyko bezpieczeństwa">
+                      {powtorki.liczba} · {powtorki.ccp} CCP
+                    </span>
+                  ) : (
+                    <span className="plakietka toku">{powtorki.liczba}</span>
+                  )}
                 </td>
                 <td>
                   {prof.cel.osiagniety ? (

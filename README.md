@@ -164,7 +164,9 @@ Trzy mechanizmy odróżniają panel od zwykłego LMS „obejrzyj → zdaj quiz":
    dashboard jako „Do powtórki" — **pytania CCP (bezpieczeństwo żywności) jako
    pierwsze**. Oblanie kasuje serię (wraca do intensywnej nauki). Logika:
    `progress.js` (`pozycjeDoPowtorki`), UI: karta w `EmployeeDashboard.jsx`,
-   powtórka przez `Quiz.jsx` w trybie zestawu.
+   powtórka przez `Quiz.jsx` w trybie zestawu. Widok **Zespołu** pokazuje właścicielowi
+   kolumnę „Do powtórki" per pracownik i baner, gdy w zespole zalega wiedza CCP —
+   to sygnał bezpieczeństwa żywności, nie oblane CCP (status liczony osobno).
 
 Źródła i pełne uzasadnienie każdego mechanizmu — w komentarzach przy funkcjach.
 
