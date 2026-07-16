@@ -462,10 +462,45 @@ details summary:hover { color: var(--akcent-ciemny); }
 .kierownik-przelacznik { display: inline-flex; align-items: center; gap: .3rem; margin-right: .7rem; font-size: .8rem; white-space: nowrap; cursor: pointer; }
 .kierownik-przelacznik input { accent-color: var(--akcent); }
 
-/* druk karty maszyny: sama treść diagnostyczna, bez nawigacji i przycisków */
+/* spaced retrieval — karta „Do powtórki" */
+.powtorki-karta { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
+.powtorki-lista { list-style: none; margin: .6rem 0 .8rem; padding: 0; display: grid; gap: .35rem; }
+.powtorki-lista li { display: flex; align-items: center; gap: .5rem; font-size: .84rem; }
+.powtorki-tom { font-weight: 650; }
+
+/* triangulacja — obserwacja Mentora vs samoocena */
+.obs-form { display: flex; flex-wrap: wrap; gap: .8rem; margin: .6rem 0; }
+.obs-zestawienia { margin-top: 1rem; }
+.obs-lista { display: grid; gap: .4rem; margin-top: .5rem; }
+.obs-wiersz { display: flex; flex-wrap: wrap; gap: .3rem 1rem; align-items: center; padding: .45rem .6rem; border-radius: var(--r); background: var(--karta-inset); font-size: .82rem; }
+.obs-wiersz.obs-rozjazd { background: var(--brak-tlo); border-left: 3px solid var(--brak); }
+.obs-obszar { font-weight: 700; min-width: 12ch; }
+.obs-flaga { color: var(--brak-ciemny); font-weight: 650; width: 100%; }
+.obs-inline { font-size: .8rem; color: var(--akcent-ciemny); background: var(--akcent-tint); padding: .4rem .6rem; border-radius: var(--r); margin: .3rem 0; line-height: 1.45; }
+.obs-inline-rozjazd { color: var(--brak-ciemny); background: var(--brak-tlo); }
+
+/* ---------- plan rozwoju do druku ---------- */
+.plan-akcje { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; }
+.plan-arkusz { background: #fff; border: 1px solid var(--linia); border-radius: var(--r); padding: 1.6rem 1.8rem; max-width: 800px; margin: 0 auto; }
+.plan-naglowek { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; border-bottom: 2px solid var(--akcent); padding-bottom: .8rem; margin-bottom: 1rem; }
+.plan-naglowek h1 { font-size: 1.6rem; }
+.plan-meta { text-align: right; }
+.plan-sekcja { margin: 1.1rem 0; }
+.plan-sekcja h2 { font-size: 1.02rem; color: var(--akcent-ciemny); margin-bottom: .5rem; }
+.plan-lista { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+.plan-lista li { line-height: 1.5; }
+.plan-flaga { color: var(--brak-ciemny); font-weight: 650; }
+.plan-linie { display: grid; gap: 1.3rem; margin-top: .6rem; }
+.plan-linia { border-bottom: 1px dashed var(--linia-mocna); height: 1px; }
+.plan-stopka { margin-top: 1.4rem; border-top: 1px solid var(--linia); padding-top: .6rem; }
+
+/* druk: sama treść (karta maszyny / plan rozwoju), bez nawigacji i przycisków */
 @media print {
-  .naglowek, .stopka, .bez-druku, .diag-szukaj, button { display: none !important; }
+  .naglowek, .stopka, .bez-druku, .diag-szukaj, .no-print, button { display: none !important; }
   .karta, .diag-karta { break-inside: avoid; box-shadow: none; }
+  .tresc, .aplikacja { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .plan-arkusz { border: none; padding: 0; max-width: none; }
+  .plan-ustalenia { break-inside: avoid; }
   body { background: #fff; }
 }
 

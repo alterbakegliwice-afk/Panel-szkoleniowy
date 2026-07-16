@@ -138,6 +138,38 @@ Testy E2E (`e2e/*.spec.js`, Playwright) pokrywają pełne ścieżki UI integracj
 CI (`.github/workflows/ci.yml`) odpala vitest + Playwright na każdym pushu i PR.
 Uruchomienie lokalne: `npm run test:e2e`.
 
+## Metodyka oparta na dowodach (co czyni tę platformę skuteczną i inną)
+
+Trzy mechanizmy odróżniają panel od zwykłego LMS „obejrzyj → zdaj quiz":
+
+1. **Pomiar zachowania, nie tylko wiedzy (Kirkpatrick poziom 3).** Ewaluacją
+   szkolenia jest ponowny test Work Profile, czyli zmiana zachowania w czasie —
+   nie sam quiz. Większość platform zatrzymuje się na poziomie 2 (wiedza).
+
+2. **Triangulacja samooceny z obserwacją Mentora (walka z Dunning-Kruger).**
+   Work Profile to test *self-report*, a samoocena wyjaśnia tylko ~8% wariancji
+   rzeczywistych umiejętności (Mabe & West 1982) — najsłabsi zawyżają najbardziej.
+   Dlatego obok delty samooceny panel pokazuje krótką obserwację Mentora „w praktyce",
+   a gdy się rozjeżdżają (samoocena rośnie, Mentor nie widzi zmiany), jawnie to
+   sygnalizuje jako temat do rozmowy. To domyka też lukę transferu — wsparcie
+   przełożonego jest drugim najważniejszym czynnikiem transferu szkolenia.
+   Logika: `rozwoj.js` (`triangulacja`, `rozjazdOceny`), UI: `ObserwacjeMentora.jsx`
+   (Zespół) i karty obszarów w `Rozwoj.jsx`. Log `obserwacje` (append-only, w kopii).
+
+3. **Spaced retrieval — rozłożone powtórki wiedzy.** Wiedza faktograficzna
+   (parametry, CCP) zanika; „zaliczone raz" ≠ „umie na zawsze". Rozłożone
+   powtarzanie z aktywnym przypominaniem daje 2–3× lepszą retencję (zwalidowane
+   też w miejscu pracy). Panel śledzi, kiedy pozycja była ostatnio potwierdzona,
+   i wg rozszerzającego harmonogramu (7 → 30 → 90 → 180 dni) przywraca ją na
+   dashboard jako „Do powtórki" — **pytania CCP (bezpieczeństwo żywności) jako
+   pierwsze**. Oblanie kasuje serię (wraca do intensywnej nauki). Logika:
+   `progress.js` (`pozycjeDoPowtorki`), UI: karta w `EmployeeDashboard.jsx`,
+   powtórka przez `Quiz.jsx` w trybie zestawu. Widok **Zespołu** pokazuje właścicielowi
+   kolumnę „Do powtórki" per pracownik i baner, gdy w zespole zalega wiedza CCP —
+   to sygnał bezpieczeństwa żywności, nie oblane CCP (status liczony osobno).
+
+Źródła i pełne uzasadnienie każdego mechanizmu — w komentarzach przy funkcjach.
+
 ## Warstwa graficzna (pod uciekającą uwagę / ADHD)
 
 Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.

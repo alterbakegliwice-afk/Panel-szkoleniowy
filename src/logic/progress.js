@@ -104,6 +104,79 @@ export function listaTomow(pytania) {
   return [...new Set(pytania.map((p) => p.tom))]
 }
 
+// ─── SPACED RETRIEVAL — rozłożone powtórki wiedzy ─────────────────────────────
+// Dowód: powtarzanie z rozłożeniem + aktywne przypominanie (spaced retrieval)
+// daje 2–3× lepszą retencję niż nauka jednorazowa i jest zwalidowane w miejscu
+// pracy (Cepeda i in. 2006; badania treningów sprzedażowych). Wiedza faktograficzna
+// (parametry, CCP) zanika z czasem — „zaliczone raz” nie znaczy „umie na zawsze”.
+//
+// Harmonogram rozszerzający: po kolejnych zaliczeniach z rzędu odstęp rośnie.
+// Pozycja wraca do powtórki, gdy od ostatniego zaliczenia minął odstęp dla jej
+// „serii”. Oblanie kasuje serię (wraca do intensywnej nauki, nie powtórki).
+export const INTERWALY_POWTOREK_DNI = [7, 30, 90, 180]
+
+// Tylko pytania auto-oceniane da się samodzielnie powtórzyć bez Mentora —
+// praktyczne/otwarte idą inną ścieżką i nie wchodzą do powtórek. Definicja
+// MUSI zgadzać się z Quiz.autoOceniany (typ + opcje), inaczej powtórka
+// wpuściłaby pytanie, którego quiz nie umie auto-ocenić.
+function autoOceniane(p) {
+  return (p.typ === 'jednokrotny' || p.typ === 'wielokrotny') && Array.isArray(p.opcje) && p.opcje.length > 0
+}
+
+function dodajDni(iso, dni) {
+  const d = new Date(iso)
+  d.setDate(d.getDate() + dni)
+  return d
+}
+
+// Lista pozycji, które „dojrzały” do powtórki dla danego pracownika.
+// terazISO wstrzykiwalne (testy). CCP na początku listy — utrwalenie wiedzy
+// o bezpieczeństwie żywności jest najważniejsze.
+export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null) {
+  const teraz = new Date(terazISO || new Date().toISOString())
+  const mapaP = new Map(pytania.map((p) => [p.id, p]))
+  const hist = new Map()
+  wyniki
+    .filter((w) => w.id_prac === idPrac && mapaP.has(w.id_pytania))
+    .slice()
+    .sort((a, b) => ((a.data || '') < (b.data || '') ? -1 : (a.data || '') > (b.data || '') ? 1 : 0))
+    .forEach((w) => {
+      if (!hist.has(w.id_pytania)) hist.set(w.id_pytania, [])
+      hist.get(w.id_pytania).push(w)
+    })
+
+  const due = []
+  for (const [idPyt, wpisy] of hist) {
+    const p = mapaP.get(idPyt)
+    if (!autoOceniane(p)) continue
+    const ost = wpisy[wpisy.length - 1]
+    if (!ost.zaliczyl || !ost.data) continue // oblane lub bez daty → nie powtórka
+    let seria = 0
+    for (let i = wpisy.length - 1; i >= 0 && wpisy[i].zaliczyl; i--) seria++
+    const interwal = INTERWALY_POWTOREK_DNI[Math.min(seria - 1, INTERWALY_POWTOREK_DNI.length - 1)]
+    const termin = dodajDni(ost.data, interwal)
+    if (teraz >= termin) {
+      due.push({
+        id: idPyt,
+        tom: p.tom,
+        poziom: p.poziom,
+        ccp: !!p.ccp,
+        pytanie: p.pytanie,
+        ostatniaData: ost.data,
+        seria,
+        dniOdOstatniej: Math.floor((teraz - new Date(ost.data)) / 86400000)
+      })
+    }
+  }
+  return due.sort((a, b) => (b.ccp - a.ccp) || (a.ostatniaData < b.ostatniaData ? -1 : 1))
+}
+
+// Podsumowanie do dashboardu: ile pozycji do powtórki, w tym ile CCP.
+export function podsumowaniePowtorek(pytania, wyniki, idPrac, terazISO = null) {
+  const poz = pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO)
+  return { pozycje: poz, liczba: poz.length, ccp: poz.filter((x) => x.ccp).length }
+}
+
 // Pełna historia podejść pracownika (log append-only) — wzbogacona o dane pytania
 // i posortowana malejąco (najnowsze na górze). To dowód przy decyzji o awansie:
 // kiedy, co, kto ocenił, z jaką notatką.

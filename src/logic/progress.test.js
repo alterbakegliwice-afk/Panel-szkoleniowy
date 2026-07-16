@@ -6,7 +6,7 @@ import {
   postepTomu,
   profilPracownika
 } from './progress.js'
-import { historiaPracownika } from './progress.js'
+import { historiaPracownika, pozycjeDoPowtorki, podsumowaniePowtorek, INTERWALY_POWTOREK_DNI } from './progress.js'
 import { eksportPanelM5 } from './export.js'
 import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
@@ -129,6 +129,18 @@ describe('eksport do Panelu M5 (schema.md)', () => {
     expect(p.cel_osiagniety).toBe(false)
     expect(p.ccp_ogolem).toBe('BRAK — BLOKADA') // CCP W-01/W-02 nietknięte
   })
+
+  it('eksport niesie sygnał zaległych powtórek (spaced retrieval), osobno CCP', () => {
+    const pracownicy = [{ id_prac: 'P-01', imie: 'Weronika', rola: 'Piekarz' }]
+    // W-01 (CCP) i Z-01 (nie-CCP) zaliczone bardzo dawno → dojrzałe do powtórki
+    const wyniki = [
+      { data: '2025-01-01T00:00:00Z', id_prac: 'P-01', id_pytania: 'W-01', zaliczyl: true, oceniajacy: 'auto' },
+      { data: '2025-01-01T00:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: true, oceniajacy: 'auto' }
+    ]
+    const p = eksportPanelM5(PYTANIA, wyniki, pracownicy, KONFIG, '2026-07-14T12:00:00Z').pracownicy[0]
+    expect(p.do_powtorki).toBeGreaterThanOrEqual(2)
+    expect(p.do_powtorki_ccp).toBeGreaterThanOrEqual(1)
+  })
 })
 
 describe('poziom docelowy — kryterium zależne od roli (schema: Pomocnik→JUNIOR)', () => {
@@ -237,5 +249,103 @@ describe('kopia zapasowa — pełny round-trip stanu', () => {
   it('odrzuca kopię z niepoprawnym bankiem', () => {
     const kopia = eksportKopii({ ...stan, bank: { pytania: [{ id: 'X', tom: 'T', poziom: 'JUNIOR', typ: 'jednokrotny', ccp: false, pytanie: '?', wzorzec: 'w', opcje: ['a', 'b'], poprawne: [9] }] } })
     expect(walidujKopie(kopia)).toMatch(/Bank w kopii/)
+  })
+
+  it('round-trip zachowuje nowe logi: profile (Work Profile), praktyki, obserwacje', () => {
+    const stanPelny = {
+      ...stan,
+      profile: [{
+        id: 'WP-P-01-profil-pracy-2026-08-01', id_prac: 'P-01', narzedzie: 'profil-pracy',
+        data: '2026-08-01T00:00:00.000Z', osoba: { imie: 'Ala' },
+        wyniki: { reliability: 80 }, obszary: { reliability: 80, initiative: 30 }
+      }],
+      praktyki: ['P-01|initiative|0', 'P-01|initiative|1'],
+      obserwacje: [{ id: 'OBS-P-01-initiative-x', id_prac: 'P-01', obszar: 'initiative', kierunek: 'bez_zmian', oceniajacy: 'Piotr', notatka: '', data: '2026-08-02T00:00:00.000Z' }]
+    }
+    const kopia = eksportKopii(stanPelny)
+    expect(walidujKopie(kopia)).toBe(null)
+    const odtw = kopieDoStanu(kopia)
+    expect(odtw.profile).toHaveLength(1)
+    expect(odtw.profile[0].obszary.reliability).toBe(80)
+    expect(odtw.praktyki).toEqual(['P-01|initiative|0', 'P-01|initiative|1'])
+    expect(odtw.obserwacje).toHaveLength(1)
+    expect(odtw.obserwacje[0].kierunek).toBe('bez_zmian')
+  })
+
+  it('round-trip odsiewa zepsute wpisy w nowych logach (nie wywala importu)', () => {
+    const kopia = eksportKopii({
+      ...stan,
+      profile: [null, { id_prac: 'P-01' }], // zepsute → odpadną (filtrujProfile)
+      praktyki: ['ok|x|0', 123, null], // tylko string przechodzi
+      obserwacje: [{ id_prac: 'P-01', obszar: 'initiative', kierunek: 'wzrost' }, {}, 'zły']
+    })
+    expect(walidujKopie(kopia)).toBe(null)
+    const odtw = kopieDoStanu(kopia)
+    expect(odtw.profile).toEqual([])
+    expect(odtw.praktyki).toEqual(['ok|x|0'])
+    expect(odtw.obserwacje).toHaveLength(1) // tylko wpis z id_prac+obszar
+  })
+})
+
+describe('spaced retrieval — rozłożone powtórki wiedzy', () => {
+  const pytania = [
+    { id: 'A1', tom: 'II Zakwas', poziom: 'JUNIOR', ccp: false, typ: 'jednokrotny', pytanie: 'A1?', opcje: ['x', 'y'], poprawne: [0] },
+    { id: 'C1', tom: 'IV Wypiek', poziom: 'JUNIOR', ccp: true, typ: 'jednokrotny', pytanie: 'C1?', opcje: ['x', 'y'], poprawne: [0] },
+    { id: 'O1', tom: 'II Zakwas', poziom: 'JUNIOR', ccp: false, typ: 'otwarty', pytanie: 'O1?' } // bez opcji → nie powtarzalne
+  ]
+  const w = (id, data, zaliczyl) => ({ data, id_prac: 'P-01', id_pytania: id, zaliczyl, oceniajacy: 'auto', notatka: '' })
+  const TERAZ = '2026-07-01T00:00:00.000Z'
+
+  it('pozycja zaliczona świeżo NIE jest jeszcze do powtórki (przed odstępem)', () => {
+    const wyniki = [w('A1', '2026-06-28T00:00:00.000Z', true)] // 3 dni temu, interwał 7
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('pozycja zaliczona dawniej niż odstęp serii wraca do powtórki', () => {
+    const wyniki = [w('A1', '2026-06-20T00:00:00.000Z', true)] // 11 dni temu > 7 (seria 1)
+    const due = pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)
+    expect(due.map((d) => d.id)).toEqual(['A1'])
+    expect(due[0].seria).toBe(1)
+  })
+
+  it('rozszerzający harmonogram: 2 zaliczenia z rzędu → dłuższy odstęp (30 dni)', () => {
+    const wyniki = [w('A1', '2026-05-01T00:00:00.000Z', true), w('A1', '2026-06-15T00:00:00.000Z', true)]
+    // 16 dni od ostatniego, seria 2 → interwał 30 → jeszcze nie
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+    // ale 40 dni od ostatniego → tak
+    const pozniej = pozycjeDoPowtorki(pytania, wyniki, 'P-01', '2026-07-25T00:00:00.000Z')
+    expect(pozniej.map((d) => d.id)).toEqual(['A1'])
+    expect(pozniej[0].seria).toBe(2)
+  })
+
+  it('oblanie kasuje serię — ostatni wpis niezaliczony nie idzie do powtórki (to nauka)', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('A1', '2026-06-01T00:00:00.000Z', false)]
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('CCP pierwsze na liście (bezpieczeństwo najważniejsze)', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('C1', '2026-01-01T00:00:00.000Z', true)]
+    const due = pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)
+    expect(due[0].id).toBe('C1')
+    expect(due[0].ccp).toBe(true)
+  })
+
+  it('pytania bez opcji (otwarte/praktyczne) nie wchodzą do powtórek', () => {
+    const wyniki = [w('O1', '2026-01-01T00:00:00.000Z', true)]
+    expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('pytanie z opcjami, ale typu „otwarty”, NIE wchodzi (zgodność z Quiz.autoOceniany)', () => {
+    const dziwne = [{ id: 'D1', tom: 'X', poziom: 'JUNIOR', ccp: false, typ: 'otwarty', pytanie: '?', opcje: ['a', 'b'], poprawne: [0] }]
+    const wyniki = [w('D1', '2026-01-01T00:00:00.000Z', true)]
+    expect(pozycjeDoPowtorki(dziwne, wyniki, 'P-01', TERAZ)).toEqual([])
+  })
+
+  it('podsumowaniePowtorek liczy pozycje i CCP', () => {
+    const wyniki = [w('A1', '2026-01-01T00:00:00.000Z', true), w('C1', '2026-01-01T00:00:00.000Z', true)]
+    const pod = podsumowaniePowtorek(pytania, wyniki, 'P-01', TERAZ)
+    expect(pod.liczba).toBe(2)
+    expect(pod.ccp).toBe(1)
+    expect(INTERWALY_POWTOREK_DNI[0]).toBe(7)
   })
 })

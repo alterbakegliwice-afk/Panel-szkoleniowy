@@ -15,8 +15,14 @@ function idWpisu(idPrac, idPytania) {
   return `${idPrac}:${idPytania}:${teraz()}:${Math.random().toString(36).slice(2, 7)}`
 }
 
-export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, onKoniec, koniecTekst = 'Wróć do „Mój poziom"' }) {
-  const zestaw = useMemo(() => pytania.filter((p) => p.tom === tom), [pytania, tom])
+export default function Quiz({ pracownik, tom, pytania, zestawPytan, tytul, onWynik, onDoKolejki, onKoniec, koniecTekst = 'Wróć do „Mój poziom"' }) {
+  // Tryb powtórki: jawny zestaw pytań (może obejmować wiele tomów). Inaczej —
+  // klasyczny quiz z jednego tomu.
+  const zestaw = useMemo(
+    () => (zestawPytan ? zestawPytan : pytania.filter((p) => p.tom === tom)),
+    [pytania, tom, zestawPytan]
+  )
+  const etykieta = tytul || tom
   const [i, setI] = useState(0)
   const [odp, setOdp] = useState({}) // indeksy zaznaczone (auto) lub tekst
   const [wyniki, setWyniki] = useState([]) // {p, stan:'auto-ok'|'auto-zle'|'do-oceny'}
@@ -26,7 +32,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
   if (!zestaw.length) {
     return (
       <div className="karta">
-        <p>Brak pytań dla tomu „{tom}".</p>
+        <p>Brak pytań dla „{etykieta}".</p>
         <button className="drugi" onClick={onKoniec}>Wróć</button>
       </div>
     )
@@ -81,7 +87,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
     const doOceny = wyniki.filter((w) => w.stan === 'do-oceny').length
     return (
       <div className="karta podsumowanie">
-        <h1>Quiz ukończony — {tom}</h1>
+        <h1>Quiz ukończony — {etykieta}</h1>
         {auto.length > 0 && (
           <div className="wynik-hero">
             <div className="wynik-liczba">{ok}<span className="z"> / {auto.length}</span></div>
@@ -138,7 +144,7 @@ export default function Quiz({ pracownik, tom, pytania, onWynik, onDoKolejki, on
     <div className="karta quiz">
       <div className="quiz-progres-wrap">
         <div className="quiz-progres-info">
-          <span className="quiz-krok">Pytanie {i + 1} z {zestaw.length} · {tom}</span>
+          <span className="quiz-krok">Pytanie {i + 1} z {zestaw.length} · {etykieta}</span>
           <div className="quiz-meta">
             <span className="plakietka toku">{p.poziom}</span>
             {p.ccp && <span className="ccp-tag brak">CCP · próg 100%</span>}

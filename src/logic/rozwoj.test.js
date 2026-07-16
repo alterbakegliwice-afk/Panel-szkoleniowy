@@ -22,7 +22,12 @@ import {
   kluczPraktyki,
   postepPraktyk,
   statusRetestu,
-  przygotujPrzypisanie
+  przygotujPrzypisanie,
+  ostatniaObserwacja,
+  rozjazdOceny,
+  triangulacja,
+  rekordObserwacji,
+  PROG_ROZJAZDU
 } from './rozwoj.js'
 import { walidujKopie, kopieDoStanu } from './store.js'
 
@@ -447,6 +452,58 @@ describe('przygotujPrzypisanie (wspólne dla pracownika i Mentora)', () => {
     const r = przygotujPrzypisanie(PROFIL_PRACY, { id_prac: 'P-02', imie: 'Michał' }, [])
     expect(r.ok).toBe(true)
     expect(r.ostrzezenieImienia).toBe('Weronika')
+  })
+})
+
+describe('triangulacja — obserwacja Mentora vs samoocena (Dunning-Kruger)', () => {
+  it('rozjazdOceny: samoocena rośnie, Mentor nie widzi → „zawyżona”', () => {
+    expect(rozjazdOceny(15, 'bez_zmian')).toEqual({ rozjazd: true, typ: 'zawyzona' })
+    expect(rozjazdOceny(15, 'regres')).toEqual({ rozjazd: true, typ: 'zawyzona' })
+    expect(rozjazdOceny(15, 'wzrost')).toEqual({ rozjazd: false, typ: null }) // zgodne
+  })
+
+  it('rozjazdOceny: samoocena spada, Mentor widzi wzrost → „zaniżona”', () => {
+    expect(rozjazdOceny(-15, 'wzrost')).toEqual({ rozjazd: true, typ: 'zanizona' })
+  })
+
+  it('rozjazdOceny: mała zmiana (< próg) nie jest rozjazdem', () => {
+    expect(rozjazdOceny(3, 'bez_zmian')).toEqual({ rozjazd: false, typ: null })
+    expect(rozjazdOceny(null, 'wzrost')).toEqual({ rozjazd: false, typ: null })
+    expect(PROG_ROZJAZDU).toBe(8)
+  })
+
+  it('ostatniaObserwacja bierze najnowszy wpis dla (pracownik, obszar)', () => {
+    const obs = [
+      rekordObserwacji('P-01', 'initiative', 'bez_zmian', 'Mentor', '', '2026-05-01T00:00:00.000Z'),
+      rekordObserwacji('P-01', 'initiative', 'wzrost', 'Mentor', 'lepiej', '2026-07-01T00:00:00.000Z'),
+      rekordObserwacji('P-02', 'initiative', 'regres', 'Mentor', '', '2026-08-01T00:00:00.000Z')
+    ]
+    expect(ostatniaObserwacja(obs, 'P-01', 'initiative').kierunek).toBe('wzrost')
+    expect(ostatniaObserwacja(obs, 'P-01', 'pressure')).toBe(null)
+    expect(ostatniaObserwacja([], 'P-01', 'initiative')).toBe(null)
+  })
+
+  it('triangulacja flaguje obszar, gdzie samoocena wzrosła, a Mentor nie widzi zmiany', () => {
+    const t1 = rekordProfilu(PROFIL_PRACY, 'P-01', '2026-05-01')
+    const retest = rekordProfilu(
+      { ...PROFIL_PRACY, data: '2026-08-01T00:00:00.000Z', wyniki: { ...PROFIL_PRACY.wyniki, initiative: 60 } },
+      'P-01', '2026-08-01'
+    ) // initiative 30 → 60, delta +30
+    const postep = postepRozwoju([t1, retest], 'P-01')
+    const obs = [rekordObserwacji('P-01', 'initiative', 'bez_zmian', 'Mentor', '', '2026-08-05T00:00:00.000Z')]
+    const tri = triangulacja(postep, obs, 'P-01')
+    const init = tri.find((o) => o.id === 'initiative')
+    expect(init.delta).toBe(30)
+    expect(init.rozjazd).toBe(true)
+    expect(init.typRozjazdu).toBe('zawyzona')
+    // obszar bez obserwacji: brak flagi
+    const inny = tri.find((o) => o.id === 'reliability')
+    expect(inny.rozjazd).toBe(false)
+    expect(inny.obserwacja).toBe(null)
+  })
+
+  it('triangulacja bez postępu → pusta lista', () => {
+    expect(triangulacja(null, [], 'P-01')).toEqual([])
   })
 })
 

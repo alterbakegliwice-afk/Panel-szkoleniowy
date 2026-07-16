@@ -337,6 +337,69 @@ export function statusRetestu(nauka, idPrac, profile, tygodnie = 6, terazISO = n
   }
 }
 
+// --- TRIANGULACJA: SAMOOCENA vs OBSERWACJA MENTORA ---
+// Dowód/uzasadnienie: Work Profile to test SELF-REPORT, a samoocena wyjaśnia tylko
+// ~8% wariancji rzeczywistych umiejętności (Mabe & West 1982), z efektem
+// Dunninga-Krugera (najsłabsi zawyżają najbardziej). Sam retest może więc mierzyć
+// zmianę PERCEPCJI, nie zachowania. Dlatego zestawiamy deltę samooceny z krótką
+// OBSERWACJĄ Mentora — a gdy się rozjeżdżają, jawnie to sygnalizujemy jako temat
+// do rozmowy. To domyka też lukę transferu (wsparcie przełożonego = 2. najważniejszy
+// czynnik transferu szkolenia).
+export const KIERUNKI_OBSERWACJI = {
+  wzrost: { etykieta: 'Widzę wyraźny postęp w praktyce', znak: 1 },
+  bez_zmian: { etykieta: 'Bez wyraźnej zmiany', znak: 0 },
+  regres: { etykieta: 'Raczej regres / niepokój', znak: -1 }
+}
+
+// Próg „istotnej” zmiany samooceny (na skali obszaru 0–100), od którego rozjazd
+// z obserwacją Mentora zaczyna być sygnałem.
+export const PROG_ROZJAZDU = 8
+
+export function ostatniaObserwacja(obserwacje, idPrac, idObszaru) {
+  const pasuje = (Array.isArray(obserwacje) ? obserwacje : [])
+    .filter(
+      (o) => o && o.id_prac === idPrac && o.obszar === idObszaru && KIERUNKI_OBSERWACJI[o.kierunek]
+    )
+    .sort((a, b) => ((a.data || '') < (b.data || '') ? -1 : (a.data || '') > (b.data || '') ? 1 : 0))
+  return pasuje.length ? pasuje[pasuje.length - 1] : null
+}
+
+// Rozjazd między samooceną (delta z retestu) a obserwacją Mentora:
+// - „zawyżona”: samoocena mówi wzrost, Mentor nie widzi (klasyczny Dunning-Kruger),
+// - „zaniżona”: samoocena mówi spadek, Mentor widzi postęp (niedocenianie siebie).
+export function rozjazdOceny(delta, kierunek) {
+  if (typeof delta !== 'number' || !KIERUNKI_OBSERWACJI[kierunek]) return { rozjazd: false, typ: null }
+  const obs = KIERUNKI_OBSERWACJI[kierunek].znak
+  if (delta >= PROG_ROZJAZDU && obs <= 0) return { rozjazd: true, typ: 'zawyzona' }
+  if (delta <= -PROG_ROZJAZDU && obs > 0) return { rozjazd: true, typ: 'zanizona' }
+  return { rozjazd: false, typ: null }
+}
+
+// Wzbogaca obszary z postepRozwoju o ostatnią obserwację Mentora i flagę rozjazdu.
+export function triangulacja(postep, obserwacje, idPrac) {
+  if (!postep) return []
+  return postep.obszary.map((o) => {
+    const obserwacja = ostatniaObserwacja(obserwacje, idPrac, o.id)
+    const { rozjazd, typ } = obserwacja
+      ? rozjazdOceny(o.delta, obserwacja.kierunek)
+      : { rozjazd: false, typ: null }
+    return { ...o, obserwacja, rozjazd, typRozjazdu: typ }
+  })
+}
+
+// Rekord obserwacji do append-only logu `obserwacje`.
+export function rekordObserwacji(idPrac, idObszaru, kierunek, oceniajacy, notatka, dataISO) {
+  return {
+    id: 'OBS-' + idPrac + '-' + idObszaru + '-' + dataISO,
+    id_prac: idPrac,
+    obszar: idObszaru,
+    kierunek,
+    oceniajacy: oceniajacy || '',
+    notatka: notatka || '',
+    data: dataISO
+  }
+}
+
 // --- WSKAZÓWKI SZKOLENIOWE Z PROFILU CHARAKTERU ---
 // Charakter dostarcza tylko Mapa Potencjału (pole `charakter`). Dla każdego
 // wyraźnego wymiaru (|wartość| ≥ prog) zwraca wskazówkę dla Mentora „jak uczyć

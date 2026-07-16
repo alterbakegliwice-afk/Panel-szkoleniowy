@@ -1,14 +1,15 @@
-import { profilPracownika, historiaPracownika } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika, podsumowaniePowtorek } from '../logic/progress.js'
 import { czyPrzerobiono, materialTomu } from '../logic/nauka.js'
 import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
-export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie }) {
+export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie, onPowtorka }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
   // historia opisuje wpisy pełnym zbiorem pytań (bank + Technika/Sprzątanie),
   // żeby quizy paneli praktycznych nie renderowały się jako „spoza banku"
   const historia = historiaPracownika(wyniki, pytaniaOpisowe || pytania, pracownik.id_prac)
+  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
   const wKolejce = (tom) =>
@@ -56,6 +57,37 @@ export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, 
           </div>
         </div>
       </div>
+
+      {/* SPACED RETRIEVAL — utrwalenie wiedzy, która zaczyna zanikać */}
+      {powtorki.liczba > 0 && onPowtorka && (
+        <div className="karta powtorki-karta">
+          <div className="tom-gora">
+            <h3>🔁 Do powtórki — utrwalenie wiedzy</h3>
+            <span className={powtorki.ccp > 0 ? 'ccp-tag brak' : 'ccp-tag ok'}>
+              {powtorki.liczba} {powtorki.liczba === 1 ? 'pytanie' : 'pytań'}
+              {powtorki.ccp > 0 ? ` · ${powtorki.ccp} CCP` : ''}
+            </span>
+          </div>
+          <p className="cichy mini">
+            Te pytania zaliczyłeś jakiś czas temu — wiedza zanika, jeśli jej nie odświeżasz.
+            Krótka powtórka teraz utrwala ją na długo (dowód: rozłożone powtarzanie daje 2–3× lepszą
+            retencję).{powtorki.ccp > 0 && ' Pytania CCP (bezpieczeństwo żywności) są pierwsze — to najważniejsze.'}
+          </p>
+          <ul className="powtorki-lista">
+            {powtorki.pozycje.slice(0, 5).map((poz) => (
+              <li key={poz.id}>
+                <span className="powtorki-tom">{poz.tom}</span>
+                {poz.ccp && <span className="ccp-tag brak">CCP</span>}
+                <span className="cichy mini">ostatnio {poz.dniOdOstatniej} dni temu</span>
+              </li>
+            ))}
+            {powtorki.liczba > 5 && <li className="cichy mini">…i {powtorki.liczba - 5} więcej</li>}
+          </ul>
+          <button className="glowny szeroki" onClick={() => onPowtorka(powtorki.pozycje.map((p) => p.id))}>
+            Powtórz teraz ({powtorki.liczba}) →
+          </button>
+        </div>
+      )}
 
       <div className="tomy-siatka">
         {prof.tomy.map((t) => (
