@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 // Logowanie = prosty wybór profilu z listy + opcjonalny PIN (spec.md §2).
 // Bez OAuth. Piekarnia, nie bank.
-export default function ProfilePicker({ pracownicy, onWybor }) {
-  const [pinDla, setPinDla] = useState(null) // pracownik wymagający PIN
+export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor }) {
+  const [pinDla, setPinDla] = useState(null) // pracownik lub {wlasciciel:true} wymagający PIN
   const [pin, setPin] = useState('')
   const [blad, setBlad] = useState('')
 
@@ -17,9 +17,19 @@ export default function ProfilePicker({ pracownicy, onWybor }) {
     }
   }
 
+  const wybierzWlasciciela = () => {
+    if (pinWlasciciela) {
+      setPinDla({ wlasciciel: true, imie: 'Piotr (Właściciel)', pin: pinWlasciciela })
+      setPin('')
+      setBlad('')
+    } else {
+      onWybor({ rodzaj: 'wlasciciel' })
+    }
+  }
+
   const potwierdzPin = () => {
     if (pin === pinDla.pin) {
-      onWybor({ rodzaj: 'pracownik', idPrac: pinDla.id_prac })
+      onWybor(pinDla.wlasciciel ? { rodzaj: 'wlasciciel' } : { rodzaj: 'pracownik', idPrac: pinDla.id_prac })
     } else {
       setBlad('Błędny PIN.')
     }
@@ -66,11 +76,8 @@ export default function ProfilePicker({ pracownicy, onWybor }) {
         ))}
       </div>
       <div className="separator"><span>lub</span></div>
-      <button
-        className="glowny szeroki"
-        onClick={() => onWybor({ rodzaj: 'wlasciciel' })}
-      >
-        Wejdź jako Właściciel (Piotr)
+      <button className="glowny szeroki" onClick={wybierzWlasciciela}>
+        Wejdź jako Właściciel (Piotr){pinWlasciciela ? ' 🔒' : ''}
       </button>
       <p className="cichy mini">
         Właściciel: pełny widok zespołu, ocena, konfiguracja progów i eksport do Panelu M5.

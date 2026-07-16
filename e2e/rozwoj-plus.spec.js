@@ -16,6 +16,9 @@ test('spaced retrieval: stare zaliczenie wraca do powtórki i uruchamia quiz', a
   })
   await page.reload()
   await page.locator('.profil-kafel').first().click() // P-01
+  // Po wyborze pracownika domyślną zakładką jest „Mój dzień"; karta powtórki
+  // jest na „Mój poziom".
+  await page.getByRole('button', { name: 'Mój poziom' }).click()
 
   const karta = page.locator('.powtorki-karta')
   await expect(karta).toBeVisible()

@@ -1,0 +1,1416 @@
+{
+  "wersja": "2026-07-14",
+  "tytul": "Panel Techniczny — zrozum swoje maszyny",
+  "opis": "Park maszynowy Alterbake od strony praktycznej: jak każda maszyna działa, jak czyta się jej zachowanie, po czym poznać co ją boli, co wolno naprawić samemu, a kiedy wołać serwis. Cel: pracownik, który patrzy na wypiek/odczyt/dźwięk i umie powiedzieć „to nie przypadek, to objaw”.",
+  "maszyny": [
+    {
+      "id": "TECH-IBIS",
+      "nazwa": "Piec trzonowy IBIS (3 pokłady)",
+      "kategoria": "Piece",
+      "ikona": "🔥",
+      "rola": "Główny piec chlebowy: zakwasowe B1/B2, bagietki, bułki na trzonie. Rano to wąskie gardło całej piekarni — każdy stracony wsad to dziura w pierwszej fali.",
+      "nauka": {
+        "intro": "IBIS to piec trzonowy: ciepło magazynuje się w masywnej płycie (trzonie), nie w powietrzu. To zmienia wszystko — termometr pieca mierzy powietrze, a piecze przede wszystkim kamień. Kto rozumie tę różnicę, umie wyjaśnić 80% „dziwnych” wypieków z IBIS-a.",
+        "karty": [
+          {
+            "tytul": "Jak IBIS naprawdę piecze (model cieplny)",
+            "punkty": [
+              "Trzon (płyta) to akumulator ciepła: nagrzewa się długo, oddaje ciepło bezpośrednio w spód pieczywa — stąd „strzał piecowy” i gruby, dźwięczny spód chleba.",
+              "Termometr pokazuje temperaturę POWIETRZA w komorze. Powietrze dochodzi do 250°C w 30–40 min, płyta potrzebuje 60–90 min. Piec „gotowy wg wyświetlacza” może mieć zimny kamień.",
+              "Trzon szybko grzeje w górę, wolno schodzi w dół — dlatego poranek planujemy od najgorętszych wsadów w dół (B1 250°C → żytnie → bagietki → bułki), nigdy odwrotnie.",
+              "Każdy wsad rozładowuje akumulator: zimne kęsy zabierają ciepło z płyty. Przy zbyt szybkim obrocie wsadów płyta nie nadąża się doładować — kolejne partie mają coraz bledszy spód.",
+              "Para: dysza podaje wodę, która odparowuje w komorze. Para na starcie = błyszcząca, cienka skórka i pełna oprężność; odprowadzenie pary po 12–15 min (klapa/cug) = skórka się dopieka i barwi."
+            ],
+            "zrodlo": "Tom IV Wypiek (IBIS trzon vs konwekcja); ZS-PLANOWANIE-PIEKARNIA rozdz. 3.3"
+          },
+          {
+            "tytul": "Czytanie zachowania pieca po wypieku (spód = trzon, góra = powietrze)",
+            "punkty": [
+              "Blady spód przy dobrej górze → płyta niedogrzana. Nie „dziwny dzień”, tylko: za krótki nagrzew albo za szybki obrót wsadów.",
+              "Spalony spód pierwszego wsadu po długim nagrzewie → płyta przegrzana ponad powietrze (piec stał pusty nagrzany). Pierwszy wsad po długim postoju dawaj czujnie — ewentualnie na blasze, nie bezpośrednio na trzonie.",
+              "Brak oprężności, matowa skórka, „rozdarte” nacięcia bokiem → brak pary na starcie (patrz diagnostyka: dysza, syk).",
+              "Skórka gruba, twarda, produkt się „gotuje we mgle” → para nieodprowadzona po 12–15 min.",
+              "Jedna strona pokładu ciemniejsza (stały wzór lewo/prawo) → grzałka jednej strefy pada albo uszczelka drzwi puszcza z jednej strony — to objaw serwisowy, notuj i zgłoś."
+            ],
+            "zrodlo": "Tom IV Wypiek — krzywe per produkt, para, profil opadający"
+          },
+          {
+            "tytul": "Co poprawisz sam, czego nie dotykasz",
+            "punkty": [
+              "SAM: odkamienianie dyszy pary (kamień kotłowy to najczęstsza śmierć zaparowania), czyszczenie trzonu szczotką mosiężną (nigdy wodą — szok termiczny pęka płytę), test uszczelki drzwi (kartka papieru: ma stawiać opór przy wyciąganiu na całym obwodzie).",
+              "SAM: kalibracja „domowa” termometru — niezależny termometr piecowy na środku pokładu, porównaj z wyświetlaczem przy 220–250°C, zapisz różnicę na karcie pieca i piecz wg realnej temperatury.",
+              "SERWIS (nie ruszaj): grzałki i ich styczniki, termostat bezpieczeństwa, elektryka za panelem, wymiana płyty. Objaw „piec grzeje wolniej niż miesiąc temu przy tym samym nagrzewie” = zużyta grzałka — zgłoś z danymi (czas nagrzewu do 250°C teraz vs kiedyś).",
+              "Piece rurowe IBIS (seria RRK „VapoTech”) grzeją rurami Perkinsa: hermetyczne stalowe rury częściowo wypełnione wodą destylowaną oddają ciepło równomiernie z każdej strony. To układ ZAMKNIĘTY — operatorowi nie wolno w niego ingerować; uszkodzoną rurę wymienia wyłącznie serwis.",
+              "Kalendarz producenta (poradnik IBIS): codziennie komora i uszczelki, co tydzień panel sterowania, co miesiąc kalibracja niezależną sondą, raz w roku pełny przegląd z PISEMNYM raportem serwisowym — ten dokument bywa wymagany przez ubezpieczyciela.",
+              "ULEPSZENIE: prowadź log nagrzewania (godzina włączenia → minuty do stabilnych 250°C). Rosnący czas = wcześniejsze wykrycie padającej grzałki niż czekanie na awarię w sobotni poranek.",
+              "ULEPSZENIE: pirometr (termometr bezdotykowy ~150 zł) raz w tygodniu na płytę każdego pokładu — wykrywa nierówności trzonu zanim zobaczysz je na chlebie."
+            ],
+            "zrodlo": "DTR producenta + praktyka warsztatowa; zasada Deminga: notuj odchylenia, nie sukcesy"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Blady spód przy dobrze zarumienionej górze",
+          "odczyt": "Płyta (trzon) jest zimniejsza niż powietrze w komorze. Termometr pieca tego nie pokaże — mierzy powietrze.",
+          "przyczyny": [
+            "Za krótki nagrzew: powietrze doszło do temperatury w 30–40 min, płyta potrzebuje 60–90 min",
+            "Za szybki obrót wsadów — każdy wsad rozładowuje ciepło płyty, a przerwy nie pozwalają się doładować",
+            "Padająca grzałka dolna (jeśli objaw pojawia się mimo długiego nagrzewu — porównaj z logiem)"
+          ],
+          "dzialania": [
+            "Włączaj piec 60–90 min przed pierwszym wsadem, nie „na wyświetlacz”",
+            "Zaplanuj 15–20 min przerwy między wsadami na doładowanie trzonu (bufor przed gardłem: kęs poczeka w chłodzie, piec nie poczeka na kęs)",
+            "Zweryfikuj pirometrem temperaturę płyty vs wyświetlacz"
+          ],
+          "serwis": "Jeśli po pełnym nagrzewie pirometr pokazuje płytę >30°C poniżej normy — grzałka dolna do sprawdzenia przez serwis.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Brak syku przy zaparowaniu / chleb bez połysku i oprężności",
+          "odczyt": "Woda nie dociera do komory albo nie odparowuje. Syk przy podaniu pary to normalny, zdrowy dźwięk — jego brak to objaw.",
+          "przyczyny": [
+            "Dysza pary zapchana kamieniem kotłowym (twarda woda — najczęstsza przyczyna)",
+            "Zawór wody zamknięty / wąż załamany po sprzątaniu",
+            "Podanie pary za późno — komora już otwarta, para uciekła zanim zadziałała"
+          ],
+          "dzialania": [
+            "Sprawdź zawór i wąż doprowadzający wodę",
+            "Odkamień dyszę wg karty konserwacji (ocet/odkamieniacz spożywczy, przepłucz dwukrotnie)",
+            "Para zawsze W MOMENCIE załadunku, klapa zamknięta; odprowadzenie po 12–15 min"
+          ],
+          "serwis": "Elektrozawór pary nie klika przy wyzwoleniu (brak dźwięku przekaźnika) — elektryka, serwis.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Nierówny wypiek: jedna strona pokładu stale ciemniejsza",
+          "odczyt": "Stały wzór (zawsze ta sama strona) = sprzęt, nie przypadek. Losowy wzór = załadunek/przeciągi.",
+          "przyczyny": [
+            "Grzałka jednej strefy pracuje słabiej lub padła",
+            "Uszczelka drzwi puszcza z jednej strony — zimne powietrze wchodzi punktowo",
+            "Kęsy ładowane zbyt gęsto przy jednej ścianie"
+          ],
+          "dzialania": [
+            "Test kartki na uszczelce po całym obwodzie drzwi; uszczelkę wymienisz sam",
+            "Zdjęcie wypieku z opisem pokładu i strony do DZIENNIKA — dwa takie same zdjęcia z rzędu = dowód dla serwisu",
+            "Do czasu naprawy: obracaj wsad w połowie wypieku i pilnuj luzów w załadunku"
+          ],
+          "serwis": "Grzałki i styczniki wymienia wyłącznie serwis — zgłoś z dokumentacją zdjęciową.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Piec „nie trzyma” temperatury przy pełnym porannym obrocie",
+          "odczyt": "Akumulator rozładowany: plan wsadów szybszy niż fizyka trzonu. To błąd planu, nie usterka.",
+          "przyczyny": [
+            "Zbyt ambitne okno 5:00–8:00 dla liczby wsadów (policz: wsady × czas + przerwy na doładowanie)",
+            "Wsady „pod prąd” profilu malejącego (np. bułki 225°C, a po nich chleb 250°C — piec nie dogoni w górę na czas)"
+          ],
+          "dzialania": [
+            "Ułóż kolejność wg profilu malejącego: najgorętsze pierwsze, potem w dół",
+            "Jeśli trzon jest gardłem: wcześniejszy start pierwszej fali albo część bagietek/bułek na Bongard (−15–25°C, akceptując słabszy spód)"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Pęknięcie/rysa na płycie trzonu",
+          "odczyt": "Szok termiczny — najczęściej po kontakcie zimnej wody z gorącą płytą przy sprzątaniu.",
+          "przyczyny": [
+            "Mycie płyty wodą na gorąco",
+            "Naturalne zużycie po latach cykli"
+          ],
+          "dzialania": [
+            "Płytę czyścimy wyłącznie na sucho szczotką mosiężną",
+            "Drobna rysa nie przerywa pracy — obserwuj czy rośnie (zdjęcie z miarką raz w miesiącu do DZIENNIKA)"
+          ],
+          "serwis": "Pęknięcie przelotowe lub ubytek — wymiana płyty przez serwis; nie piec bezpośrednio na pękniętym fragmencie.",
+          "ryzyko": "awaria"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Trzon: czyszczenie szczotką mosiężną na sucho", "kiedy": "codziennie po ostatnim wsadzie", "kto": "pracownik" },
+        { "co": "Test uszczelki drzwi (kartka papieru po obwodzie)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Odkamienianie dyszy pary", "kiedy": "co miesiąc (twarda woda: co 2 tygodnie)", "kto": "pracownik" },
+        { "co": "Pirometr na płyty pokładów + wpis do logu nagrzewania; kalibracja niezależną sondą (poradnik IBIS)", "kiedy": "co tydzień/miesiąc", "kto": "kierownik" },
+        { "co": "Pełny przegląd (grzałki, styczniki, termostat bezpieczeństwa, rury Perkinsa) zakończony PISEMNYM raportem serwisowym", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "IBIS (Szubin) — piece rurowe wsadowe RRK „VapoTech”", "url": "https://ibis.pl/product/piece-rurowe/", "typ": "strona producenta" },
+        { "tytul": "Katalog IBIS 2026 (PDF producenta)", "url": "https://ibis.pl/wp-content/uploads/2026/01/Katalog-IBIS-2026.pdf", "typ": "katalog PDF" },
+        { "tytul": "Konserwacja pieców piekarniczych krok po kroku — oficjalny poradnik IBIS", "url": "https://ibis.pl/news/konserwacja-piecow-piekarniczych-krok-po-kroku-jak-dbac-o-piec-by-sluzyl-latami/", "typ": "poradnik producenta" },
+        { "tytul": "Pełna DTR: dostarczana z urządzeniem — do pozyskania od producenta (tel. 530-188-187)", "url": "https://ibis.pl/", "typ": "DTR", "uwaga": "producent nie publikuje DTR w sieci" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-IBIS-1",
+          "tom": "Technika: Piec IBIS",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Wyświetlacz IBIS pokazuje 250°C po 35 minutach nagrzewania. Co to znaczy?",
+          "opcje": [
+            "Piec jest gotowy do wypieku chleba na trzonie",
+            "Powietrze ma 250°C, ale płyta jest jeszcze niedogrzana — pierwszy chleb miałby blady spód",
+            "Termometr jest zepsuty, bo piec nagrzewa się minimum 3 godziny",
+            "Trzeba natychmiast podać parę, żeby wyrównać temperaturę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Termometr mierzy powietrze; trzon potrzebuje 60–90 min. Wsad na zimną płytę = blady spód (Tom IV).",
+          "zrodlo": "Tom IV Wypiek; karta pieca IBIS"
+        },
+        {
+          "id": "TECH-IBIS-2",
+          "tom": "Technika: Piec IBIS",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Przy załadunku chleba podałeś parę i nie usłyszałeś syku. Co robisz najpierw?",
+          "opcje": [
+            "Nic — syk to efekt uboczny, nieistotny dla wypieku",
+            "Zwiększasz temperaturę o 20°C, żeby nadrobić brak pary",
+            "Traktujesz to jako objaw: po wsadzie sprawdzasz zawór wody i drożność dyszy (kamień kotłowy)",
+            "Otwierasz drzwi i wlewasz szklankę wody na trzon"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Brak syku = woda nie dociera lub nie odparowuje. Najczęściej dysza zapchana kamieniem. Wody na trzon nie lejemy nigdy — szok termiczny pęka płytę.",
+          "zrodlo": "Diagnostyka IBIS; DTR producenta"
+        },
+        {
+          "id": "TECH-IBIS-3",
+          "tom": "Technika: Piec IBIS",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Trzeci wsad z rzędu ma coraz bledszy spód, góra w porządku. Piec był dobrze nagrzany. Najbardziej prawdopodobna przyczyna?",
+          "opcje": [
+            "Padła grzałka górna",
+            "Za szybki obrót wsadów — trzon nie zdążył się doładować między partiami",
+            "Za dużo pary w komorze",
+            "Mąka z nowej dostawy ma inną białkę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Każdy wsad rozładowuje akumulator ciepła płyty. Coraz bledszy spód w serii = klasyczny odczyt rozładowanego trzonu; potrzebne przerwy 15–20 min na doładowanie.",
+          "zrodlo": "Model cieplny trzonu; ZS-PLANOWANIE-PIEKARNIA 3.3"
+        },
+        {
+          "id": "TECH-IBIS-4",
+          "tom": "Technika: Piec IBIS",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które czynności przy IBIS wykonujesz SAM, bez serwisu? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Odkamienianie dyszy pary",
+            "Wymiana grzałki dolnej pokładu",
+            "Test uszczelki drzwi kartką papieru i jej wymiana",
+            "Czyszczenie trzonu szczotką mosiężną na sucho",
+            "Naprawa termostatu bezpieczeństwa"
+          ],
+          "poprawne": [0, 2, 3],
+          "wzorzec": "Dysza, uszczelka, trzon na sucho — konserwacja operatorska. Grzałki, styczniki, termostat bezpieczeństwa — wyłącznie serwis (elektryka + odpowiedzialność).",
+          "zrodlo": "Karta konserwacji IBIS"
+        },
+        {
+          "id": "TECH-IBIS-5",
+          "tom": "Technika: Piec IBIS",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Od tygodnia zawsze lewa strona pokładu 2 wypieka ciemniej. Jak z tego zrobić skuteczne zgłoszenie serwisowe?",
+          "opcje": [
+            "Dzwonię: „piec piecze nierówno, przyjedźcie”",
+            "Czekam, aż objaw sam zniknie — piece mają swoje humory",
+            "Dwa zdjęcia wypieków z różnych dni z opisem pokładu i strony + test kartki na uszczelce; zgłaszam z tą dokumentacją",
+            "Przestawiam produkcję na Bongard i nie zgłaszam"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Stały wzór = sprzęt. Dokumentacja (zdjęcia + wykluczona uszczelka) skraca wizytę serwisu z „szukania” do „wymiany” — płacisz za godziny.",
+          "zrodlo": "Diagnostyka IBIS; zasada DZIENNIKA odchyleń"
+        }
+      ]
+    },
+    {
+      "id": "TECH-BONGARD",
+      "nazwa": "Piec konwekcyjny Bongard",
+      "kategoria": "Piece",
+      "ikona": "🌀",
+      "rola": "Piec do drożdżowych, chałek, croissantów B4 i części bułek. Osobny świat od IBIS-a: bez pary chlebowej, bo para to wróg laminacji i lukru z jajka.",
+      "nauka": {
+        "intro": "Konwekcja piecze ruchem gorącego powietrza: wentylator + grzałki wokół niego. Zero akumulacji — reaguje na pokrętło w minuty, ale też natychmiast oddaje problem: każda przeszkoda w przepływie powietrza od razu widać na blachach. Czytanie Bongarda to czytanie przepływu.",
+        "karty": [
+          {
+            "tytul": "Jak działa konwekcja (i czym różni się od trzonu)",
+            "punkty": [
+              "Wentylator zasysa powietrze przez grzałki i rozdmuchuje po komorze — piecze OWIEW, nie promieniowanie płyty. Dlatego spód z konwekcji zawsze będzie słabszy niż z IBIS-a (−15–25°C ekwiwalentu).",
+              "Szybka reakcja: nagrzew 15–20 min, zmiana temperatury w locie. Cena: zero bezwładności — otwarcie drzwi zrzuca temperaturę natychmiast, w przeciwieństwie do trzonu.",
+              "Ruch powietrza wysusza powierzchnię — produkty z konwekcji mają cieńszą, bardziej kruchą skórkę. Croissant tego chce, chleb zakwasowy nie.",
+              "Równomierność wypieku = równomierność przepływu. Przeładowana komora, blachy z wysokim rantem, brudny wentylator — wszystko to zaburza obieg i od razu widać różnice między blachami.",
+              "Reguła rozdziału pieców: laminowane i drożdżowe na Bongard (bez pary chlebowej), pieczywo na parze i wysokiej temperaturze na IBIS. Nie przeplatamy — każde przeplecenie to podwójne czekanie."
+            ],
+            "zrodlo": "Tom IV Wypiek; ZS-PLANOWANIE-PIEKARNIA 3.3 (reguła Suasa)"
+          },
+          {
+            "tytul": "Czytanie objawów: piec czy proces?",
+            "punkty": [
+              "Croissant wycieka masłem na blachę → w 90% to NIE piec: gar był >28°C (masło wypłynęło przed piecem) albo temperatura startu za niska. Zanim obwinisz Bongarda, sprawdź kartę garu.",
+              "Jedna blacha stale ciemniejsza → przepływ: przeładowanie, złe blachy, brudny filtr/wentylator. Zrób „test tostowy”: blacha kromek — wzór zarumienienia to mapa przepływu twojej komory.",
+              "Czasy wypieku rosną tydzień po tygodniu przy tych samych nastawach → uszczelka drzwi albo słabnąca grzałka. Prowadź kartę czasów — pamięć ludzka nie wychwyci +90 sekund.",
+              "Głośniejsza praca, buczenie, wibracja → łożysko wentylatora umiera. Zgłoszone wcześnie = wymiana łożyska; zignorowane = silnik + tydzień bez pieca.",
+              "Nierównomierność góra–dół przy pełnym wózku to cecha konwekcji, nie usterka — obracaj blachy w połowie albo zostaw luz między poziomami."
+            ],
+            "zrodlo": "Diagnostyka Bongard; praktyka warsztatowa"
+          },
+          {
+            "tytul": "Konserwacja operatorska i ulepszenia",
+            "punkty": [
+              "Mgła tłuszczu z croissantów + pył mąki = filc na łopatkach wentylatora. Czyszczenie łopatek i osłon co tydzień (piec ZIMNY, wyłączony z prądu) to najtańsza inwestycja w równomierność.",
+              "Uszczelka drzwi: test kartki jak przy IBIS. Wymiana we własnym zakresie, koszt kilkudziesięciu złotych, oszczędza minuty każdego wypieku.",
+              "Zawiasy i domyk drzwi: drzwi „łapiące” na klamce = mikroszczelina = ucieczka ciepła. Regulacja zawiasów to klucz płaski, nie serwis.",
+              "SERWIS: silnik wentylatora, grzałki, elektronika panelu, czujnik temperatury. W piecach Bongard z wytwornicą pary KAMIEŃ to usterka nr 1: kwartalne odkamienianie wytwornicy i wymiana wkładu filtra antywapiennego wg zużycia (kalendarz producenta).",
+              "Sterowniki Bongard (Opticom/Intuitiv) wyświetlają KODY BŁĘDÓW — zanim zrestartujesz piec, SPISZ kod. Kod + objaw skracają diagnozę serwisu z godzin do minut.",
+              "ULEPSZENIE: raz na kwartał test tostowy każdego poziomu — zdjęcie do DZIENNIKA. Porównanie map w czasie wykrywa degradację przepływu zanim zepsuje produkcję."
+            ],
+            "zrodlo": "DTR producenta + praktyka warsztatowa"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Croissanty wyciekają masłem / słabe listkowanie",
+          "odczyt": "Najpierw pytanie: boli piec czy boli proces? Masło wycieka najczęściej PRZED piecem — w garze powyżej 28°C.",
+          "przyczyny": [
+            "Gar za ciepły (masło w laminacji płynie >28°C) — to nie wina pieca",
+            "Temperatura startu za niska — listki nie „strzeliły” parą z masła zanim się rozpłynęło",
+            "Za długi czas między wyjęciem z garu a piecem w ciepłej hali"
+          ],
+          "dzialania": [
+            "Sprawdź kartę garu: croissant ≤28°C, bez wyjątków",
+            "Start wg karty produktu (zwykle 175–210°C) — nie obniżaj „na oko”",
+            "Z garu prosto do pieca; jeśli kolejka — do chłodu, nie na halę"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Jedna blacha stale ciemniejsza od pozostałych",
+          "odczyt": "Mapa zarumienienia = mapa przepływu powietrza. Stały wzór wskazuje przeszkodę w obiegu.",
+          "przyczyny": [
+            "Przeładowana komora / brak luzu między blachami",
+            "Blachy z wysokim rantem blokują obieg",
+            "Łopatki wentylatora oblepione filcem tłuszczowo-mącznym"
+          ],
+          "dzialania": [
+            "Test tostowy: blacha kromek chleba, zdjęcie wzoru — masz mapę komory",
+            "Wyczyść łopatki wentylatora (piec zimny, odłączony od zasilania)",
+            "Zostaw wolny poziom przy pełnym wózku albo obracaj blachy w połowie"
+          ],
+          "serwis": "Wzór nie znika po czyszczeniu i teście z luzem — czujnik/grzałka do diagnostyki serwisowej.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Piec pracuje głośniej niż zwykle, buczy lub wibruje",
+          "odczyt": "Dźwięk to najwcześniejszy objaw mechaniczny — łożysko wentylatora zgłasza się na tygodnie przed śmiercią.",
+          "przyczyny": [
+            "Zużyte łożysko silnika wentylatora",
+            "Nagromadzony osad na łopatkach wyważył wirnik (wibracja)",
+            "Poluzowane osłony blaszane (grzechot)"
+          ],
+          "dzialania": [
+            "Wyczyść łopatki i sprawdź osłony — jeśli dźwięk znika, to było wyważenie/grzechot",
+            "Jeśli buczenie/piszczenie zostaje: nagraj dźwięk telefonem, zgłoś kierownikowi"
+          ],
+          "serwis": "Łożysko i silnik wymienia serwis. Zgłoszone wcześnie = łożysko (tanio); zajechane = silnik i postój.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Czasy wypieku wydłużają się tydzień po tygodniu",
+          "odczyt": "Pełzająca degradacja — niewidoczna bez notowania, oczywista na karcie czasów.",
+          "przyczyny": [
+            "Uszczelka drzwi przepuszcza (najtańsze i najczęstsze)",
+            "Grzałka częściowo przepalona — grzeje, ale słabiej",
+            "Nawyk przeładowywania komory „bo się spieszymy”"
+          ],
+          "dzialania": [
+            "Test kartki na uszczelce — wymiana we własnym zakresie",
+            "Porównaj czas nagrzewu do 200°C z wartością z karty pieca (nowy punkt odniesienia po każdym serwisie)",
+            "Notuj czasy w karcie — dwa tygodnie danych to dowód, nie wrażenie"
+          ],
+          "serwis": "Nagrzew wyraźnie dłuższy przy dobrej uszczelce = grzałka — serwis z pomiarem poboru prądu.",
+          "ryzyko": "awaria"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Łopatki wentylatora i osłony: czyszczenie z filcu tłuszczowo-mącznego (piec zimny, bez prądu)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Test kartki na uszczelce drzwi", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Kontrola domyku drzwi i zawiasów", "kiedy": "co miesiąc", "kto": "pracownik" },
+        { "co": "Test tostowy poziomów + zdjęcie do DZIENNIKA", "kiedy": "co kwartał", "kto": "kierownik" },
+        { "co": "Kontrola elektrozaworu wody i rurek wtrysku pary (drożność, kamień)", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Odkamienianie wytwornicy pary + wymiana wkładu filtra antywapiennego", "kiedy": "co kwartał / wg zużycia", "kto": "serwis" },
+        { "co": "Przegląd silnika, grzałek, elektroniki", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Bongard Krystal — fiche produit (PDF producenta, FR)", "url": "https://www.bongard.fr/wp-content/uploads/fiches-produits/fp-ventile-krystal-fr.pdf", "typ": "karta produktu PDF" },
+        { "tytul": "Bongard Orion EvO (trzonowy) — dokumentacja (PDF producenta, FR)", "url": "https://www.bongard.fr/wp-content/uploads/2018/11/fr-doccom-orion-evo.pdf", "typ": "katalog PDF" },
+        { "tytul": "Bongard 8.63 E — notice technique z kalendarzem konserwacji (ManualsLib)", "url": "https://www.manualslib.fr/manual/436541/Bongard-8-63-E.html", "typ": "DTR" },
+        { "tytul": "Koma-maszyny — dystrybutor i serwis Bongard w Polsce", "url": "https://koma-maszyny.pl/kategoria-produktu/piece/", "typ": "serwis PL" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-BON-1",
+          "tom": "Technika: Piec Bongard",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Croissanty wyszły z Bongarda płaskie, na blasze kałuża masła. Gdzie NAJPIERW szukasz przyczyny?",
+          "opcje": [
+            "W piecu — pewnie grzałka padła",
+            "W garze — jeśli miał >28°C, masło wypłynęło z laminacji zanim ciasto trafiło do pieca",
+            "W mące — za słaba na croissanty",
+            "W wentylatorze — za mocno wieje"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Masło w laminacji płynie powyżej ~28°C — szkoda dzieje się w garze, piec tylko ją ujawnia. Najpierw karta garu, potem piec.",
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA 3.3 (croissant wymaga garu ≤28°C)"
+        },
+        {
+          "id": "TECH-BON-2",
+          "tom": "Technika: Piec Bongard",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego chleba zakwasowego nie pieczemy w Bongardzie, a croissantów w IBIS-ie z parą?",
+          "opcje": [
+            "To tylko tradycja — technicznie nie ma różnicy",
+            "Konwekcja daje słabszy spód i suszy skórkę (źle dla chleba), a para chlebowa niszczy listkowanie laminatu (źle dla croissanta)",
+            "Bongard jest za mały na chleb",
+            "IBIS nie osiąga temperatury croissantów"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Reguła rozdziału pieców: trzon+para dla chleba (spód, oprężność), konwekcja bez pary dla laminowanych i drożdżowych. Para w komorze to wróg listkującego się croissanta.",
+          "zrodlo": "Tom IV Wypiek; reguła Suasa"
+        },
+        {
+          "id": "TECH-BON-3",
+          "tom": "Technika: Piec Bongard",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Bongard od kilku dni pracuje wyraźnie głośniej (buczenie), wypieki na razie w normie. Co robisz?",
+          "opcje": [
+            "Nic — skoro wypieki w normie, to nie ma problemu",
+            "Czyszczę łopatki wentilatora; jeśli dźwięk zostaje — nagrywam go i zgłaszam: to typowy wczesny objaw łożyska",
+            "Zwiększam temperaturę, żeby skompensować",
+            "Wyłączam piec do przyjazdu serwisu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Dźwięk wyprzedza awarię o tygodnie. Osad na łopatkach też daje wibrację (wyważenie) — czyszczenie to pierwszy krok; trwałe buczenie = łożysko, zgłoszone wcześnie kosztuje ułamek wymiany silnika.",
+          "zrodlo": "Diagnostyka Bongard"
+        },
+        {
+          "id": "TECH-BON-4",
+          "tom": "Technika: Piec Bongard",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Co daje „test tostowy” i kiedy go robisz?",
+          "opcje": [
+            "Sprawdza smak pieczywa — raz dziennie",
+            "Blacha kromek pokazuje wzorem zarumienienia mapę przepływu powietrza w komorze — robimy co kwartał i po każdej podejrzanej nierówności, zdjęcie do DZIENNIKA",
+            "Mierzy temperaturę rdzenia tostów — przy każdym wsadzie",
+            "To test serwisowy, pracownik go nie wykonuje"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Konwekcja piecze przepływem — toast pokazuje przepływ. Porównanie map w czasie wykrywa degradację (brudny wentylator, słabnąca grzałka) zanim zobaczysz ją na produkcie.",
+          "zrodlo": "Praktyka warsztatowa; zasada DZIENNIKA"
+        }
+      ]
+    },
+    {
+      "id": "TECH-ASBER",
+      "nazwa": "Chłodnia / retarder Asber",
+      "kategoria": "Chłód",
+      "ikona": "❄️",
+      "rola": "Nocny pracownik piekarni: retard kęsów i mas w 4–8°C. Twarde gardło równorzędne piecowi — i punkt kontroli bezpieczeństwa żywności (CCP4).",
+      "nauka": {
+        "intro": "Retarder to nie „lodówka na ciasto” — to maszyna, która pracuje, gdy śpisz, i od której zależy cała pierwsza fala. Chłodnictwo ma prostą fizykę: agregat wynosi ciepło na zewnątrz przez skraplacz, parownik w środku je zbiera. Wszystko, co blokuje ten obieg (kurz, mąka, lód, przeładowanie), podnosi temperaturę — a każdy stopień powyżej 8°C to przefermentowane kęsy rano i ryzyko CCP4.",
+        "karty": [
+          {
+            "tytul": "Jak działa i czego potrzebuje",
+            "punkty": [
+              "Obieg: sprężarka → skraplacz (oddaje ciepło NA ZEWNĄTRZ komory — musi być czysty) → parownik (zbiera ciepło W komorze — nie wolno go zasłaniać wsadem) → cykl odszraniania topi lód z parownika.",
+              "Skok temperatury o 2–4°C co kilka godzin to normalny cykl odszraniania. STAŁA temperatura >8°C to objaw — nie mylić jednego z drugim.",
+              "Zimne powietrze musi krążyć: przeładowana komora albo pojemniki pod samym parownikiem = ciepłe kieszenie, w których kęsy przefermentują mimo dobrego odczytu na wyświetlaczu.",
+              "Wyświetlacz pokazuje temperaturę przy czujniku, nie w twoim koszyku z kęsami. Walidacja: Testo w słoiku z wodą na środkowej półce (woda uśrednia wahania cykli) — porównuj z wyświetlaczem co tydzień.",
+              "Mąka + kurz na skraplaczu tworzą filc-izolator. Agregat wtedy „chodzi bez przerwy” i grzeje zaplecze zamiast chłodzić komorę — to najczęstsza, w pełni zapobiegalna awaria chłodni w piekarni."
+            ],
+            "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 5 (retard, pojemność Asber); DTR producenta"
+          },
+          {
+            "tytul": "Czytanie objawów nocnego pracownika",
+            "punkty": [
+              "Kęsy rano przefermentowane mimo poprawnych progów wejścia → realna temperatura wyżej niż wyświetlacz. Najpierw walidacja Testo, potem szukanie przyczyny (uszczelka, skraplacz, przeładowanie).",
+              "Agregat pracuje bez przerwy (brak cykli ciszy) → oddaje za mało ciepła: brudny skraplacz, uszczelka, zbyt częste otwieranie drzwi w godzinach pracy.",
+              "Lód/szron na parowniku narastający mimo odszraniania → wilgoć: nieokryte kęsy parują, odpływ skroplin zapchany, uszczelka wpuszcza wilgotne powietrze.",
+              "Kałuża pod komorą → odpływ skroplin z odszraniania zapchany (rurka z tyłu) — udrożnisz sam.",
+              "Uszczelka: test kartki jak w piecach. Zmarznięta, popękana guma nie trzyma — a wymiana to kilkadziesiąt złotych vs sprężarka za kilka tysięcy."
+            ],
+            "zrodlo": "Diagnostyka Asber; praktyka chłodnicza"
+          },
+          {
+            "tytul": "CCP4 i granice samodzielności",
+            "punkty": [
+              "CCP4 = kontrola temperatury przechowywania. Log temperatury 2× dziennie (rano przy otwarciu, po południu przy domknięciu) — zapis, nie pamięć.",
+              "Stała temperatura >8°C = eskalacja do lead NATYCHMIAST + decyzja o wsadzie (przełożenie do drugiej chłodni, skrócenie retardu). Wpis do DZIENNIKA obowiązkowy.",
+              "SAM: czyszczenie skraplacza pędzlem/odkurzaczem, uszczelki, udrożnienie odpływu, rozmieszczenie wsadu z luzem, walidacja Testo.",
+              "SERWIS: czynnik chłodniczy (spadek wydajności przy czystym skraplaczu), sprężarka, termostat, wentylator parownika. Ubytek czynnika poznasz po: agregat chodzi, skraplacz czysty, a temperatura nie schodzi. UWAGA: nowe urządzenia Asber pracują na czynnikach PALNYCH (R600a/R290) — przy układzie chłodniczym pracuje wyłącznie autoryzowany serwis, a lodu nie skrobiemy niczym ostrym.",
+              "Klasa klimatyczna: producent gwarantuje zakres przy otoczeniu do +32°C. W upalne dni przy piecach chłodnia może fizycznie nie utrzymać 4°C — to nie awaria, tylko warunki; pomaga wentylacja cokołu (nie zastawiać kratki agregatu).",
+              "ULEPSZENIE: rejestrator temperatury z alarmem (termometr min/max za kilkadziesiąt złotych) — powie ci rano, co działo się w nocy. Nocny skok, którego nie widziałeś, to nocny skok, którego nie było w decyzjach."
+            ],
+            "zrodlo": "DESTYLAT ZŁOTYCH STANDARDÓW (CCP4 — funkcja Chłodnia, eskalacja do lead)"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Temperatura stale powyżej 8°C (nie tylko po odszranianiu)",
+          "odczyt": "Naruszenie zakresu retardu i CCP4. Skok po odszranianiu jest normalny; STAŁE przekroczenie to alarm.",
+          "przyczyny": [
+            "Skraplacz oblepiony mączno-kurzowym filcem (agregat nie oddaje ciepła)",
+            "Uszczelka drzwi nie trzyma / drzwi domykane „na łokieć” w rushu",
+            "Przeładowanie: brak cyrkulacji, parownik zasłonięty",
+            "Ubytek czynnika chłodniczego (gdy powyższe wykluczone)"
+          ],
+          "dzialania": [
+            "ESKALACJA do lead natychmiast + decyzja o wsadzie (CCP4) + wpis do DZIENNIKA",
+            "Sprawdź i wyczyść skraplacz; test kartki na uszczelce",
+            "Przemebluj wsad: luz przy parowniku, nic nie dotyka ścian",
+            "Walidacja Testo w komorze — może to czujnik kłamie, nie chłodnia"
+          ],
+          "serwis": "Czysty skraplacz + dobra uszczelka + agregat chodzi non stop + temp nie schodzi = czynnik chłodniczy — tylko serwis z uprawnieniami F-gaz.",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Agregat pracuje bez przerwy, brak cykli ciszy",
+          "odczyt": "Maszyna nie osiąga zadanej temperatury, więc nie wyłącza sprężarki. Słuchaj chłodni: zdrowa ma rytm praca–cisza.",
+          "przyczyny": [
+            "Brudny skraplacz (izolacja termiczna z mąki i kurzu)",
+            "Częste/długie otwieranie drzwi w godzinach szczytu",
+            "Za ciepłe wsady (gorąca masa prosto do retardu)",
+            "Uszczelka"
+          ],
+          "dzialania": [
+            "Wyczyść skraplacz (odłącz zasilanie, pędzel + odkurzacz)",
+            "Wsady schładzaj do temperatury otoczenia przed retardem, chyba że karta mówi inaczej",
+            "Zaplanuj otwieranie: wyjmuj partiami, nie „po sztuce”"
+          ],
+          "serwis": "Po czyszczeniu i teście uszczelki bez zmian — pomiar ciśnień czynnika przez serwis.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Gruby szron/lód na parowniku",
+          "odczyt": "Wilgoć w komorze zamarza na parowniku szybciej, niż odszranianie ją topi. Lód to izolator — im go więcej, tym słabsze chłodzenie: spirala.",
+          "przyczyny": [
+            "Nieokryte kęsy/masy parują (wilgoć z produktu)",
+            "Odpływ skroplin zapchany — woda z odszraniania wraca jako lód",
+            "Uszczelka wpuszcza wilgotne powietrze z hali"
+          ],
+          "dzialania": [
+            "Okrywaj wsad zgodnie z kartą (folia/pokrywy) — chroni i produkt, i maszynę",
+            "Udrożnij odpływ skroplin (rurka z tyłu komory)",
+            "Przy grubym lodzie: rozmrożenie manualne (komora pusta, drzwi otwarte, NIE skuwać lodu ostrymi narzędziami — parownik to cienkie lamele)"
+          ],
+          "serwis": "Lód wraca w 2–3 dni mimo powyższego — grzałka odszraniania lub sterownik cykli, serwis.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Kęsy rano przefermentowane, choć progi wejścia były poprawne",
+          "odczyt": "Retard był cieplejszy, niż myślisz. Wyświetlacz ≠ temperatura w koszyku — zwłaszcza w ciepłej kieszeni przeładowanej komory.",
+          "przyczyny": [
+            "Realna temp >8°C w części komory (cyrkulacja zablokowana wsadem)",
+            "Czujnik przekłamuje (dryf) — brak walidacji Testo",
+            "Kęsy weszły za ciepłe albo za późno (za daleko w rozroście)"
+          ],
+          "dzialania": [
+            "Walidacja: Testo w słoiku z wodą na środkowej półce, porównanie z wyświetlaczem",
+            "Mapa ciepłych miejsc: zmierz w 3 punktach (góra/środek/dół) — przemebluj wsad",
+            "Sprawdź godziny i progi wejścia na etykietach WIP z wczoraj"
+          ],
+          "serwis": "Rozjazd czujnika z Testo >2°C utrzymuje się — kalibracja/wymiana czujnika przez serwis.",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Log temperatury (CCP4): odczyt + wpis", "kiedy": "2× dziennie", "kto": "pracownik" },
+        { "co": "Skraplacz: pędzel + odkurzacz (zasilanie odłączone)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Walidacja czujnika: Testo w słoiku z wodą vs wyświetlacz", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Test kartki na uszczelce, kontrola odpływu skroplin", "kiedy": "co miesiąc", "kto": "pracownik" },
+        { "co": "Przegląd czynnika (R600a/R290 — palny!), sprężarki, sterownika odszraniania", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Asber (Onnera Group) — stoły chłodnicze i mroźne (strona PL)", "url": "https://www.asberprofessional.pl/productos.aspx?IG=13&IF=115", "typ": "strona producenta" },
+        { "tytul": "Asber — katalog techniczny stołów chłodniczych (PDF, PL)", "url": "https://www.asberprofessional.pl/docs/Documentos/3543.pdf", "typ": "katalog PDF" },
+        { "tytul": "Asber — instrukcja instalacji, użytkowania i konserwacji (PDF, EN)", "url": "https://www.wasserstrom.com/wcsstore/WasserstromCatalogAssetStore/Attachment/AsberARF23Manual.pdf", "typ": "instrukcja PDF" },
+        { "tytul": "Asber America — wyszukiwarka dokumentów po numerze modelu", "url": "https://asberamerica.com/en/help-center/end-user-tools/", "typ": "portal dokumentacji" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-ASB-1",
+          "tom": "Technika: Chłodnia Asber",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": true,
+          "pytanie": "O 14:00 wyświetlacz Asber pokazuje 10°C i nie schodzi od godziny. Co robisz NAJPIERW?",
+          "opcje": [
+            "Czekam do rana — może samo zejdzie po odszranianiu",
+            "Eskaluję do lead natychmiast i razem decydujemy o wsadzie; robię wpis do DZIENNIKA",
+            "Skręcam termostat na minimum i wychodzę",
+            "Wyjmuję wszystkie kęsy na halę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Stała temp >8°C = naruszenie CCP4: eskalacja do lead + decyzja o wsadzie + zapis. Skok PO odszranianiu jest normalny, STAŁE przekroczenie — nie.",
+          "zrodlo": "DESTYLAT ZS (CCP4 — funkcja Chłodnia); diagnostyka Asber"
+        },
+        {
+          "id": "TECH-ASB-2",
+          "tom": "Technika: Chłodnia Asber",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego skraplacz chłodni w piekarni trzeba czyścić częściej niż w zwykłej kuchni?",
+          "opcje": [
+            "Bo przepisy tak każą",
+            "Mąka w powietrzu + kurz tworzą na nim filc-izolator: agregat przestaje oddawać ciepło i chodzi bez przerwy",
+            "Bo skraplacz jest w środku komory i brudzi się od ciasta",
+            "Nie trzeba — skraplacz czyści się sam przy odszranianiu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Skraplacz oddaje ciepło NA ZEWNĄTRZ komory; mączny filc to izolacja. To najczęstsza w pełni zapobiegalna awaria chłodni w piekarni — pędzel raz w tygodniu.",
+          "zrodlo": "Nauka TECH-ASBER; praktyka chłodnicza"
+        },
+        {
+          "id": "TECH-ASB-3",
+          "tom": "Technika: Chłodnia Asber",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Kęsy rano przefermentowane, wyświetlacz całą noc pokazywał 6°C, progi wejścia były poprawne. Najlepszy następny krok?",
+          "opcje": [
+            "Zaufać wyświetlaczowi i skrócić jutro retard o 4 godziny",
+            "Zwalidować realną temperaturę: Testo w słoiku z wodą na półce + pomiar w 3 punktach komory — wyświetlacz mógł kłamać albo wsad zablokował cyrkulację",
+            "Zwiększyć nastawę na 2°C",
+            "Wymienić przepis na mniej drożdży"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Wyświetlacz pokazuje temperaturę przy czujniku, nie w koszyku. Zanim zmienisz proces — zweryfikuj pomiar. Mapa 3 punktów wykrywa ciepłe kieszenie z przeładowania.",
+          "zrodlo": "Diagnostyka Asber; zasada „najpierw walidacja, potem korekta”"
+        },
+        {
+          "id": "TECH-ASB-4",
+          "tom": "Technika: Chłodnia Asber",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które objawy wskazują, że chłodni „coś boli” i warto działać ZANIM padnie? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Agregat chodzi bez przerwy, zniknął rytm praca–cisza",
+            "Temperatura skacze o 3°C na godzinę po cyklu odszraniania",
+            "Gruby lód narasta na parowniku mimo cykli odszraniania",
+            "Kałuża pod komorą",
+            "Lekki szron na wsadzie przy drzwiach po nocy"
+          ],
+          "poprawne": [0, 2, 3],
+          "wzorzec": "Non-stop praca = nie oddaje ciepła; narastający lód = spirala izolacji; kałuża = zapchany odpływ. Skok po odszranianiu to normalny cykl, lekki szron przy drzwiach to typowy efekt otwierania.",
+          "zrodlo": "Diagnostyka Asber"
+        }
+      ]
+    },
+    {
+      "id": "TECH-TRADILEVAIN",
+      "nazwa": "Tradilevain 40L (fermentor zakwasu)",
+      "kategoria": "Fermentacja",
+      "ikona": "🫙",
+      "rola": "Utrzymuje płynny levain w stałej temperaturze (M = 25°C ±1) — dzięki temu zakwas zachowuje się tak samo w styczniu i w lipcu. Najcenniejsze i najkruchsze aktywo firmy mieszka w tej maszynie.",
+      "nauka": {
+        "intro": "Tradilevain to zbiornik z płaszczem termicznym i mieszadłem: trzyma levain w zadanej temperaturze i dozuje go zaworem. Maszyna jest prosta — ale to, co w środku, żyje. Czytanie Tradilevain to w połowie czytanie maszyny (temperatura, mieszadło, zawór), a w połowie czytanie mikrobiologii (zapach, przyrost). Umiejętność rozdzielenia jednego od drugiego to sedno diagnozy.",
+        "karty": [
+          {
+            "tytul": "Maszyna: co utrzymuje i jak to sprawdzać",
+            "punkty": [
+              "Płaszcz wodny wokół zbiornika grzeje/chłodzi zawartość; czujnik mierzy przy ścianie zbiornika — przy pełnym wsadzie środek masy może różnić się o 1–2°C od wyświetlacza.",
+              "Przed odczytem „decyzyjnym” (karmienie, ocena) uruchom mieszadło na chwilę — wyrównuje temperaturę i strukturę; odczyt bez mieszania bywa odczytem ściany, nie levainu.",
+              "Walidacja co tydzień: Testo w masie (zdezynfekowana sonda!) vs wyświetlacz. Karta I-OBS-TRADILEVAIN-A: M = 25°C ±1.",
+              "Zawór dozujący to najczęstszy punkt zapchania: levain zasycha na gnieździe (mimo fabrycznego samooczyszczania). Płukanie bezpośrednio po KAŻDYM poborze — 30 sekund, które oszczędza rozbieranie zaworu.",
+              "TL40 ma DWA punkty poboru (DTR JAC): górny kran zostawia „poziom bezpieczeństwa” — minimum kultury na odświeżenie (nigdy nie opróżniaj go do zera!); dolny zawór służy WYŁĄCZNIE do całkowitego opróżnienia przy myciu zbiornika.",
+              "Pokrywa jest HERMETYCZNA (fermentacja beztlenowa) — jej uszczelka to element krytyczny: zużyta/zabrudzona psuje szczelność i profil kwasowości. Woda dolewana do zbiornika: maks. ~45°C (cieplejsza parzy kulturę przy ścianie).",
+              "Mieszadło śmigłowe siedzi przy dnie i nie wymaga czyszczenia między cyklami — ale nie wkładaj do zbiornika narzędzi, które mogą trafić w śmigło. Mieszadło nie służy do „ratowania” zbyt gęstego levainu: gęstość reguluje karta karmienia (hydracja), nie siła silnika."
+            ],
+            "zrodlo": "Karta I-OBS-TRADILEVAIN-A; DTR JAC Tradilevain"
+          },
+          {
+            "tytul": "Rozdzielanie objawów: maszyna czy mikrobiologia?",
+            "punkty": [
+              "Zapach octowy/ostry przy poprawnych 25°C na Testo → mikrobiologia (rytm karmienia, hydracja) — maszyna niewinna.",
+              "Zapach octowy + realna temp poniżej 24°C → maszyna: płaszcz nie dogrzewa (poziom wody w płaszczu? grzałka?). Niska temperatura przesuwa profil ku octowemu.",
+              "Zapach acetonowy (zmywacz) → GŁÓD: za długi odstęp karmień. To nigdy nie jest wina maszyny — to kalendarz.",
+              "Levain nie rośnie po karmieniu, temp OK → sprawdź kolejno: mąka (nowa partia?), woda (chlorowana z nowego źródła?), proporcje. Maszyna trzyma warunki — nie ożywi zaniedbanego startera.",
+              "Wyświetlacz stabilny, ale levain „raz taki, raz taki” → czujnik może dryfować. Tydzień równoległych odczytów Testo rozstrzyga."
+            ],
+            "zrodlo": "Złoty Standard Tom II (oś mlekowy/octowy, sygnały zdrowia); materiał „II Zakwas”"
+          },
+          {
+            "tytul": "Higiena, backup i granice serwisu",
+            "punkty": [
+              "Mycie zbiornika wg karty przy karmieniu: resztki na ścianach i wale mieszadła to dom dla pleśni i „dzikich” kultur, które zmieniają profil zakwasu.",
+              "Backup 3-2-1 zawsze aktualny: słoik rezerwy w lodówce + porcja wysuszona. Awaria Tradilevain NIE zatrzymuje produkcji, jeśli backup żyje — bez niego to katastrofa biznesowa, nie techniczna.",
+              "SAM: mycie, płukanie zaworu, walidacja Testo, kontrola poziomu w płaszczu (jeśli konstrukcja przewiduje).",
+              "SERWIS: agregat/grzałka płaszcza, silnik i sprzęgło mieszadła, sterownik, czujnik po potwierdzonym dryfie.",
+              "ULEPSZENIE: dziennik levainu (godzina karmienia, temp, przyrost, zapach) — trzy kolumny, które przy każdej anomalii mówią od razu, czy patrzysz na trend, czy na wypadek."
+            ],
+            "zrodlo": "Tom II (backup 3-2-1 — Silverton); karta pielęgnacji zakwasu"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Levain pachnie octem / profil ostrzejszy niż zwykle",
+          "odczyt": "Pierwsze pytanie diagnosty: jaka jest REALNA temperatura w masie (Testo), nie na wyświetlaczu?",
+          "przyczyny": [
+            "Realna temp <24°C: płaszcz nie dogrzewa (maszyna) — niska temp przesuwa profil ku octowemu",
+            "Temp OK: rytm karmienia za rzadki albo hydracja za niska (mikrobiologia/procedura)"
+          ],
+          "dzialania": [
+            "Testo w masie po chwili mieszania; porównaj z wyświetlaczem i kartą (M=25°C ±1)",
+            "Temp niska → sprawdź nastawę i płaszcz; zgłoś jeśli grzałka nie nadąża",
+            "Temp poprawna → wróć do karty karmienia: częstotliwość/hydracja w górę"
+          ],
+          "serwis": "Płaszcz nie osiąga nastawy przy poprawnym poziomie/nastawie — grzałka/agregat płaszcza, serwis.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Zapach acetonowy (jak zmywacz)",
+          "odczyt": "GŁÓD kultury — metabolizm przeszedł na związki lotne. To kalendarz karmień, nie maszyna.",
+          "przyczyny": [
+            "Za długi odstęp między karmieniami (weekend, zmiana rytmu produkcji)"
+          ],
+          "dzialania": [
+            "Częstsze/mocniejsze dokarmianie wg karty aż zapach wróci do mleczno-jogurtowego",
+            "Przy zmianach rytmu produkcji przelicz rytm karmień ZANIM zakwas zgłodnieje"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Mieszadło zacina się / pracuje z wysiłkiem",
+          "odczyt": "Silnik walczy z oporem. Opór to gęstość albo skorupa — nie „słaby silnik”.",
+          "przyczyny": [
+            "Levain za gęsty (odstępstwo od hydracji karty)",
+            "Zaschnięte resztki na wale i ścianach po zaniedbanym myciu"
+          ],
+          "dzialania": [
+            "STOP zamiast forsowania — praca na oporze ścina sprzęgło i grzeje silnik",
+            "Umyj wał i ściany; wróć do hydracji z karty przy najbliższym karmieniu"
+          ],
+          "serwis": "Mieszadło zacina się przy czystym zbiorniku i poprawnej hydracji — sprzęgło/silnik, serwis.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Zawór dozujący kapie albo się zatyka",
+          "odczyt": "Levain zasycha na gnieździe zaworu — mechanika jest ok, brak płukania po dozowaniu.",
+          "przyczyny": [
+            "Brak płukania bezpośrednio po dozowaniu",
+            "Zaschnięta kulka/grzybek zaworu"
+          ],
+          "dzialania": [
+            "Rozbierz i wypłucz zawór wg DTR (to konserwacja operatorska)",
+            "Wprowadź nawyk: dozowanie → od razu płukanie (30 sekund)"
+          ],
+          "serwis": "Zawór cieknie po czyszczeniu — zużyta uszczelka gniazda, wymiana części przez serwis/dostawcę.",
+          "ryzyko": "awaria"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Płukanie zaworu dozującego", "kiedy": "po każdym dozowaniu", "kto": "pracownik" },
+        { "co": "Mycie zbiornika i wału mieszadła wg karty", "kiedy": "przy karmieniu wg karty", "kto": "pracownik" },
+        { "co": "Walidacja: Testo w masie vs wyświetlacz (M=25°C ±1)", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Odświeżenie backupu zakwasu (lodówka + suszony)", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Kontrola i mycie uszczelki hermetycznej pokrywy", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Kalibracja sondy temperatury (menu serwisowe) po potwierdzonym rozjeździe z Testo", "kiedy": "wg wyniku walidacji", "kto": "kierownik/serwis" },
+        { "co": "Przegląd agregatu płaszcza, mieszadła, sterownika", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "JAC Tradilevain TL40 — strona produktu (user guide i karta do pobrania)", "url": "https://www.jac-machines.com/us/tradilevain-tl40-2021", "typ": "strona producenta" },
+        { "tytul": "Tradilevain 40 — Specification Sheet (oficjalna karta techniczna)", "url": "https://www.southernhospitality.co.nz/documentation/product/open/id/5214/ESA102%20-%20Specification%20Sheet.pdf", "typ": "karta techniczna PDF" },
+        { "tytul": "JAC Tradilevain TL40/TL105/TL220 — instrukcja obsługi (ManualsLib)", "url": "https://www.manualslib.com/manual/1660472/Jac-Tradilevain-Tl40.html", "typ": "DTR" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-TRA-1",
+          "tom": "Technika: Tradilevain",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Levain pachnie zmywaczem do paznokci (aceton). Co to znaczy i co robisz?",
+          "opcje": [
+            "Maszyna przegrzała levain — obniżam nastawę o 2°C",
+            "Kultura jest GŁODNA (za długi odstęp karmień) — dokarmiam częściej/mocniej wg karty; maszyna jest niewinna",
+            "Zakwas się zepsuł — wyrzucam całość i zaczynam od zera",
+            "To normalny zapach dojrzałego zakwasu"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Aceton = głód: metabolizm przeszedł na związki lotne. Reakcja: rytm karmienia, nie nastawy maszyny i nie kosz (od katastrofy jest backup 3-2-1).",
+          "zrodlo": "Tom II — sygnały zdrowia zakwasu"
+        },
+        {
+          "id": "TECH-TRA-2",
+          "tom": "Technika: Tradilevain",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Levain zrobił się octowy. Wyświetlacz pokazuje 25°C. Jak rozstrzygasz, czy „boli” maszyna, czy procedura?",
+          "opcje": [
+            "Wyświetlacz pokazuje 25°C, więc maszyna na pewno działa — zmieniam kartę karmienia",
+            "Mieszam chwilę, mierzę Testo W MASIE: jeśli realnie <24°C — płaszcz nie dogrzewa (maszyna); jeśli 25°C — koryguję rytm karmienia/hydrację (procedura)",
+            "Podnoszę nastawę o 3°C na próbę",
+            "Przenoszę levain do garowni na noc"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Czujnik mierzy przy ścianie — pełny zbiornik potrafi różnić się o 1–2°C. Niezależny pomiar w masie rozdziela winę maszyny od winy procedury. Najpierw walidacja, potem korekta.",
+          "zrodlo": "Karta I-OBS-TRADILEVAIN-A; diagnostyka Tradilevain"
+        },
+        {
+          "id": "TECH-TRA-3",
+          "tom": "Technika: Tradilevain",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego awaria Tradilevain nie może zatrzymać produkcji — i co to wymusza na zespole?",
+          "opcje": [
+            "Bo serwis JAC przyjeżdża w 24 h",
+            "Bo levain można prowadzić w wiadrze w garowni — maszyna jest zbędna",
+            "Bo obowiązuje backup 3-2-1: żywa rezerwa w lodówce + porcja suszona, odświeżane co tydzień — awaria maszyny to problem techniczny, nie biznesowy",
+            "Bo zakwas przeżyje w wyłączonej maszynie dowolnie długo"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Zakwas = aktywo firmy (Silverton). Maszyna utrzymuje warunki, ale ciągłość zapewnia backup 3-2-1 — pod warunkiem, że jest odświeżany. Bez backupu awaria = katastrofa.",
+          "zrodlo": "Tom II — backup 3-2-1; nauka TECH-TRADILEVAIN"
+        }
+      ]
+    },
+    {
+      "id": "TECH-MIESIARKA",
+      "nazwa": "Miesiarka spiralna",
+      "kategoria": "Przygotowanie ciasta",
+      "ikona": "🌪️",
+      "rola": "Rozwija gluten i — czego często się nie docenia — GRZEJE ciasto tarciem. Jest jawnym składnikiem równania DDT: kto nie zna swojej miesiarki, nie trafia w temperaturę docelową ciasta.",
+      "nauka": {
+        "intro": "Miesiarka spiralna to spirala + obracająca się dzieża i dwa biegi. Fizyka jest bezlitosna: energia z silnika idzie w gluten I w ciepło. Każda minuta na drugim biegu podnosi temperaturę ciasta — to tzw. współczynnik tarcia (friction factor). Druga połowa wiedzy o miesiarce to słuchanie: silnik, pasek i łożyska komunikują problemy dźwiękiem na długo przed awarią.",
+        "karty": [
+          {
+            "tytul": "Miesiarka w równaniu DDT",
+            "punkty": [
+              "DDT (temperatura docelowa ciasta): temp wody = DDT×3 − temp mąki − temp pomieszczenia − tarcie miesiarki. Tarcie to TWOJA maszyna i TWÓJ czas miesienia — nie liczba z internetu.",
+              "Zmierz własny friction factor: temperatura ciasta po miesieniu minus przewidywana bez tarcia, przy standardowym czasie biegów. Powtórz 3× i uśrednij — masz kalibrację swojej maszyny.",
+              "Latem tarcie potrafi „zjeść” cały zapas chłodu — stąd zimna woda/lód w recepturach letnich. Kto miesi „na czas z karty” zimowej w lipcu, oddaje ciasto o 2–3°C za ciepłe.",
+              "Za ciepłe ciasto po miesieniu = za szybka fermentacja = cały harmonogram dnia jedzie. Miesiarka jest pierwszą kostką domina."
+            ],
+            "zrodlo": "Tom V DDT (Hamelman — formuła temperatury wody)"
+          },
+          {
+            "tytul": "Słuchanie maszyny: dźwięki i ich znaczenie",
+            "punkty": [
+              "Pisk przy starcie pod obciążeniem → pasek się ślizga: naciąg lub wymiana. Zignorowany pisk kończy się dzieżą, która staje w połowie miesienia sztywnego ciasta.",
+              "Silnik „męczy się” (obroty siadają, buczenie) przy sztywnym cieście → partia za duża albo hydracja za niska dla tej maszyny. Dziel partię — forsowanie grzeje uzwojenia i skraca życie silnika.",
+              "Spirala kręci się, dzieża nie → napęd dzieży (pasek/sprzęgło dzieży). Natychmiast STOP — spirala mieli w miejscu i przegrzewa lokalnie ciasto.",
+              "Rytmiczny stuk/luz na spirali → łożysko górne spirali. Zgłoś zanim luz urośnie: łożysko to część, spirala bijąca o dzieżę to remont.",
+              "KAŻDA plama oleju w dzieży lub na cieście = STOP + wyrzucenie partii + zgłoszenie. Olej przekładniowy w żywności to nie „defekt kosmetyczny”, to skażenie."
+            ],
+            "zrodlo": "Praktyka warsztatowa; DTR producenta"
+          },
+          {
+            "tytul": "Granice samodzielności",
+            "punkty": [
+              "SAM: czyszczenie po zmianie (dzieża, spirala, osłony — bez lania wody na korpus i łożyska), kontrola naciągu paska (ugięcie kciukiem ~1 cm przy wyłączonej maszynie), test wyłącznika krańcowego osłony: maszyna MUSI stanąć już po uniesieniu osłony o 10–15 mm (DTR producenta).",
+              "Kalendarz producenta (DTR klasy MSP): naciąg pasa klinowego kontrola co miesiąc (nakrętka regulacyjna za tylnym panelem — technik); smarowanie i naciąg łańcuchów napędu co 6 miesięcy (zdjęcie osłon — wyłącznie serwis). Smary tylko spożywcze, bez nadmiaru.",
+              "SERWIS: przekładnia, silnik, wymiana łożysk, elektryka. Wyłącznik krańcowy nie działa = maszyna wyłączona z użytku do naprawy — bez wyjątków, to ochrona rąk.",
+              "ULEPSZENIE: karta maszyny z friction factor (lato/zima), standardowe czasy biegów per receptura i data ostatniej wymiany paska — trzy linijki, które robią z „jakiejś miesiarki” maszynę znaną i przewidywalną."
+            ],
+            "zrodlo": "DTR producenta; zasady BHP stanowiska"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Ciasto po miesieniu o 2–3°C za ciepłe",
+          "odczyt": "Tarcie wygrało z wodą. To nie usterka maszyny — to niedoszacowany friction factor w równaniu DDT.",
+          "przyczyny": [
+            "Za długi czas na 2. biegu (poprawianie „na oko”)",
+            "Woda za ciepła jak na porę roku (letnia hala + zimowa karta)",
+            "Friction factor nigdy nie zmierzony dla tej maszyny"
+          ],
+          "dzialania": [
+            "Licz wodę z formuły: DDT×3 − mąka − pomieszczenie − tarcie",
+            "Zmierz friction factor swojej miesiarki (3 pomiary, średnia) i wpisz do karty maszyny",
+            "Latem: woda lodowata, w skrajności część wody jako lód wg karty"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Pisk przy starcie pod obciążeniem",
+          "odczyt": "Pasek ślizga się na kole — przenosi coraz mniej momentu. Objaw tani dziś, drogi za miesiąc.",
+          "przyczyny": [
+            "Naciąg paska zeszedł (normalne zużycie)",
+            "Pasek wytarty/szklisty"
+          ],
+          "dzialania": [
+            "Test ugięcia kciukiem (~1 cm) przy WYŁĄCZONEJ maszynie",
+            "Naciąg/wymiana wg DTR — jeśli masz uprawnienia do zdjęcia osłony napędu; inaczej zgłoś",
+            "Zapisz datę wymiany w karcie maszyny"
+          ],
+          "serwis": "Pisk wraca szybko po naciągnięciu — koło pasowe lub oś, serwis.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Dzieża staje lub zwalnia, spirala dalej kręci",
+          "odczyt": "Napęd dzieży odmówił. Spirala mieli ciasto w miejscu — lokalnie je przegrzewa i niszczy strukturę.",
+          "przyczyny": [
+            "Pasek/sprzęgło napędu dzieży",
+            "Przeciążenie sztywnym ciastem (dzieża staje pierwsza, bo ma słabszy napęd)"
+          ],
+          "dzialania": [
+            "Natychmiast STOP",
+            "Jeśli ciasto sztywne i partia duża — podziel partię, spróbuj ponownie",
+            "Staje przy normalnym cieście — zgłoś, nie forsuj"
+          ],
+          "serwis": "Napęd dzieży (pasek, sprzęgło) — serwis; do naprawy miesiarka poza użyciem.",
+          "ryzyko": "awaria"
+        },
+        {
+          "objaw": "Plama oleju w dzieży lub na cieście",
+          "odczyt": "Uszczelnienie przekładni puściło. To skażenie żywności, nie usterka kosmetyczna.",
+          "przyczyny": [
+            "Zużyty simmering/uszczelniacz wału",
+            "Przelany olej w przekładni po serwisie"
+          ],
+          "dzialania": [
+            "STOP natychmiast; partia ciasta DO KOSZA — bez dyskusji",
+            "Zgłoszenie do lead + wpis do DZIENNIKA",
+            "Maszyna wyłączona z użytku do naprawy"
+          ],
+          "serwis": "Wymiana uszczelnienia wału — wyłącznie serwis. Po naprawie: pierwsza partia „na próbę” i inspekcja dzieży.",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Czyszczenie dzieży, spirali, osłon (bez lania wody na korpus)", "kiedy": "po każdej zmianie", "kto": "pracownik" },
+        { "co": "Test wyłącznika krańcowego osłony (maszyna staje po podniesieniu)", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Kontrola naciągu paska (maszyna wyłączona)", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Pomiar friction factor (lato i zima) → karta maszyny", "kiedy": "2× w roku", "kto": "kierownik" },
+        { "co": "Smarowanie i kontrola naciągu łańcuchów napędu (zdjęcie osłon)", "kiedy": "co 6 miesięcy", "kto": "serwis" },
+        { "co": "Przekładnia, łożyska, silnik, elektryka", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "MAC.PAN seria MSP — instrukcja obsługi i konserwacji (PDF producenta, EN)", "url": "https://support.macpan.com/images/manual-book/MSP/manual-book/Manual-books_MSP_en.pdf", "typ": "DTR", "uwaga": "dokumentacja reprezentatywna dla klasy miesiarek spiralnych" },
+        { "tytul": "Diosna SP 24–160 — parametry miesiarek spiralnych (strona producenta)", "url": "https://www.diosna.com/products/kneading-machines/spiral-kneader/sp-24-160/", "typ": "strona producenta" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-MIE-1",
+          "tom": "Technika: Miesiarka",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Na cieście w dzieży widzisz ciemną, tłustą plamę — wygląda na olej. Co robisz?",
+          "opcje": [
+            "Wybieram plamę łyżką i miesię dalej — szkoda partii",
+            "STOP, partia do kosza, zgłoszenie do lead, wpis do DZIENNIKA, maszyna poza użyciem do naprawy",
+            "Dolewam mąki, żeby wchłonęła olej",
+            "Kończę tę partię i myję dzieżę po zmianie"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Olej przekładniowy w cieście = skażenie żywności. Uszczelnienie wału wymienia serwis; partia jest stracona zawsze — zdrowie klienta nie podlega rachunkowi strat.",
+          "zrodlo": "Diagnostyka miesiarki; zasady bezpieczeństwa żywności"
+        },
+        {
+          "id": "TECH-MIE-2",
+          "tom": "Technika: Miesiarka",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Jest lipiec. Ciasto po miesieniu wychodzi o 3°C za ciepłe przy tych samych czasach co zimą. Co jest przyczyną i jak to naprawiasz systemowo?",
+          "opcje": [
+            "Miesiarka się psuje — silnik grzeje mocniej latem; wołam serwis",
+            "Tarcie + cieplejsza mąka i hala „zjadają” zapas chłodu: liczę wodę z formuły DDT (DDT×3 − mąka − pomieszczenie − tarcie) i daję zimniejszą wodę",
+            "Skracam miesienie o połowę niezależnie od glutenu",
+            "Przenoszę miesienie na noc"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Friction factor jest stały, ale latem pozostałe składniki równania są cieplejsze — kompensujesz wodą (aż po lód w skrajności). Formuła Hamelmana zamiast zgadywania.",
+          "zrodlo": "Tom V DDT"
+        },
+        {
+          "id": "TECH-MIE-3",
+          "tom": "Technika: Miesiarka",
+          "poziom": "SAMODZIELNY",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które dźwięki/zachowania miesiarki wymagają reakcji ZANIM coś padnie? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Pisk paska przy starcie pod obciążeniem",
+            "Rytmiczny stuk / luz na spirali",
+            "Cichy, równy szum silnika na 2. biegu",
+            "Dzieża zwalnia przy sztywnym cieście, spirala kręci normalnie",
+            "Maszyna staje po podniesieniu osłony"
+          ],
+          "poprawne": [0, 1, 3],
+          "wzorzec": "Pisk = pasek; stuk = łożysko; dzieża zwalnia = napęd dzieży/przeciążenie. Równy szum to zdrowie, a zatrzymanie po podniesieniu osłony to POPRAWNE działanie wyłącznika krańcowego.",
+          "zrodlo": "Diagnostyka miesiarki"
+        },
+        {
+          "id": "TECH-MIE-4",
+          "tom": "Technika: Miesiarka",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Po podniesieniu osłony dzieży miesiarka dalej pracuje. Co to znaczy?",
+          "opcje": [
+            "Wygodna funkcja — można podglądać ciasto w ruchu",
+            "Awaria wyłącznika krańcowego: maszyna natychmiast poza użyciem, zgłoszenie — to zabezpieczenie chroni ręce",
+            "Normalne w starszych modelach",
+            "Trzeba mocniej docisnąć osłonę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Wyłącznik krańcowy osłony to bariera między spiralą a dłonią. Jego awaria = zakaz pracy maszyną do naprawy, bez wyjątków.",
+          "zrodlo": "BHP stanowiska; karta konserwacji"
+        }
+      ]
+    },
+    {
+      "id": "TECH-GAROWNIA",
+      "nazwa": "Komora garownicza",
+      "kategoria": "Fermentacja",
+      "ikona": "🌡️",
+      "rola": "Kontrolowane dojście kęsów: ciepło + wilgoć. Krytyczna granica: croissanty i laminaty ≤28°C — powyżej masło płynie i produkt jest stracony przed piecem.",
+      "nauka": {
+        "intro": "Garownia to najprostsza maszyna w parku — grzałka, woda, termostat — a mimo to odpowiada za ogromną część „zagadkowych” wad produktu. Bo działa na dwóch parametrach naraz (temperatura I wilgotność), a wyświetlacz zwykle pokazuje tylko jeden. Czytanie garowni to czytanie powierzchni kęsów.",
+        "karty": [
+          {
+            "tytul": "Dwa parametry, jedna komora",
+            "punkty": [
+              "Temperatura steruje TEMPEM fermentacji (typowo 26–32°C; drożdżowe z chłodni: dojście 30–60 min w ~28°C; croissant: NIGDY >28°C).",
+              "Wilgotność steruje POWIERZCHNIĄ kęsa: za sucho = skórka (pancerz, który potem pęka w piecu bokiem), za wilgotno = lepka, rozlana powierzchnia.",
+              "Źródło wilgoci to zwykle wanna z wodą lub prosty nawilżacz — pusta wanna to najczęstsza „awaria” garowni: 30 sekund dolewania, zero serwisu.",
+              "Kęsy czytasz jak wskaźnik: matowa, elastyczna powierzchnia = OK; błyszcząca i tłusta (laminaty) = ZA CIEPŁO, masło rusza; sucha „skorupka” = za mało wilgoci; mokre krople = za wilgotno.",
+              "Poke test pozostaje sędzią gotowości — garownia ustawia warunki, ale decyzję o wsadzie podejmuje palec i oko, nie zegar."
+            ],
+            "zrodlo": "ZS-PLANOWANIE-PIEKARNIA (gar ≤28°C dla croissantów, dojście drożdżowych); praktyka"
+          },
+          {
+            "tytul": "Objawy i walidacja",
+            "punkty": [
+              "Garowanie trwa dłużej niż zwykle przy tych samych nastawach → realna temperatura niższa niż wyświetlacz: walidacja Testo na półce (nie przy grzałce), porównanie, ewentualnie korekta nastawy o zmierzoną różnicę.",
+              "Croissanty błyszczą się w garze → NATYCHMIAST wyjmij, zmierz realną temperaturę; jeśli >28°C — nastawa/czujnik do korekty. Każda minuta powyżej to masło uciekające z laminacji.",
+              "Pleśń w rogach komory → wilgoć + resztki organiczne; mycie i wietrzenie komory po zmianie (drzwi uchylone na noc). Pleśń w garowni to skażenie krzyżowe wszystkich kęsów.",
+              "SAM: woda w wannie, mycie, wietrzenie, walidacja Testo. SERWIS: grzałka, termostat, elektronika; w komorach klimatycznych z agregatem (typu MIWE GVA) układ chłodniczy podlega przepisom F-gazowym — wyłącznie uprawniony chłodnik.",
+              "Nie zastawiaj wózkami kanałów nawiewu — nierówny obieg powietrza to nierówny gar na wózku (góra/dół). Skórka mimo poprawnego RH na wyświetlaczu = zwykle zakamieniony układ nawilżania albo czujnik wilgotności do kalibracji — zgłoszenie, nie „podkręcanie” wilgotności.",
+              "ULEPSZENIE: higrometr za kilkadziesiąt złotych obok wyświetlacza — drugi parametr przestaje być zgadywanką."
+            ],
+            "zrodlo": "Diagnostyka garowni; praktyka warsztatowa"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Skórka / sucha skorupka na kęsach w garze",
+          "odczyt": "Powierzchnia kęsa wysycha szybciej, niż rośnie — brakuje wilgoci w komorze.",
+          "przyczyny": [
+            "Pusta wanna z wodą (najczęstsze!)",
+            "Kęsy nieokryte przy długim garowaniu",
+            "Nieszczelne drzwi wypuszczają wilgoć"
+          ],
+          "dzialania": [
+            "Dolej wody do wanny; sprawdzaj poziom na starcie każdej zmiany",
+            "Okrywaj kęsy przy garowaniu >60 min zgodnie z kartą",
+            "Test kartki na uszczelce drzwi"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Croissanty błyszczą się tłusto w garze",
+          "odczyt": "Masło zaczyna płynąć — realna temperatura przekroczyła ~28°C. Produkt ratuje się minutami.",
+          "przyczyny": [
+            "Nastawa za wysoka „bo się spieszymy”",
+            "Czujnik przekłamuje (dryf)",
+            "Kęsy postawione przy grzałce (punktowo cieplej niż wskazanie)"
+          ],
+          "dzialania": [
+            "Wyjmij natychmiast w chłodniejsze miejsce",
+            "Zmierz Testo na półce, porównaj z wyświetlaczem",
+            "Croissanty zawsze z dala od grzałki; nastawa ≤28°C bez wyjątków — szybciej ≠ lepiej przy laminacji"
+          ],
+          "serwis": "Rozjazd czujnika z Testo utrzymuje się po korekcie nastawy — termostat/czujnik, serwis.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Pleśń w rogach komory",
+          "odczyt": "Ciepło + wilgoć + resztki = inkubator. To zagrożenie dla WSZYSTKICH kęsów, nie defekt estetyczny.",
+          "przyczyny": [
+            "Brak mycia i wietrzenia (komora domknięta na wilgotno przez noc)",
+            "Resztki ciasta w szczelinach i prowadnicach"
+          ],
+          "dzialania": [
+            "Pełne mycie komory wg karty higieny, doczyszczenie prowadnic",
+            "Nawyk: po ostatnim garowaniu drzwi uchylone — komora schnie przez noc",
+            "Wpis do DZIENNIKA (skażenie krzyżowe to temat higieny, nie tylko techniki)"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Poziom wody w wannie nawilżania", "kiedy": "start każdej zmiany", "kto": "pracownik" },
+        { "co": "Mycie komory + wietrzenie (drzwi uchylone na noc)", "kiedy": "po każdej zmianie", "kto": "pracownik" },
+        { "co": "Walidacja Testo na półce vs wyświetlacz", "kiedy": "co tydzień", "kto": "kierownik" },
+        { "co": "Grzałka, termostat, elektronika; układ chłodniczy komór klimatycznych (F-gazy)", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "MIWE GVA e+ — garownia pełnoautomatyczna (strona producenta)", "url": "https://www.miwe.de/us-en/produkte/produktion/baeckereikaeltetechnik/prozesskaelte/miwe-gva-eplus.php", "typ": "strona producenta", "uwaga": "dokumentacja reprezentatywna dla klasy komór garowniczych" },
+        { "tytul": "MIWE GVA/GUV/GV — prospekt techniczny (PDF producenta)", "url": "https://www.miwe.de/media/docs/produkte/prospekt/en/produktinformation-gva-en.pdf", "typ": "prospekt PDF" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-GAR-1",
+          "tom": "Technika: Garownia",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Kęsy w garze łapią suchą skorupkę. Najczęstsza przyczyna i pierwszy krok?",
+          "opcje": [
+            "Grzałka padła — dzwonię po serwis",
+            "Pusta wanna z wodą — dolewam i wpisuję kontrolę poziomu na start każdej zmiany",
+            "Za dużo drożdży w cieście",
+            "Za niska temperatura w komorze"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Najczęstsza „awaria” garowni to pusta wanna. Skórka w garze pęka potem w piecu bokiem — objaw wygląda na piec, a boli garownia.",
+          "zrodlo": "Diagnostyka garowni"
+        },
+        {
+          "id": "TECH-GAR-2",
+          "tom": "Technika: Garownia",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Dlaczego croissant nie może garować powyżej 28°C?",
+          "opcje": [
+            "Bo drożdże giną powyżej 28°C",
+            "Bo masło w laminacji zaczyna płynąć — listki sklejają się i produkt traci strukturę jeszcze przed piecem",
+            "Bo skórka za szybko ciemnieje",
+            "Może — o ile skrócimy czas o połowę"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Granica to fizyka masła, nie kaprys receptury. Błyszczący, tłusty kęs w garze = już się dzieje; reakcja liczona w minutach.",
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA (croissant wymaga garu ≤28°C)"
+        },
+        {
+          "id": "TECH-GAR-3",
+          "tom": "Technika: Garownia",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Od tygodnia garowanie trwa ~30 minut dłużej przy tych samych nastawach i recepturach. Co robisz?",
+          "opcje": [
+            "Wydłużam planowo garowanie o 30 minut i tyle",
+            "Podnoszę nastawę o 4°C",
+            "Walidują realną temperaturę Testo na półce vs wyświetlacz; jeśli realnie chłodniej — koryguję nastawę o różnicę i zgłaszam dryf czujnika, jeśli się powtarza",
+            "Dodaję więcej drożdży do receptur"
+          ],
+          "poprawne": [2],
+          "wzorzec": "Stałe wydłużenie procesu przy stałych nastawach = maszyna mówi, że realna temperatura spadła. Najpierw pomiar niezależny, potem korekta — nigdy „na oko” i nigdy przez zmianę receptury.",
+          "zrodlo": "Diagnostyka garowni; zasada walidacji"
+        }
+      ]
+    },
+    {
+      "id": "TECH-TESTO",
+      "nazwa": "Sonda Testo 106 i termometry",
+      "kategoria": "Pomiar i kontrola",
+      "ikona": "🎯",
+      "rola": "Sędzia całego parku maszynowego: waliduje piec (rdzeń CCP1), chłodnię (CCP4), garownię, wodę do DDT i Tradilevain. Kłamiący termometr psuje wszystkie decyzje naraz.",
+      "nauka": {
+        "intro": "Testo 106 to termometr szpilkowy: termistor siedzi w szpicu i mierzy PUNKT, w którym się znajduje — nie średnią bochenka. Cała sztuka pomiaru to trzy rzeczy: gdzie wbić, kiedy odczytać i czy wierzyć wskazaniu. Ta maszyna jest inna od pozostałych: nie produkuje, tylko rozstrzyga — dlatego jej awaria jest najbardziej podstępna, bo niewidoczna.",
+        "karty": [
+          {
+            "tytul": "Poprawny pomiar (CCP1 i nie tylko)",
+            "punkty": [
+              "CCP1: rdzeń ≥92°C sondą, zawsze, na koniec wypieku. Sonda w GEOMETRYCZNY ŚRODEK najgrubszego bochenka wsadu — pomiar z brzegu to pomiar skórki, nie rdzenia.",
+              "Odczyt po ustabilizowaniu (kilka sekund) — termistor potrzebuje czasu; odczyt „w locie” zaniża.",
+              "Żytnie pieczemy do 96–98°C w rdzeniu (cel jakościowy) — CCP1 (≥92°C) to minimum bezpieczeństwa, nie cel jakości.",
+              "Między produktami: dezynfekcja szpica (alergeny, surowe ciasto vs gotowy produkt). Sonda to najczęściej wędrujący przedmiot w piekarni — i najlepszy roznosiciel.",
+              "Pomiar powietrza (piec, gar, chłodnia) sondą szpilkową jest wolny i chwiejny — do walidacji komór używaj odczytu w medium: słoik z wodą (chłodnia), dłuższy czas stabilizacji (gar)."
+            ],
+            "zrodlo": "ZS-PLANOWANIE-PIEKARNIA (CCP1 nienaruszalny, sonda; żytnie 96–98°C)"
+          },
+          {
+            "tytul": "Czy sonda mówi prawdę? Kalibracja domowa",
+            "punkty": [
+              "Test lodowy: szklanka drobnego lodu + odrobina wody, zamieszać, sonda w środek, 30 sekund → 0,0°C ±0,5. To najpewniejszy punkt odniesienia w każdej kuchni.",
+              "Test wrzątku: świeżo zagotowana woda → ~100°C (na poziomie morza; ciśnienie zmienia o ułamki stopnia). Mniej pewny niż lód, ale sprawdza drugi koniec skali.",
+              "Oba testy co tydzień + po każdym upadku sondy na posadzkę. Wynik poza tolerancją = sonda wycofana z decyzji CCP do wymiany/kalibracji.",
+              "Słaba bateria = wolne, dryfujące odczyty ZANIM pojawi się ikona baterii — sonda „myśli” coraz dłużej. Zapasowa bateria (2× CR2032) w szufladzie to element bezpieczeństwa żywności.",
+              "Parametry z karty Testo 106: zakres −50…+275°C, dokładność ±0,5°C w zakresie roboczym, czas reakcji ~10 s. Szczelność IP67 obowiązuje TYLKO z założonym futerałem TopSafe — bez niego nie myjemy sondy pod wodą. Wzorcowanie okresowe (EN 13486) raz w roku to element dokumentacji HACCP.",
+              "Zasada dwóch termometrów: rozstrzygające pomiary (spór z wyświetlaczem maszyny, decyzja CCP na granicy) potwierdzaj drugim urządzeniem."
+            ],
+            "zrodlo": "Praktyka metrologiczna; DTR Testo 106"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Odczyty „dziwne”: wolne, skaczące albo niezgodne z intuicją",
+          "odczyt": "Sonda też jest maszyną — i właśnie możliwe, że kłamie. Kłamiący termometr psuje decyzje przy wszystkich maszynach naraz.",
+          "przyczyny": [
+            "Słaba bateria (dryf zanim pojawi się ikona)",
+            "Uszkodzenie po upadku (termistor w szpicu jest delikatny)",
+            "Zawilgocenie złącza/elektroniki po myciu „na mokro”"
+          ],
+          "dzialania": [
+            "Test lodowy (0°C ±0,5) i test wrzątku (~100°C)",
+            "Wymień baterię profilaktycznie",
+            "Poza tolerancją → sonda wycofana z decyzji CCP, pomiary drugim termometrem do czasu wymiany"
+          ],
+          "serwis": "Testo poza tolerancją po wymianie baterii — kalibracja u producenta albo wymiana urządzenia (koszt sondy < koszt jednej wycofanej partii).",
+          "ryzyko": "bezpieczeństwo"
+        },
+        {
+          "objaw": "Pomiar rdzenia na granicy 92°C — raz nad, raz pod",
+          "odczyt": "Wynik graniczny to nie „zaliczone połowicznie” — to sygnał złej techniki pomiaru albo niedopieczonego wsadu.",
+          "przyczyny": [
+            "Sonda nie w geometrycznym środku najgrubszego bochenka",
+            "Odczyt bez stabilizacji",
+            "Wsad rzeczywiście na granicy dopieczenia"
+          ],
+          "dzialania": [
+            "Powtórz poprawnie: środek najgrubszej sztuki, kilka sekund stabilizacji",
+            "Nadal granicznie → dopiekaj i mierz ponownie; CCP1 to minimum twarde",
+            "Wątpisz w sondę → test lodowy natychmiast"
+          ],
+          "serwis": "",
+          "ryzyko": "bezpieczeństwo"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Dezynfekcja szpica między produktami", "kiedy": "przy każdym użyciu", "kto": "pracownik" },
+        { "co": "Test lodowy 0°C (±0,5)", "kiedy": "co tydzień i po każdym upadku", "kto": "pracownik" },
+        { "co": "Wymiana baterii (2× CR2032, ~350 h pracy) — obie naraz, pilnując biegunowości i domknięcia komory (szczelność)", "kiedy": "co 6 miesięcy", "kto": "kierownik" },
+        { "co": "Wzorcowanie okresowe (EN 13486, dokumentacja HACCP) — świadectwo do segregatora audytowego", "kiedy": "co 12 miesięcy", "kto": "serwis/dostawca" }
+      ],
+      "dokumentacja": [
+        { "tytul": "Testo 106 — karta produktu i instrukcja (PL)", "url": "https://www.testo.com/pl-PL/testo-106/p/0560-1063", "typ": "karta produktu + instrukcja PDF" },
+        { "tytul": "Testo 106 — zestaw HACCP z futerałem TopSafe (EN)", "url": "https://www.testo.com/en-US/set-testo-106/p/0563-1063", "typ": "karta produktu" },
+        { "tytul": "Testo 106 — karta katalogowa (PDF, mirror dystrybutora)", "url": "https://www.manoraz.com/_Uploads/dbsAttachedFiles/testo-106-Data-sheet.pdf", "typ": "karta katalogowa", "uwaga": "jeśli link nie działa, szukaj: „testo 106 data sheet”" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-TES-1",
+          "tom": "Technika: Sonda Testo",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": true,
+          "pytanie": "Jak poprawnie wykonać pomiar CCP1 rdzenia chleba?",
+          "opcje": [
+            "Sonda płytko pod skórkę pierwszego z brzegu bochenka, szybki odczyt",
+            "Sonda w geometryczny środek NAJGRUBSZEGO bochenka wsadu, odczyt po kilku sekundach stabilizacji, próg ≥92°C",
+            "Pomiar temperatury powietrza w komorze — jeśli 250°C, rdzeń na pewno gotowy",
+            "Wystarczy stuknąć w spód — głuchy dźwięk zastępuje pomiar"
+          ],
+          "poprawne": [1],
+          "wzorzec": "CCP1 = rdzeń ≥92°C sondą: środek najgrubszej sztuki + stabilizacja odczytu. Stukanie i czas wypieku to wskazówki jakościowe, nie kontrola bezpieczeństwa.",
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA (CCP1 nienaruszalny)"
+        },
+        {
+          "id": "TECH-TES-2",
+          "tom": "Technika: Sonda Testo",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Jak w 60 sekund sprawdzić, czy Testo mówi prawdę?",
+          "opcje": [
+            "Porównać z wyświetlaczem pieca",
+            "Test lodowy: szklanka drobnego lodu z odrobiną wody, zamieszać, sonda w środek — po 30 sekundach ma być 0,0°C ±0,5",
+            "Zmierzyć własne czoło — powinno być 36,6°C",
+            "Nie da się bez laboratorium"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Mieszanina lodowo-wodna to fizyczny punkt odniesienia 0°C dostępny w każdej kuchni. Wyświetlacze maszyn same wymagają walidacji — nie są wzorcem.",
+          "zrodlo": "Praktyka metrologiczna; DTR Testo"
+        },
+        {
+          "id": "TECH-TES-3",
+          "tom": "Technika: Sonda Testo",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": true,
+          "pytanie": "Pomiar rdzenia pokazuje 91°C, spieszysz się, a chleb „wygląda na gotowy”. Co robisz?",
+          "opcje": [
+            "Wyjmuję — 1°C różnicy to błąd pomiaru, a wygląd się zgadza",
+            "Dopiekam i mierzę ponownie w środku najgrubszej sztuki — CCP1 (≥92°C) to twarde minimum bezpieczeństwa, nie sugestia",
+            "Uśredniam: mierzę trzy bochenki i biorę średnią",
+            "Wyjmuję, ale odnotowuję w DZIENNIKU, że było blisko"
+          ],
+          "poprawne": [1],
+          "wzorzec": "CCP nie zna „prawie”: 91 ≠ 92. Dopiec i zmierzyć ponownie; presja czasu nigdy nie jest argumentem przy punkcie krytycznym — od presji jest plan, nie próg.",
+          "zrodlo": "CCP1; zasada nienegocjowalności progów bezpieczeństwa"
+        }
+      ]
+    },
+    {
+      "id": "TECH-WALKOWNICA",
+      "nazwa": "Wałkownica / laminarka",
+      "kategoria": "Przygotowanie ciasta",
+      "ikona": "🥐",
+      "rola": "Serce produkcji croissantów B4: dwa walce o regulowanej szczelinie wałkują ciasto z masłem w równe listki. Pracuje zawsze z zimnym ciastem (4–8°C) — ciepło to jej największy wróg.",
+      "nauka": {
+        "intro": "Wałkownica jest mechanicznie prosta (walce + taśmy + regulacja szczeliny), ale bezlitośnie ujawnia stan CIASTA. Dlatego pierwsza lekcja brzmi: zanim uznasz, że wałkownica „źle wałkuje”, sprawdź temperaturę tego, co na taśmie. Druga lekcja: to maszyna z wirującymi walcami — zasady bezpieczeństwa są częścią wiedzy technicznej, nie osobnym szkoleniem.",
+        "karty": [
+          {
+            "tytul": "Maszyna a ciasto: kto zawinił?",
+            "punkty": [
+              "Masło ŁAMIE SIĘ w cieście (grudki, marmurek) → masło za zimne/twarde względem ciasta — kilka minut aklimatyzacji przed laminacją; to nie walce.",
+              "Masło ZNIKA (wchłania się, ciasto jednolite) → za ciepłe — laminacja stracona; wróć do chłodni. To też nie walce.",
+              "Ciasto klei się do walców/taśmy → za ciepłe ciasto, za mało podsypki albo brudna taśma. Kolejność sprawdzania: temperatura → podsypka → czystość.",
+              "NIERÓWNA GRUBOŚĆ lewo–prawo przy czystych walcach → to wreszcie maszyna: walce rozregulowane (utrata równoległości). Test: pasek ciasta przez całą szerokość, pomiar suwmiarką z obu stron.",
+              "Taśma schodzi na bok → nierówny naciąg taśmy; drobna regulacja wg DTR albo zgłoszenie — taśma trąca o ramę tnie się w tygodnie."
+            ],
+            "zrodlo": "Praktyka laminacji; DTR producenta"
+          },
+          {
+            "tytul": "Bezpieczeństwo i konserwacja",
+            "punkty": [
+              "Osłony walców i wyłącznik krańcowy: maszyna MUSI stanąć po podniesieniu osłony. Test co tydzień, jak przy miesiarce. Niedziałający = maszyna poza użyciem.",
+              "Czyszczenie: taśmy i skrobaki po każdej zmianie (resztki ciasta twardnieją w kamień i odciskają się w kolejnych partiach); NIGDY nie czyścić walców przy włączonej maszynie.",
+              "Ręce trzymamy za podajnikiem, ciasto prowadzi taśma — nie palce. Długie rękawy i luźne sznurki fartucha to przy walcach realne ryzyko wciągnięcia.",
+              "SAM: czyszczenie, kontrola skrobaków, test paska ciasta z suwmiarką, drobna regulacja naciągu taśmy wg DTR. Czyszczenie skrobaków wg DTR RONDO: rozewrzeć walce maksymalnie, zablokować osłonę w pozycji górnej, dopiero wtedy zdjąć skrobaki (bez narzędzi).",
+              "ZAKAZY z DTR producenta: praca bez założonych skrobaków jest zabroniona; szczelinę zmniejszaj stopniowo (klasyczna praktyka: nie więcej niż o połowę na przejście) — wciskanie grubego ciasta w małą szczelinę przeciąża napęd i rwie ciasto.",
+              "SERWIS: łożyska walców, regulacja równoległości walców, napęd, wymiana taśmy."
+            ],
+            "zrodlo": "BHP stanowiska; DTR producenta"
+          }
+        ]
+      },
+      "diagnostyka": [
+        {
+          "objaw": "Nierówna grubość ciasta lewo–prawo",
+          "odczyt": "Jeśli walce są czyste, a objaw stały — walce straciły równoległość. To jedyna typowa wada, w której naprawdę „boli maszyna”, nie ciasto.",
+          "przyczyny": [
+            "Rozregulowanie mechanizmu szczeliny (zużycie, drgania)",
+            "Zbite resztki ciasta na jednym końcu walca (sprawdź najpierw!)"
+          ],
+          "dzialania": [
+            "Wyczyść walce (maszyna WYŁĄCZONA), powtórz test",
+            "Test diagnostyczny: pasek ciasta przez całą szerokość → pomiar suwmiarką z obu stron; różnica i jej wartość do zgłoszenia",
+            "Do czasu regulacji: obracaj ciasto o 180° między przejściami (obejście, nie rozwiązanie)"
+          ],
+          "serwis": "Regulacja równoległości walców i łożyska — serwis; zgłoszenie z wynikiem pomiaru suwmiarką skraca wizytę.",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Ciasto klei się do walców lub taśmy",
+          "odczyt": "W 90% to termometria ciasta, nie maszyna. Wałkownica ujawnia za ciepłe ciasto najszybciej ze wszystkich maszyn.",
+          "przyczyny": [
+            "Ciasto >8°C (za długo na hali)",
+            "Za mało mąki podsypki",
+            "Taśma z filmem resztek ciasta"
+          ],
+          "dzialania": [
+            "Zmierz temperaturę ciasta; >8°C → wraca do chłodni, wałkowanie poczeka",
+            "Podsypka cienko i równo; nadmiar zmiata się przed składaniem",
+            "Umyj/oczyść taśmę i skrobaki"
+          ],
+          "serwis": "",
+          "ryzyko": "jakość"
+        },
+        {
+          "objaw": "Taśma schodzi na jedną stronę",
+          "odczyt": "Nierówny naciąg — taśma „ucieka” w stronę luźniejszego brzegu. Trąca o ramę = przecina się w tygodnie.",
+          "przyczyny": [
+            "Naturalne rozciągnięcie taśmy z czasem",
+            "Niesymetryczna regulacja po czyszczeniu/demontażu"
+          ],
+          "dzialania": [
+            "Drobna korekta naciągu wg DTR (śruby regulacyjne na końcach wałka) — po ćwierć obrotu, obserwując bieg taśmy",
+            "Nie ciągnie się taśmy ręką w ruchu — korekta tylko na wyłączonej maszynie, obserwacja po włączeniu"
+          ],
+          "serwis": "Taśma nacięta/postrzępiona albo nie daje się wyregulować — wymiana taśmy przez serwis.",
+          "ryzyko": "awaria"
+        }
+      ],
+      "konserwacja": [
+        { "co": "Czyszczenie taśm i skrobaków (maszyna wyłączona)", "kiedy": "po każdej zmianie", "kto": "pracownik" },
+        { "co": "Test wyłącznika krańcowego osłon", "kiedy": "co tydzień", "kto": "pracownik" },
+        { "co": "Test paska ciasta + suwmiarka (równoległość walców)", "kiedy": "co miesiąc", "kto": "kierownik" },
+        { "co": "Łożyska walców, napęd, regulacja równoległości", "kiedy": "co 12 miesięcy", "kto": "serwis" }
+      ],
+      "dokumentacja": [
+        { "tytul": "RONDO Ecomat STM/SSO — instrukcja obsługi (PDF, dystrybutor Moffat)", "url": "https://moffat.global.ssl.fastly.net/sites/default/files/products/manual/UM_Rondo_Ecomat_STM_SSO_BC520501_BA_e.pdf", "typ": "DTR" },
+        { "tytul": "RONDO Econom STM51x/SSO514 — instrukcja obsługi (PDF)", "url": "https://moffat.global.ssl.fastly.net/sites/default/files/products/manual/UM_Rondo_Econom_STM51+_SSO514_BD519402_BA_e.pdf", "typ": "DTR" },
+        { "tytul": "RONDO — broszura wałkownic mechanicznych (PDF producenta)", "url": "https://www.rondo-online.com/sites/default/files/2022-10/50840_RONDO_MAM_EN_10.2022.pdf", "typ": "katalog PDF" }
+      ],
+      "pytania": [
+        {
+          "id": "TECH-WAL-1",
+          "tom": "Technika: Wałkownica",
+          "poziom": "JUNIOR",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Ciasto croissantowe klei się do walców. Jaka jest KOLEJNOŚĆ sprawdzania?",
+          "opcje": [
+            "Dzwonię po serwis — walce pewnie straciły powłokę",
+            "Temperatura ciasta (>8°C → chłodnia) → podsypka → czystość taśmy; maszyna jest ostatnim podejrzanym",
+            "Sypię dużo mąki i wałkuję dalej",
+            "Zwiększam szczelinę walców, żeby mniej dotykały ciasta"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Wałkownica najszybciej w całym parku ujawnia za ciepłe ciasto. Diagnoza od najbardziej prawdopodobnego i najtańszego: termometr → podsypka → czystość → dopiero mechanika.",
+          "zrodlo": "Diagnostyka wałkownicy"
+        },
+        {
+          "id": "TECH-WAL-2",
+          "tom": "Technika: Wałkownica",
+          "poziom": "SAMODZIELNY",
+          "typ": "jednokrotny",
+          "ccp": false,
+          "pytanie": "Podejrzewasz, że walce straciły równoległość. Jak to udowodnić przed zgłoszeniem serwisowym?",
+          "opcje": [
+            "Patrzę na walce pod światło",
+            "Czysty test: pasek ciasta przez całą szerokość walców → pomiar grubości suwmiarką z obu stron; stała różnica przy czystych walcach = dowód dla serwisu",
+            "Wałkuję 10 partii i liczę, ile wyszło krzywych",
+            "Nie da się — to może stwierdzić tylko serwis"
+          ],
+          "poprawne": [1],
+          "wzorzec": "Pasek + suwmiarka zamienia wrażenie w liczbę. Zgłoszenie „różnica 0,8 mm lewo–prawo przy czystych walcach” kieruje serwis prosto do regulacji zamiast szukania.",
+          "zrodlo": "Diagnostyka wałkownicy; zasada dokumentowania zgłoszeń"
+        },
+        {
+          "id": "TECH-WAL-3",
+          "tom": "Technika: Wałkownica",
+          "poziom": "JUNIOR",
+          "typ": "wielokrotny",
+          "ccp": false,
+          "pytanie": "Które zasady bezpieczeństwa przy wałkownicy są bezwzględne? (zaznacz wszystkie poprawne)",
+          "opcje": [
+            "Czyszczenie walców tylko przy wyłączonej maszynie",
+            "Maszyna musi stanąć po podniesieniu osłony (test co tydzień)",
+            "Ciasto przy walcach prowadzi taśma, nie palce",
+            "Przy cienkim cieście można przytrzymać je przy walcu dłonią",
+            "Luźne rękawy i sznurki fartucha nie mają znaczenia przy taśmie"
+          ],
+          "poprawne": [0, 1, 2],
+          "wzorzec": "Wirujące walce wciągają: czyszczenie na wyłączonej, sprawny krańcowy, ręce za podajnikiem. Opcje 4 i 5 to dokładnie te nawyki, które kończą się na SOR.",
+          "zrodlo": "BHP stanowiska; nauka TECH-WALKOWNICA"
+        }
+      ]
+    }
+  ]
+}

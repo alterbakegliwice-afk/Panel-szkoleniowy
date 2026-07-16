@@ -16,7 +16,18 @@ import OwnerPanel from './components/OwnerPanel.jsx'
 import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
 import Rozwoj from './components/Rozwoj.jsx'
+import MojDzien from './components/MojDzien.jsx'
+import Zgloszenia from './components/Zgloszenia.jsx'
+import Technika from './components/Technika.jsx'
+import Sprzatanie from './components/Sprzatanie.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
+import { pytaniaTechniki } from './logic/technika.js'
+import { pytaniaSprzatania } from './logic/sprzatanie.js'
+import { wczytajZgloszenia } from './logic/integracja.js'
+
+// Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
+// logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
+const WLASCICIEL_UCZEN = { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
 
 export default function App() {
   const [stan, setStan] = useState(wczytajStan)
@@ -41,6 +52,24 @@ export default function App() {
 
   const bank = stan.bank || bankZewnetrzny || bankPytan(stan)
   const pytania = bank.pytania
+
+  // Pytania WSZYSTKICH źródeł (bank + panele praktyczne) — wyłącznie do
+  // opisywania wpisów historii (WYNIK trzyma tylko id_pytania). Progi, tomy
+  // i CCP banku liczą się dalej z samego `pytania`.
+  const pytaniaOpisowe = useMemo(
+    () => [...pytania, ...pytaniaTechniki(), ...pytaniaSprzatania()],
+    [pytania]
+  )
+
+  // Licznik „nowych" zgłoszeń: localStorage czytamy przy zmianie widoku
+  // i po każdej akcji w skrzynce (znacznik), nie przy każdym renderze App.
+  const [zgloszeniaZnacznik, setZgloszeniaZnacznik] = useState(0)
+  const odswiezZgloszenia = () => setZgloszeniaZnacznik((n) => n + 1)
+  const nowychZgloszen = useMemo(
+    () => wczytajZgloszenia().filter((z) => z.status === 'nowe').length,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [ekran.widok, zgloszeniaZnacznik]
+  )
 
   const pracownik = useMemo(
     () =>
@@ -106,7 +135,9 @@ export default function App() {
       }
     })
 
-  const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig }))
+  // merge, nie zastąpienie: Progi wysyłają sam PROG_ZALICZENIA i nie mogą
+  // skasować PIN_WLASCICIELA (i odwrotnie)
+  const zapiszKonfig = (konfig) => setStan((s) => ({ ...s, konfig: { ...s.konfig, ...konfig } }))
   const zapiszPracownikow = (pracownicy) => setStan((s) => ({ ...s, pracownicy }))
   const wgrajBank = (nowyBank) => setStan((s) => ({ ...s, bank: nowyBank }))
   const przywrocSeed = () => setStan((s) => ({ ...s, bank: null }))
@@ -132,9 +163,10 @@ export default function App() {
       <Powloka naglowek={null}>
         <ProfilePicker
           pracownicy={stan.pracownicy}
+          pinWlasciciela={stan.konfig.PIN_WLASCICIELA || ''}
           onWybor={(nowaSesja) => {
             setSesja(nowaSesja)
-            setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'profil' })
+            setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'dzien' })
           }}
         />
       </Powloka>
@@ -143,8 +175,12 @@ export default function App() {
 
   const zakladki = []
   if (pracownik) {
+    zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
     zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
+    zakladki.push({ id: 'technika', etykieta: 'Technika' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
+    zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
     zakladki.push({ id: 'zespol', etykieta: 'Zespół' })
@@ -154,6 +190,9 @@ export default function App() {
     })
   }
   if (jestWlascicielem) {
+    zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowychZgloszen ? ` (${nowychZgloszen})` : ''}` })
+    zakladki.push({ id: 'technika', etykieta: 'Technika' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
     zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
     zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
   }
@@ -181,6 +220,13 @@ export default function App() {
         </div>
       }
     >
+      {ekran.widok === 'dzien' && pracownik && <MojDzien pracownik={pracownik} />}
+      {ekran.widok === 'zgloszenia' && pracownik && (
+        <Zgloszenia tryb="pracownik" pracownik={pracownik} onAktualizacja={odswiezZgloszenia} />
+      )}
+      {ekran.widok === 'zgloszenia' && jestWlascicielem && (
+        <Zgloszenia tryb="zarzad" onAktualizacja={odswiezZgloszenia} />
+      )}
       {ekran.widok === 'profil' && pracownik && (
         <EmployeeDashboard
           pracownik={pracownik}
@@ -189,6 +235,7 @@ export default function App() {
           kolejka={stan.kolejka}
           nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+          pytaniaOpisowe={pytaniaOpisowe}
           onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
           onPowtorka={(idPytan) => setEkran({ widok: 'powtorka', idPytan })}
@@ -230,6 +277,23 @@ export default function App() {
           onKoniec={() => setEkran({ widok: 'profil' })}
         />
       )}
+      {(ekran.widok === 'technika' || ekran.widok === 'sprzatanie') &&
+        (pracownik || jestWlascicielem) &&
+        (() => {
+          const uczen = pracownik || WLASCICIEL_UCZEN
+          const Panel = ekran.widok === 'technika' ? Technika : Sprzatanie
+          return (
+            <Panel
+              uczen={uczen}
+              wyniki={stan.wyniki}
+              nauka={stan.nauka}
+              konfig={stan.konfig}
+              onWynik={dodajWynik}
+              onDoKolejki={dodajDoKolejki}
+              onPrzerobiony={(obszar) => oznaczPrzerobiony(uczen.id_prac, obszar)}
+            />
+          )
+        })()}
       {ekran.widok === 'powtorka' && pracownik && (
         <Quiz
           pracownik={pracownik}
@@ -254,6 +318,7 @@ export default function App() {
         <TeamView
           pracownicy={stan.pracownicy}
           pytania={pytania}
+          pytaniaOpisowe={pytaniaOpisowe}
           wyniki={stan.wyniki}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           profile={stan.profile || []}

@@ -3,6 +3,7 @@
 // WYNIK jest logiem append-only — akcje wyłącznie DOPISUJĄ, nigdy nie edytują.
 import seedWbudowany from '../data/bank_pytan_seed.json'
 import { filtrujProfile } from './rozwoj.js'
+import { zapiszLustroZespolu } from './integracja.js'
 
 const KLUCZ = 'alterbake-platforma-v1'
 
@@ -65,11 +66,23 @@ export function wczytajStan() {
   }
 }
 
+// Lustro zależy tylko od pracowników i PIN-u właściciela — pomijamy zapis,
+// gdy się nie zmieniły (większość zapisów stanu to wynik quizu), żeby nie
+// emitować zbędnych zdarzeń `storage` do Planera/Dashboardu na tym originie.
+let odciskLustra = null
+
 export function zapiszStan(stan) {
   try {
     localStorage.setItem(KLUCZ, JSON.stringify(stan))
   } catch (e) {
     console.error('Nie udało się zapisać stanu', e)
+  }
+  // Lustro rejestru zespołu dla Planera Produkcji i AI Dashboardu — Panel jest
+  // jedynym źródłem prawdy o profilach (SPEC-APLIKACJA-PRACOWNIKA.md §2.1).
+  const odcisk = JSON.stringify([stan.pracownicy, stan.konfig?.PIN_WLASCICIELA || ''])
+  if (odcisk !== odciskLustra) {
+    odciskLustra = odcisk
+    zapiszLustroZespolu(stan)
   }
 }
 

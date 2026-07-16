@@ -15,7 +15,7 @@ function idWpisu(idPrac, idPytania) {
   return `${idPrac}:${idPytania}:${teraz()}:${Math.random().toString(36).slice(2, 7)}`
 }
 
-export default function Quiz({ pracownik, tom, pytania, zestawPytan, tytul, onWynik, onDoKolejki, onKoniec }) {
+export default function Quiz({ pracownik, tom, pytania, zestawPytan, tytul, onWynik, onDoKolejki, onKoniec, koniecTekst = 'Wróć do „Mój poziom"' }) {
   // Tryb powtórki: jawny zestaw pytań (może obejmować wiele tomów). Inaczej —
   // klasyczny quiz z jednego tomu.
   const zestaw = useMemo(
@@ -125,7 +125,7 @@ export default function Quiz({ pracownik, tom, pytania, zestawPytan, tytul, onWy
             ))}
           </div>
         )}
-        <button className="glowny" onClick={onKoniec}>Wróć do „Mój poziom"</button>
+        <button className="glowny" onClick={onKoniec}>{koniecTekst}</button>
       </div>
     )
   }

@@ -4,9 +4,11 @@ import HistoryList from './HistoryList.jsx'
 
 // Widok „MÓJ POZIOM" — najważniejszy ekran dla pracownika (spec.md §6).
 // Bez żargonu. Status CCP zawsze osobno, na czerwono jeśli brak — nigdy w średniej.
-export default function EmployeeDashboard({ pracownik, pytania, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie, onPowtorka }) {
+export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, wyniki, kolejka, nauka, konfig, onStartQuizu, onUczSie, onPowtorka }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
-  const historia = historiaPracownika(wyniki, pytania, pracownik.id_prac)
+  // historia opisuje wpisy pełnym zbiorem pytań (bank + Technika/Sprzątanie),
+  // żeby quizy paneli praktycznych nie renderowały się jako „spoza banku"
+  const historia = historiaPracownika(wyniki, pytaniaOpisowe || pytania, pracownik.id_prac)
   const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)

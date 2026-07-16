@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { eksportPanelM5 } from '../logic/export.js'
+import { MODULY_PLANERA } from '../logic/integracja.js'
 import {
   ROLE,
   walidujBank,
@@ -33,6 +34,7 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
     <div className="konfig">
       <Progi konfig={konfig} onKonfig={onKonfig} />
       <Pracownicy pracownicy={stan.pracownicy} onPracownicy={onPracownicy} />
+      <PinWlasciciela konfig={konfig} onKonfig={onKonfig} />
       <BankPytan bank={bank} wgrany={!!stan.bank} onBank={onBank} onPrzywrocSeed={onPrzywrocSeed} pobierz={pobierz} />
 
       <div className="karta">
@@ -139,6 +141,58 @@ function Progi({ konfig, onKonfig }) {
   )
 }
 
+function PinWlasciciela({ konfig, onKonfig }) {
+  const [pin, setPin] = useState('')
+  const ustawiony = !!konfig.PIN_WLASCICIELA
+
+  const zapisz = () => {
+    if (pin && pin.length < 4) return
+    onKonfig({ PIN_WLASCICIELA: pin })
+    setPin('')
+  }
+
+  return (
+    <div className="karta">
+      <h2>PIN Właściciela</h2>
+      <p className="cichy mini">
+        Chroni wejście właścicielskie w Panelu ORAZ tryb edycji w Planerze Produkcji
+        (rejestr wspólny — patrz docs/SPEC-APLIKACJA-PRACOWNIKA.md). Puste = bez PIN.
+        Obecnie: {ustawiony ? 'ustawiony 🔒' : 'brak'}.
+      </p>
+      <div className="rzad">
+        <input
+          className="pole waski"
+          type="password"
+          inputMode="numeric"
+          maxLength={4}
+          placeholder="4 cyfry"
+          value={pin}
+          onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
+          onKeyDown={(e) => e.key === 'Enter' && zapisz()}
+        />
+        <button className="glowny" onClick={zapisz} disabled={!!pin && pin.length < 4}>
+          {ustawiony ? 'Zmień PIN' : 'Ustaw PIN'}
+        </button>
+        {ustawiony && (
+          <button className="drugi" onClick={() => {
+            if (confirm('Zdjąć PIN Właściciela? Wejście właścicielskie będzie bez hasła.')) {
+              onKonfig({ PIN_WLASCICIELA: '' })
+            }
+          }}>Zdejmij PIN</button>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Jedno źródło prawdy o modułach planera: MODULY_PLANERA z integracja.js —
+// po tych samych kluczach zbudujRejestr filtruje uprawnienia kierownika,
+// więc lokalna kopia listy rozjechałaby się z rejestrem po cichu.
+const MODULY_KIEROWNIKA = MODULY_PLANERA.map((m) => ({
+  klucz: m.klucz,
+  etykieta: m.ikona + ' ' + m.klucz
+}))
+
 function Pracownicy({ pracownicy, onPracownicy }) {
   const [nowy, setNowy] = useState({ imie: '', rola: 'Piekarz', poziom_docelowy: 'SAMODZIELNY', pin: '' })
   const [edycjaPin, setEdycjaPin] = useState(null) // { id, wartosc }
@@ -172,6 +226,18 @@ function Pracownicy({ pracownicy, onPracownicy }) {
     setEdycjaPin(null)
   }
 
+  // Uprawnienia kierownika: edycja harmonogramu i delegowanie zadań w Planerze
+  // dla wskazanego modułu. Trafia do rejestru alterbake_zespol_v1 przy zapisie.
+  const przelaczKierownika = (id, modul) => {
+    onPracownicy(pracownicy.map((p) => {
+      if (p.id_prac !== id) return p
+      const zbior = new Set(Array.isArray(p.kierownik) ? p.kierownik : [])
+      if (zbior.has(modul)) zbior.delete(modul)
+      else zbior.add(modul)
+      return { ...p, kierownik: [...zbior] }
+    }))
+  }
+
   return (
     <div className="karta">
       <h2>Pracownicy</h2>
@@ -182,7 +248,7 @@ function Pracownicy({ pracownicy, onPracownicy }) {
       <div className="tabela-otoczka">
         <table className="tabela">
           <thead>
-            <tr><th>ID</th><th>Imię</th><th>Rola</th><th>Cel</th><th>PIN</th><th></th></tr>
+            <tr><th>ID</th><th>Imię</th><th>Rola</th><th>Cel</th><th>Kierownik</th><th>PIN</th><th></th></tr>
           </thead>
           <tbody>
             {pracownicy.map((p) => (
@@ -191,6 +257,18 @@ function Pracownicy({ pracownicy, onPracownicy }) {
                 <td>{p.imie}</td>
                 <td>{p.rola}</td>
                 <td>{p.poziom_docelowy || '—'}</td>
+                <td>
+                  {MODULY_KIEROWNIKA.map((m) => (
+                    <label key={m.klucz} className="kierownik-przelacznik">
+                      <input
+                        type="checkbox"
+                        checked={Array.isArray(p.kierownik) && p.kierownik.includes(m.klucz)}
+                        onChange={() => przelaczKierownika(p.id_prac, m.klucz)}
+                      />
+                      {m.etykieta}
+                    </label>
+                  ))}
+                </td>
                 <td>
                   {edycjaPin?.id === p.id_prac ? (
                     <span className="pin-edycja">

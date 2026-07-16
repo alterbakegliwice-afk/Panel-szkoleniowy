@@ -418,6 +418,50 @@ details summary:hover { color: var(--akcent-ciemny); }
 .link-akcja:hover { color: var(--akcent); }
 .pin-edycja .pole.waski { width: 5rem; }
 
+/* ---------- Mój dzień (zadania i plan produkcji z Planera) ---------- */
+.dzien-nawigacja { justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+.dzien-data { text-align: center; flex: 1; }
+.chip-dzis { display: inline-block; margin-left: .4rem; padding: .1rem .5rem; border-radius: 999px; background: var(--ok-tlo); color: var(--ok); font-size: .72rem; font-weight: 700; }
+.lista-zadan { list-style: none; margin: .5rem 0; padding: 0; display: grid; gap: .5rem; }
+.lista-zadan li { border: 1px solid var(--linia); border-radius: var(--r-sm); padding: .6rem .8rem; background: var(--karta-inset); display: grid; gap: .2rem; }
+.lista-zadan label { display: inline-flex; align-items: center; gap: .55rem; cursor: pointer; }
+.lista-zadan input { accent-color: var(--akcent); width: 1.1rem; height: 1.1rem; flex: none; }
+.zadanie-zrobione .zadanie-tytul { text-decoration: line-through; color: var(--cichy); }
+.plan-modul { margin-top: .8rem; }
+.plan-modul h3 { margin: 0 0 .4rem; font-size: .95rem; }
+.wiersz-moj td { background: var(--zloto-tint); font-weight: 600; }
+
+/* ---------- zgłoszenia (potrzeby i uwagi) ---------- */
+.lista-zgloszen { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .7rem; }
+.lista-zgloszen li { border: 1px solid var(--linia); border-radius: var(--r-sm); padding: .7rem .9rem; background: var(--karta-inset); }
+.lista-zgloszen p { margin: .35rem 0; }
+.status-zgloszenia { padding: .1rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; }
+.status-nowe { background: var(--toku-tlo); color: var(--toku); }
+.status-przyjete { background: var(--zloto-tint); color: var(--zloto); }
+.status-zamkniete { background: var(--ok-tlo); color: var(--ok); }
+.odpowiedz-zgloszenia { color: var(--cichy); font-size: .85rem; border-left: 3px solid var(--linia-mocna); padding-left: .6rem; }
+
+/* ---------- panel techniczny (park maszynowy) ---------- */
+.diag-szukaj .pole { margin-top: .5rem; }
+.diag-karta { border-left: 4px solid var(--linia-mocna); margin-top: .8rem; }
+.diag-gora { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.diag-gora h3 { margin: 0; }
+.diag-ryzyko { padding: .1rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+.diag-ryzyko.jakosc { background: var(--toku-tlo); color: var(--toku); }
+.diag-ryzyko.awaria { background: var(--zloto-tint); color: var(--zloto); }
+.diag-ryzyko.bezp { background: var(--brak-tlo); color: var(--brak); }
+.diag-odczyt { font-style: italic; color: var(--cichy); margin: .5rem 0; }
+.diag-sekcje { display: grid; gap: .4rem 1.4rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.diag-sekcje h4 { margin: .4rem 0 .2rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--cichy); }
+.diag-serwis { margin: .6rem 0 0; font-size: .88rem; border-left: 3px solid var(--zloto); padding-left: .6rem; }
+.diag-serwis.ok { border-left-color: var(--ok); color: var(--ok); }
+.diag-kto { padding: .1rem .5rem; border-radius: 999px; font-size: .74rem; font-weight: 700; background: var(--ok-tlo); color: var(--ok); }
+.diag-kto.serwis { background: var(--zloto-tint); color: var(--zloto); }
+
+/* przełączniki kierownika w tabeli pracowników */
+.kierownik-przelacznik { display: inline-flex; align-items: center; gap: .3rem; margin-right: .7rem; font-size: .8rem; white-space: nowrap; cursor: pointer; }
+.kierownik-przelacznik input { accent-color: var(--akcent); }
+
 /* spaced retrieval — karta „Do powtórki" */
 .powtorki-karta { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
 .powtorki-lista { list-style: none; margin: .6rem 0 .8rem; padding: 0; display: grid; gap: .35rem; }
@@ -450,8 +494,10 @@ details summary:hover { color: var(--akcent-ciemny); }
 .plan-linia { border-bottom: 1px dashed var(--linia-mocna); height: 1px; }
 .plan-stopka { margin-top: 1.4rem; border-top: 1px solid var(--linia); padding-top: .6rem; }
 
+/* druk: sama treść (karta maszyny / plan rozwoju), bez nawigacji i przycisków */
 @media print {
-  .naglowek, .stopka, .no-print { display: none !important; }
+  .naglowek, .stopka, .bez-druku, .diag-szukaj, .no-print, button { display: none !important; }
+  .karta, .diag-karta { break-inside: avoid; box-shadow: none; }
   .tresc, .aplikacja { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .plan-arkusz { border: none; padding: 0; max-width: none; }
   .plan-ustalenia { break-inside: avoid; }
