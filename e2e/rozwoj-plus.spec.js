@@ -65,3 +65,45 @@ test('triangulacja: rozjazd samooceny i obserwacji Mentora jest flagowany', asyn
   await page.getByText('Weronika — samoocena vs obserwacja').click()
   await expect(page.getByText(/temat do rozmowy/).first()).toBeVisible()
 })
+
+// Plan rozwoju do druku: po przypisaniu wyniku pracownik generuje kartę 1:1.
+test('plan rozwoju do druku renderuje priorytety i sekcje', async ({ page }) => {
+  await page.goto('/')
+  await page.evaluate(() => {
+    localStorage.setItem('alterbake_work_profile_wyniki_v1', JSON.stringify([{
+      typ: 'alterbake-wynik-work-profile', wersja: '2026-07-12', narzedzie: 'profil-pracy',
+      data: '2026-05-01T10:00:00.000Z', osoba: { imie: 'Weronika', rola: 'Piekarz' },
+      wyniki: { reliability: 80, pressure: 45, collaboration: 70, learning: 65, initiative: 30, integrity: 85, communication: 55, problemSolving: 60 }
+    }]))
+  })
+  await page.reload()
+  await page.locator('.profil-kafel').first().click()
+  await page.getByRole('button', { name: 'Rozwój' }).click()
+  await page.getByRole('button', { name: /Przypisz do mnie/ }).first().click()
+
+  await page.getByRole('button', { name: /Plan rozwoju \(druk\)/ }).click()
+  await expect(page.getByRole('heading', { name: '1. Priorytety rozwojowe' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Praktyka i ewaluacja/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Drukuj/ })).toBeVisible()
+})
+
+// Widoczność powtórek dla Mentora: zaległa wiedza CCP zespołu jako baner + kolumna.
+test('Zespół: zaległe powtórki CCP widoczne dla właściciela (baner + kolumna)', async ({ page }) => {
+  await page.goto('/')
+  await page.evaluate(() => {
+    const KLUCZ = 'alterbake-platforma-v1'
+    const stan = JSON.parse(localStorage.getItem(KLUCZ) || '{}')
+    // P-01: stare zaliczenie CCP (W-01) → zaległa powtórka CCP
+    stan.wyniki = [
+      { data: '2025-01-01T00:00:00.000Z', id_prac: 'P-01', id_pytania: 'W-01', zaliczyl: true, oceniajacy: 'auto', notatka: '' }
+    ]
+    localStorage.setItem(KLUCZ, JSON.stringify(stan))
+  })
+  await page.reload()
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+
+  await expect(page.getByText(/Wiedza CCP do odświeżenia w zespole/)).toBeVisible()
+  await expect(page.getByRole('columnheader', { name: 'Do powtórki' })).toBeVisible()
+  await expect(page.getByText(/1 · 1 CCP/).first()).toBeVisible()
+})

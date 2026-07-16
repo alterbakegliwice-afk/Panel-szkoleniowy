@@ -435,6 +435,29 @@ details summary:hover { color: var(--akcent-ciemny); }
 .obs-inline { font-size: .8rem; color: var(--akcent-ciemny); background: var(--akcent-tint); padding: .4rem .6rem; border-radius: var(--r); margin: .3rem 0; line-height: 1.45; }
 .obs-inline-rozjazd { color: var(--brak-ciemny); background: var(--brak-tlo); }
 
+/* ---------- plan rozwoju do druku ---------- */
+.plan-akcje { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; }
+.plan-arkusz { background: #fff; border: 1px solid var(--linia); border-radius: var(--r); padding: 1.6rem 1.8rem; max-width: 800px; margin: 0 auto; }
+.plan-naglowek { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; border-bottom: 2px solid var(--akcent); padding-bottom: .8rem; margin-bottom: 1rem; }
+.plan-naglowek h1 { font-size: 1.6rem; }
+.plan-meta { text-align: right; }
+.plan-sekcja { margin: 1.1rem 0; }
+.plan-sekcja h2 { font-size: 1.02rem; color: var(--akcent-ciemny); margin-bottom: .5rem; }
+.plan-lista { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+.plan-lista li { line-height: 1.5; }
+.plan-flaga { color: var(--brak-ciemny); font-weight: 650; }
+.plan-linie { display: grid; gap: 1.3rem; margin-top: .6rem; }
+.plan-linia { border-bottom: 1px dashed var(--linia-mocna); height: 1px; }
+.plan-stopka { margin-top: 1.4rem; border-top: 1px solid var(--linia); padding-top: .6rem; }
+
+@media print {
+  .naglowek, .stopka, .no-print { display: none !important; }
+  .tresc, .aplikacja { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .plan-arkusz { border: none; padding: 0; max-width: none; }
+  .plan-ustalenia { break-inside: avoid; }
+  body { background: #fff; }
+}
+
 /* ---------- ruch: tylko feedback, z poszanowaniem preferencji ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

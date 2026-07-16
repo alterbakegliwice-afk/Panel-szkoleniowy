@@ -115,10 +115,12 @@ export function listaTomow(pytania) {
 // „serii”. Oblanie kasuje serię (wraca do intensywnej nauki, nie powtórki).
 export const INTERWALY_POWTOREK_DNI = [7, 30, 90, 180]
 
-// Tylko pytania auto-oceniane (z opcjami) da się samodzielnie powtórzyć bez
-// Mentora — praktyczne/otwarte idą inną ścieżką i nie wchodzą do powtórek.
+// Tylko pytania auto-oceniane da się samodzielnie powtórzyć bez Mentora —
+// praktyczne/otwarte idą inną ścieżką i nie wchodzą do powtórek. Definicja
+// MUSI zgadzać się z Quiz.autoOceniany (typ + opcje), inaczej powtórka
+// wpuściłaby pytanie, którego quiz nie umie auto-ocenić.
 function autoOceniane(p) {
-  return Array.isArray(p.opcje) && p.opcje.length > 0
+  return (p.typ === 'jednokrotny' || p.typ === 'wielokrotny') && Array.isArray(p.opcje) && p.opcje.length > 0
 }
 
 function dodajDni(iso, dni) {
