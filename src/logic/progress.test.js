@@ -129,6 +129,18 @@ describe('eksport do Panelu M5 (schema.md)', () => {
     expect(p.cel_osiagniety).toBe(false)
     expect(p.ccp_ogolem).toBe('BRAK — BLOKADA') // CCP W-01/W-02 nietknięte
   })
+
+  it('eksport niesie sygnał zaległych powtórek (spaced retrieval), osobno CCP', () => {
+    const pracownicy = [{ id_prac: 'P-01', imie: 'Weronika', rola: 'Piekarz' }]
+    // W-01 (CCP) i Z-01 (nie-CCP) zaliczone bardzo dawno → dojrzałe do powtórki
+    const wyniki = [
+      { data: '2025-01-01T00:00:00Z', id_prac: 'P-01', id_pytania: 'W-01', zaliczyl: true, oceniajacy: 'auto' },
+      { data: '2025-01-01T00:00:00Z', id_prac: 'P-01', id_pytania: 'Z-01', zaliczyl: true, oceniajacy: 'auto' }
+    ]
+    const p = eksportPanelM5(PYTANIA, wyniki, pracownicy, KONFIG, '2026-07-14T12:00:00Z').pracownicy[0]
+    expect(p.do_powtorki).toBeGreaterThanOrEqual(2)
+    expect(p.do_powtorki_ccp).toBeGreaterThanOrEqual(1)
+  })
 })
 
 describe('poziom docelowy — kryterium zależne od roli (schema: Pomocnik→JUNIOR)', () => {

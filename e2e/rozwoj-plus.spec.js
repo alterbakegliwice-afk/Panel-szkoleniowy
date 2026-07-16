@@ -66,6 +66,27 @@ test('triangulacja: rozjazd samooceny i obserwacji Mentora jest flagowany', asyn
   await expect(page.getByText(/temat do rozmowy/).first()).toBeVisible()
 })
 
+// Plan rozwoju do druku: po przypisaniu wyniku pracownik generuje kartę 1:1.
+test('plan rozwoju do druku renderuje priorytety i sekcje', async ({ page }) => {
+  await page.goto('/')
+  await page.evaluate(() => {
+    localStorage.setItem('alterbake_work_profile_wyniki_v1', JSON.stringify([{
+      typ: 'alterbake-wynik-work-profile', wersja: '2026-07-12', narzedzie: 'profil-pracy',
+      data: '2026-05-01T10:00:00.000Z', osoba: { imie: 'Weronika', rola: 'Piekarz' },
+      wyniki: { reliability: 80, pressure: 45, collaboration: 70, learning: 65, initiative: 30, integrity: 85, communication: 55, problemSolving: 60 }
+    }]))
+  })
+  await page.reload()
+  await page.locator('.profil-kafel').first().click()
+  await page.getByRole('button', { name: 'Rozwój' }).click()
+  await page.getByRole('button', { name: /Przypisz do mnie/ }).first().click()
+
+  await page.getByRole('button', { name: /Plan rozwoju \(druk\)/ }).click()
+  await expect(page.getByRole('heading', { name: '1. Priorytety rozwojowe' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Praktyka i ewaluacja/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Drukuj/ })).toBeVisible()
+})
+
 // Widoczność powtórek dla Mentora: zaległa wiedza CCP zespołu jako baner + kolumna.
 test('Zespół: zaległe powtórki CCP widoczne dla właściciela (baner + kolumna)', async ({ page }) => {
   await page.goto('/')

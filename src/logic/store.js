@@ -138,7 +138,10 @@ export function teraz() {
 // --- KOPIA ZAPASOWA (pełny stan) ---
 // Log wyników to „wartość projektu" (schema) i żyje tylko w localStorage jednej
 // przeglądarki. Backup ratuje historię przed czyszczeniem cache / zmianą urządzenia.
-const WERSJA_KOPII = '2026-07-09'
+// 2026-07-14: schemat urósł o logi Work Profile — profile, praktyki, obserwacje.
+// Starsze kopie (bez tych pól) wczytują się poprawnie: kopieDoStanu traktuje je
+// jako opcjonalne (brak → []). Wersja jest informacyjna, nie blokuje importu.
+const WERSJA_KOPII = '2026-07-14'
 
 export function eksportKopii(stan) {
   return {

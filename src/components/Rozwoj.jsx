@@ -24,6 +24,7 @@ import { czyPrzerobiono } from '../logic/nauka.js'
 import { teraz } from '../logic/store.js'
 import Learning from './Learning.jsx'
 import Sparkline from './Sparkline.jsx'
+import PlanRozwoju from './PlanRozwoju.jsx'
 
 // Zakładka ROZWÓJ — most między testami Work Profile a szkoleniem.
 // Pętla: test diagnozuje → moduły rozwijają najsłabsze obszary → RETEST
@@ -96,6 +97,19 @@ export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje
     }
     czytnik.readAsText(plik)
     e.target.value = ''
+  }
+
+  if (widok.typ === 'plan') {
+    return (
+      <PlanRozwoju
+        pracownik={pracownik}
+        profile={profile}
+        nauka={nauka}
+        praktyki={praktyki}
+        obserwacje={obserwacje}
+        onWroc={() => setWidok({ typ: 'lista' })}
+      />
+    )
   }
 
   if (widok.typ === 'nauka') {
@@ -212,6 +226,11 @@ export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje
           <button className="drugi" onClick={() => plikRef.current?.click()}>
             📄 Importuj wynik z pliku (JSON)
           </button>
+          {postep && (
+            <button className="drugi" onClick={() => setWidok({ typ: 'plan' })}>
+              🖨 Plan rozwoju (druk)
+            </button>
+          )}
           <input
             ref={plikRef}
             type="file"
