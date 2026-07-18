@@ -1,5 +1,5 @@
 {
-  "wersja": "2026-07-09",
+  "wersja": "2026-07-14",
   "pilot": [
     "II Zakwas",
     "IV Wypiek",
@@ -19,7 +19,9 @@
         "28–30°C",
         "34–36°C"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "24–26°C (profil łagodny); realna karta Tradilevain: M=25°C ±1",
       "zrodlo": "Tom II 8.1 / I-OBS-TRADILEVAIN-A"
     },
@@ -36,7 +38,9 @@
         "Głód — zbyt długi czas między karmieniami, przesunięcie metabolizmu ku związkom lotnym",
         "Zakażenie pleśnią — zakwas do wyrzucenia"
       ],
-      "poprawne": [2],
+      "poprawne": [
+        2
+      ],
       "wzorzec": "Głód — zbyt długi czas między karmieniami, przesunięcie metabolizmu ku związkom lotnym",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -53,7 +57,9 @@
         "Dodajesz tylko wody, żeby rozluźnić, bez dokarmiania mąką",
         "Bierzesz wczorajszy zakwas bez odświeżania — i tak zadziała"
       ],
-      "poprawne": [0],
+      "poprawne": [
+        0
+      ],
       "wzorzec": "Odświeżenie wg proporcji z karty (zaczyn:mąka:woda), kontrola temperatury wody i konsystencji — nie „na oko”",
       "zrodlo": "Tom II 2.2"
     },
@@ -70,7 +76,9 @@
         "Nadmiar dzikich drożdży; korekta: dodać drożdży piekarskich",
         "Za świeża mąka; korekta: użyć mąki starszej o kilka miesięcy"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "Heterofermentatywne LAB faworyzowane przez niższą temp./hydrację; korekta: podnieść temp. ku górnemu zakresowi i/lub hydrację",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -87,7 +95,9 @@
         "Wymaga wagi laboratoryjnej, której nie ma w piekarni",
         "Jest wiarygodny tylko rano, a myli wieczorem"
       ],
-      "poprawne": [0],
+      "poprawne": [
+        0
+      ],
       "wzorzec": "Mierzy uwięziony gaz, nie siłę fermentacji ani strukturę — może pływać przefermentowany lub tonąć gotowy przy gęstej hydracji",
       "zrodlo": "Tom II Troubleshooting (MIT)"
     },
@@ -104,7 +114,9 @@
         "Nadmiar wody — zmniejszyć hydrację o połowę",
         "Zmiana ekosystemu — mąka rafinowana uboższa mikrobiologicznie; oczekiwać kilkudniowej adaptacji, monitorować pH, nie interpretować jako awarii"
       ],
-      "poprawne": [3],
+      "poprawne": [
+        3
+      ],
       "wzorzec": "Zmiana ekosystemu — pszenna rafinowana uboższa mikrobiologicznie; oczekiwać okresu adaptacji (dni), nie interpretować jako awarii; uczyć zespół cierpliwości i monitoringu pH",
       "zrodlo": "Tom II Troubleshooting"
     },
@@ -121,7 +133,9 @@
         "≥ 92°C",
         "≥ 100°C"
       ],
-      "poprawne": [2],
+      "poprawne": [
+        2
+      ],
       "wzorzec": "≥ 92°C, weryfikowana sondą Testo 106",
       "zrodlo": "Tom IV / CCP1"
     },
@@ -138,7 +152,9 @@
         "Tak, o ile bochenek jest wyraźnie lekki",
         "Kolor nie ma znaczenia — liczy się wyłącznie czas wypieku"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "NIE — zawsze potwierdzić sondą; ładny kolor przy zbyt wysokiej temp. startowej maskuje niedopieczony rdzeń",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -155,7 +171,9 @@
         "Za mało pary na starcie lub za niska temp. startowa (opóźniony Maillard); korekta: więcej pary, kontrola kalibracji pieca",
         "Za wysoka temperatura pieca; korekta: obniżyć temperaturę o 30°C"
       ],
-      "poprawne": [2],
+      "poprawne": [
+        2
+      ],
       "wzorzec": "Za mało pary na starcie (skrobia nie skleikowała, opóźniony Maillard) lub za niska temp. startowa; korekta: więcej pary, kontrola kalibracji pieca",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -172,7 +190,9 @@
         "Za głębokie nacięcie; korekta: nie nacinać bochenka wcale",
         "Zbyt wilgotne ciasto; korekta: dodać mąki do receptury"
       ],
-      "poprawne": [0],
+      "poprawne": [
+        0
+      ],
       "wzorzec": "Za mało pary — skórka usztywnia się zanim gazy się rozprężą; korekta: więcej pary w pierwszych minutach, kontrola nacięcia",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -189,7 +209,9 @@
         "Rotujesz blachy w połowie wypieku, żeby wyrównać kolor",
         "Podnosisz temperaturę całego pieca, aż dolne poziomy się doprą"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "Mapowanie stref gorących/zimnych poziomów, pomiar sondą per poziom, korekta czasu/temp. per poziom, dokumentacja w DZIENNIKU",
       "zrodlo": "Tom IV Troubleshooting"
     },
@@ -206,7 +228,9 @@
         "TEMP.WODY = TEMP.CIASTA + TEMP.MĄKI + TEMP.OTOCZENIA",
         "TEMP.WODY = (TEMP.CIASTA − N) + WSP.TARCIA"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "TEMP.WODY = (TEMP.CIASTA × N) − TEMP.MĄKI − TEMP.OTOCZENIA − WSP.TARCIA − [TEMP.ZAKWASU]",
       "zrodlo": "Tom V"
     },
@@ -223,7 +247,9 @@
         "Wbijasz sondę Testo 106 w rdzeń masy ciasta, odczytujesz temperaturę i porównujesz z DDT z karty",
         "Mierzysz przy krawędzi dzieży — tam najłatwiej dosięgnąć"
       ],
-      "poprawne": [2],
+      "poprawne": [
+        2
+      ],
       "wzorzec": "Pomiar sondą Testo 106 w rdzeniu masy, odczyt, porównanie z docelową DDT z karty",
       "zrodlo": "Tom V"
     },
@@ -240,7 +266,9 @@
         "Za mało mąki; korekta: dodać mąki do receptury",
         "Zbyt krótkie miesienie; korekta: wydłużyć miesienie"
       ],
-      "poprawne": [1],
+      "poprawne": [
+        1
+      ],
       "wzorzec": "WSP. tarcia zaniżony dla tej mieszarki/czasu; korekta: rekalibracja współczynnika tarcia po zmianie parametrów miesienia",
       "zrodlo": "Tom V Troubleshooting"
     },
@@ -257,7 +285,9 @@
         "Bo mąka realnie zmienia temperaturę (magazyn latem cieplejszy, zimą chłodniejszy) i wpływa na DDT",
         "Bo wzór wymaga stałej wartości 25°C"
       ],
-      "poprawne": [2],
+      "poprawne": [
+        2
+      ],
       "wzorzec": "Mąka przechowywana blisko pieca latem / chłodniej zimą — realna zmienność wpływa na DDT",
       "zrodlo": "Tom V Troubleshooting"
     },
@@ -274,9 +304,614 @@
         "Zignorować — po serwisie WSP. tarcia się nie zmienia",
         "Seria pomiarów temp. ciasta przy znanych wejściach → wyliczyć realny WSP → zaktualizować kartę; zespołowi pokazać, że czas miesienia ≠ stały efekt cieplny"
       ],
-      "poprawne": [3],
+      "poprawne": [
+        3
+      ],
       "wzorzec": "Seria pomiarów temp. ciasta przy znanych wejściach, wyliczenie realnego WSP, aktualizacja karty; szkolenie: pokazać że czas≠stały efekt cieplny",
       "zrodlo": "Tom V"
+    },
+    {
+      "id": "PP-01",
+      "tom": "Planowanie piekarni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Od czego zaczyna się planowanie doby produkcyjnej w piekarni?",
+      "opcje": [
+        "Od godziny przyjścia pierwszego pracownika",
+        "Od godziny porannego odpieku — liczymy wstecz przez zegar fermentacji i pojemność chłodni",
+        "Od rozgrzania pieca na maksimum",
+        "Od dostawy mąki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kanon zasada 1: planujemy wstecz od porannego odpieku; osią jest zegar fermentacji i pojemność chłodni — nie zegar ścienny i nie tylko piec.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3, kanon 1"
+    },
+    {
+      "id": "PP-02",
+      "tom": "Planowanie piekarni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Levain płynny pszenny dokarmiony 1:5:5 przy 25°C osiąga szczyt po:",
+      "opcje": [
+        "30–60 minutach",
+        "4–6 godzinach",
+        "12–16 godzinach",
+        "24 godzinach"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Levain 1:5:5 @ 25°C: szczyt po 4–6 h (podwojenie, kopułka, bąble, zapach jogurtowo-owocowy). Użyć na szczycie, najpóźniej do 1 h po.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 4 (tabela prefermentów)"
+    },
+    {
+      "id": "PP-03",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Mieszanie ciasta B1 zaplanowane na 9:00. Kiedy dokarmiasz levain (1:5:5 @ 25°C)?",
+      "opcje": [
+        "Poprzedniego wieczoru ok. 21:00",
+        "Około 4:00 rano — szczyt wypada ~5 h później, na godzinę mieszania",
+        "O 8:45, tuż przed mieszaniem",
+        "Obojętnie — levain poczeka"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Preferment to zegar nastawiany wstecz od godziny mieszania. Za wcześnie = przejrzały (kwaśny, słaby wyrost); za późno = niedojrzały (mdły, słaby gaz).",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 4 (planowanie D-1)"
+    },
+    {
+      "id": "PP-04",
+      "tom": "Planowanie piekarni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Przy jakim rozroście kęs B1/B2 wchodzi do retardu (chłodni) na noc?",
+      "opcje": [
+        "Przy pełnym, docelowym rozroście",
+        "Przy 40–60% docelowego rozrostu — dojrzeje w drodze przez noc",
+        "Zaraz po uformowaniu, przy ~10%",
+        "Po podwojeniu objętości"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kęs wchodzi do chłodu NIEDOFERMENTOWANY: retard spowalnia, nie zatrzymuje. Progi wejścia: B1/B2 40–60%, tory B3/B4 30–40%.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 5 (Tom XIII — progi wejścia)"
+    },
+    {
+      "id": "PP-05",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Które zdania o retardacji są PRAWDZIWE? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Retard spowalnia fermentację, ale jej nie zatrzymuje",
+        "Im dłużej kęsy siedzą w chłodzie, tym lepszy chleb",
+        "Okno standardowe retardu kęsów to 14–18 h",
+        "Retard masy i retard kęsów konkurują o tę samą przestrzeń chłodni",
+        "Kęs po retardzie zawsze wymaga dogrzania przed piecem"
+      ],
+      "poprawne": [
+        0,
+        2,
+        3
+      ],
+      "wzorzec": "Dwa mity do obalenia: retard NIE zatrzymuje (kęs wchodzi niedofermentowany) i NIE działa „im dłużej tym lepiej” (powyżej okna proteoliza i octowość). B1/B2 pieczemy z zimna — dogrzewanie dotyczy tylko toru drożdżowego.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 5 (mity; reguła pojemności)"
+    },
+    {
+      "id": "PP-06",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Rano wyjmujesz z chłodni kęsy chleba B1 i bułek drożdżowych B3. Jak postępujesz?",
+      "opcje": [
+        "Oba rodzaje prosto z zimna do pieca",
+        "Oba rodzaje dogrzewasz godzinę na hali",
+        "B1 prosto z zimna do pieca (bake-from-cold); B3 wg etykiety WIP: dojście 30–60 min w ~28°C",
+        "B3 do pieca, B1 do dogrzania"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Bazy drożdżowe nie mają po nocy rezerwy fermentacyjnej zakwasów — wymagają dojścia. Pomylenie torów to najczęstsza pułapka porannego piekarza; „dogrzanie na wszelki wypadek” spłaszcza partię B1.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3.2 (wyjątek toru drożdżowego)"
+    },
+    {
+      "id": "PP-07",
+      "tom": "Planowanie piekarni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W jakiej kolejności układasz poranne wsady na pokładach IBIS?",
+      "opcje": [
+        "Od najchłodniejszych wypieków do najgorętszych",
+        "Od najgorętszych w dół: chleb B1 250°C z parą → żytnie → bagietki → bułki; laminaty osobno na Bongard",
+        "Losowo — trzon i tak trzyma temperaturę",
+        "Croissanty najpierw, bo są najdroższe"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Trzon szybko grzeje w górę, wolno schodzi — profil malejący. Para na start każdego wsadu, odprowadzenie po 12–15 min; laminatów nie mieszamy z parą chleba.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3.3, kanon 6"
+    },
+    {
+      "id": "PP-08",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Gdzie w krytycznej ścieżce dnia leży bufor czasowy (15%, min. 15 minut)?",
+      "opcje": [
+        "Po piecu — na wypadek dłuższego wypieku",
+        "PRZED wąskim gardłem: wyrośnięty kęs poczeka 15 min w chłodzie, piec nie może czekać na kęs",
+        "Buforów się nie planuje — to strata czasu",
+        "W przerwie śniadaniowej zespołu"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Bufor przed gardłem (Goldratt): piec rozgrzany na pusto pali prąd i przepustowość. Znak dobrego bufora: drobna wpadka nie przesuwa godziny otwarcia lady.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3.4"
+    },
+    {
+      "id": "PP-09",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W mroźni znajdujesz nieopisany pojemnik z kęsami. Co robisz?",
+      "opcje": [
+        "Wypiekasz próbnie jeden kęs i oceniasz",
+        "Dopisujesz dzisiejszą datę i wstawiasz z powrotem",
+        "Do wyrzucenia — tolerancja zero: wszystko wchodzi z etykietą WIP (produkt/baza/data/tor/kto)",
+        "Przesuwasz na przód półki, żeby zeszło pierwsze"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Etykieta WIP mówi porannemu piekarzowi wszystko, bo nie ma korekty nocnej. Nieopisany pojemnik = do wyrzucenia decyzją każdego, kto go znajdzie — brzmi brutalnie, działa natychmiast.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 6.1"
+    },
+    {
+      "id": "PP-10",
+      "tom": "Planowanie piekarni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Chleb pieczony z zimna „wygląda na gotowy” po czasie z karty. Co decyduje o wyjęciu partii?",
+      "opcje": [
+        "Czas z karty — jest skalibrowany",
+        "Kolor skórki",
+        "Pomiar sondą: rdzeń ≥92°C — CCP1 obowiązuje niezależnie od retardu, wyglądu i pośpiechu",
+        "Głuchy odgłos przy stuknięciu w spód"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Kanon zasada 10: „92°C w rdzeniu sondą, zawsze”. Retard dotyczy etapu przed piecem — CCP1 i tak obowiązuje na końcu wypieku. Kolor i stuk to wskazówki jakości, nie kontrola bezpieczeństwa.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 5 i kanon 10 (CCP1 nienaruszalny)"
+    },
+    {
+      "id": "PP-11",
+      "tom": "Planowanie piekarni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego domknięcie zmiany (~13–14) nazywamy „jedynym oknem decyzyjnym” doby?",
+      "opcje": [
+        "Bo wtedy jest przerwa obiadowa",
+        "Bo wybór toru retardu zapada właśnie wtedy, a w nocy nikt nie koryguje — etykieta WIP musi powiedzieć porankowi wszystko",
+        "Bo wtedy przychodzi Właściciel",
+        "Bo później piec jest zajęty"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Model jednozmianowy: chleb pracuje w nocy, ludzie nie. Decyzja o torze retardu + kompletna etykieta WIP zamykają dobę — poranek tylko wykonuje plan.",
+      "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 2 (reguła doby), kanon 4"
+    },
+    {
+      "id": "PC-01",
+      "tom": "Planowanie cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Od czego zaczyna się układanie planu dnia w cukierni?",
+      "opcje": [
+        "Od listy receptur do zrobienia",
+        "Od harmonogramu pieca — piec jest wąskim gardłem, reszta (ludzie, miksery) się podporządkowuje",
+        "Od tego, kto rano przyjdzie pierwszy",
+        "Od sprawdzenia stanu chłodni"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Zasada nadrzędna tomu (Goldratt): w małej cukierni planuje się od pieca. Godzina pustego pieca to godzina stracona dla całej firmy — nie do odrobienia na innym stanowisku.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 0 i 3.1, kanon 1"
+    },
+    {
+      "id": "PC-02",
+      "tom": "Planowanie cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W harmonogramie pieca robi się dziura. Co robisz?",
+      "opcje": [
+        "Wyłączasz piec do następnego wsadu",
+        "Piec grzeje pusty — zaraz coś będzie",
+        "Wciągasz pozycję z listy wypełniaczy: bezy, crunch, prażone orzechy, sablé na zapas do mroźni",
+        "Przyspieszasz sernik, żeby zapełnić okno"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "„Piec nigdy nie grzeje pustki”: lista wypełniaczy wisi przy piecu. Sernika nie wciskamy — lubi łagodność i własne długie okno.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 3.1–3.2"
+    },
+    {
+      "id": "PC-03",
+      "tom": "Planowanie cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaka reguła rządzi kolejnością wsadów w piecu konwekcyjnym cukierni?",
+      "opcje": [
+        "Od najwyższej temperatury w dół, jak na trzonie",
+        "Schodkowo W GÓRĘ: bezy 90–110°C → biszkopty → kruche → drożdżówki → laminaty → choux 190–210°C — piec dogrzewamy, nigdy nie czekamy aż wystygnie",
+        "Najpierw to, co się najlepiej sprzedaje",
+        "Kolejność nie ma znaczenia przy konwekcji"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Konwekcja szybko grzeje w górę, wolno schodzi w dół — minimalizujemy skoki temperatury idąc od niskich do wysokich. To odwrotność reguły trzonu IBIS.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 3.2 (drabinka poranna)"
+    },
+    {
+      "id": "PC-04",
+      "tom": "Planowanie cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ile baz-matek utrzymujemy na ~18 SKU witryny i kiedy wolno dodać nowe SKU?",
+      "opcje": [
+        "Każde SKU ma własną bazę — tak jest najprościej",
+        "Maks. 8 baz; nowe SKU tylko gdy korzysta z ≥2 istniejących baz albo świadomie wymienia stare SKU",
+        "Dowolnie — im więcej baz, tym bogatsza karta",
+        "Maks. 3 bazy"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Planujemy bazy, nie ciastka (Conticini/Hermé): arkusz tygodnia planuje bazy w kilogramach, sztuki wynikają przelicznikiem. Bez tej reguły drzewo puchnie i planowanie umiera.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 2.2, kanon 2"
+    },
+    {
+      "id": "PC-05",
+      "tom": "Planowanie cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Krem pâtissière — jak duże partie produkujemy i czy go mrozimy?",
+      "opcje": [
+        "Partia tygodniowa, mrożony w porcjach",
+        "Partia na 24 h, NIE batchować dłużej i NIE mrozić (siada po rozmrożeniu); okno 24–48 h w <4°C",
+        "Partia miesięczna — cukier konserwuje",
+        "Dowolna — krem jest stabilny"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Pâtissière ma najkrótsze okno z całej tabeli batchowania. Znak dyskwalifikujący: ślad wody po przebiciu = do kosza.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 4.2"
+    },
+    {
+      "id": "PC-06",
+      "tom": "Planowanie cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Monoporcje mają być glazurowane miroir. Jaki warunek musi spełnić produkt przed glazurą?",
+      "opcje": [
+        "Lekko schłodzony w chłodni, ok. +4°C",
+        "W temperaturze pokojowej, suchy",
+        "Głęboko zamrożony (≥6 h, rdzeń −18°C) — glazurę 30–35°C leje się na ZAMROŻONY produkt i wiąże w 30–60 s",
+        "Świeżo zmontowany, jeszcze ciepły"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Okna chłodzenia to niewidzialna połowa harmonogramu: mrożenie ≥6 h blokuje glazurowanie, dlatego wkłady i monoporcje robi się D-1 lub w dniu mroźniczym.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 3.3; DESTYLAT 1.5 (glazura miroir)"
+    },
+    {
+      "id": "PC-07",
+      "tom": "Planowanie cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Po co w tygodniu są dni mroźnicze (wt/czw)?",
+      "opcje": [
+        "Żeby odmrozić zamrażarkę",
+        "Bo wtedy jest najmniej klientów",
+        "Budują zapas wkładów i monoporcji — piątek (najcięższy dzień) staje się dniem SKŁADANIA, nie produkcji od zera",
+        "To dni wolne od pieczenia"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Rytm tygodnia (styl Bachour): produkcja wkładów oddzielona od wykańczania. Popyt skupiony na weekend obsługuje się zapasem, nie heroizmem piątkowym.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 4.3"
+    },
+    {
+      "id": "PC-08",
+      "tom": "Planowanie cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Sell-through (sprzedane/wyprodukowane) — które reakcje są POPRAWNE? (zaznacz wszystkie)",
+      "opcje": [
+        "<75% dwa dni z rzędu → tnij partię o 20%",
+        ">98% regularnie → sukces, niczego nie zmieniamy",
+        "Topowe SKU znika z witryny przed 13:00 → podnieś limit albo dodaj rzut o 11:00",
+        "Straty >8% wartości produkcji → uruchom diagnostykę",
+        "Cel to 100% — witryna pusta wieczorem"
+      ],
+      "poprawne": [
+        0,
+        2,
+        3
+      ],
+      "wzorzec": "Cel 85–95%. Pułapka: >98% regularnie to NIE sukces — to niedoprodukcja (tracimy sprzedaż). Pusta witryna wieczorem odstrasza tak samo jak pełny kosz.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 7.1"
+    },
+    {
+      "id": "PC-09",
+      "tom": "Planowanie cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Zespół ma pomysł na nowe ciastko. Jaka jest poprawna ścieżka do witryny?",
+      "opcje": [
+        "Piątek rano robimy blachę i patrzymy, czy się sprzeda",
+        "Slot eksperymentów (wt 13–15) → karta testu → drugi test musi POWTÓRZYĆ wynik → 2 tygodnie jako produkt miesiąca z limitem → wchodzi do karty tylko wymieniając najsłabsze SKU",
+        "Od razu do karty — klient oceni",
+        "Mistrz decyduje bez testów"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Pipeline Roca+Saffitz+Ansel: jedna udana próba to anegdota; karta ma stałą długość ~18 SKU. Zakaz testów „przy okazji” w środku produkcji — nowość bez pipeline'u rozwala tydzień.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 6.2, kanon 8"
+    },
+    {
+      "id": "PC-10",
+      "tom": "Planowanie cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jak planujemy szczyty kalendarza (Tłusty Czwartek, Wielkanoc, św. Marcin, Boże Narodzenie)?",
+      "opcje": [
+        "Zwiększamy produkcję „na oko” tydzień wcześniej",
+        "Na przedsprzedaży: zamówienia przed produkcją; a sezon taniego owocu (czerwcowa truskawka) pracuje w mroźni na cały rok",
+        "Robimy nadprodukcję i mrozimy niesprzedane",
+        "Szczyty są nieprzewidywalne — reagujemy na bieżąco"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kanon zasada 9: produkcja pod pewny popyt to najtańszy plan świata (limit + zapowiedź, styl Ansel). Kulisy z czerwcowej truskawki wchodzą do grudniowych monoporcji.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 6.1, kanon 9"
+    },
+    {
+      "id": "OC-01",
+      "tom": "Organizacja cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym kończy się każdy z 7 kroków dnia cukierni wg ORG-X?",
+      "opcje": [
+        "Wpisem do zeszytu",
+        "Handoffem: 10 sekund kontroli zgodności z wzorcem przed przekazaniem dalej",
+        "Przerwą",
+        "Zdjęciem na social media"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Przepływ dnia: odprawa → komponenty → mrożenie/etykiety → montaż → wykończenie → ekspedycja falami → domknięcie. Każdy krok kończy handoff — 10 s kontroli wg wzorca.",
+      "zrodlo": "DESTYLAT 1.2 (ORG-X, 7 kroków)"
+    },
+    {
+      "id": "OC-02",
+      "tom": "Organizacja cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Co oznacza zasada „domknięcie dnia = ustawienie jutra”?",
+      "opcje": [
+        "Zamknięcie drzwi na klucz i uzbrojenie alarmu",
+        "Inserty zamrożone, komponenty datowane, chłodnia wg FEFO, plan gotowy — rano nie ma decyzji wymagających lead'a",
+        "Wysłanie raportu do Właściciela",
+        "Umycie podłóg"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Domknięcie eliminuje poranne decyzje: poranek wykonuje plan, nie tworzy go. To cukierniczy odpowiednik piekarskiej etykiety WIP.",
+      "zrodlo": "DESTYLAT 1.2 (ORG-X krok 7, ZSC 4.1)"
+    },
+    {
+      "id": "OC-03",
+      "tom": "Organizacja cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jak rozdzielone są cztery funkcje dnia (Komponenty · Montaż · Chłodnia · Wykończenie)?",
+      "opcje": [
+        "Każdy robi wszystko — mały zespół",
+        "Rozdzielamy funkcje, nie tytuły: jedna osoba może pełnić kilka funkcji, ale każda funkcja ma w danym dniu JEDNEGO właściciela; każdy umie min. dwie (rotacja)",
+        "Funkcje przypisane na stałe do stanowisk",
+        "Lead wykonuje wszystkie funkcje krytyczne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "ORG-X: właścicielstwo funkcji w danym dniu + odporność przez rotację. Lead (koordynacja, wzorce, odchylenia) może działać zdalnie: zdjęcie przekroju + parametry zastępują obecność.",
+      "zrodlo": "DESTYLAT 1.3 (ORG-X 0–5)"
+    },
+    {
+      "id": "OC-04",
+      "tom": "Organizacja cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Gotujesz krem pâtissière. Jakie DWA warunki musi spełnić gotowanie?",
+      "opcje": [
+        "Doprowadzić do wrzenia i natychmiast zdjąć",
+        "CCP5: ≥85°C przez ≥1 min z weryfikacją termometrem ORAZ gotowanie 1–2 min od wrzenia — dezaktywacja amylazy, inaczej krem zrzednie po schłodzeniu",
+        "Trzymać poniżej 80°C, żeby jaja się nie ścięły",
+        "Gotować 10 minut dla pewności"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "„CCP5 jest nienegocjowalne, wszystko inne jest.” Gotowanie 1–2 min od wrzenia spełnia CCP5 i niszczy amylazę. Potem: rozlać cienko, folia na styk, szybko do chłodni; trwałość 24–48 h.",
+      "zrodlo": "DESTYLAT 1.5 i 1.7 (KOMP cz. V, kanon KOMP-X)"
+    },
+    {
+      "id": "OC-05",
+      "tom": "Organizacja cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Klient odbiera entremets. Co obowiązuje przy pakowaniu i transporcie?",
+      "opcje": [
+        "Zwykła torba — to krótka droga",
+        "Torba izotermiczna: transport i witryna to PRZEDŁUŻENIE CCP4; czas poza chłodnią zmierzony raz i wpisany jako limit; pudło wyższe niż deser",
+        "Byle szybko — liczy się czas",
+        "Owinięcie folią spożywczą"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Łańcuch chłodniczy nie kończy się na drzwiach chłodni. Pudło wyższe niż deser = zero docisku wieka do glazury; insert mrożony jedzie osobno od schłodzonych.",
+      "zrodlo": "DESTYLAT 1.6 (PAK-XIII) i 1.7 (CCP4)"
+    },
+    {
+      "id": "OC-06",
+      "tom": "Organizacja cukierni",
+      "poziom": "JUNIOR",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Które zadania Pomocnik wykonuje SAMODZIELNIE? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Ważenie składników wg gramatury z fiche technique",
+        "Etykietowanie i FIFO/FEFO wg dat",
+        "Mrożenie insertów wg instrukcji czasowej",
+        "Ocena gotowości kremu lub bezy (osąd sensoryczny)",
+        "Decyzja o korekcie receptury"
+      ],
+      "poprawne": [
+        0,
+        1,
+        2
+      ],
+      "wzorzec": "Rola Pomocnika jest stała, nie przejściowa: liczba i instrukcja — tak; osąd sensoryczny, korekty receptur, interpretacja CCP5 przy wartości granicznej i kalibracja sprzętu — nigdy samodzielnie.",
+      "zrodlo": "DESTYLAT 1.4 (KOMP-X 3, tabela Pomocnika)"
+    },
+    {
+      "id": "OC-07",
+      "tom": "Organizacja cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym różni się poziom JUNIOR od SAMODZIELNEGO w cukierni?",
+      "opcje": [
+        "Stażem — po roku każdy jest Samodzielny",
+        "JUNIOR (0–6 tyg.) wykonuje wg fiche pod obserwacją i NIE ocenia gotowości sensorycznie; SAMODZIELNY (od 6–8 tyg., po checkliście) prowadzi komponent od początku do końca i eskaluje nietypowe oraz CCP5",
+        "Wysokością pensji",
+        "Samodzielny nie musi używać termometru"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Ścieżka wdrożenia trwa 6 tygodni (BHP+CCP5 → kremy → masy/spody → bezy/cukier → czekolada/żelifikacja → montaż pod obserwacją). MENTOR dodatkowo szkoli i kalibruje receptury oraz sprzęt.",
+      "zrodlo": "DESTYLAT 1.4 (KOMP-X 1–2)"
+    },
+    {
+      "id": "OC-08",
+      "tom": "Organizacja cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Która beza jest jedyną dopuszczalną do dekoracji BEZ pieczenia i dlaczego?",
+      "opcje": [
+        "Francuska — najprostsza",
+        "Szwajcarska — podgrzewana nad parą, w pełni bezpieczna",
+        "Włoska — syrop 118–121°C pasteryzuje surowe białko; szwajcarska jest zabezpieczona tylko częściowo, francuska dopiero po wysuszeniu",
+        "Dowolna, jeśli jaja są świeże"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Surowe białko bez obróbki = tylko beza włoska (termometr do syropu obowiązkowy). To zasada bezpieczeństwa, nie preferencja smakowa.",
+      "zrodlo": "DESTYLAT 1.5 i 1.7 (ZSB)"
+    },
+    {
+      "id": "OC-09",
+      "tom": "Organizacja cukierni",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Gdzie przechowujesz bonbony i dekoracje z temperowanej czekolady?",
+      "opcje": [
+        "W chłodni +4°C, jak wszystko",
+        "W 16–18°C, sucho i ciemno — chłodnia to kondensacja i sugar bloom (siwy nalot)",
+        "W mroźni — najdłużej wytrzymają",
+        "Przy piecu, gdzie sucho"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Czekolada nie znosi chłodni: kondensacja wyciąga cukier na powierzchnię (sugar bloom). Temperowanie też wymaga pomieszczenia 18–20°C — latem to realne wąskie gardło (okno pracy rano).",
+      "zrodlo": "DESTYLAT 1.5 (KOMP cz. VII) i 1.6 (PAK-XIII)"
+    },
+    {
+      "id": "OC-10",
+      "tom": "Organizacja cukierni",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaka jest reguła mrożenia i rozmrażania komponentów cukierniczych?",
+      "opcje": [
+        "Mrozić powoli, rozmrażać na blacie — mniej szoku",
+        "Mrozić szybko i cienko (małe kryształy = zachowana tekstura); rozmrażać ZAWSZE w chłodni +4°C, nigdy w temperaturze pokojowej",
+        "Mrozić wszystko, co zostało z dnia",
+        "Rozmrażać w kuchence mikrofalowej na najniższej mocy"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Szybko i cienko to standard (blast lub cienka warstwa); rozmrażanie w chłodni chroni teksturę i łańcuch chłodniczy. Mrożenie planowe ≠ mrożenie resztek.",
+      "zrodlo": "DESTYLAT 1.2 i 1.5 (KOMP cz. VIII)"
     }
+  ],
+  "zrodla_rozszerzenia": [
+    "plan-produkcji-cukiernia/docs/baza-wiedzy/ZS-PLANOWANIE-PIEKARNIA.md",
+    "plan-produkcji-cukiernia/docs/baza-wiedzy/ZS-PLANOWANIE-PRODUKCJI.md",
+    "plan-produkcji-cukiernia/docs/standardy/DESTYLAT-ZLOTYCH-STANDARDOW.md"
   ]
 }

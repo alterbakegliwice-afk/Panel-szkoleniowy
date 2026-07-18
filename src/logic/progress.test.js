@@ -144,9 +144,13 @@ describe('eksport do Panelu M5 (schema.md)', () => {
 })
 
 describe('poziom docelowy — kryterium zależne od roli (schema: Pomocnik→JUNIOR)', () => {
-  // JUNIOR non-ccp: II Zakwas Z-01/02/03, V DDT D-01/02; IV Wypiek JUNIOR = tylko CCP.
-  // Komplet JUNIOR + CCP (W-01/W-02), bez poziomu SAMODZIELNY.
-  const doJuniora = ['Z-01', 'Z-02', 'Z-03', 'D-01', 'D-02', 'W-01', 'W-02'].map((id) => wynik(id, true))
+  // Komplet JUNIOR + wszystkie CCP, zero pytań poziomu SAMODZIELNY (poza CCP).
+  // Zbiór wyprowadzany z seeda dynamicznie — bank rośnie (nowe tomy), a niezmiennik
+  // „opanowany JUNIOR+CCP = cel JUNIOR osiągnięty" ma obowiązywać niezależnie
+  // od liczby pytań.
+  const doJuniora = PYTANIA
+    .filter((p) => p.poziom === 'JUNIOR' || p.ccp)
+    .map((p) => wynik(p.id, true))
 
   it('Pomocnik (cel JUNIOR) po opanowaniu JUNIOR+CCP ma cel osiągnięty', () => {
     const prof = profilPracownika(PYTANIA, doJuniora, 'P-01', KONFIG, 'JUNIOR')

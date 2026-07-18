@@ -367,7 +367,8 @@ function Powloka({ naglowek, children }) {
       </header>
       <main className="tresc">{children}</main>
       <footer className="stopka">
-        Złoty Standard Piekarstwa · pilot: Tom II Zakwas, IV Wypiek, V DDT · CCP = próg 100%, liczony osobno
+        Złote Standardy · tomy: II Zakwas · IV Wypiek · V DDT · Planowanie piekarni · Planowanie
+        cukierni · Organizacja cukierni · CCP = próg 100%, liczony osobno
       </footer>
     </div>
   )

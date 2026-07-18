@@ -1,5 +1,5 @@
 {
-  "wersja": "2026-07-10",
+  "wersja": "2026-07-14",
   "opis": "Materiał do nauki (merytoryka) per tom — oparty na dokumentach Złotego Standardu i zwalidowanych wzorcach pilota. Najpierw nauka, potem sprawdzenie wiedzy.",
   "tomy": {
     "II Zakwas": {
@@ -83,26 +83,191 @@
           "zrodlo": "Złoty Standard, Mieszanie/Temperatura, Troubleshooting; Tom V"
         }
       ]
+    },
+    "Planowanie piekarni": {
+      "intro": "W piekarni planuje się wstecz od godziny porannego odpieku, a osią planu jest zegar fermentacji i pojemność chłodni — nie zegar ścienny i nie tylko piec. Ten tom uczy trzech rzeczy: nastawiania prefermentów jak zegarów, używania retardu jako narzędzia harmonogramu i układania poranka przy piecach tak, żeby drobna wpadka nie przesuwała otwarcia lady.",
+      "karty": [
+        {
+          "tytul": "Doba liczona wstecz i prefermenty jako zegary",
+          "punkty": [
+            "Ścieżka wsteczna B1: chleb na ladzie 7:00 ◀ wypiek 40–45 min (załadunek 6:00, para 12–15 min) ◀ nocny retard kęsów 14–18 h w 4–8°C ◀ wejście do chłodni przy 40–60% rozrostu (~13:30 dnia poprzedniego) ◀ formowanie ◀ mieszanie ◀ levain na szczycie.",
+            "Preferment to zegar nastawiany wieczorem, żeby „zadzwonił” w godzinę mieszania: levain płynny 1:5:5 @ 25°C — szczyt po 4–6 h (użyć na szczycie do 1 h po); poolish 12–16 h @ 16–20°C (kopułka zaczyna opadać = szczyt); biga ~18 h @ 16–18°C; zaparka: wystudzić + 12 h w lodówce.",
+            "Zegary o różnych długościach nastawia się w różnych momentach D-1: biga i poolish poprzedniego wieczora, levain tego samego dnia rano.",
+            "Moment użycia levainu to darmowa dźwignia smaku: na szczycie → chleb łagodny i otwarty; przejrzały → kwaśniejszy i gęstszy. To parametr karty produktu, nie przypadek.",
+            "Discard to surowiec, nie odpad: krakersy, podpłomyki, dodatek do B3 — a dobranie wielkości odświeżenia do zapotrzebowania niemal zeruje discard."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3–4"
+        },
+        {
+          "tytul": "Retard: dwa narzędzia, jedno gardło",
+          "punkty": [
+            "Retard MASY (w misce, przed podziałem) i retard KĘSÓW (uformowane) to różne narzędzia: masa wchodzi przy 30–50% wzrostu na 12–18 h i wymaga temperingu 15–30 min przed dzieleniem; kęsy B1/B2 przy 40–60% rozrostu na 14–18 h i idą PROSTO z zimna do pieca.",
+            "Dwa mity do obalenia: „retard zatrzymuje fermentację” (fałsz — spowalnia, dlatego kęs wchodzi niedofermentowany) i „im dłużej, tym lepiej” (fałsz — powyżej okna proteoliza osłabia gluten, smak ucieka w octowość).",
+            "Tor drożdżowy B3 to wyjątek: po nocy nie ma rezerwy fermentacyjnej zakwasu — wymaga dojścia 30–60 min w ~28°C przed piecem. Etykieta WIP musi to mówić wprost; pomylenie torów to najczęstsza pułapka poranka.",
+            "Chłodnia to gardło równorzędne piecowi: retard masy i kęsów konkurują o tę samą przestrzeń Asber — partię planuje się pod pojemność chłodni, ZANIM zacznie się mieszać.",
+            "CCP1 nienaruszalny: retard dotyczy etapu przed piecem; rdzeń ≥92°C sondą i tak obowiązuje na końcu wypieku."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 5 (Tom XIII)"
+        },
+        {
+          "tytul": "Poranek przy piecach, bufory i delegacja",
+          "punkty": [
+            "Pokłady IBIS wg profilu malejącego: B1 250→225°C z mocną parą → żytnie (rdzeń 96–98°C) → bagietki → bułki; para na starcie każdego wsadu, odprowadzenie po 12–15 min. Laminaty i drożdżowe osobno na Bongard, bez pary — nie przeplatamy.",
+            "Bufor 15% (min. 15 min) leży PRZED gardłem: wyrośnięty kęs poczeka w chłodzie, piec nie może czekać na kęs. Znak dobrego bufora: wpadka nie przesuwa godziny otwarcia lady.",
+            "Domknięcie zmiany (~13–14) to jedyne okno decyzyjne doby: wybór toru retardu + kompletna etykieta WIP (produkt/baza/data/tor/kto). Nieopisany pojemnik = do wyrzucenia, tolerancja zero.",
+            "Drabina delegacji: od 1. dnia oddajesz poziomy 1–3 (załadunek wg WIP, para wg karty, sonda CCP1, naważki ±5 g, formowanie wg zdjęcia); przy mistrzu zostają 4–5 (pointage, gotowość garu, prowadzenie zakwasu). Każda karta ma punkt STOP.",
+            "Backup 3-2-1 zakwasu (zimny + suszony + druga lokalizacja) to zabezpieczenie ryzyka egzystencjalnego za darmo — awaria czy utrata levainu nie może zatrzymać produkcji."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PIEKARNIA rozdz. 3, 6–8 (kanon 10 zasad)"
+        }
+      ]
+    },
+    "Planowanie cukierni": {
+      "intro": "Wiemy, JAK zrobić dobrze każdą rzecz z osobna — planowanie (co, ile, kiedy, w jakiej kolejności i czyimi rękami) to osobne rzemiosło. Zasada nadrzędna: w małej cukierni planuje się od pieca, bo godzina pustego pieca to godzina stracona dla całej firmy. Ten tom to praktyki 25 autorytetów (od Hermé po Ohno) przełożone na ~18 SKU, 2 piece i mały zespół.",
+      "karty": [
+        {
+          "tytul": "Planujemy od pieca (Goldratt)",
+          "punkty": [
+            "Piec konwekcyjny to werbel dnia: harmonogram pieca powstaje PIERWSZY, ludzie i miksery się dostrajają. Trzy reguły: piec nie czeka na wsad (bufor przed gardłem), piec nie grzeje pustki (lista wypełniaczy: bezy, crunch, sablé do mroźni), każda godzina pieca ma właściciela (co, ile blach, temperatura, kto wsadza/wyjmuje).",
+            "Drabinka temperaturowa konwekcji idzie schodkowo W GÓRĘ (piec szybko grzeje w górę, wolno schodzi): bezy 90–110°C → biszkopty 160–170 → kruche na ślepo → serniki (własne długie okno!) → drożdżówki 180–190 → laminaty → choux 190–210 na końcu.",
+            "Cukiernia i chleb nie przeplatają się na piecach: gdy cukiernia pożycza piec wsadowy, dostaje zwarty blok — każde przeplecenie to podwójne czekanie na temperaturę, a para chlebowa to wróg bezy i kruchego.",
+            "Planowanie wsteczne od klienta: produkt „na godzinę” rozpisuje się od godziny gotowości do tyłu (croissanty 6:50 ◀ wypiek 18 min ◀ garowanie 120 min ◀ formowanie ◀ D-1 laminacja), z buforem 15% przed gardłem.",
+            "Okna chłodzenia to niewidzialna połowa harmonogramu: biszkopt ≥2 h przed krojeniem (najlepiej noc), sernik noc w chłodni, pâtissière <10°C i 2 h wiązania, monoporcje ≥6 h głębokiego mrożenia przed glazurą — dlatego dzień sprzedaży jest od SKŁADANIA."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 3"
+        },
+        {
+          "tytul": "Bazy, partie i mroźnia strategiczna",
+          "punkty": [
+            "Nie planujemy 18 produktów — planujemy 6–8 baz-matek, z których 18 SKU się składa (kruche, laminowane, biszkopt, pâtissière, ganache, beza, crunch, drożdżowe). Arkusz tygodnia planuje bazy w kilogramach; sztuki wynikają przelicznikiem.",
+            "Nowe SKU wolno dodać tylko gdy korzysta z ≥2 istniejących baz albo świadomie wymienia stare — inaczej drzewo puchnie i planowanie umiera. Tolerancja: ≥2 SKU na bazę.",
+            "Partia = okno jakości × rotacja: MAKS = średnia dzienna sprzedaż × dni okna × 0,9. Pâtissière: partia na 24 h, nie mrozić; monoporcje przed glazurą: partia na 1–2 tyg. w dzień mroźniczy (rdzeń strategii); dekoracje czekoladowe: partia miesięczna w 16–18°C, nie mrozić (rosa).",
+            "Rytm tygodnia: PON pełna produkcja + plan; WT dzień mroźniczy 1 (+ slot eksperymentów 13–15); ŚR świeża + montaż; CZW dzień mroźniczy 2; PT szczyt świeżości — dzień składania, zero eksperymentów; SOB sprzedaż + zapis liczb.",
+            "FIFO + etykieta obowiązkowa (nazwa/data/masa/kto). Nieopisany pojemnik w mroźni = do wyrzucenia decyzją każdego, kto go znajdzie."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 2 i 4"
+        },
+        {
+          "tytul": "Liczby dnia, delegacja i pipeline nowości",
+          "punkty": [
+            "Trzy liczby dziennie (5 min o 15:00): sell-through 85–95% (alarm: <75% dwa dni → tnij partię o 20%; >98% regularnie → za mało produkujemy!), straty ≤5% wartości produkcji, godzina wyprzedania nie wcześniej niż 16:00.",
+            "Poniedziałek 15 min: liczby tygodnia → JEDNA poprawka procesu (PDCA). Pięć poprawek naraz to zero poprawek. Winny jest system, nie człowiek.",
+            "Gradient osądu G0–G3: G0 liczba i waga (pomoc od 1. dnia z checklistą) → G1 proces pilnowany zegarem → G2 proces pilnowany zmysłami (po egzaminie) → G3 osąd mistrza (laminacja, glazury, korekty). Reguła 70/30: mistrz ≤30% czasu na G0–G1.",
+            "Każda karta bazy ma punkt STOP („krem się zważył”, „ciasto płynie”) — delegacja bez prawa zatrzymania produkuje ukryte katastrofy.",
+            "Pipeline nowości: zeszyt pomysłów → test 1 blacha w slocie (wt 13–15) → ocena (food cost ≤30%? wykonalne przez G1? ≥2 bazy?) → POWTÓRZONY wynik → 2 tyg. jako produkt miesiąca z limitem → do karty tylko wymieniając najsłabsze SKU. Szczyty kalendarza gra się na przedsprzedaży; sezon taniego owocu pracuje w mroźni na cały rok."
+          ],
+          "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 5–7 (kanon 10 zasad)"
+        }
+      ]
+    },
+    "Organizacja cukierni": {
+      "intro": "Deser to montaż standaryzowanych komponentów, a dzień cukierni to 7 kroków zakończonych handoffami. Ten tom uczy organizacji pracy (funkcje, poziomy kompetencji, rola Pomocnika) i twardych zasad bezpieczeństwa: CCP5 przy kremach, CCP4 w łańcuchu chłodniczym aż po transport, surowe białko tylko w bezie włoskiej.",
+      "karty": [
+        {
+          "tytul": "Dzień w 7 krokach i handoffy",
+          "punkty": [
+            "Przepływ ORG-X: odprawa 5 min → komponenty z wyprzedzeniem (D-1: biszkopty, kremy, inserty) → mrożenie i etykiety FEFO → montaż („à l'envers”, inserty w formy) → wykończenie (glazura 30–35°C na ZAMROŻONE) → ekspedycja falami pod godziny ruchu, nadziewanie tuż przed → domknięcie dnia = ustawienie jutra.",
+            "Każdy krok kończy się handoffem: 10 sekund kontroli zgodności z wzorcem (schłodzone-opisane-zmierzone; wysokość i warstwy; połysk i równość). Handoff łapie błąd na granicy kroków, nie na witrynie.",
+            "Mise en place totalne przed startem — w cukierni ważniejsze niż w piekarni, bo montaż wymaga wielu komponentów w jednym oknie czasowym.",
+            "Codzienna degustacja własnego produktu (łapie dryf receptury), dziennik odchyleń ze zdjęciem przekroju, clean as you go.",
+            "Praca komponentami: mrożenie insertów to standard; montaż, glazura i wykończenie — świeżo. Rozkłada szczyt pracy i podnosi powtarzalność."
+          ],
+          "zrodlo": "DESTYLAT 1.1–1.2 (ORG-X, ZSC 4.1–4.2)"
+        },
+        {
+          "tytul": "Funkcje, poziomy i rola Pomocnika",
+          "punkty": [
+            "Cztery funkcje + lead: Komponenty · Montaż · Chłodnia i etykiety · Wykończenie i ekspedycja. Rozdzielamy funkcje, nie tytuły: jedna osoba może pełnić kilka, ale każda funkcja ma w danym dniu JEDNEGO właściciela; każdy umie min. dwie (rotacja).",
+            "CCP5 odpowiada każdy, kto gotuje krem; CCP4 — funkcja Chłodnia; eskalacja zawsze do lead. Lead może koordynować zdalnie: zdjęcie przekroju + parametry zastępują obecność przy stole.",
+            "Poziomy: JUNIOR (0–6 tyg., wg fiche pod obserwacją, NIE ocenia sensorycznie) → SAMODZIELNY (od 6–8 tyg., prowadzi komponent, eskaluje nietypowe i CCP5) → MENTOR (szkoli, kalibruje receptury i sprzęt). Ścieżka wdrożenia: 6 tygodni od BHP+CCP5 po montaż pod obserwacją.",
+            "Pomocnik (rola stała, nie przejściowa) robi samodzielnie: ważenie wg fiche, mycie i clean as you go, etykiety i FIFO/FEFO, mrożenie wg instrukcji, transport. NIGDY samodzielnie: osąd sensoryczny gotowości, korekta receptury, interpretacja CCP5 przy wartości granicznej, montaż wymagający oceny estetycznej, kalibracja sprzętu.",
+            "Gram i stopień = powtarzalność: ±1°C w temperowaniu, ±2% wody w ganaszu, ±5°C w gotowaniu kremu zmieniają wynik. Waga 0,1 g i termometr sondowy to narzędzia nr 1."
+          ],
+          "zrodlo": "DESTYLAT 1.1, 1.3–1.4 (ORG-X, KOMP-X)"
+        },
+        {
+          "tytul": "Bezpieczeństwo: CCP5, CCP4 i twarde parametry",
+          "punkty": [
+            "CCP5 (nienegocjowalne): kremy gotowane ≥85°C przez ≥1 min z weryfikacją termometrem. Pâtissière: gotować 1–2 min od wrzenia (dezaktywacja amylazy — inaczej zrzednie), rozlać cienko, folia na styk, szybko do chłodni; trwałość 24–48 h. Anglaise/crémeux: okno 82–84°C, powyżej ~85–86°C grudki — sonda obowiązkowa.",
+            "CCP4 to cały łańcuch chłodniczy: chłodnia, witryna chłodzona I transport (torby izotermiczne obowiązkowe; czas transportu zmierzony raz i wpisany jako limit; insert mrożony osobno od schłodzonych). Etykieta z datą + FEFO na każdym komponencie.",
+            "Surowe białko bez obróbki termicznej: TYLKO beza włoska (pasteryzowana syropem 118–121°C, termometr obowiązkowy); szwajcarska zabezpieczona częściowo; francuska bezpieczna dopiero po wysuszeniu.",
+            "Mrożenie szybko i cienko (małe kryształy), rozmrażanie ZAWSZE w chłodni +4°C. Czekolada: praca w 18–20°C, przechowywanie 16–18°C, nigdy chłodnia (sugar bloom); świeży ananas/kiwi/papaja rozkładają żelatynę — owoc sparzyć.",
+            "Pakowanie: pudło wyższe niż deser (zero docisku do glazury), tarty płasko, bezy szczelnie i sucho — miękną w godziny."
+          ],
+          "zrodlo": "DESTYLAT 1.5–1.7 (KOMP cz. V–VIII, ZSB, PAK-XIII)"
+        }
+      ]
     }
   },
   "program": {
     "opis": "Pełny program Złotego Standardu. Aktywne tomy pilota mają materiał i sprawdzenie wiedzy. Pozostałe mają materiał źródłowy w dokumentach technologa i czekają na eksport banku pytań (zgodnie z zasadą: treści merytorycznej nie tworzymy w kodzie).",
     "piekarz": [
-      { "tom": "II Zakwas", "status": "aktywny" },
-      { "tom": "IV Wypiek", "status": "aktywny" },
-      { "tom": "V DDT", "status": "aktywny" },
-      { "tom": "Mąka i surowce", "status": "material" },
-      { "tom": "Mieszanie i temperatura", "status": "material" },
-      { "tom": "Fermentacja i formowanie", "status": "material" },
-      { "tom": "Fermentacja odroczona / odroczony rozrost", "status": "material" },
-      { "tom": "Parametry wypieku", "status": "material" },
-      { "tom": "Studzenie i świeżość", "status": "material" },
-      { "tom": "Laminowanie / viennoiserie", "status": "material" },
-      { "tom": "Kompetencje piekarza (Tom XIV)", "status": "planowany" }
+      {
+        "tom": "II Zakwas",
+        "status": "aktywny"
+      },
+      {
+        "tom": "IV Wypiek",
+        "status": "aktywny"
+      },
+      {
+        "tom": "V DDT",
+        "status": "aktywny"
+      },
+      {
+        "tom": "Mąka i surowce",
+        "status": "material"
+      },
+      {
+        "tom": "Mieszanie i temperatura",
+        "status": "material"
+      },
+      {
+        "tom": "Fermentacja i formowanie",
+        "status": "material"
+      },
+      {
+        "tom": "Fermentacja odroczona / odroczony rozrost",
+        "status": "material"
+      },
+      {
+        "tom": "Parametry wypieku",
+        "status": "material"
+      },
+      {
+        "tom": "Studzenie i świeżość",
+        "status": "material"
+      },
+      {
+        "tom": "Laminowanie / viennoiserie",
+        "status": "material"
+      },
+      {
+        "tom": "Kompetencje piekarza (Tom XIV)",
+        "status": "planowany"
+      },
+      {
+        "tom": "Planowanie piekarni",
+        "status": "aktywny"
+      }
     ],
     "cukiernik": [
-      { "tom": "Ciasto bazowe (Tom X)", "status": "material" },
-      { "tom": "Program cukiernika (14 części)", "status": "planowany" }
+      {
+        "tom": "Ciasto bazowe (Tom X)",
+        "status": "material"
+      },
+      {
+        "tom": "Program cukiernika (14 części)",
+        "status": "planowany"
+      },
+      {
+        "tom": "Planowanie cukierni",
+        "status": "aktywny"
+      },
+      {
+        "tom": "Organizacja cukierni",
+        "status": "aktywny"
+      }
     ]
   }
 }
