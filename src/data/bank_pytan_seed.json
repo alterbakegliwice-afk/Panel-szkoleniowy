@@ -907,6 +907,1818 @@
       ],
       "wzorzec": "Szybko i cienko to standard (blast lub cienka warstwa); rozmrażanie w chłodni chroni teksturę i łańcuch chłodniczy. Mrożenie planowe ≠ mrożenie resztek.",
       "zrodlo": "DESTYLAT 1.2 i 1.5 (KOMP cz. VIII)"
+    },
+    {
+      "id": "MS-01",
+      "tom": "Mąka i surowce",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W polskim systemie oznaczeń (typ mąki = popiół), co oznacza wyższy typ?",
+      "opcje": [
+        "Mąkę jaśniejszą i delikatniejszą",
+        "Mąkę ciemniejszą, pełniejszą (więcej otrębów/zarodka)",
+        "Wyższą zawartość glutenu",
+        "Świeższe mielenie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Typ to zawartość popiołu z części okrywowych ziarna: 450–550 jasna, 650–750 uniwersalna chlebowa, 1850–2000 razowa pełnoziarnista. Wyższy typ = pełniejsze ziarno, nie mocniejszy gluten.",
+      "zrodlo": "master-baker: maka_i_zboze.md (typy mąki)"
+    },
+    {
+      "id": "MS-02",
+      "tom": "Mąka i surowce",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Mąka pełnoziarnista przy tej samej recepturze wymaga zwykle:",
+      "opcje": [
+        "Mniej wody niż mąka biała",
+        "Więcej wody — otręby i zarodek chłoną więcej",
+        "Dokładnie tyle samo wody",
+        "Zero wody — piecze się na sucho"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Otręby i pentozany w pełnym ziarnie chłoną więcej wody; ta sama „hydracja %” znaczy co innego dla mąki białej i razowej.",
+      "zrodlo": "master-baker: maka_i_zboze.md (pełne ziarno i otręby)"
+    },
+    {
+      "id": "MS-03",
+      "tom": "Mąka i surowce",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego chleb żytni prowadzi się prawie wyłącznie na zakwasie, nie na drożdżach jak pszenny?",
+      "opcje": [
+        "Żyto nie fermentuje z drożdżami",
+        "Żyto trzyma strukturę na pentozanach, nie glutenie, a bardzo aktywna alfa-amylaza wymaga kontroli przez kwaśność (niskie pH zakwasu ją hamuje)",
+        "Drożdże są za drogie do żyta",
+        "To tylko tradycja, technicznie nie ma różnicy"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Żyto ma niskie/słabe białko glutenowe (struktura z pentozanów) i bardzo aktywną alfa-amylazę — bez kwaśności miękisz robi się klejący i zakalcowaty. Stąd duży udział mąki przefermentowanej.",
+      "zrodlo": "master-baker: maka_i_zboze.md (żyto — osobna logika)"
+    },
+    {
+      "id": "MS-04",
+      "tom": "Mąka i surowce",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ciasto żytnie razowe jest lepkie i maziste, trudno je „wyrobić” jak pszenne. Czy to błąd?",
+      "opcje": [
+        "Tak — trzeba dodać więcej mąki",
+        "Nie — to normalne dla żyta (struktura na pentozanach, ciasto się „miesza”, nie wyrabia)",
+        "Tak — za mało soli",
+        "Nie — ale trzeba wydłużyć mieszenie do rozwoju glutenu"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Żyto NIE działa jak pszenica: klasyczne S&F/formowanie pszenne nie mają tu sensu — ciasto raczej się miesza niż wyrabia, z krótkim podrośnięciem w foremce.",
+      "zrodlo": "master-baker: maka_i_zboze.md (żyto)"
+    },
+    {
+      "id": "MS-05",
+      "tom": "Mąka i surowce",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Nadmiar aktywności amylazy (np. mąka z porośniętego ziarna) daje jaki miękisz?",
+      "opcje": [
+        "Suchy i kruchy",
+        "Klejący, zakalcowaty",
+        "Bardzo puszysty",
+        "Bez zmian"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Amylazy rozkładają skrobię do cukrów — w nadmiarze (zwłaszcza w życie / ziarnie porośniętym) dają klejący, zakalcowaty miękisz.",
+      "zrodlo": "master-baker: maka_i_zboze.md (enzymy)"
+    },
+    {
+      "id": "MS-06",
+      "tom": "Mąka i surowce",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego w produkcji stabilny dostawca mąki bywa ważniejszy niż pogoń za egzotyczną, ciekawą mąką?",
+      "opcje": [
+        "Egzotyczna mąka jest zawsze droższa",
+        "Zmiana młyna/partii mąki potrafi rozregulować dopracowany proces — powtarzalność dostaw to argument operacyjny",
+        "Prawo zabrania zmiany dostawcy",
+        "Nowa mąka zawsze ma gorszy gluten"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Cucuzza radzi piec te same chleby na różnych mąkach obok siebie, żeby NAUCZYĆ SIĘ czytać różnice — ale w codziennej produkcji nieprzewidziana zmiana partii/młyna rozregulowuje proces.",
+      "zrodlo": "master-baker: maka_i_zboze.md (białko i siła mąki)"
+    },
+    {
+      "id": "MS-07",
+      "tom": "Mąka i surowce",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Fitazy (aktywowane niskim pH zakwasu) rozkładają kwas fitynowy. Jaki jest tego efekt?",
+      "opcje": [
+        "Chleb jest mniej trwały",
+        "Uwalniają się minerały (żelazo, cynk, magnez, wapń) związane wcześniej przez fityniany — lepsza biodostępność, zwłaszcza w pełnoziarnistym",
+        "Miękisz robi się bardziej klejący",
+        "Chleb staje się słodszy"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kwas fitynowy wiąże minerały; jego rozkład przez fitazy (aktywne przy niskim pH) uwalnia je do wchłaniania — efekt silniejszy w pieczywie pełnoziarnistym, gdzie fitynianów jest dużo.",
+      "zrodlo": "master-baker: maka_i_zboze.md (enzymy) / nauka_i_zdrowie.md"
+    },
+    {
+      "id": "MS-08",
+      "tom": "Mąka i surowce",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Które zdania o świeżym mieleniu mąki (młyn kamienny) są PRAWDZIWE? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Daje realną przewagę smakowo-zdrowotną i narrację marki",
+        "Własny młyn to duży capex i złożoność operacyjna — decyzja inwestycyjna, nie oczywistość",
+        "Jest warunkiem koniecznym, by piec dobry chleb",
+        "Hart Bageri i Tartine też mielą u siebie — to trend „trzeciej fali”"
+      ],
+      "poprawne": [
+        0,
+        1,
+        3
+      ],
+      "wzorzec": "Świeże mielenie to realna przewaga, ale INWESTYCYJNA decyzja (ROI, logistyka ziarna) — nie warunek dobrego chleba. Wielu uznanych piekarzy piecze świetnie na mące kupnej.",
+      "zrodlo": "master-baker: maka_i_zboze.md (teza Gilla)"
+    },
+    {
+      "id": "MT-01",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czy wysoka hydracja ciasta jest warunkiem koniecznym otwartego miękiszu?",
+      "opcje": [
+        "Tak, bez wysokiej hydracji nie ma otwartego miękiszu",
+        "Nie — Wilson pokazał otwarty miękisz przy hydracji ~65% i bez autolizy; hydracja to dźwignia, nie wymóg",
+        "Tak, minimum 90%",
+        "Nie, hydracja nie ma żadnego wpływu na miękisz"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Otwarty miękisz to ~80% efekt fermentacji i obróbki ciasta (Wilson). Wysoka hydracja jest bardziej efektowna, ale trudniejsza w obróbce — nie jest warunkiem.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (hydracja jako narzędzie)"
+    },
+    {
+      "id": "MT-02",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym jest autoliza?",
+      "opcje": [
+        "Etapem dodawania soli na końcu miesienia",
+        "Wstępnym wymieszaniem samej mąki z wodą (bez soli i zakwasu) i odczekaniem przed właściwym wyrabianiem",
+        "Techniką formowania bagietek",
+        "Rodzajem prefermentu na drożdżach"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Autoliza hydratyzuje mąkę i rozwija gluten przy minimalnym wyrabianiu; enzymy uwalniają cukry (słodszy smak, lepsze zbrązowienie).",
+      "zrodlo": "master-baker: struktura_i_techniki.md (autoliza)"
+    },
+    {
+      "id": "MT-03",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czy autoliza jest obowiązkowym krokiem dla dobrego chleba rzemieślniczego?",
+      "opcje": [
+        "Tak, zawsze i bez wyjątków",
+        "Nie — część szkół (Foodgeek, nowszy Wilson) pokazuje otwarty miękisz bez autolizy („direct mix”); to opcja, nie święty warunek",
+        "Tak, ale tylko dla mąki białej",
+        "Nie, autoliza szkodzi ciastu"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Autoliza pomaga (rozwój glutenu, słodszy smak), ale eksperymenty pokazują, że da się osiągnąć dobry wynik bez niej. Nie sprzedawaj jej jako warunku sukcesu.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (kontrowersja autolizy)"
+    },
+    {
+      "id": "MT-04",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Która technika budowania siły ciasta jest NAJDELIKATNIEJSZA i najlepsza przy bardzo wysokiej hydracji?",
+      "opcje": [
+        "Stretch and fold (S&F)",
+        "Coil fold — mniej odgazowuje niż S&F",
+        "Lamination na stole",
+        "Mocne wyrabianie mechaniczne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Zasada: im wyższa hydracja i im bardziej zależy na otwartości, tym delikatniejsze techniki — coil fold jest łagodniejszy od S&F.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (budowanie siły)"
+    },
+    {
+      "id": "MT-05",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego mąka pełnoziarnista/żytnia wymaga innej hydracji niż mąka biała przy tej samej recepturze procentowej?",
+      "opcje": [
+        "Nie wymaga — hydracja znaczy zawsze to samo",
+        "Otręby i pentozany chłoną więcej wody — ta sama liczba % hydracji daje inny efekt dla mąki białej i razowej",
+        "Bo żyto nie zawiera wody",
+        "Bo mąka biała jest cięższa"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To samo pojęcie „hydracja” trzeba kalibrować pod typ mąki — pełnoziarnista/żytnia realnie potrzebują więcej wody, by zachować się podobnie do pszennej białej.",
+      "zrodlo": "master-baker: struktura_i_techniki.md + maka_i_zboze.md"
+    },
+    {
+      "id": "MT-06",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Stretch and fold (S&F) wykonuje się zwykle:",
+      "opcje": [
+        "Raz, na sam koniec bulk",
+        "Co ~30–45 min w pierwszych godzinach bulk — buduje siłę i wyrównuje temperaturę",
+        "Tylko przy cieście żytnim",
+        "Po uformowaniu, tuż przed piecem"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "S&F to seria delikatnych zabiegów w trakcie fermentacji wstępnej — zastępuje intensywne wyrabianie mechaniczne.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (S&F)"
+    },
+    {
+      "id": "MT-07",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Lamination (rozciągnięcie ciasta na stole i złożenie) daje dodatkową korzyść poza budowaniem struktury:",
+      "opcje": [
+        "Skraca czas fermentacji",
+        "Pozwala wmieszać dodatki (ziarna, ser) i w połączeniu z coil fold bywa kluczem do bardzo otwartego miękiszu",
+        "Zastępuje potrzebę soli",
+        "Eliminuje potrzebę pieczenia z parą"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Lamination na stole mocno rozwija strukturę i jest okazją do wmieszania dodatków bez brutalnego odgazowania — kombinacja z coil fold to technika Full Proof Baking/Kristen Dennis.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (lamination)"
+    },
+    {
+      "id": "MT-08",
+      "tom": "Mieszanie i temperatura",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym różni się autoliza od zwykłego pełnego mieszania na starcie?",
+      "opcje": [
+        "Niczym — to to samo",
+        "W autolizie miesza się TYLKO mąkę z wodą — sól i zakwas/drożdże dodaje się dopiero po odczekaniu",
+        "Autoliza wymaga gorącej wody",
+        "Autoliza zastępuje sól"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Brak soli i zakwasu na starcie jest kluczowy — to one hamują pełną hydratację i rozwój glutenu, których autoliza ma dokonać najpierw.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (autoliza)"
+    },
+    {
+      "id": "FF-01",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaki procent finalnego wyniku bochenka odpowiada fermentacji wstępnej (bulk) wg Cucuzzy?",
+      "opcje": [
+        "Około 20%",
+        "Około 50%",
+        "≥80%",
+        "0% — liczy się tylko formowanie"
+      ],
+      "poprawne": [
+        2
+      ],
+      "wzorzec": "Problemy ze strukturą prawie zawsze sprowadzają się do błędu fermentacji, nie formowania — dlatego diagnozę zawsze zaczynamy od bulk.",
+      "zrodlo": "master-baker: fermentacja.md (dlaczego to sedno)"
+    },
+    {
+      "id": "FF-02",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Metoda dwuczynnikowa (dough temping, Cucuzza) zastępuje zegar czym?",
+      "opcje": [
+        "Wagą ciasta",
+        "Pomiarem temperatury ciasta i procentowego wzrostu objętości w czasie bulk",
+        "Kolorem ciasta",
+        "Zapachem ciasta"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Zamiast sztywnego czasu mierzy się dwa czynniki naraz — bo ten sam „czas wyrastania” przy różnych temperaturach ciasta daje zupełnie inny stopień fermentacji.",
+      "zrodlo": "master-baker: fermentacja.md (metoda dwuczynnikowa)"
+    },
+    {
+      "id": "FF-03",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ciepłe ciasto (~27°C) powinno kończyć bulk przy NIŻSZYM czy WYŻSZYM % wzrostu niż chłodne (~21°C) — i dlaczego?",
+      "opcje": [
+        "Wyższym — ciepłe ciasto potrzebuje więcej czasu",
+        "Niższym (~30% vs ~75%) — ciepłe ciasto fermentuje dalej w lodówce, trzeba je „zahamować” wcześniej",
+        "Tym samym — temperatura nie ma znaczenia",
+        "Niższym, bo ciepłe ciasto jest słabsze"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Logika: ciepłe ciasto fermentuje dalej podczas retardu, więc odcinamy bulk wcześniej (niższy % wzrostu); chłodne można puścić dalej.",
+      "zrodlo": "master-baker: fermentacja.md (tabela % wzrostu)"
+    },
+    {
+      "id": "FF-04",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Zbity, gęsty miękisz z dużą dziurą/tunelem pod skórką to zwykle objaw:",
+      "opcje": [
+        "Przefermentowania",
+        "Niedofermentowania",
+        "Za dużej ilości soli",
+        "Za niskiej temperatury pieca"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To „rampant problem” (Wilson) — najczęstszy błąd. Ciasto przy formowaniu jest wtedy sprężyste i stawia opór.",
+      "zrodlo": "master-baker: fermentacja.md (niedo- vs przefermentowanie)"
+    },
+    {
+      "id": "FF-05",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Płaski bochenek bez wyrostu piecowego, który „rozlewa się” na blasze, to zwykle objaw:",
+      "opcje": [
+        "Niedofermentowania",
+        "Przefermentowania (lub za słabego glutenu / za wysokiej hydracji)",
+        "Za dużo pary w piecu",
+        "Za grubej skórki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Ciasto lepkie, słabe, traci napięcie i sprężystość; smak ostry, kwaśny od nadmiaru kwasów.",
+      "zrodlo": "master-baker: fermentacja.md (przefermentowanie)"
+    },
+    {
+      "id": "FF-06",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Kalibrując NOWĄ recepturę, lepiej pierwszy wypiek celować w lekkie NIEDO- czy PRZE-fermentowanie?",
+      "opcje": [
+        "Przefermentowanie — łatwiej to zobaczyć",
+        "Niedofermentowanie — łatwo skorygować w górę (więcej % wzrostu); z przefermentowania nie ma powrotu",
+        "Nie ma znaczenia",
+        "Zawsze celować idealnie za pierwszym razem"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Reguła praktyczna: bezpieczniej niedoszacować i kalibrować w górę o 10% niż ryzykować partię, z której „nie ma powrotu”.",
+      "zrodlo": "master-baker: fermentacja.md (reguła praktyczna)"
+    },
+    {
+      "id": "FF-07",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Pracownik ma zbity chleb i pyta „jak lepiej formować?”. Jaki jest najczęściej TRAFNIEJSZY pierwszy krok diagnozy?",
+      "opcje": [
+        "Od razu zmienić technikę formowania",
+        "Sprawdzić fermentację (temperatura ciasta, % wzrostu, aktywność zakwasu) — w 80% przypadków problem jest tam, nie w formowaniu",
+        "Dodać więcej glutenu do mąki",
+        "Wydłużyć czas pieczenia"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Najczęstszy błąd w doradztwie: zakładać problem formowania, gdy to fermentacja. Zawsze diagnozuj bulk najpierw.",
+      "zrodlo": "master-baker: fermentacja.md (najczęstszy błąd w doradztwie)"
+    },
+    {
+      "id": "FF-08",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaka jest główna wada NADUŻYTEGO preshape (wstępnego formowania)?",
+      "opcje": [
+        "Ciasto się nie formuje wcale",
+        "Dodatkowe odgazowanie — może zaszkodzić otwartości miękiszu, jeśli zrobione zbyt mocno",
+        "Wydłuża czas pieczenia",
+        "Zmienia smak chleba"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Preshape organizuje strukturę i ułatwia finalne formowanie, ale to dodatkowy krok odgazowania — decyzja zależy od ciasta, nie zawsze jest konieczny.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (preshape)"
+    },
+    {
+      "id": "FF-09",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego łatwiej naciąć (scoring) ciasto SCHŁODZONE niż ciepłe?",
+      "opcje": [
+        "Schłodzone ciasto jest słodsze",
+        "Sztywniejsza, chłodna powierzchnia tnie się czyściej — stąd praktyka 30 min w lodówce przed nacięciem",
+        "Nie ma różnicy",
+        "Ciepłe ciasto nie da się w ogóle naciąć"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Czyste nacięcie (grigne) steruje, gdzie bochenek się rozpręży — kontrolowane pęknięcie zamiast losowego rozerwania.",
+      "zrodlo": "master-baker: struktura_i_techniki.md (nacięcie i wyrost piecowy)"
+    },
+    {
+      "id": "FF-10",
+      "tom": "Fermentacja i formowanie",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Co robi para na starcie wypieku dla nacięcia i wyrostu piecowego? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Opóźnia zastygnięcie skórki → maksymalny oven spring",
+        "Rozpuszcza cukry na powierzchni → połysk i chrupiąca skórka",
+        "Nacięcie otwiera się kontrolowanie zamiast rozrywać losowo",
+        "Skraca czas pieczenia o połowę"
+      ],
+      "poprawne": [
+        0,
+        1,
+        2
+      ],
+      "wzorzec": "Para trzyma powierzchnię wilgotną i elastyczną w pierwszych minutach — to warunek pełnego rozprężenia, połysku i ładnego „grigne”.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (para — dlaczego krytyczna)"
+    },
+    {
+      "id": "FO-01",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaka jest główna BIZNESOWA (nie tylko smakowa) korzyść retardu (fermentacji odroczonej)?",
+      "opcje": [
+        "Oszczędza mąkę",
+        "Przesuwa pieczenie na rano bez nocnego mieszania — pozwala pracować bez nocek (zdrowie i retencja zespołu)",
+        "Zwiększa wydajność ciasta",
+        "Eliminuje potrzebę zakwasu"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Humanitarny harmonogram oparty na retardzie to przewaga rekrutacyjna i retencyjna — warunek zbudowania zespołu niezależnego od jednej osoby.",
+      "zrodlo": "master-baker: harmonogram_fermentacji.md (model Waleckiej)"
+    },
+    {
+      "id": "FO-02",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Co jest twardym limitem przepustowości przy planowaniu wzrostu sprzedaży pieczywa opartego na retardzie?",
+      "opcje": [
+        "Wyłącznie liczba pieców",
+        "Pojemność chłodni/komory retarder — ile koszy/blach zmieści się na noc, tyle chleba upieczesz rano",
+        "Liczba pracowników na porannej zmianie",
+        "Cena mąki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To realny limit przepustowości — przy planowaniu wzrostu sprzedaży trzeba sprawdzać pojemność chłodniczą, nie tylko piec.",
+      "zrodlo": "master-baker: harmonogram_fermentacji.md (retard jako dźwignia)"
+    },
+    {
+      "id": "FO-03",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jak kalibrujesz docelowy % wzrostu wejścia do retardu dla NOWEJ receptury?",
+      "opcje": [
+        "Zgadujesz i zostajesz przy pierwszej wartości",
+        "Pierwszy wypiek na dolnym progu z tabeli → oceniasz miękisz → jeśli niedofermentowany, zwiększasz % o 10% i powtarzasz, aż do ideału → zapisujesz jako parametr karty",
+        "Zawsze wchodzisz przy 90% rozrostu",
+        "Kalibracji nie da się zrobić bez laboratorium"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To metodyka, nie stała — każdy zakwas i mąka fermentują inaczej. Iteracyjna kalibracja (kilka wypieków) daje docelowy % powtarzalny na przyszłość.",
+      "zrodlo": "master-baker: fermentacja.md (kalibracja u siebie)"
+    },
+    {
+      "id": "FO-04",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego ciepłe ciasto trzeba „zahamować” przed retardem przy niższym % wzrostu niż ciasto chłodne?",
+      "opcje": [
+        "Bo ciepłe ciasto jest słabsze",
+        "Bo ciepłe ciasto DALEJ fermentuje w lodówce — zbyt zaawansowane przed wejściem przefermentuje w nocy",
+        "Bo chłodnia nie działa z ciepłym ciastem",
+        "Nie trzeba — to mit"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Retard spowalnia, nie zatrzymuje. Ciasto, które weszło zbyt rozwinięte, będzie nadal fermentować przez noc i wyjdzie przefermentowane.",
+      "zrodlo": "master-baker: fermentacja.md (metoda dwuczynnikowa, logika)"
+    },
+    {
+      "id": "FO-05",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Do czego służy „cold bulk” (fermentacja wstępna w chłodzie, nawet do ~24h, ciasto poniżej pokojowej a powyżej lodówkowej)?",
+      "opcje": [
+        "Wyłącznie do ciast żytnich",
+        "Rozłożenia CAŁEGO procesu pod pracę w oknach zmianowych (np. wieczorami) — nie tylko końcowy retard kęsów",
+        "Zastąpienia zakwasu",
+        "Przyspieszenia wypieku"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Model „dla zabieganych” (Cucuzza): każdy „dotyk” ciasta (mieszanie, formowanie, pieczenie) wpada w dogodne okno, a fermentacja rozciąga się chłodem między nimi.",
+      "zrodlo": "master-baker: harmonogram_fermentacji.md (model Cucuzzy)"
+    },
+    {
+      "id": "FO-06",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Retard SPOWALNIA fermentację czy ją ZATRZYMUJE?",
+      "opcje": [
+        "Zatrzymuje całkowicie",
+        "Spowalnia — metabolizm drożdży zwalnia wykładniczo poniżej ~10°C, ale nie ustaje",
+        "Przyspiesza",
+        "Nie ma wpływu na fermentację"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Mit „retard zatrzymuje fermentację” jest fałszywy — to dlatego kęs musi wejść do chłodu niedofermentowany, nie gotowy.",
+      "zrodlo": "master-baker: fermentacja.md (retard/fermentacja w chłodzie)"
+    },
+    {
+      "id": "FO-07",
+      "tom": "Fermentacja odroczona / odroczony rozrost",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Po co spisywać docelowe parametry retardu (temperatura ciasta, % wzrostu, czas) na karcie produktu, skoro mistrz „czuje, kiedy gotowe”?",
+      "opcje": [
+        "Nie warto — intuicja mistrza wystarczy",
+        "Model mierzalny pozwala DELEGOWAĆ proces nowym pracownikom — model czysto intuicyjny działa tylko dla jednej osoby i nie skaluje zespołu",
+        "To wymóg prawny",
+        "Żeby zaoszczędzić na szkoleniach"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Standaryzacja to most do samodzielności zespołu: nowy pracownik wykonuje proces wg zapisanych parametrów, nie wg intuicji właściciela.",
+      "zrodlo": "master-baker: harmonogram_fermentacji.md (standaryzacja = warunek delegowania)"
+    },
+    {
+      "id": "PW-01",
+      "tom": "Parametry wypieku",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Piec IBIS (trzonowy/deck) grzeje GŁÓWNIE przez:",
+      "opcje": [
+        "Wymuszony obieg gorącego powietrza",
+        "Kontakt z gorącym trzonem (kondukcja) + promieniowanie",
+        "Mikrofale",
+        "Bezpośredni płomień"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To „piec chlebowy”: kontakt z trzonem daje mocny „kop” od spodu i maksymalny wyrost piecowy.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (fizyka pieców)"
+    },
+    {
+      "id": "PW-02",
+      "tom": "Parametry wypieku",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Piec Bongard (konwekcyjno-parowy) grzeje głównie przez:",
+      "opcje": [
+        "Kontakt z trzonem",
+        "Wymuszony obieg gorącego powietrza (wentylator)",
+        "Promieniowanie podczerwone",
+        "Parę pod ciśnieniem"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To „piec do drobnicy i cukierni”: równomierny na wielu poziomach naraz, ale bez „kopa” od trzonu.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (fizyka pieców)"
+    },
+    {
+      "id": "PW-03",
+      "tom": "Parametry wypieku",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Który piec daje MAKSYMALNY wyrost piecowy (oven spring) dzięki uderzeniu ciepła od spodu?",
+      "opcje": [
+        "Bongard (konwekcja)",
+        "IBIS (deck/trzonowy)",
+        "Oba tak samo",
+        "Żaden — wyrost zależy tylko od fermentacji"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kontakt z gorącym trzonem wybija CO₂ mocniej niż łagodny, równomierny obieg powietrza konwekcji.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (tabela fizyki)"
+    },
+    {
+      "id": "PW-04",
+      "tom": "Parametry wypieku",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Które produkty kierujesz na IBIS (deck), a które na Bongard (konwekcja)?",
+      "opcje": [
+        "Chleb hearth/bagietkę/żyto → deck; drobnicę, croissanty, ciasta, równe duże partie → konwekcję",
+        "Wszystko na deck — konwekcja tylko do podgrzewania",
+        "Wszystko na konwekcję — deck tylko do dekoracji",
+        "Zależy wyłącznie od pory dnia"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "To nie kwestia „lepszy/gorszy” — dwa różne narzędzia dobrane do fizyki produktu (kop od spodu vs równość na wielu poziomach).",
+      "zrodlo": "master-baker: piece_i_wypiek.md (wniosek operacyjny)"
+    },
+    {
+      "id": "PW-05",
+      "tom": "Parametry wypieku",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego przeniesienie przepisu z pieca deck na konwekcję zwykle wymaga NIŻSZEJ temperatury i/lub krótszego czasu?",
+      "opcje": [
+        "Konwekcja jest zawsze słabsza mocą",
+        "Konwekcja wypieka szybciej i osusza intensywniej — „liczy się” jakby była o 15–25°C wyższa niż deck",
+        "To mit — parametry są identyczne",
+        "Bo konwekcja nie ma pary"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Reguła kciuka w branży: bez korekty w dół przepis „deck” wyjdzie przesuszony i przypieczony na konwekcji.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (uwaga o konwekcji)"
+    },
+    {
+      "id": "PW-06",
+      "tom": "Parametry wypieku",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego piec deck „wybacza” lepiej powtarzalność partia-po-partii niż konwekcja?",
+      "opcje": [
+        "Bo deck jest nowszy",
+        "Duża masa termiczna trzonu szybko regeneruje temperaturę po otwarciu drzwi; konwekcja (mniej masy, powietrze ucieka) traci temperaturę szybciej",
+        "Bo konwekcja nie ma drzwi",
+        "Nie ma różnicy w regeneracji"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To argument za pieczeniem serii chleba w deck (powtarzalność) i drobnicy w konwekcji (szybkie cykle, równość).",
+      "zrodlo": "master-baker: piece_i_wypiek.md (masa termiczna i regeneracja)"
+    },
+    {
+      "id": "PW-07",
+      "tom": "Parametry wypieku",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Kiedy odprowadzamy parę z komory wypieku i dlaczego zbyt długa para szkodzi?",
+      "opcje": [
+        "Nigdy — para ma być przez cały wypiek",
+        "Po pierwszych ~10–18 minutach — dłuższa para daje bladą, miękką, „gumową” skórkę",
+        "Po pierwszej minucie",
+        "Odprowadzanie pary jest niepotrzebne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Para tylko na start: potem trzeba ją odprowadzić, żeby skórka wyschła, stwardniała i nabrała koloru.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (zasady pary)"
+    },
+    {
+      "id": "PW-08",
+      "tom": "Parametry wypieku",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Słaby wyrost piecowy mimo DOBREJ fermentacji — które przyczyny są prawdopodobne? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Brak lub za mało pary na starcie",
+        "Za niski start temperatury",
+        "Zły piec — konwekcja zamiast deck dla chleba hearth",
+        "Zbyt długi retard w chłodni (to inna kategoria problemu)"
+      ],
+      "poprawne": [
+        0,
+        1,
+        2
+      ],
+      "wzorzec": "Skoro fermentacja jest dobra, przyczyny leżą po stronie PIECA: para, temperatura startowa, dobór pieca — nie retard.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (diagnostyka wypieku)"
+    },
+    {
+      "id": "PW-09",
+      "tom": "Parametry wypieku",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Croissant: masło wyciekło w trakcie pieczenia. Czy to wina PIECA?",
+      "opcje": [
+        "Tak, piec był za gorący",
+        "Zwykle NIE — to za wysoka temperatura wyrastania (garowania) PRZED piecem, powyżej ~26°C",
+        "Tak, za mało pary",
+        "Tak, zły poziom w komorze"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Rozrost przed piecem musi zostać poniżej temperatury topnienia masła (~30°C) — piec tylko ujawnia błąd popełniony wcześniej.",
+      "zrodlo": "master-baker: piece_i_wypiek.md (diagnostyka); master-patissier: ciasta_wzbogacone.md"
+    },
+    {
+      "id": "SS-01",
+      "tom": "Studzenie i świeżość",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym RÓŻNI SIĘ „czerstwienie” chleba od zwykłego wysychania?",
+      "opcje": [
+        "To dokładnie to samo zjawisko",
+        "Czerstwienie to retrogradacja skrobi (rekrystalizacja struktury), nie tylko utrata wody — dlatego podgrzanie częściowo „odświeża” pieczywo",
+        "Czerstwienie to pleśnienie",
+        "Czerstwienie zachodzi tylko w chłodni"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Skrobia rekrystalizuje niezależnie od wilgotności — dlatego chleb w szczelnym worku też czerstwieje, a chwilowe podgrzanie topi skrobię z powrotem.",
+      "zrodlo": "master-baker: nauka_i_zdrowie.md + ogólna nauka o czerstwieniu skrobi"
+    },
+    {
+      "id": "SS-02",
+      "tom": "Studzenie i świeżość",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czy trzymanie chleba w LODÓWCE spowalnia czy przyspiesza czerstwienie?",
+      "opcje": [
+        "Spowalnia — lodówka zawsze konserwuje",
+        "Przyspiesza — retrogradacja skrobi jest NAJSZYBSZA w typowym zakresie chłodniczym (4–7°C); mrożenie owszem chroni, chłodzenie nie",
+        "Nie ma wpływu",
+        "Zależy tylko od rodzaju mąki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To częsta pomyłka: lodówka przyspiesza czerstwienie pieczywa. Dobre opcje to temperatura pokojowa (krótko) albo mrożenie (długo).",
+      "zrodlo": "ogólna nauka o retrogradacji skrobi"
+    },
+    {
+      "id": "SS-03",
+      "tom": "Studzenie i świeżość",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jak fermentacja LAB (kwasy organiczne + EPS) wpływa na świeżość chleba na zakwasie vs czysto drożdżowego?",
+      "opcje": [
+        "Nie ma różnicy",
+        "Kwasy organiczne i egzopolisacharydy (EPS) dają dłuższą świeżość i naturalną ochronę przed pleśnią, bez konserwantów",
+        "Zakwas przyspiesza pleśnienie",
+        "EPS przyspieszają wysychanie skórki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To realny argument operacyjny: dłuższa trwałość chleba na zakwasie = mniej zwrotów i strat.",
+      "zrodlo": "master-baker: nauka_i_zdrowie.md (trwałość i jakość)"
+    },
+    {
+      "id": "SS-04",
+      "tom": "Studzenie i świeżość",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jak papierowe opakowanie różni się od plastikowego dla świeżości pieczywa ze skórką?",
+      "opcje": [
+        "Nie różnią się niczym",
+        "Papier „oddycha” i dłużej trzyma chrupkość skórki; plastik zatrzymuje wilgoć — zmiękcza skórkę i przyspiesza rozwój pleśni",
+        "Plastik zawsze lepszy",
+        "Papier przyspiesza pleśnienie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Wybór opakowania to kompromis: papier chroni chrupkość, plastik wygodę transportu kosztem tekstury skórki i trwałości.",
+      "zrodlo": "ogólna praktyka piekarska; kontekst pakowania"
+    },
+    {
+      "id": "SS-05",
+      "tom": "Studzenie i świeżość",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego biszkopt/blat po upieczeniu potrzebuje okna chłodzenia (≥2h lub przez noc) przed krojeniem?",
+      "opcje": [
+        "Żeby nabrał koloru",
+        "Struktura jeszcze się wiąże/stabilizuje po wyjęciu z pieca — krojony za wcześnie klei się do noża i się rwie",
+        "Żeby stracić na wadze",
+        "To wyłącznie kwestia estetyki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Znak gotowości: nie klei się do noża, sprężynuje i wraca — to fizyczna stabilizacja, nie tylko spadek temperatury.",
+      "zrodlo": "ZS-PLANOWANIE-PRODUKCJI rozdz. 3.3 (okna chłodzenia) + praktyka cukiernicza"
+    },
+    {
+      "id": "LV-01",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W laminowanym cieście (croissant) co dokładnie „rozpycha” warstwy w piecu?",
+      "opcje": [
+        "Proszek do pieczenia",
+        "Para z wilgoci ciasta uwięziona między warstwami masła — masło izoluje warstwy, gluten utrwala strukturę",
+        "Drożdże wyłącznie",
+        "Cukier karmelizujący się"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To kombinacja: drożdże dają wstępny wzrost, ale kluczowa jest para rozpychająca warstwy przedzielone masłem — „plaster miodu” struktury.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (wiedeńskie — nauka)"
+    },
+    {
+      "id": "LV-02",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Jaki warunek MUSI spełniać masło podczas laminowania (tourage)?",
+      "opcje": [
+        "Musi być roztopione, żeby się równo rozprowadziło",
+        "Musi być plastyczne, NIE roztopione — ciasto i masło ~14–16°C",
+        "Musi być twarde jak z lodówki (0°C)",
+        "Temperatura masła nie ma znaczenia"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Masło zbyt zimne pęka i przebija ciasto; zbyt ciepłe wtapia się w nie, niszcząc warstwy. Okno 14–16°C to plastyczność.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (wiedeńskie — parametry)"
+    },
+    {
+      "id": "LV-03",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Croissant: masło wycieka podczas pieczenia. Najczęstsza przyczyna?",
+      "opcje": [
+        "Piec za zimny",
+        "Rozrost (garowanie) był za ciepły, powyżej ~26°C — zbliżył się do temperatury topnienia masła (~30°C)",
+        "Za mało cukru w cieście",
+        "Za krótkie mieszenie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To błąd na etapie garowania, nie pieca — masło musi pozostać w stanie stałym aż do wejścia do gorącego pieca.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (diagnostyka wiedeńskie)"
+    },
+    {
+      "id": "LV-04",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Croissant bez wyraźnego rozwarstwienia, „chlebowa” zbita struktura — przyczyna?",
+      "opcje": [
+        "Za mało drożdży",
+        "Masło wtopiło się w ciasto zamiast zostać w wyraźnych warstwach (za ciepłe przy laminacji, przebite warstwy)",
+        "Za dużo soli",
+        "Za wysoka temperatura pieca"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Brak rozwarstwienia = masło i ciasto się zlały. Klucz to plastyczność masła i chłodnia między obrotami.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (diagnostyka wiedeńskie)"
+    },
+    {
+      "id": "LV-05",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ile obrotów typowo wykonuje się przy klasycznej laminacji croissanta?",
+      "opcje": [
+        "1 obrót",
+        "3 obroty pojedyncze lub podwójny+pojedynczy (~24–30 warstw), z chłodnią między obrotami",
+        "10 obrotów",
+        "Obroty są zbędne przy croissancie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Za mało obrotów = słabe rozwarstwienie; za dużo = warstwy się zlewają. 3 obroty to standard produkcyjny.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (parametry wiedeńskie)"
+    },
+    {
+      "id": "LV-06",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Brioche: dlaczego rozwijamy gluten PRZED dodaniem masła, a nie jednocześnie?",
+      "opcje": [
+        "Bo tak jest szybciej",
+        "Tłuszcz blokuje tworzenie się sieci glutenowej, jeśli wchodzi za wcześnie",
+        "Bo masło psuje smak przy długim mieszeniu",
+        "Nie ma znaczenia kolejności"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Gluten musi się najpierw rozwinąć na „czystym” cieście — dopiero potem stopniowo dodawane, zimne masło buduje bogactwo bez blokowania struktury.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (brioche — nauka)"
+    },
+    {
+      "id": "LV-07",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego zimna fermentacja nocna (4–6°C) jest kluczowa dla brioche?",
+      "opcje": [
+        "Przyspiesza wyrastanie",
+        "Kontroluje masło (nie topi się/nie wycieka), rozwija smak i daje czyste formowanie rano",
+        "Zastępuje potrzebę drożdży",
+        "Poprawia tylko kolor skórki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Ciasto bogate w masło jest trudne do formowania na ciepło — retard robi trzy rzeczy naraz: kontrolę tłuszczu, smak i logistykę.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (brioche — Alterbake)"
+    },
+    {
+      "id": "LV-08",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Powyżej jakiego % cukru w cieście drożdżowym słodkim drożdże muszą być osmotolerancyjne, a kolejność mieszania staje się kluczowa?",
+      "opcje": [
+        ">5% cukru",
+        ">15% cukru — powyżej ~18% obowiązuje kolejność: gluten wstępny → sól → cukier partiami → masło",
+        ">50% cukru",
+        "Cukier nigdy nie wpływa na drożdże"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Wysoki cukier osłabia zwykłe drożdże (ciśnienie osmotyczne) i spowalnia fermentację — stąd specjalna kolejność faz mieszania.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (drożdżowe słodkie)"
+    },
+    {
+      "id": "LV-09",
+      "tom": "Laminowanie / viennoiserie",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Zaparka (tangzhong/yudane) dodana do ciasta drożdżowego — co daje?",
+      "opcje": [
+        "Przyspiesza fermentację",
+        "Zatrzymuje wodę w cieście (żelatynizowana skrobia) → miększy, trwalszy miękisz o niższej aktywności wody",
+        "Zastępuje jajka",
+        "Poprawia wyłącznie kolor skórki"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Zaparka to sparzona mąka (skrobia żelatynizuje) dodana w ~5% do reszty ciasta — daje wilgotność i wydłuża świeżość.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (drożdżowe słodkie — nauka)"
+    },
+    {
+      "id": "KE-01",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Krem pâtissière (żółtko + skrobia) — dlaczego trzeba go GOTOWAĆ (≥1–2 min od wrzenia), a nie tylko podgrzać?",
+      "opcje": [
+        "Żeby zgęstniał od razu",
+        "Żółtkowa α-amylaza rozkłada skrobię, jeśli jej nie zdezaktywujesz gotowaniem — inaczej krem zrzednie po schłodzeniu; gotowanie spełnia też CCP5",
+        "Żeby nabrał koloru",
+        "Żeby skrobia się nie zbryliła"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To podwójny efekt: dezaktywacja amylazy (jakość) i spełnienie CCP5 ≥85°C/≥1min (bezpieczeństwo) — jedno gotowanie robi oba.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (crème pâtissière)"
+    },
+    {
+      "id": "KE-02",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Crème anglaise (żółtko BEZ skrobi) wymaga sondy termometru, bo:",
+      "opcje": [
+        "Ma bardzo szerokie okno bezpieczne",
+        "Ma WĄSKIE okno 82–84°C bez bufora skrobi — powyżej ~85–86°C żółtko koaguluje w grudki",
+        "Musi być zimna przy podaniu",
+        "Sonda jest wymagana tylko dla kremów gotowanych powyżej 100°C"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Bez skrobi chroniącej białko żółtka margines błędu jest mały — „à la nappe” to precyzyjne okno, nie przybliżenie.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (crème anglaise)"
+    },
+    {
+      "id": "KE-03",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ganache to mechanicznie:",
+      "opcje": [
+        "Czekolada rozpuszczona w gorącej śmietanie, bez żadnej struktury",
+        "Emulsja — kropelki tłuszczu (czekolada) rozproszone w fazie wodnej (śmietanka)",
+        "Piana białkowa z dodatkiem czekolady",
+        "Krem maślany z kakao"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To rozróżnienie tłumaczy, dlaczego ganache można „przebić” (pęknięta emulsja) i dlaczego emulguje się od środka blenderem zanurzeniowym.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (ganache — nauka)"
+    },
+    {
+      "id": "KE-04",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ganache „przebity” (oddzielony tłuszcz na powierzchni) — przyczyna i ratunek?",
+      "opcje": [
+        "Za mało czekolady; dodać więcej",
+        "Za gorąco/za dużo tłuszczu; ratunek: dodać ciepłe mleko i zemulgować blenderem OD ŚRODKA (głowica pod powierzchnią)",
+        "Za mało cukru; dosłodzić",
+        "Nie da się uratować, zawsze wyrzucić"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Emulsję można odbudować ciepłym płynem i blenderem — kluczowe jest emulgowanie pod powierzchnią, żeby nie napowietrzać.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (ganache — diagnostyka)"
+    },
+    {
+      "id": "KE-05",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Który krem z listy NIE mrozi się dobrze (siada po rozmrożeniu)?",
+      "opcje": [
+        "Crémeux",
+        "Krem pâtissière",
+        "Ganache",
+        "Mus/bawarka"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Pâtissière jest wyjątkiem w tabeli komponentów — produkuje się go na 24h i NIE batchuje na zapas mrożony.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (tabela komponentów)"
+    },
+    {
+      "id": "KE-06",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Krem maślany (SMBC/IMBC) „zważył się” po dodaniu masła. Najczęstsza przyczyna?",
+      "opcje": [
+        "Za mało cukru",
+        "Różnica temperatur bazy (beza) i masła — obie powinny być ~22–25°C; korekta: podgrzej ścianki misy lub dobijaj dłużej",
+        "Za dużo wanilii",
+        "Masło było za miękkie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Zważenie to zwykle niedopasowanie temperatur baz, nie zły przepis — rozwiązanie jest mechaniczne (temperatura + czas ubijania), nie „wyrzuć i zacznij od nowa”.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (kremy maślane)"
+    },
+    {
+      "id": "KE-07",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Curd (np. cytrynowy) koaguluje przy niższej temperaturze (78–83°C) niż anglaise (82–86°C). Dlaczego?",
+      "opcje": [
+        "Bo curd ma mniej jaj",
+        "Kwas (sok cytrusowy) obniża próg koagulacji białka jaja",
+        "Bo curd gotuje się dłużej",
+        "To błąd w tabeli — temperatury są identyczne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Środowisko kwaśne zmienia zachowanie białka — dlatego curd „tnie” wcześniej niż neutralna anglaise.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (curd)"
+    },
+    {
+      "id": "KE-08",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": true,
+      "pytanie": "Jaki jest wspólny mianownik bezpieczeństwa dla WSZYSTKICH kremów gotowanych w cukierni?",
+      "opcje": [
+        "Muszą być słodkie",
+        "Każdy to potencjalny CCP5 (≥85°C/≥1 min) w procesie + łańcuch chłodniczy CCP4 po ugotowaniu",
+        "Muszą zawierać żelatynę",
+        "Nie ma wspólnego mianownika"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Niezależnie od typu (pâtissière, anglaise, crémeux) obowiązuje ta sama twarda zasada bezpieczeństwa.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (most do HACCP)"
+    },
+    {
+      "id": "KE-09",
+      "tom": "Kremy i emulsje (CCP5)",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Mus „opada” po zmontowaniu. Najbardziej prawdopodobna przyczyna?",
+      "opcje": [
+        "Za mało cukru",
+        "Baza (anglaise/owoc) była za ciepła przy łączeniu z pianą/żelatyną, albo piana została przebita",
+        "Za dużo żelatyny",
+        "Za krótkie mrożenie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Mus wymaga wyrównania temperatur baz przed połączeniem — za ciepła baza roztapia pianę, niszcząc strukturę.",
+      "zrodlo": "master-patissier: kremy_i_emulsje.md (mus)"
+    },
+    {
+      "id": "CM-01",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "W kruchym cieście (pâte sucrée/sablée) dlaczego NIE chcemy rozwoju glutenu?",
+      "opcje": [
+        "Gluten jest alergenem",
+        "Gluten dałby ciągliwość i twardość zamiast pożądanej kruchości",
+        "Gluten zmieniłby kolor ciasta",
+        "To nieprawda — gluten jest tu pożądany"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Cel kruchego to struktura „piaskowa”/zwarta bez ciągliwości — dlatego tłuszcz celowo blokuje hydratację mąki.",
+      "zrodlo": "master-patissier: masy_i_spody.md (kruche — cel)"
+    },
+    {
+      "id": "CM-02",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym różnią się metody sablage i crémage przy kruchym cieście?",
+      "opcje": [
+        "Sablage: mąka+zimne masło na „piasek”, potem płyn (bardziej odporne na zaciąganie); crémage: masło+cukier ucierane, potem jajo+mąka (bardziej zwarte, łatwe na cienki fond)",
+        "To dokładnie ta sama metoda pod dwiema nazwami",
+        "Sablage używa się tylko do ciast wytrawnych",
+        "Crémage nie wymaga masła"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Wybór metody to decyzja o teksturze i łatwości formowania — nie przypadek.",
+      "zrodlo": "master-patissier: masy_i_spody.md (dwie metody łączenia)"
+    },
+    {
+      "id": "CM-03",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Spód kruchy kurczy się i opada bokami przy pieczeniu na ślepo (blind baking). Przyczyna?",
+      "opcje": [
+        "Piec za gorący",
+        "Ciasto rozciągnięte przy wykładaniu formy i/lub brak odpoczynku w chłodzie przed wypiekiem",
+        "Za dużo jajka w cieście",
+        "Zbyt cienkie wałkowanie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Naprężony przy wykładaniu gluten (nawet ten minimalny) „wraca” w piecu — dlatego wykładamy bez naciągania i chłodzimy przed wypiekiem.",
+      "zrodlo": "master-patissier: masy_i_spody.md (diagnostyka kruche)"
+    },
+    {
+      "id": "CM-04",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Czym jest „chablonage” i przed czym chroni?",
+      "opcje": [
+        "Metodą temperowania czekolady",
+        "Cienką warstwą temperowanej czekolady/masła kakaowego na dnie spodu — chroni przed mokrym spodem (bariera wilgoci od nadzienia)",
+        "Techniką ubijania piany",
+        "Sposobem mrożenia spodów"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To klasyczna odpowiedź na reklamacje „mokry spód” przy tartach z wilgotnym nadzieniem.",
+      "zrodlo": "master-patissier: masy_i_spody.md (kruche — praktyka)"
+    },
+    {
+      "id": "CM-05",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego mąkę do biszkoptu (génoise) wmieszuje się RĘCZNIE, składając, zamiast mikserem?",
+      "opcje": [
+        "Bo mikser jest za wolny",
+        "Gluten to „wróg” biszkoptu (daje gumowatość) — trzeba oszczędzić napowietrzoną pianę jajeczną",
+        "Żeby skrócić czas pieczenia",
+        "Nie ma znaczenia, mikser też można użyć"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Struktura biszkoptu opiera się na ubitej pianie utrwalonej skrobią — rozwinięty gluten i wytrącone powietrze niszczą efekt.",
+      "zrodlo": "master-patissier: masy_i_spody.md (biszkoptowe — nauka)"
+    },
+    {
+      "id": "CM-06",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Biszkopt ma zakalec przy dnie. Dwie najczęstsze przyczyny?",
+      "opcje": [
+        "Za dużo cukru / za mało jaj",
+        "Masło źle wmieszane (za zimne, na raz zamiast letnie i partiami) LUB piana opadła przed pieczeniem",
+        "Za wysoka temperatura pieca",
+        "Za długie ubijanie piany"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Masło dociąża pianę — musi wejść letnie, na końcu, z częścią masy, a piec musi być gotowy NATYCHMIAST po wymieszaniu.",
+      "zrodlo": "master-patissier: masy_i_spody.md (diagnostyka biszkoptowe)"
+    },
+    {
+      "id": "CM-07",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ciasto francuskie (puff) nie ma drożdży ani proszku. Co je spulchnia?",
+      "opcje": [
+        "Białka jaj",
+        "Wyłącznie para — woda w warstwach paruje i rozpycha, masło izoluje warstwy",
+        "Soda oczyszczona",
+        "Powietrze wbite mikserem"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To ta sama fizyka co croissant, ale bez drożdżowego wsparcia — dlatego liczba obrotów i jakość laminacji są jeszcze ważniejsze.",
+      "zrodlo": "master-patissier: masy_i_spody.md (francuskie/puff — nauka)"
+    },
+    {
+      "id": "CM-08",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ciasto francuskie wyrasta nierówno/skośnie po upieczeniu. Przyczyna?",
+      "opcje": [
+        "Za mało soli",
+        "Nierówne wałkowanie płata masła — musi być równy prostokąt, obracany o 90° między obrotami",
+        "Za wysoka wilgotność powietrza",
+        "Zbyt krótkie mieszenie détrempe"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Nierówna grubość masła = nierówna liczba warstw w różnych miejscach = skośny wzrost.",
+      "zrodlo": "master-patissier: masy_i_spody.md (diagnostyka francuskie)"
+    },
+    {
+      "id": "CM-09",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Pâte à choux (parzone) — jaki jest KRYTYCZNY zakaz podczas pieczenia?",
+      "opcje": [
+        "Nie dodawać soli",
+        "Nie otwierać pieca w fazie wzrostu — przerwa w cieple = zapadnięcie skorupek",
+        "Nie używać masła",
+        "Nie mieszać ciasta"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Spulchnia wyłącznie para — otwarcie drzwi w złym momencie wypuszcza ciepło i przerywa rozprężanie na dobre.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (parzone — nauka)"
+    },
+    {
+      "id": "CM-10",
+      "tom": "Ciasta i masy cukiernicze",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ptysie wyszły płaskie po upieczeniu. Najbardziej prawdopodobna przyczyna?",
+      "opcje": [
+        "Za dużo soli",
+        "Panada za mokra / za dużo jaj w stosunku do konsystencji / piec za zimny na starcie",
+        "Za krótkie gotowanie panady",
+        "Za mało cukru"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Konsystencję jaj dobiera się „do wstążki”, nie sztywno wg wagi — zbyt luźne ciasto nie utrzyma struktury w piecu.",
+      "zrodlo": "master-patissier: ciasta_wzbogacone.md (parzone — diagnostyka)"
+    },
+    {
+      "id": "BC-01",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Która beza jest bezpieczna do użycia BEZ dalszego pieczenia (surowe białko)?",
+      "opcje": [
+        "Francuska",
+        "Włoska — gorący syrop 118–121°C pasteryzuje białko",
+        "Wszystkie trzy jednakowo",
+        "Żadna — zawsze trzeba upiec"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Francuska jest bezpieczna dopiero po wysuszeniu/upieczeniu; szwajcarska jest zabezpieczona tylko częściowo.",
+      "zrodlo": "master-patissier: bezy_i_piany.md (bezpieczeństwo — twarda zasada)"
+    },
+    {
+      "id": "BC-02",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Beza francuska „nie rośnie” — piana zostaje płaska mimo ubijania. Przyczyna?",
+      "opcje": [
+        "Za dużo cukru",
+        "Zanieczyszczenie tłuszczem/żółtkiem lub cukier dodany za szybko — obciąża białka zanim się spienią",
+        "Za zimne białka",
+        "Za mało czasu ubijania"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Piana białkowa wymaga absolutnie czystych naczyń i narzędzi — nawet ślad tłuszczu niszczy strukturę.",
+      "zrodlo": "master-patissier: bezy_i_piany.md (francuska — diagnostyka)"
+    },
+    {
+      "id": "BC-03",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Beza francuska „płacze” — wilgotne kropelki na powierzchni po upieczeniu. Przyczyna?",
+      "opcje": [
+        "Cukier nierozpuszczony lub wilgoć w otoczeniu",
+        "Za wysoka temperatura suszenia",
+        "Za mało białek",
+        "Za dużo skrobi w Pavlovie"
+      ],
+      "poprawne": [
+        0
+      ],
+      "wzorzec": "Beza jest higroskopijna — wymaga suszenia bez wilgoci i pełnego rozpuszczenia cukru na etapie ubijania.",
+      "zrodlo": "master-patissier: bezy_i_piany.md (francuska — diagnostyka)"
+    },
+    {
+      "id": "BC-04",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Makaron bez „stopki” (spódniczki) po upieczeniu — najbardziej prawdopodobna przyczyna?",
+      "opcje": [
+        "Za dużo migdałów w TPT",
+        "Zły makaronaż (masa źle „odbita”) lub brak/za słabe suszenie skorupki przed pieczeniem",
+        "Za wysoka wilgotność chłodni",
+        "Za długie dojrzewanie nadzianych skorupek"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Suszenie tworzy błonkę, przez którą para unosi masę jako stopkę zamiast losowo pękać wierzch.",
+      "zrodlo": "master-patissier: bezy_i_piany.md (makaron — diagnostyka)"
+    },
+    {
+      "id": "BC-05",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Ile trwa dojrzewanie nadzianych skorupek makaronowych w chłodzie i po co?",
+      "opcje": [
+        "1 godzina — wystarczy na wyrównanie temperatury",
+        "24 h w chłodzie — wyrównuje aktywność wody (aw) i smak między skorupką a nadzieniem",
+        "Tydzień — dla maksymalnej trwałości",
+        "Dojrzewanie jest zbędne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To standard produkcyjny makaronów — bez tego okna tekstura i smak nie osiągną właściwej równowagi.",
+      "zrodlo": "master-patissier: bezy_i_piany.md (makaron — parametry)"
+    },
+    {
+      "id": "BC-06",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Do bezy włoskiej / pâte à bombe / klasycznego kremu maślanego cukier gotujemy do jakiego stadium?",
+      "opcje": [
+        "Nitka ~110°C",
+        "Miękka kulka 112–116°C",
+        "Karmel jasny 160–170°C",
+        "Rozkład >185°C"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Miękka kulka to stadium dla syropów wlewanych do ubijanych białek/żółtek — za niskie da rzadką masę, za wysokie grudki.",
+      "zrodlo": "master-patissier: cukier_i_karmel.md (stadia gotowania cukru)"
+    },
+    {
+      "id": "BC-07",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego NIE mieszamy garnka z gotującym się cukrem na karmel po zagotowaniu?",
+      "opcje": [
+        "Bo się przypali szybciej",
+        "Ryzyko rekrystalizacji — jeden kryształek potrafi uruchomić masową krystalizację całego syropu",
+        "Bo cukier straci smak",
+        "Mieszanie jest wskazane, to mit"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Kontrola krystalizacji: czyste ścianki (zmywane mokrym pędzelkiem), brak mieszania, ewentualnie glukoza/kwas jako blokada sieci krystalicznej.",
+      "zrodlo": "master-patissier: cukier_i_karmel.md (kontrola krystalizacji)"
+    },
+    {
+      "id": "BC-08",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego czekoladę trzeba TEMPEROWAĆ, skoro można ją po prostu roztopić i wylać do formy?",
+      "opcje": [
+        "Roztopiona czekolada jest toksyczna",
+        "Masło kakaowe jest polimorficzne (6 form krystalicznych) — tylko forma V daje połysk, twardy snap, skurcz i trwałość",
+        "Temperowanie tylko przyspiesza pracę",
+        "Nie trzeba — to przesąd cukierniczy"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Bez kontrolowanego tworzenia zarodków formy V czekolada matowieje, jest miękka i pokrywa się wykwitem.",
+      "zrodlo": "master-patissier: czekolada_temperowanie.md (nauka)"
+    },
+    {
+      "id": "BC-09",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Fat bloom (szary, tłusty nalot na czekoladzie) — przyczyna?",
+      "opcje": [
+        "Zbyt niska wilgotność powietrza",
+        "Złe temperowanie lub przechowywanie w temperaturze >~30°C (migracja tłuszczu)",
+        "Za dużo cukru w recepturze",
+        "Zbyt krótkie mieszanie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To inny problem niż sugar bloom (który bierze się z wilgoci/kondensacji) — fat bloom to kwestia krystalizacji tłuszczu i temperatury przechowywania.",
+      "zrodlo": "master-patissier: czekolada_temperowanie.md (wady — diagnostyka)"
+    },
+    {
+      "id": "BC-10",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Która metoda temperowania jest NAJLEPSZA dla zespołu (powtarzalna, bez marmuru i „wyczucia ręki”)?",
+      "opcje": [
+        "Tablage (marmur)",
+        "Szczepienie (seeding) lub Mycryo",
+        "Temperowanie „na oko” po kolorze",
+        "Zawsze tablage — to jedyna profesjonalna metoda"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Przy rotacji ludzi liczy się metoda, która nie zależy od jednej wprawnej osoby — Mycryo jest najbardziej powtarzalne i czyste.",
+      "zrodlo": "master-patissier: czekolada_temperowanie.md (adaptacja Alterbake)"
+    },
+    {
+      "id": "BC-11",
+      "tom": "Bezy, cukier i czekolada",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Gorący cukier (120–180°C) to najwyższe ryzyko urazu w cukierni. Jakie jest pierwsze zabezpieczenie BHP przy pracy?",
+      "opcje": [
+        "Rękawice bawełniane",
+        "Woda z lodem w zasięgu ręki na wypadek oparzenia; nigdy nie dotykać/smakować prosto z garnka",
+        "Otwarte okno",
+        "Praca bez fartucha dla swobody ruchu"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Gorący cukier przylega do skóry i daje głębokie oparzenia — woda z lodem to pierwsza pomoc pod ręką, nie profilaktyka teoretyczna.",
+      "zrodlo": "master-patissier: cukier_i_karmel.md (BHP — twarda zasada)"
+    },
+    {
+      "id": "ZM-01",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Żelatynę liczymy w jednostkach:",
+      "opcje": [
+        "Sztuki listków, niezależnie od gramatury",
+        "g/L (gramy na litr bazy) — listki mają różną gramaturę (bloom), więc „sztuki” to niepewna jednostka",
+        "Łyżeczkach",
+        "Procentach cukru"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Liczenie w g/L pozwala przenosić recepturę między różnymi markami/typami żelatyny bez zgadywania.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (żelatyna)"
+    },
+    {
+      "id": "ZM-02",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Świeży ananas, kiwi lub papaja w musie żelatynowym — jaki jest problem i jak go rozwiązać?",
+      "opcje": [
+        "Zmieniają kolor musu",
+        "Zawierają enzymy rozkładające żelatynę (żel nie stężeje) — rozwiązanie: sparzyć owoc przed użyciem",
+        "Są za słodkie",
+        "Nie ma problemu — można używać surowe bez ograniczeń"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To klasyczna pułapka cukierni: enzym proteolityczny w tych owocach trawi białko żelatyny.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (żelatyna — pułapki)"
+    },
+    {
+      "id": "ZM-03",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Która pektyna jest TERMOODWRACALNA (można ją stopić i zalać ponownie) i używana w glazurze lustrzanej?",
+      "opcje": [
+        "Pektyna żółta",
+        "Pektyna NH",
+        "Obie jednakowo",
+        "Żadna — pektyny nigdy nie są odwracalne"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Pektyna żółta (pâte de fruit) jest NIEodwracalna po zżelowaniu; NH można stopić i użyć ponownie — stąd jej zastosowanie w glazurach.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (tabela hydrokoloidów)"
+    },
+    {
+      "id": "ZM-04",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Dlaczego mrożenie SZYBKIE i CIENKĄ WARSTWĄ zachowuje lepszą teksturę niż wolne mrożenie grubej masy?",
+      "opcje": [
+        "Szybkie mrożenie jest tańsze",
+        "Wolne mrożenie tworzy duże kryształy lodu, które rozrywają strukturę (synereza po rozmrożeniu); szybkie — małe kryształy, zachowana tekstura",
+        "Nie ma różnicy w teksturze",
+        "Wolne mrożenie niszczy tylko kolor"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To fundament pracy z wyprzedzeniem w cukierni — stąd blast freezer lub cienkie warstwy jako wymóg, nie luksus.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (mrożenie i krzywa rozmrażania)"
+    },
+    {
+      "id": "ZM-05",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Gdzie rozmrażamy komponenty cukiernicze (inserty, biszkopty) i dlaczego NIE w temperaturze pokojowej?",
+      "opcje": [
+        "Na blacie w kuchni — szybciej się rozmrozi",
+        "W chłodni +4°C — równomiernie i w ciągłości łańcucha chłodniczego (CCP4)",
+        "W mikrofalówce na niskiej mocy",
+        "Nie ma znaczenia gdzie"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Rozmrażanie w cieple pokojowym przerywa łańcuch chłodniczy i ryzykuje nierówne rozmrożenie (zewnątrz ciepłe, środek zamrożony).",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (mrożenie i rozmrażanie)"
+    },
+    {
+      "id": "ZM-06",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "wielokrotny",
+      "ccp": false,
+      "pytanie": "Które komponenty ZNOSZĄ mrożenie DOBRZE? (zaznacz wszystkie poprawne)",
+      "opcje": [
+        "Musy, bawarki, crémeux",
+        "Biszkopty i blaty",
+        "Bita śmietana niestabilizowana",
+        "Świeże wodniste owoce"
+      ],
+      "poprawne": [
+        0,
+        1
+      ],
+      "wzorzec": "Bita śmietana niestabilizowana i świeże wodniste owoce znoszą mrożenie ŹLE (oddzielają się/puszczają wodę) — to częsta pułapka planowania.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (tabela mrożenia)"
+    },
+    {
+      "id": "ZM-07",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Glazurę lustrzaną (miroir) leje się na produkt w jakim stanie i w jakiej temperaturze glazury?",
+      "opcje": [
+        "Na produkt w temperaturze pokojowej, glazura ~60°C",
+        "Na ZAMROŻONY entremets, glazura 30–35°C — zimna powierzchnia „wiąże” glazurę w lustro",
+        "Na lekko schłodzony produkt, glazura wrząca",
+        "Temperatura produktu nie ma znaczenia"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "To dlatego monoporcje/entremets pod glazurę muszą być głęboko zamrożone (≥6h, rdzeń −18°C) — inaczej glazura spłynie lub będzie matowa.",
+      "zrodlo": "master-patissier: zelifikacja_tekstura.md (glazura lustrzana)"
+    },
+    {
+      "id": "ZM-08",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "SAMODZIELNY",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Montaż entremets „à l'envers” (od góry formy w dół) — jaka jest typowa kolejność warstw budowana w formie?",
+      "opcje": [
+        "Glazura na dnie formy, potem mus, insert, biszkopt, spód chrupiący na samej górze",
+        "Spód chrupiący na dnie formy, biszkopt, insert, mus, a glazura/wykończenie na zewnątrz dopiero po wyjęciu z formy",
+        "Wszystkie warstwy wlewa się jednocześnie",
+        "Kolejność jest dowolna — liczy się tylko smak"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "„À l'envers” znaczy: to, co będzie na WIERZCHU po odwróceniu (glazura), ląduje w formie jako OSTATNIE — czyli wykańcza się je już po wyjęciu.",
+      "zrodlo": "master-patissier: montaz_shelf_life.md (architektura deseru)"
+    },
+    {
+      "id": "ZM-09",
+      "tom": "Żelifikacja, mrożenie i montaż",
+      "poziom": "JUNIOR",
+      "typ": "jednokrotny",
+      "ccp": false,
+      "pytanie": "Aksamit (flocage/velvet) natryskuje się na produkt w jakim stanie?",
+      "opcje": [
+        "Na ciepły, świeżo upieczony biszkopt",
+        "Na ZAMROŻONY mus (tak jak glazura) — daje matowy, zamszowy efekt",
+        "Na produkt w temperaturze pokojowej",
+        "Wyłącznie na gotowe, rozmrożone ciastka"
+      ],
+      "poprawne": [
+        1
+      ],
+      "wzorzec": "Natrysk czekolada+masło kakaowe (~1:1, ~40–45°C) krzepnie natychmiast na zimnej powierzchni, dając charakterystyczną matową fakturę.",
+      "zrodlo": "master-patissier: montaz_shelf_life.md (wykończenie — aksamit)"
     }
   ],
   "zrodla_rozszerzenia": [
