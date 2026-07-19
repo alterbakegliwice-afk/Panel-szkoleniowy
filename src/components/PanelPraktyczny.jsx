@@ -11,7 +11,7 @@ import Quiz from './Quiz.jsx'
 // nie czeka na zaliczenie quizu). Teksty domeny przychodzą w `etykiety`.
 export default function PanelPraktyczny({
   tytul, opis, pozycje, etykiety: e,
-  uczen, wyniki, nauka, konfig, onWynik, onDoKolejki = () => {}, onPrzerobiony
+  uczen, wyniki, nauka, konfig, onWynik, onDoKolejki = () => {}, onPrzerobiony, onZadajPytanie
 }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [fraza, setFraza] = useState('')
@@ -38,6 +38,7 @@ export default function PanelPraktyczny({
           onPrzerobiony(m.nazwa)
           setWidok({ typ: 'quiz', id: m.id })
         }}
+        onZadajPytanie={onZadajPytanie && ((tresc) => onZadajPytanie(m.nazwa, tresc))}
       />
     )
   }

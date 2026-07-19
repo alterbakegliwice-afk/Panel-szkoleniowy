@@ -11,7 +11,7 @@ import Quiz from './Quiz.jsx'
 // Moduł Przedsiębiorcy — tylko dla właściciela. Każdy moduł: najpierw nauka,
 // potem sprawdzenie wiedzy. Wyniki logują się pod osobnym id (WLASCICIEL),
 // więc nie mieszają się z postępem zespołu.
-export default function EntrepreneurPanel({ stan, onWynik, onPrzerobiony }) {
+export default function EntrepreneurPanel({ stan, onWynik, onPrzerobiony, onZadajPytanie }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const owner = { id_prac: ID_WLASCICIEL, imie: 'Właściciel', poziom_docelowy: 'MENTOR' }
   const postep = postepPrzedsiebiorcy(stan.wyniki, ID_WLASCICIEL, stan.konfig?.PROG_ZALICZENIA ?? 0.8)
@@ -30,6 +30,7 @@ export default function EntrepreneurPanel({ stan, onWynik, onPrzerobiony }) {
           onPrzerobiony(m.tytul)
           setWidok({ typ: 'quiz', id: m.id })
         }}
+        onZadajPytanie={onZadajPytanie && ((tresc) => onZadajPytanie(m.tytul, tresc))}
       />
     )
   }

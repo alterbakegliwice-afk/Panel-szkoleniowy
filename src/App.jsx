@@ -20,10 +20,12 @@ import MojDzien from './components/MojDzien.jsx'
 import Zgloszenia from './components/Zgloszenia.jsx'
 import Technika from './components/Technika.jsx'
 import Sprzatanie from './components/Sprzatanie.jsx'
+import PytaniaMistrza from './components/PytaniaMistrza.jsx'
 import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 import { pytaniaTechniki } from './logic/technika.js'
 import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
+import { noweZapytanie } from './logic/pytaniaMistrza.js'
 
 // Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
 // logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
@@ -96,6 +98,33 @@ export default function App() {
   // Obserwacja Mentora (triangulacja samooceny Work Profile) — append-only.
   const dodajObserwacje = (wpis) =>
     setStan((s) => ({ ...s, obserwacje: [...(s.obserwacje || []), wpis] }))
+
+  // --- Pytania do Mistrza (warstwa teoretyczna) — append-only jak WYNIK ---
+  const dodajPytanie = ({ id_prac, imie, tom, tresc }) =>
+    setStan((s) => ({ ...s, pytania: [...(s.pytania || []), noweZapytanie({ id_prac, imie, tom, tresc })] }))
+
+  const odpowiedzNaPytanie = (id, odpowiedz, dodacDoMaterialu) =>
+    setStan((s) => ({
+      ...s,
+      pytania: (s.pytania || []).map((p) =>
+        p.id === id ? { ...p, status: 'odpowiedziane', odpowiedz, dodacDoMaterialu } : p
+      )
+    }))
+
+  const przelaczFlagePytania = (id) =>
+    setStan((s) => ({
+      ...s,
+      pytania: (s.pytania || []).map((p) =>
+        p.id === id ? { ...p, dodacDoMaterialu: !p.dodacDoMaterialu } : p
+      )
+    }))
+
+  // Punkt wejścia z ekranu nauki (Learning) — tożsamość zależy od sesji;
+  // wspólny dla tomów banku, Techniki/Sprzątania, Przedsiębiorcy i Rozwoju.
+  const zadajPytanie = (tom, tresc) => {
+    if (pracownik) dodajPytanie({ id_prac: pracownik.id_prac, imie: pracownik.imie, tom, tresc })
+    else if (jestWlascicielem) dodajPytanie({ id_prac: ID_WLASCICIEL, imie: 'Właściciel', tom, tresc })
+  }
 
   // Odhaczenie/odznaczenie mikropraktyki rozwojowej (samoocena, toggle).
   const przelaczPraktyke = (klucz) =>
@@ -180,6 +209,7 @@ export default function App() {
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
+    zakladki.push({ id: 'pytania', etykieta: 'Pytania' })
     zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
@@ -190,6 +220,8 @@ export default function App() {
     })
   }
   if (jestWlascicielem) {
+    const nowychPytan = (stan.pytania || []).filter((p) => p.status === 'nowe').length
+    zakladki.push({ id: 'pytania', etykieta: `Pytania do Mistrza${nowychPytan ? ` (${nowychPytan})` : ''}` })
     zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowychZgloszen ? ` (${nowychZgloszen})` : ''}` })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
@@ -227,6 +259,24 @@ export default function App() {
       {ekran.widok === 'zgloszenia' && jestWlascicielem && (
         <Zgloszenia tryb="zarzad" onAktualizacja={odswiezZgloszenia} />
       )}
+      {ekran.widok === 'pytania' && pracownik && (
+        <PytaniaMistrza
+          tryb="pracownik"
+          pracownik={pracownik}
+          pytania={stan.pytania || []}
+          pytaniaBank={pytania}
+          onDodaj={dodajPytanie}
+        />
+      )}
+      {ekran.widok === 'pytania' && jestWlascicielem && (
+        <PytaniaMistrza
+          tryb="zarzad"
+          pytania={stan.pytania || []}
+          pytaniaBank={pytania}
+          onOdpowiedz={odpowiedzNaPytanie}
+          onPrzelaczFlage={przelaczFlagePytania}
+        />
+      )}
       {ekran.widok === 'profil' && pracownik && (
         <EmployeeDashboard
           pracownik={pracownik}
@@ -251,6 +301,7 @@ export default function App() {
           onDodajProfil={dodajProfil}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(pracownik.id_prac, obszar)}
           onPraktyka={przelaczPraktyke}
+          onZadajPytanie={zadajPytanie}
         />
       )}
       {ekran.widok === 'nauka' && pracownik && (
@@ -263,6 +314,7 @@ export default function App() {
             oznaczPrzerobiony(pracownik.id_prac, ekran.tom)
             setEkran({ widok: 'quiz', tom: ekran.tom })
           }}
+          onZadajPytanie={(tresc) => zadajPytanie(ekran.tom, tresc)}
         />
       )}
       {ekran.widok === 'quiz' && pracownik && (
@@ -291,6 +343,7 @@ export default function App() {
               onWynik={dodajWynik}
               onDoKolejki={dodajDoKolejki}
               onPrzerobiony={(obszar) => oznaczPrzerobiony(uczen.id_prac, obszar)}
+              onZadajPytanie={zadajPytanie}
             />
           )
         })()}
@@ -312,6 +365,7 @@ export default function App() {
           stan={stan}
           onWynik={dodajWynik}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(ID_WLASCICIEL, obszar)}
+          onZadajPytanie={zadajPytanie}
         />
       )}
       {ekran.widok === 'zespol' && (jestMentorem || jestWlascicielem) && (

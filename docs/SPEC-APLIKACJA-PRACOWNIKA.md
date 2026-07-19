@@ -173,6 +173,31 @@ zbudowana analogicznie do Panelu Technicznego i na tym samym silniku:
   i wydajna" (postęp per pracownik × strefa), obok tabeli Techniki
   (wspólny komponent `TabelaPraktyczna`).
 
+## 4c. Pytania do Mistrza (rozszerzenie 2026-07-14) — warstwa TEORETYCZNA
+
+Cel: przygotować pracownika do pracy **teoretycznie** — pełny Panel do
+pogłębiania wiedzy, w tym możliwość zadania pytania przy dowolnym materiale.
+Świadomie **bez** warstwy praktycznej (weryfikacja na stanowisku, ocena
+wykonania) — to zakres przyszły.
+
+- `src/logic/pytaniaMistrza.js` — `noweZapytanie()`/`filtrujPytania()`
+  (log append-only w `stan.pytania`, ten sam localStorage co WYNIK/NAUKA/
+  KOLEJKA — sprawa wewnętrzna Panelu, nie kontrakt originu jak zgłoszenia).
+  Kształt wpisu: `{id, id_prac, imie, tom, tresc, data, status: 'nowe'|
+  'odpowiedziane', odpowiedz, dodacDoMaterialu}`. `tom: ''` = pytanie ogólne.
+- `Learning.jsx` (uniwersalny ekran nauki — tomy banku, Technika, Sprzątanie,
+  moduł Przedsiębiorcy, Rozwój) ma opcjonalny prop `onZadajPytanie(tresc)`:
+  mini-formularz pod materiałem, rodzic już wie kim jest uczący się i jaki
+  to tom. Pytanie dostępne też przy materiale „w przygotowaniu".
+- `PytaniaMistrza.jsx` — nowa zakładka „Pytania” (pracownik: formularz +
+  własne pytania z odpowiedziami) / „Pytania do Mistrza” (tylko Właściciel,
+  jak w Zgłoszeniach — Mentor nie ma skrzynki): filtr nowe/odpowiedziane,
+  odpowiedź + checkbox „📌 do rozszerzenia materiału”.
+- **Znacznik `dodacDoMaterialu` to tylko flaga kandydata** — samo dopisanie
+  nowej karty do `materialy_nauka.json` danego tomu jest krokiem **ręcznym**
+  (albo przez pipeline `tools/notebooklm/`, gdy będzie źródło do wgrania).
+  To jest właśnie „praktyka”, którą świadomie odłożono na później.
+
 ## 5. Poza zakresem (świadomie)
 
 - Synchronizacja między urządzeniami (dane żyją per przeglądarka; transfer = kopia JSON).

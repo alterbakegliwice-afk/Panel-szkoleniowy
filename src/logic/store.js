@@ -4,6 +4,7 @@
 import seedWbudowany from '../data/bank_pytan_seed.json'
 import { filtrujProfile } from './rozwoj.js'
 import { zapiszLustroZespolu } from './integracja.js'
+import { filtrujPytania } from './pytaniaMistrza.js'
 
 const KLUCZ = 'alterbake-platforma-v1'
 
@@ -46,6 +47,7 @@ export function domyslnyStan() {
     profile: [], // log wyników testów Work Profile: rekordy z logic/rozwoj.js (append-only, jak wyniki)
     praktyki: [], // odhaczone mikropraktyki rozwojowe: lista kluczy „id_prac|obszar|idx”
     obserwacje: [], // obserwacje Mentora do triangulacji samooceny Work Profile (append-only)
+    pytania: [], // pytania pracowników do Mistrza — warstwa teoretyczna (logic/pytaniaMistrza.js)
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -60,6 +62,7 @@ export function wczytajStan() {
     stan.profile = filtrujProfile(stan.profile)
     if (!Array.isArray(stan.praktyki)) stan.praktyki = []
     if (!Array.isArray(stan.obserwacje)) stan.obserwacje = []
+    stan.pytania = filtrujPytania(stan.pytania)
     return stan
   } catch {
     return domyslnyStan()
@@ -151,7 +154,8 @@ export function teraz() {
 // --- KOPIA ZAPASOWA (pełny stan) ---
 // Log wyników to „wartość projektu" (schema) i żyje tylko w localStorage jednej
 // przeglądarki. Backup ratuje historię przed czyszczeniem cache / zmianą urządzenia.
-// 2026-07-14: schemat urósł o logi Work Profile — profile, praktyki, obserwacje.
+// 2026-07-14: schemat urósł o logi Work Profile (profile, praktyki, obserwacje)
+// i o pytania do Mistrza (warstwa teoretyczna, logic/pytaniaMistrza.js).
 // Starsze kopie (bez tych pól) wczytują się poprawnie: kopieDoStanu traktuje je
 // jako opcjonalne (brak → []). Wersja jest informacyjna, nie blokuje importu.
 const WERSJA_KOPII = '2026-07-14'
@@ -169,6 +173,7 @@ export function eksportKopii(stan) {
     profile: stan.profile || [],
     praktyki: Array.isArray(stan.praktyki) ? stan.praktyki : [],
     obserwacje: Array.isArray(stan.obserwacje) ? stan.obserwacje : [],
+    pytania: filtrujPytania(stan.pytania),
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -204,6 +209,7 @@ export function kopieDoStanu(obiekt) {
     obserwacje: Array.isArray(obiekt.obserwacje)
       ? obiekt.obserwacje.filter((o) => o && typeof o === 'object' && o.id_prac && o.obszar)
       : [],
+    pytania: filtrujPytania(obiekt.pytania),
     bank: obiekt.bank || null
   }
 }
