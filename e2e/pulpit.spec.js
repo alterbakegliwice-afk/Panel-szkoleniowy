@@ -60,6 +60,32 @@ test('alert-kropka na „Mój poziom" widoczna z landing page (Mój dzień)', as
   await expect(page.getByRole('button', { name: /Mój poziom/ }).locator('.alert-kropka')).toBeVisible()
 })
 
+test('landing „Mój dzień": pasek statusu pokazuje CCP i prowadzi do pulpitu', async ({ page }) => {
+  await page.goto('/') // świeży stan → blokada CCP
+  await page.locator('.profil-kafel').first().click() // ląduje na „Mój dzień"
+
+  const pasek = page.locator('.skrot-statusu')
+  await expect(pasek).toBeVisible()
+  await expect(pasek).toHaveClass(/skrot-pilny/)
+  await expect(pasek.locator('.chip-status', { hasText: 'CCP — blokada' })).toBeVisible()
+
+  // jeden klik z landing → pulpit z hero „Co teraz?"
+  await pasek.getByRole('button', { name: /Zalicz punkty krytyczne/ }).click()
+  await expect(page.locator('.co-teraz')).toBeVisible()
+})
+
+test('Zespół: Właściciel widzi mapę wiedzy pracownika', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+
+  await expect(page.getByRole('heading', { name: /Mapy wiedzy zespołu/ })).toBeVisible()
+  await page.getByText(/Weronika — mapa wiedzy/).click() // rozwiń details
+  await expect(page.locator('.mapa-wiedzy').first()).toBeVisible()
+  // mapa statyczna — węzły bez semantyki przycisku
+  await expect(page.locator('.mapa-wezel-statyczny').first()).toBeVisible()
+})
+
 test('nawigacja: moduły okazjonalne za separatorem', async ({ page }) => {
   await page.goto('/')
   await page.locator('.profil-kafel').first().click()

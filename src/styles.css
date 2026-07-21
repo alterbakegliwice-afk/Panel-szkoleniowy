@@ -522,7 +522,8 @@ details summary:hover { color: var(--akcent-ciemny); }
 .mapa-wiedzy { display: block; width: 100%; height: auto; }
 .mapa-nic { fill: none; stroke: var(--linia-mocna); stroke-width: 1.5; opacity: .55; }
 .mapa-wezel { cursor: pointer; }
-.mapa-wezel:hover .mapa-kolo, .mapa-wezel:focus-visible .mapa-kolo { filter: brightness(1.06); stroke: var(--akcent); stroke-width: 2; }
+.mapa-wezel-statyczny { cursor: default; }
+.mapa-wezel:not(.mapa-wezel-statyczny):hover .mapa-kolo, .mapa-wezel:focus-visible .mapa-kolo { filter: brightness(1.06); stroke: var(--akcent); stroke-width: 2; }
 .mapa-wezel:focus-visible { outline: none; }
 .mapa-kolo { stroke: #fff; stroke-width: 1.5; }
 .mapa-ok { fill: var(--ok-tlo); }
@@ -543,6 +544,11 @@ details summary:hover { color: var(--akcent-ciemny); }
 .legenda-kropka.info { background: var(--cichy); }
 /* na wąskich ekranach mapa robi się nieczytelna — karty niżej niosą tę samą treść */
 @media (max-width: 640px) { .tylko-desktop { display: none; } }
+
+/* pasek statusu na landing „Mój dzień" */
+.skrot-statusu { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: .8rem 1.1rem; }
+.skrot-statusu .status-chipy { margin: 0; padding: 0; border: none; }
+.skrot-pilny { border-left: 6px solid var(--brak); background: linear-gradient(180deg, #fff, var(--brak-tlo)); }
 
 /* nawigacja: separator grupy okazjonalnej + kropka-alert */
 .zakladki-separator { width: 1px; align-self: stretch; margin: .3rem .35rem; background: var(--linia-mocna); }

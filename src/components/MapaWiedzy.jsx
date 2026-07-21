@@ -51,15 +51,22 @@ function Wezel({ n, onAkcja }) {
   const obwod = 2 * Math.PI * (r + 5)
   const p = typeof n.procent === 'number' ? Math.max(0, Math.min(1, n.procent)) : null
   const kolor = KOLORY[n.stan] || KOLORY.info
+  // bez onAkcja mapa jest statycznym przeglądem (np. widok Zespołu u Właściciela)
+  const klikalna = typeof onAkcja === 'function'
+  const interakcje = klikalna
+    ? {
+        role: 'button',
+        tabIndex: 0,
+        onClick: () => onAkcja(n.akcja),
+        onKeyDown: (e) => (e.key === 'Enter' || e.key === ' ') && onAkcja(n.akcja)
+      }
+    : {}
   return (
     <g
-      className="mapa-wezel"
+      className={'mapa-wezel' + (klikalna ? '' : ' mapa-wezel-statyczny')}
       transform={`translate(${n.x} ${n.y})`}
-      role="button"
-      tabIndex={0}
       aria-label={`${n.pelna || n.etykieta}${p !== null ? ` — ${Math.round(p * 100)}%` : ''}`}
-      onClick={() => onAkcja(n.akcja)}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onAkcja(n.akcja)}
+      {...interakcje}
     >
       <title>{n.pelna || n.etykieta}</title>
       {/* pierścień postępu */}

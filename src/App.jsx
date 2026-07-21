@@ -17,6 +17,7 @@ import Learning from './components/Learning.jsx'
 import EntrepreneurPanel from './components/EntrepreneurPanel.jsx'
 import Rozwoj from './components/Rozwoj.jsx'
 import MojDzien from './components/MojDzien.jsx'
+import SkrotStatusu from './components/SkrotStatusu.jsx'
 import Zgloszenia from './components/Zgloszenia.jsx'
 import Technika from './components/Technika.jsx'
 import Sprzatanie from './components/Sprzatanie.jsx'
@@ -250,7 +251,19 @@ export default function App() {
         </div>
       }
     >
-      {ekran.widok === 'dzien' && pracownik && <MojDzien pracownik={pracownik} />}
+      {ekran.widok === 'dzien' && pracownik && (
+        <>
+          {/* kluczowe sygnały (CCP, powtórki) widoczne już z landing page */}
+          <SkrotStatusu
+            pracownik={pracownik}
+            pytania={pytania}
+            wyniki={stan.wyniki}
+            konfig={{ ...stan.konfig, PROG_CCP: 1 }}
+            onPokazPoziom={() => setEkran({ widok: 'profil' })}
+          />
+          <MojDzien pracownik={pracownik} />
+        </>
+      )}
       {ekran.widok === 'zgloszenia' && pracownik && (
         <Zgloszenia tryb="pracownik" pracownik={pracownik} onAktualizacja={odswiezZgloszenia} />
       )}
