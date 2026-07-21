@@ -38,7 +38,7 @@ function Formularz({ pracownik, tematy, pytania, onDodaj }) {
     if (!tresc.trim()) return
     onDodaj({ id_prac: pracownik.id_prac, imie: pracownik.imie, tom: temat, tresc })
     setTresc('')
-    setInfo('Pytanie zapisane — Właściciel/Mentor odpowie, zobaczysz odpowiedź poniżej.')
+    setInfo('Pytanie zapisane — Właściciel odpowie, zobaczysz odpowiedź poniżej.')
   }
 
   return (

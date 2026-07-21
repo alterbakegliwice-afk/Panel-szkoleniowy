@@ -24,7 +24,7 @@ test('Pytanie zadane przy materiale trafia do skrzynki Właściciela z odpowiedz
   // Właściciel: skrzynka, odpowiedź + oznaczenie do rozszerzenia materiału
   await page.getByRole('button', { name: 'Zmień profil' }).click()
   await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
-  await page.getByRole('button', { name: /Pytania do Mistrza/ }).click()
+  await page.getByRole('button', { name: /^Pytania/ }).click()
   await expect(page.getByText('Co jeśli zakwas w ogóle nie pachnie?')).toBeVisible()
   await page.getByPlaceholder('Odpowiedź dla pracownika').fill('To normalne na starcie — dokarm częściej.')
   await page.getByRole('checkbox', { name: /do rozszerzenia materiału/ }).check()

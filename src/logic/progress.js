@@ -168,7 +168,9 @@ export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null) {
       })
     }
   }
-  return due.sort((a, b) => (b.ccp - a.ccp) || (a.ostatniaData < b.ostatniaData ? -1 : 1))
+  return due.sort(
+    (a, b) => (b.ccp - a.ccp) || (a.ostatniaData < b.ostatniaData ? -1 : a.ostatniaData > b.ostatniaData ? 1 : 0)
+  )
 }
 
 // Podsumowanie do dashboardu: ile pozycji do powtórki, w tym ile CCP.

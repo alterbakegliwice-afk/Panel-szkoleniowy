@@ -221,7 +221,7 @@ export default function App() {
   }
   if (jestWlascicielem) {
     const nowychPytan = (stan.pytania || []).filter((p) => p.status === 'nowe').length
-    zakladki.push({ id: 'pytania', etykieta: `Pytania do Mistrza${nowychPytan ? ` (${nowychPytan})` : ''}` })
+    zakladki.push({ id: 'pytania', etykieta: `Pytania${nowychPytan ? ` (${nowychPytan})` : ''}` })
     zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowychZgloszen ? ` (${nowychZgloszen})` : ''}` })
     zakladki.push({ id: 'technika', etykieta: 'Technika' })
     zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
@@ -351,7 +351,7 @@ export default function App() {
         <Quiz
           pracownik={pracownik}
           tytul="Powtórka (utrwalenie)"
-          zestawPytan={ekran.idPytan.map((id) => pytania.find((p) => p.id === id)).filter(Boolean)}
+          zestawPytan={ekran.idPytan.map((id) => pytaniaOpisowe.find((p) => p.id === id)).filter(Boolean)}
           pytania={pytania}
           wyniki={stan.wyniki}
           kolejka={stan.kolejka}

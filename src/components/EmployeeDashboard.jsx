@@ -9,7 +9,8 @@ export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, 
   // historia opisuje wpisy pełnym zbiorem pytań (bank + Technika/Sprzątanie),
   // żeby quizy paneli praktycznych nie renderowały się jako „spoza banku"
   const historia = historiaPracownika(wyniki, pytaniaOpisowe || pytania, pracownik.id_prac)
-  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac)
+  // pytaniaOpisowe też tu: inaczej CCP4/CCP1 z Techniki nigdy nie „dojrzeją" do powtórki
+  const powtorki = podsumowaniePowtorek(pytaniaOpisowe || pytania, wyniki, pracownik.id_prac)
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
   const wKolejce = (tom) =>

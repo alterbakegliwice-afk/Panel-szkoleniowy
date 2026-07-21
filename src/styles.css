@@ -496,7 +496,7 @@ details summary:hover { color: var(--akcent-ciemny); }
 
 /* druk: sama treść (karta maszyny / plan rozwoju), bez nawigacji i przycisków */
 @media print {
-  .naglowek, .stopka, .bez-druku, .diag-szukaj, .no-print, button { display: none !important; }
+  .naglowek, .stopka, .bez-druku, .diag-szukaj, button { display: none !important; }
   .karta, .diag-karta { break-inside: avoid; box-shadow: none; }
   .tresc, .aplikacja { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .plan-arkusz { border: none; padding: 0; max-width: none; }

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { eksportPanelM5 } from '../logic/export.js'
+import { pytaniaTechniki } from '../logic/technika.js'
+import { pytaniaSprzatania } from '../logic/sprzatanie.js'
 import { MODULY_PLANERA } from '../logic/integracja.js'
 import {
   ROLE,
@@ -26,7 +28,8 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
   }
 
   const eksportuj = () => {
-    const dane = eksportPanelM5(bank.pytania, stan.wyniki, stan.pracownicy, konfig, teraz())
+    const pytaniaOpisowe = [...bank.pytania, ...pytaniaTechniki(), ...pytaniaSprzatania()]
+    const dane = eksportPanelM5(bank.pytania, stan.wyniki, stan.pracownicy, konfig, teraz(), pytaniaOpisowe)
     pobierz(dane, `alterbake_eksport_panel_M5_${teraz().slice(0, 10)}.json`)
   }
 

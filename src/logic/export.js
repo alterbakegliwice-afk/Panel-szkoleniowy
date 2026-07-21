@@ -9,13 +9,14 @@ function zaokr(x) {
   return Math.round(x * 10000) / 10000
 }
 
-export function eksportPanelM5(pytania, wyniki, pracownicy, konfig, wygenerowano) {
+export function eksportPanelM5(pytania, wyniki, pracownicy, konfig, wygenerowano, pytaniaOpisowe = pytania) {
   return {
     wersja: WERSJA_FORMATU,
     wygenerowano,
     pracownicy: pracownicy.map((prac) => {
       const prof = profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
-      const pow = podsumowaniePowtorek(pytania, wyniki, prac.id_prac)
+      // pytaniaOpisowe: inaczej CCP4/CCP1 z Techniki nigdy nie „dojrzeją" do powtórki
+      const pow = podsumowaniePowtorek(pytaniaOpisowe, wyniki, prac.id_prac)
       return {
         id_prac: prac.id_prac,
         imie: prac.imie,

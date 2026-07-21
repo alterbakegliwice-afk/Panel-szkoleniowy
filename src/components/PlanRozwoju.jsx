@@ -32,7 +32,7 @@ export default function PlanRozwoju({ pracownik, profile, nauka, praktyki, obser
 
   return (
     <div className="plan-rozwoju">
-      <div className="plan-akcje no-print">
+      <div className="plan-akcje bez-druku">
         <button className="cichy-link" onClick={onWroc}>← Wróć</button>
         <button className="glowny" onClick={() => window.print()}>🖨 Drukuj / Zapisz PDF</button>
       </div>

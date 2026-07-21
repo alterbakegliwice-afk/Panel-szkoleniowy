@@ -16,7 +16,8 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
   const wiersze = pracownicy.map((prac) => ({
     prac,
     prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy),
-    powtorki: podsumowaniePowtorek(pytania, wyniki, prac.id_prac)
+    // pytaniaOpisowe też tu: inaczej CCP4/CCP1 z Techniki nigdy nie „dojrzeją" do powtórki
+    powtorki: podsumowaniePowtorek(pytaniaOpisowe || pytania, wyniki, prac.id_prac)
   }))
   // Zaległe powtórki CCP w całym zespole = sygnał bezpieczeństwa żywności dla właściciela.
   const zalegleCcp = wiersze.reduce((s, w) => s + w.powtorki.ccp, 0)
