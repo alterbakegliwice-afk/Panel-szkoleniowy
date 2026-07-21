@@ -245,6 +245,9 @@ export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY') {
   if (ccpBrak.length) {
     return {
       typ: 'CCP',
+      // `tom` = konkretny cel akcji (pierwszy tom z brakiem) — pulpit robi z tego
+      // przycisk „zrób teraz", zamiast zostawiać użytkownika z samym tekstem.
+      tom: ccpBrak[0].tom,
       tekst:
         'Zalicz pytania CCP (bezpieczeństwo żywności) w: ' +
         ccpBrak.map((t) => t.tom).join(', ') +
@@ -262,6 +265,7 @@ export function nastepnyKrok(tomy, konfig, poziomDocelowy = 'SAMODZIELNY') {
       const pp = tomBrak.poziomy.find((x) => x.poziom === poz)
       return {
         typ: 'TOM',
+        tom: tomBrak.tom,
         tekst:
           `Podciągnij poziom ${poz} w tomie „${tomBrak.tom}" — masz ` +
           `${Math.round((pp.procent || 0) * 100)}%, próg to ${Math.round(prog * 100)}%.`

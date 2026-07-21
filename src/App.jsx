@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import {
   wczytajStan,
   zapiszStan,
@@ -24,6 +24,7 @@ import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 import { pytaniaTechniki } from './logic/technika.js'
 import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
+import { profilPracownika, podsumowaniePowtorek } from './logic/progress.js'
 
 // Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
 // logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
@@ -81,6 +82,19 @@ export default function App() {
   const jestMentorem = pracownik?.rola === 'Mentor'
   const jestWlascicielem = sesja?.rodzaj === 'wlasciciel'
   const oceniajacy = jestWlascicielem ? 'Piotr (Właściciel)' : pracownik?.imie
+
+  // Kropka-alert na „Mój poziom": blokada CCP lub zaległe powtórki muszą być
+  // widoczne z KAŻDEJ zakładki (landing to „Mój dzień"). Hook MUSI stać przed
+  // wczesnym returnem ekranu wyboru profilu (stała kolejność hooków).
+  const alertPoziomu = useMemo(() => {
+    if (!pracownik) return false
+    const prof = profilPracownika(
+      pytania, stan.wyniki, pracownik.id_prac,
+      { ...stan.konfig, PROG_CCP: 1 }, pracownik.poziom_docelowy
+    )
+    if (!prof.ccpOk) return true
+    return podsumowaniePowtorek(pytania, stan.wyniki, pracownik.id_prac).liczba > 0
+  }, [pracownik, pytania, stan.wyniki, stan.konfig])
 
   // --- akcje (WYNIK: wyłącznie dopisywanie — log append-only) ---
   const dodajWynik = (wpis) =>
@@ -173,14 +187,13 @@ export default function App() {
     )
   }
 
+  // Zakładki wg częstości użycia: codzienne/częste najpierw, okazjonalne za
+  // separatorem (grupa 'dalej') — mniej bodźców o równej wadze, szybszy skan.
   const zakladki = []
   if (pracownik) {
     zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
-    zakladki.push({ id: 'profil', etykieta: 'Mój poziom' })
+    zakladki.push({ id: 'profil', etykieta: 'Mój poziom', alert: alertPoziomu })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
-    zakladki.push({ id: 'technika', etykieta: 'Technika' })
-    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
-    zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia' })
   }
   if (jestMentorem || jestWlascicielem) {
     zakladki.push({ id: 'zespol', etykieta: 'Zespół' })
@@ -191,10 +204,18 @@ export default function App() {
   }
   if (jestWlascicielem) {
     zakladki.push({ id: 'zgloszenia', etykieta: `Zgłoszenia${nowychZgloszen ? ` (${nowychZgloszen})` : ''}` })
-    zakladki.push({ id: 'technika', etykieta: 'Technika' })
-    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie' })
-    zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy' })
-    zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport' })
+  }
+  // — okazjonalne —
+  if (pracownik) {
+    zakladki.push({ id: 'technika', etykieta: 'Technika', grupa: 'dalej' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie', grupa: 'dalej' })
+    zakladki.push({ id: 'zgloszenia', etykieta: 'Zgłoszenia', grupa: 'dalej' })
+  }
+  if (jestWlascicielem) {
+    zakladki.push({ id: 'technika', etykieta: 'Technika', grupa: 'dalej' })
+    zakladki.push({ id: 'sprzatanie', etykieta: 'Sprzątanie', grupa: 'dalej' })
+    zakladki.push({ id: 'przedsiebiorca', etykieta: 'Moduł Przedsiębiorcy', grupa: 'dalej' })
+    zakladki.push({ id: 'konfiguracja', etykieta: 'Konfiguracja i eksport', grupa: 'dalej' })
   }
 
   return (
@@ -206,14 +227,23 @@ export default function App() {
             <span className="pasek-rola">{jestWlascicielem ? 'pełny dostęp' : pracownik?.rola}</span>
           </div>
           <nav className="zakladki">
-            {zakladki.map((z) => (
-              <button
-                key={z.id}
-                className={ekran.widok === z.id ? 'zakladka aktywna' : 'zakladka'}
-                onClick={() => setEkran({ widok: z.id })}
-              >
-                {z.etykieta}
-              </button>
+            {zakladki.map((z, i) => (
+              <Fragment key={z.id}>
+                {z.grupa === 'dalej' && zakladki[i - 1]?.grupa !== 'dalej' && (
+                  <span className="zakladki-separator" aria-hidden="true" />
+                )}
+                <button
+                  className={
+                    'zakladka' +
+                    (ekran.widok === z.id ? ' aktywna' : '') +
+                    (z.grupa === 'dalej' ? ' zakladka-dalej' : '')
+                  }
+                  onClick={() => setEkran({ widok: z.id })}
+                >
+                  {z.etykieta}
+                  {z.alert && <span className="alert-kropka" aria-label="wymaga uwagi" />}
+                </button>
+              </Fragment>
             ))}
           </nav>
           <button className="drugi" onClick={wyloguj}>Zmień profil</button>
@@ -236,9 +266,11 @@ export default function App() {
           nauka={stan.nauka}
           konfig={{ ...stan.konfig, PROG_CCP: 1 }}
           pytaniaOpisowe={pytaniaOpisowe}
+          profile={stan.profile || []}
           onStartQuizu={(tom) => setEkran({ widok: 'quiz', tom })}
           onUczSie={(tom) => setEkran({ widok: 'nauka', tom })}
           onPowtorka={(idPytan) => setEkran({ widok: 'powtorka', idPytan })}
+          onNav={(cel) => setEkran({ widok: cel })}
         />
       )}
       {ekran.widok === 'rozwoj' && pracownik && (
