@@ -6,7 +6,7 @@ import {
   postepTomu,
   profilPracownika
 } from './progress.js'
-import { historiaPracownika, pozycjeDoPowtorki, podsumowaniePowtorek, INTERWALY_POWTOREK_DNI } from './progress.js'
+import { historiaPracownika, pozycjeDoPowtorki, podsumowaniePowtorek, INTERWALY_POWTOREK_DNI, TEMPA_POWTOREK, interwalyPowtorek } from './progress.js'
 import { eksportPanelM5 } from './export.js'
 import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
@@ -347,5 +347,44 @@ describe('spaced retrieval — rozłożone powtórki wiedzy', () => {
     expect(pod.liczba).toBe(2)
     expect(pod.ccp).toBe(1)
     expect(INTERWALY_POWTOREK_DNI[0]).toBe(7)
+  })
+
+  describe('tempo powtórek (TEMPO_POWTOREK w konfigu)', () => {
+    it('interwalyPowtorek: brak konfigu / nieznane tempo → standard', () => {
+      expect(interwalyPowtorek(undefined)).toEqual(INTERWALY_POWTOREK_DNI)
+      expect(interwalyPowtorek({})).toEqual(INTERWALY_POWTOREK_DNI)
+      expect(interwalyPowtorek({ TEMPO_POWTOREK: 'nie-ma-takiego' })).toEqual(INTERWALY_POWTOREK_DNI)
+      expect(interwalyPowtorek({ TEMPO_POWTOREK: 'intensywne' })).toEqual(TEMPA_POWTOREK.intensywne.dni)
+      expect(interwalyPowtorek({ TEMPO_POWTOREK: 'spokojne' })).toEqual(TEMPA_POWTOREK.spokojne.dni)
+    })
+
+    it('każde tempo zachowuje rozszerzające odstępy (rosnący harmonogram)', () => {
+      for (const t of Object.values(TEMPA_POWTOREK)) {
+        for (let i = 1; i < t.dni.length; i++) expect(t.dni[i]).toBeGreaterThan(t.dni[i - 1])
+      }
+    })
+
+    it('tempo intensywne wywołuje powtórkę wcześniej niż standard', () => {
+      const wyniki = [w('A1', '2026-06-26T00:00:00.000Z', true)] // 5 dni temu
+      // standard: interwał 7 → jeszcze nie
+      expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ)).toEqual([])
+      // intensywne: interwał 4 → już tak
+      const due = pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ, interwalyPowtorek({ TEMPO_POWTOREK: 'intensywne' }))
+      expect(due.map((d) => d.id)).toEqual(['A1'])
+    })
+
+    it('tempo spokojne odracza powtórkę względem standardu', () => {
+      const wyniki = [w('A1', '2026-06-20T00:00:00.000Z', true)] // 11 dni temu
+      // standard: 11 > 7 → do powtórki
+      expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ).map((d) => d.id)).toEqual(['A1'])
+      // spokojne: interwał 14 → jeszcze nie
+      expect(pozycjeDoPowtorki(pytania, wyniki, 'P-01', TERAZ, TEMPA_POWTOREK.spokojne.dni)).toEqual([])
+    })
+
+    it('podsumowaniePowtorek respektuje przekazane interwały', () => {
+      const wyniki = [w('A1', '2026-06-26T00:00:00.000Z', true)] // 5 dni temu
+      expect(podsumowaniePowtorek(pytania, wyniki, 'P-01', TERAZ).liczba).toBe(0)
+      expect(podsumowaniePowtorek(pytania, wyniki, 'P-01', TERAZ, TEMPA_POWTOREK.intensywne.dni).liczba).toBe(1)
+    })
   })
 })

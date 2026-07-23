@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { profilPracownika, historiaPracownika, podsumowaniePowtorek } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika, podsumowaniePowtorek, interwalyPowtorek } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import { budujMapeWiedzy } from '../logic/mapaWiedzy.js'
 import MapaWiedzy from './MapaWiedzy.jsx'
@@ -18,7 +18,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
   const wiersze = pracownicy.map((prac) => ({
     prac,
     prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy),
-    powtorki: podsumowaniePowtorek(pytania, wyniki, prac.id_prac)
+    powtorki: podsumowaniePowtorek(pytania, wyniki, prac.id_prac, null, interwalyPowtorek(konfig))
   }))
   // Zaległe powtórki CCP w całym zespole = sygnał bezpieczeństwa żywności dla właściciela.
   const zalegleCcp = wiersze.reduce((s, w) => s + w.powtorki.ccp, 0)

@@ -86,6 +86,25 @@ test('Zespół: Właściciel widzi mapę wiedzy pracownika', async ({ page }) =>
   await expect(page.locator('.mapa-wezel-statyczny').first()).toBeVisible()
 })
 
+test.describe('mobile: mapa wiedzy jako lista', () => {
+  test.use({ viewport: { width: 390, height: 844 } })
+
+  test('SVG schowany, lista widoczna, dotknięcie wiersza nawiguje', async ({ page }) => {
+    await page.goto('/')
+    await wejdzNaPoziom(page)
+
+    // wariant SVG ukryty na wąskim ekranie, lista go zastępuje (te same węzły)
+    await expect(page.locator('.mapa-karta.tylko-desktop')).toBeHidden()
+    const lista = page.locator('.mapa-lista-karta')
+    await expect(lista).toBeVisible()
+    await expect(lista.locator('.mapa-lista-wiersz').first()).toBeVisible()
+
+    // dotknięcie wiersza = ta sama akcja co klik w węzeł SVG
+    await lista.locator('.mapa-lista-wiersz', { hasText: 'Technika — park maszynowy' }).click()
+    await expect(page.getByRole('heading', { name: /Panel Techniczny/ })).toBeVisible()
+  })
+})
+
 test('nawigacja: moduły okazjonalne za separatorem', async ({ page }) => {
   await page.goto('/')
   await page.locator('.profil-kafel').first().click()

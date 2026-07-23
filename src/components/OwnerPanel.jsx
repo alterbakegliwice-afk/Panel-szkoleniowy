@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { eksportPanelM5 } from '../logic/export.js'
+import { TEMPA_POWTOREK } from '../logic/progress.js'
 import { MODULY_PLANERA } from '../logic/integracja.js'
 import {
   ROLE,
@@ -120,6 +121,7 @@ function KopiaZapasowa({ stan, pobierz, onKopia }) {
 
 function Progi({ konfig, onKonfig }) {
   const [prog, setProg] = useState(Math.round((konfig.PROG_ZALICZENIA ?? 0.8) * 100))
+  const tempo = TEMPA_POWTOREK[konfig.TEMPO_POWTOREK] ? konfig.TEMPO_POWTOREK : 'standard'
   return (
     <div className="karta">
       <h2>Progi zaliczenia</h2>
@@ -130,12 +132,29 @@ function Progi({ konfig, onKonfig }) {
           onChange={(e) => {
             const v = Number(e.target.value)
             setProg(v)
-            onKonfig({ PROG_ZALICZENIA: v / 100 })
+            // zapiszKonfig zastępuje cały obiekt — bez ...konfig zapis progu
+            // kasowałby PIN i tempo powtórek
+            onKonfig({ ...konfig, PROG_ZALICZENIA: v / 100 })
           }}
         />
       </label>
+      <label className="pole-etykieta">
+        Tempo powtórek (spaced retrieval)
+        <select
+          className="pole"
+          value={tempo}
+          onChange={(e) => onKonfig({ ...konfig, TEMPO_POWTOREK: e.target.value })}
+        >
+          {Object.entries(TEMPA_POWTOREK).map(([klucz, t]) => (
+            <option key={klucz} value={klucz}>
+              {t.nazwa} ({t.dni.join('/')} dni) — {t.opis}
+            </option>
+          ))}
+        </select>
+      </label>
       <p className="cichy mini">
         Próg CCP = 100% i jest zablokowany — bezpieczeństwo żywności nie podlega negocjacji.
+        Tempo powtórek zmienia skalę harmonogramu; kolejność (rozszerzające odstępy) zostaje.
       </p>
     </div>
   )
@@ -147,7 +166,7 @@ function PinWlasciciela({ konfig, onKonfig }) {
 
   const zapisz = () => {
     if (pin && pin.length < 4) return
-    onKonfig({ PIN_WLASCICIELA: pin })
+    onKonfig({ ...konfig, PIN_WLASCICIELA: pin })
     setPin('')
   }
 
@@ -176,7 +195,7 @@ function PinWlasciciela({ konfig, onKonfig }) {
         {ustawiony && (
           <button className="drugi" onClick={() => {
             if (confirm('Zdjąć PIN Właściciela? Wejście właścicielskie będzie bez hasła.')) {
-              onKonfig({ PIN_WLASCICIELA: '' })
+              onKonfig({ ...konfig, PIN_WLASCICIELA: '' })
             }
           }}>Zdejmij PIN</button>
         )}

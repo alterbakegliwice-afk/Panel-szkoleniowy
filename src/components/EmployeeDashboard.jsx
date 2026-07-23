@@ -1,4 +1,4 @@
-import { profilPracownika, historiaPracownika, podsumowaniePowtorek } from '../logic/progress.js'
+import { profilPracownika, historiaPracownika, podsumowaniePowtorek, interwalyPowtorek } from '../logic/progress.js'
 import { czyPrzerobiono, materialTomu } from '../logic/nauka.js'
 import { glownaAkcja, budujMapeWiedzy } from '../logic/mapaWiedzy.js'
 import MapaWiedzy from './MapaWiedzy.jsx'
@@ -19,7 +19,7 @@ export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, 
   // historia opisuje wpisy pełnym zbiorem pytań (bank + Technika/Sprzątanie),
   // żeby quizy paneli praktycznych nie renderowały się jako „spoza banku"
   const historia = historiaPracownika(wyniki, pytaniaOpisowe || pytania, pracownik.id_prac)
-  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac)
+  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac, null, interwalyPowtorek(konfig))
   const proc = (x) => Math.round(x * 100)
   const przerobiony = (tom) => czyPrzerobiono(nauka, pracownik.id_prac, tom)
   const wKolejce = (tom) =>
@@ -125,6 +125,9 @@ export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, 
               <li key={poz.id}>
                 <span className="powtorki-tom">{poz.tom}</span>
                 {poz.ccp && <span className="ccp-tag brak">CCP</span>}
+                <span className="powtorki-pytanie">
+                  {poz.pytanie.length > 64 ? poz.pytanie.slice(0, 64) + '…' : poz.pytanie}
+                </span>
                 <span className="cichy mini">ostatnio {poz.dniOdOstatniej} dni temu</span>
               </li>
             ))}
@@ -147,6 +150,27 @@ export default function EmployeeDashboard({ pracownik, pytania, pytaniaOpisowe, 
           <span className="legenda-kropka ok" /> opanowane · <span className="legenda-kropka toku" /> w toku ·{' '}
           <span className="legenda-kropka blok" /> blokada CCP · <span className="legenda-kropka info" /> nierozpoczęte
         </p>
+      </div>
+
+      {/* 5b. MAPA WIEDZY — wariant mobilny: te same węzły i akcje jako zwarta
+          lista (SVG na wąskim ekranie robi się nieczytelny — spec ADHD:
+          czytelność ponad efekt). */}
+      <div className="karta mapa-lista-karta tylko-mobile">
+        <div className="tom-gora">
+          <h3>🗺 Mapa Twojej wiedzy</h3>
+          <span className="cichy mini">dotknij temat = przejście do pracy</span>
+        </div>
+        <ul className="mapa-lista">
+          {mapa.wezly.map((w) => (
+            <li key={w.id}>
+              <button className={`mapa-lista-wiersz mapa-lw-${w.stan}`} onClick={() => wykonaj(w.akcja)}>
+                <span className={`legenda-kropka ${w.stan === 'toku' ? 'toku' : w.stan}`} />
+                <span className="mapa-lista-nazwa">{w.pelna}</span>
+                <span className="mapa-lista-procent">{w.procent}%</span>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/* 6. TOMY — od najpilniejszych */}
