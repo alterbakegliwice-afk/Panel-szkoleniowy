@@ -173,30 +173,44 @@ zbudowana analogicznie do Panelu Technicznego i na tym samym silniku:
   i wydajna" (postęp per pracownik × strefa), obok tabeli Techniki
   (wspólny komponent `TabelaPraktyczna`).
 
-## 4c. Pytania do Mistrza (rozszerzenie 2026-07-14) — warstwa TEORETYCZNA
+## 4c. Pytania do Mistrza (rozszerzenie 2026-07-14) — pogłębianie wiedzy
 
-Cel: przygotować pracownika do pracy **teoretycznie** — pełny Panel do
-pogłębiania wiedzy, w tym możliwość zadania pytania przy dowolnym materiale.
-Świadomie **bez** warstwy praktycznej (weryfikacja na stanowisku, ocena
-wykonania) — to zakres przyszły.
+Cel: pracownik pogłębia wiedzę, zadając pytanie przy dowolnym materiale;
+Właściciel odpowiada, a dobre pytania stają się nowymi kartami wiedzy w
+danym tomie. Dwie warstwy: **teoretyczna** (pytanie → odpowiedź → flaga)
+oraz **praktyczna** (flaga → publikacja karty), dodana 2026-07-23.
 
 - `src/logic/pytaniaMistrza.js` — `noweZapytanie()`/`filtrujPytania()`
   (log append-only w `stan.pytania`, ten sam localStorage co WYNIK/NAUKA/
   KOLEJKA — sprawa wewnętrzna Panelu, nie kontrakt originu jak zgłoszenia).
   Kształt wpisu: `{id, id_prac, imie, tom, tresc, data, status: 'nowe'|
-  'odpowiedziane', odpowiedz, dodacDoMaterialu}`. `tom: ''` = pytanie ogólne.
+  'odpowiedziane', odpowiedz, dodacDoMaterialu, kartaUtworzona}`. `tom: ''`
+  = pytanie ogólne. `kartaUtworzona: true` = z pytania powstała już karta.
 - `Learning.jsx` (uniwersalny ekran nauki — tomy banku, Technika, Sprzątanie,
-  moduł Przedsiębiorcy, Rozwój) ma opcjonalny prop `onZadajPytanie(tresc)`:
-  mini-formularz pod materiałem, rodzic już wie kim jest uczący się i jaki
-  to tom. Pytanie dostępne też przy materiale „w przygotowaniu".
-- `PytaniaMistrza.jsx` — nowa zakładka „Pytania” (pracownik: formularz +
-  własne pytania z odpowiedziami) / „Pytania do Mistrza” (tylko Właściciel,
-  jak w Zgłoszeniach — Mentor nie ma skrzynki): filtr nowe/odpowiedziane,
-  odpowiedź + checkbox „📌 do rozszerzenia materiału”.
-- **Znacznik `dodacDoMaterialu` to tylko flaga kandydata** — samo dopisanie
-  nowej karty do `materialy_nauka.json` danego tomu jest krokiem **ręcznym**
-  (albo przez pipeline `tools/notebooklm/`, gdy będzie źródło do wgrania).
-  To jest właśnie „praktyka”, którą świadomie odłożono na później.
+  moduł Przedsiębiorcy, Rozwój) ma opcjonalne propy `onZadajPytanie(tresc)`
+  (mini-formularz pod materiałem) i `kartyDodatkowe[]` (karty-rozszerzenia
+  doklejane do statycznych, z plakietką „rozszerzenie · z pytania zespołu”).
+  Pytanie dostępne też przy materiale „w przygotowaniu”.
+- `PytaniaMistrza.jsx` — zakładka „Pytania” (pracownik: formularz + własne
+  pytania z odpowiedziami) / „Pytania (n)” (tylko Właściciel, jak w
+  Zgłoszeniach — Mentor nie ma skrzynki): filtr nowe/odpowiedziane, odpowiedź
+  + checkbox „📌 do rozszerzenia materiału”, a po odpowiedzi — przycisk
+  „Utwórz kartę wiedzy” otwierający formularz `KartaForm`.
+
+### Warstwa praktyczna — `src/logic/rozszerzenia.js` (2026-07-23)
+
+- Karty tworzone w czasie działania żyją w `stan.rozszerzenia` (localStorage,
+  append-only), **nie** w `materialy_nauka.json` (ten jest wpieczony w build).
+  Właściciel rozwija materiał z przeglądarki bez przebudowy kodu.
+- Kształt karty (zgodny z `materialy_nauka.json → tomy[].karty[]`):
+  `{id, tom, tytul, punkty:[string], zrodlo, zPytania (id pytania), data}`.
+- `KartaForm` (w `PytaniaMistrza.jsx`) wypełnia **szkic** z odpowiedzi
+  (`szkicPunktow()` dzieli na punkty), Właściciel dopracowuje tytuł/punkty i
+  wybiera tom docelowy → `onDodajKarte` dopisuje kartę i oznacza pytanie
+  `kartaUtworzona:true` (znika z listy „do rozszerzenia”).
+- `kartyTomu(tom, rozszerzenia)` — merge przy renderze: `Learning` skleja karty
+  statyczne + rozszerzenia danego tematu (nazwa tomu/maszyny/strefy/modułu).
+- Backup: `filtrujRozszerzenia()` w `store.js` (`eksportKopii`/`kopieDoStanu`).
 
 ## 5. Poza zakresem (świadomie)
 

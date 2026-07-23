@@ -9,8 +9,11 @@ import { useState } from 'react'
 // onZadajPytanie (opcjonalny): rodzic wie już, kim jest uczący się i jaki to
 // tom — Learning tylko zbiera treść pytania (warstwa teoretyczna, patrz
 // logic/pytaniaMistrza.js).
-export default function Learning({ tytul, material, przerobiony, onGotowe, onWroc, ctaTekst, ctaOpis, onZadajPytanie }) {
-  if (!material) {
+export default function Learning({ tytul, material, kartyDodatkowe = [], przerobiony, onGotowe, onWroc, ctaTekst, ctaOpis, onZadajPytanie }) {
+  // Karty rozszerzeń (z pytań zespołu) doklejają się do statycznych. Materiał
+  // „w przygotowaniu" pokazuje się dopiero, gdy nie ma ani statycznego, ani rozszerzeń.
+  const karty = [...((material && material.karty) || []), ...kartyDodatkowe]
+  if (!material && !karty.length) {
     return (
       <div className="karta">
         <p>Materiał do nauki dla „{tytul}" jest w przygotowaniu.</p>
@@ -26,16 +29,19 @@ export default function Learning({ tytul, material, przerobiony, onGotowe, onWro
       <div className="karta nauka-naglowek">
         <span className="eyebrow">Materiał do nauki</span>
         <h1>{tytul}</h1>
-        <p className="nauka-intro">{material.intro}</p>
+        {material && material.intro && <p className="nauka-intro">{material.intro}</p>}
       </div>
 
-      {material.karty.map((k, i) => (
+      {karty.map((k, i) => (
         <div key={i} className="karta nauka-karta">
-          <h3>{k.tytul}</h3>
+          <h3>
+            {k.tytul}
+            {k.rozszerzenie && <span className="ccp-tag ok">rozszerzenie · z pytania zespołu</span>}
+          </h3>
           <ul className="nauka-punkty">
             {k.punkty.map((p, j) => <li key={j}>{p}</li>)}
           </ul>
-          <div className="nauka-zrodlo">Źródło: {k.zrodlo}</div>
+          {k.zrodlo && <div className="nauka-zrodlo">Źródło: {k.zrodlo}</div>}
         </div>
       ))}
 
@@ -70,7 +76,7 @@ function PytanieBox({ onZadajPytanie }) {
     <div className="karta">
       <h3>❓ Masz pytanie o ten materiał?</h3>
       <p className="cichy mini">
-        Czegoś brakuje albo chcesz wiedzieć więcej? Zapytaj — Właściciel/Mentor odpowie,
+        Czegoś brakuje albo chcesz wiedzieć więcej? Zapytaj — Właściciel odpowie,
         a dobre pytanie może rozszerzyć ten dział o nową kartę wiedzy.
       </p>
       <textarea

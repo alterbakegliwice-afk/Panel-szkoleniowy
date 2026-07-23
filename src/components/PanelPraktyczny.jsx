@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { szukajObjawow, postepPozycji } from '../logic/panelPraktyczny.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
+import { kartyTomu } from '../logic/rozszerzenia.js'
 import Learning from './Learning.jsx'
 import Quiz from './Quiz.jsx'
 
@@ -11,7 +12,7 @@ import Quiz from './Quiz.jsx'
 // nie czeka na zaliczenie quizu). Teksty domeny przychodzą w `etykiety`.
 export default function PanelPraktyczny({
   tytul, opis, pozycje, etykiety: e,
-  uczen, wyniki, nauka, konfig, onWynik, onDoKolejki = () => {}, onPrzerobiony, onZadajPytanie
+  uczen, wyniki, nauka, konfig, onWynik, onDoKolejki = () => {}, onPrzerobiony, onZadajPytanie, rozszerzenia = []
 }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [fraza, setFraza] = useState('')
@@ -32,6 +33,7 @@ export default function PanelPraktyczny({
       <Learning
         tytul={m.nazwa}
         material={m.nauka}
+        kartyDodatkowe={kartyTomu(m.nazwa, rozszerzenia)}
         przerobiony={czyPrzerobiono(nauka, uczen.id_prac, m.nazwa)}
         onWroc={() => setWidok({ typ: 'lista' })}
         onGotowe={() => {

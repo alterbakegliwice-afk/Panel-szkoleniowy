@@ -21,6 +21,7 @@ import {
   KIERUNKI_OBSERWACJI
 } from '../logic/rozwoj.js'
 import { czyPrzerobiono } from '../logic/nauka.js'
+import { kartyTomu } from '../logic/rozszerzenia.js'
 import { teraz } from '../logic/store.js'
 import Learning from './Learning.jsx'
 import Sparkline from './Sparkline.jsx'
@@ -31,7 +32,7 @@ import PlanRozwoju from './PlanRozwoju.jsx'
 // jest ewaluacją (panel liczy deltę względem poprzedniego podejścia tego
 // samego narzędzia). Wyniki wpadają same przez wspólny localStorage
 // (ten sam origin GitHub Pages) albo z pliku JSON pobranego w raporcie testu.
-export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje, onDodajProfil, onPrzerobiony, onPraktyka, onZadajPytanie }) {
+export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje, onDodajProfil, onPrzerobiony, onPraktyka, onZadajPytanie, rozszerzenia = [] }) {
   const [widok, setWidok] = useState({ typ: 'lista' })
   const [komunikat, setKomunikat] = useState(null)
   const [odswiez, setOdswiez] = useState(0)
@@ -118,6 +119,7 @@ export default function Rozwoj({ pracownik, profile, nauka, praktyki, obserwacje
       <Learning
         tytul={o.nazwa}
         material={o.nauka}
+        kartyDodatkowe={kartyTomu(o.nazwa, rozszerzenia)}
         przerobiony={czyPrzerobiono(nauka, pracownik.id_prac, obszarNauki(o.id))}
         onWroc={() => setWidok({ typ: 'lista' })}
         onGotowe={() => {

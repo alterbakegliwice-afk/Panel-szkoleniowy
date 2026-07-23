@@ -130,6 +130,8 @@ p { margin: 0 0 .2rem; }
   background: var(--karta); border: 1px solid var(--linia); border-radius: var(--r);
   padding: 1.3rem 1.4rem; box-shadow: var(--cien); margin-bottom: 1.15rem;
 }
+/* Inline formularz „nowa karta wiedzy z pytania" — subtelne wyróżnienie akcentem */
+.karta-rozszerzenie { border-left: 3px solid var(--akcent); margin-top: .8rem; }
 
 /* ---------- przyciski ---------- */
 button { font-family: inherit; }

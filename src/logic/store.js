@@ -5,6 +5,7 @@ import seedWbudowany from '../data/bank_pytan_seed.json'
 import { filtrujProfile } from './rozwoj.js'
 import { zapiszLustroZespolu } from './integracja.js'
 import { filtrujPytania } from './pytaniaMistrza.js'
+import { filtrujRozszerzenia } from './rozszerzenia.js'
 
 const KLUCZ = 'alterbake-platforma-v1'
 
@@ -48,6 +49,7 @@ export function domyslnyStan() {
     praktyki: [], // odhaczone mikropraktyki rozwojowe: lista kluczy „id_prac|obszar|idx”
     obserwacje: [], // obserwacje Mentora do triangulacji samooceny Work Profile (append-only)
     pytania: [], // pytania pracowników do Mistrza — warstwa teoretyczna (logic/pytaniaMistrza.js)
+    rozszerzenia: [], // karty materiału utworzone przez Właściciela z oflagowanych pytań (logic/rozszerzenia.js)
     bank: null // null = bank z pliku seed; obiekt = bank wgrany w Konfiguracji
   }
 }
@@ -63,6 +65,7 @@ export function wczytajStan() {
     if (!Array.isArray(stan.praktyki)) stan.praktyki = []
     if (!Array.isArray(stan.obserwacje)) stan.obserwacje = []
     stan.pytania = filtrujPytania(stan.pytania)
+    stan.rozszerzenia = filtrujRozszerzenia(stan.rozszerzenia)
     return stan
   } catch {
     return domyslnyStan()
@@ -155,10 +158,11 @@ export function teraz() {
 // Log wyników to „wartość projektu" (schema) i żyje tylko w localStorage jednej
 // przeglądarki. Backup ratuje historię przed czyszczeniem cache / zmianą urządzenia.
 // 2026-07-14: schemat urósł o logi Work Profile (profile, praktyki, obserwacje)
-// i o pytania do Mistrza (warstwa teoretyczna, logic/pytaniaMistrza.js).
+// i o pytania do Mistrza (warstwa teoretyczna) oraz rozszerzenia materiału
+// (karty z pytań, logic/rozszerzenia.js).
 // Starsze kopie (bez tych pól) wczytują się poprawnie: kopieDoStanu traktuje je
 // jako opcjonalne (brak → []). Wersja jest informacyjna, nie blokuje importu.
-const WERSJA_KOPII = '2026-07-14'
+const WERSJA_KOPII = '2026-07-23'
 
 export function eksportKopii(stan) {
   return {
@@ -174,6 +178,7 @@ export function eksportKopii(stan) {
     praktyki: Array.isArray(stan.praktyki) ? stan.praktyki : [],
     obserwacje: Array.isArray(stan.obserwacje) ? stan.obserwacje : [],
     pytania: filtrujPytania(stan.pytania),
+    rozszerzenia: filtrujRozszerzenia(stan.rozszerzenia),
     bank: stan.bank // null = seed wbudowany
   }
 }
@@ -210,6 +215,7 @@ export function kopieDoStanu(obiekt) {
       ? obiekt.obserwacje.filter((o) => o && typeof o === 'object' && o.id_prac && o.obszar)
       : [],
     pytania: filtrujPytania(obiekt.pytania),
+    rozszerzenia: filtrujRozszerzenia(obiekt.rozszerzenia),
     bank: obiekt.bank || null
   }
 }

@@ -26,6 +26,7 @@ import { pytaniaTechniki } from './logic/technika.js'
 import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
 import { noweZapytanie } from './logic/pytaniaMistrza.js'
+import { nowaKarta, kartyTomu } from './logic/rozszerzenia.js'
 
 // Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
 // logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
@@ -117,6 +118,18 @@ export default function App() {
       pytania: (s.pytania || []).map((p) =>
         p.id === id ? { ...p, dodacDoMaterialu: !p.dodacDoMaterialu } : p
       )
+    }))
+
+  // Praktyka (SPEC §4c): Właściciel zamienia oflagowane pytanie w kartę materiału.
+  // Karta trafia do stanu (append-only), a pytanie dostaje znacznik kartaUtworzona,
+  // więc znika z listy „do rozszerzenia" w skrzynce.
+  const dodajKarteRozszerzenia = ({ tom, tytul, punkty, zrodlo, zPytania }) =>
+    setStan((s) => ({
+      ...s,
+      rozszerzenia: [...(s.rozszerzenia || []), nowaKarta({ tom, tytul, punkty, zrodlo, zPytania })],
+      pytania: zPytania
+        ? (s.pytania || []).map((p) => (p.id === zPytania ? { ...p, kartaUtworzona: true } : p))
+        : s.pytania
     }))
 
   // Punkt wejścia z ekranu nauki (Learning) — tożsamość zależy od sesji;
@@ -275,6 +288,7 @@ export default function App() {
           pytaniaBank={pytania}
           onOdpowiedz={odpowiedzNaPytanie}
           onPrzelaczFlage={przelaczFlagePytania}
+          onDodajKarte={dodajKarteRozszerzenia}
         />
       )}
       {ekran.widok === 'profil' && pracownik && (
@@ -302,12 +316,14 @@ export default function App() {
           onPrzerobiony={(obszar) => oznaczPrzerobiony(pracownik.id_prac, obszar)}
           onPraktyka={przelaczPraktyke}
           onZadajPytanie={zadajPytanie}
+          rozszerzenia={stan.rozszerzenia}
         />
       )}
       {ekran.widok === 'nauka' && pracownik && (
         <Learning
           tytul={ekran.tom}
           material={materialTomu(ekran.tom)}
+          kartyDodatkowe={kartyTomu(ekran.tom, stan.rozszerzenia)}
           przerobiony={stan.nauka.some((n) => n.id_prac === pracownik.id_prac && n.obszar === ekran.tom)}
           onWroc={() => setEkran({ widok: 'profil' })}
           onGotowe={() => {
@@ -344,6 +360,7 @@ export default function App() {
               onDoKolejki={dodajDoKolejki}
               onPrzerobiony={(obszar) => oznaczPrzerobiony(uczen.id_prac, obszar)}
               onZadajPytanie={zadajPytanie}
+              rozszerzenia={stan.rozszerzenia}
             />
           )
         })()}
@@ -366,6 +383,7 @@ export default function App() {
           onWynik={dodajWynik}
           onPrzerobiony={(obszar) => oznaczPrzerobiony(ID_WLASCICIEL, obszar)}
           onZadajPytanie={zadajPytanie}
+          rozszerzenia={stan.rozszerzenia}
         />
       )}
       {ekran.widok === 'zespol' && (jestMentorem || jestWlascicielem) && (
