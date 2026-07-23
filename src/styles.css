@@ -465,8 +465,9 @@ details summary:hover { color: var(--akcent-ciemny); }
 /* spaced retrieval — karta „Do powtórki" */
 .powtorki-karta { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
 .powtorki-lista { list-style: none; margin: .6rem 0 .8rem; padding: 0; display: grid; gap: .35rem; }
-.powtorki-lista li { display: flex; align-items: center; gap: .5rem; font-size: .84rem; }
-.powtorki-tom { font-weight: 650; }
+.powtorki-lista li { display: flex; align-items: center; gap: .5rem; font-size: .84rem; flex-wrap: wrap; }
+.powtorki-tom { font-weight: 650; white-space: nowrap; }
+.powtorki-pytanie { flex: 1 1 12rem; min-width: 0; color: var(--tekst); }
 
 /* triangulacja — obserwacja Mentora vs samoocena */
 .obs-form { display: flex; flex-wrap: wrap; gap: .8rem; margin: .6rem 0; }
@@ -544,6 +545,23 @@ details summary:hover { color: var(--akcent-ciemny); }
 .legenda-kropka.info { background: var(--cichy); }
 /* na wąskich ekranach mapa robi się nieczytelna — karty niżej niosą tę samą treść */
 @media (max-width: 640px) { .tylko-desktop { display: none; } }
+
+/* mapa wiedzy — wariant mobilny: te same węzły i akcje jako zwarta lista */
+.tylko-mobile { display: none; }
+@media (max-width: 640px) { .tylko-mobile { display: block; } }
+.mapa-lista { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .4rem; }
+.mapa-lista-wiersz {
+  display: flex; align-items: center; gap: .55rem; width: 100%;
+  padding: .55rem .7rem; border: 1px solid var(--linia); border-radius: var(--r);
+  background: var(--karta-inset); font: inherit; font-size: .86rem; text-align: left; cursor: pointer;
+}
+.mapa-lista-wiersz:active { background: var(--akcent-tint); }
+.mapa-lw-blok { border-left: 4px solid var(--brak); }
+.mapa-lw-toku { border-left: 4px solid var(--toku); }
+.mapa-lw-ok { border-left: 4px solid var(--ok); }
+.mapa-lw-info { border-left: 4px solid var(--cichy); }
+.mapa-lista-nazwa { flex: 1 1 auto; min-width: 0; font-weight: 650; }
+.mapa-lista-procent { font-variant-numeric: tabular-nums; color: var(--cichy); font-weight: 700; }
 
 /* pasek statusu na landing „Mój dzień" */
 .skrot-statusu { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: .8rem 1.1rem; }

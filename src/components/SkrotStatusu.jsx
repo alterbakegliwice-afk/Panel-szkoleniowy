@@ -1,4 +1,4 @@
-import { profilPracownika, podsumowaniePowtorek } from '../logic/progress.js'
+import { profilPracownika, podsumowaniePowtorek, interwalyPowtorek } from '../logic/progress.js'
 import { glownaAkcja } from '../logic/mapaWiedzy.js'
 
 // Pasek „stan w jednej linii" na landing page „Mój dzień".
@@ -7,7 +7,7 @@ import { glownaAkcja } from '../logic/mapaWiedzy.js'
 // Kluczowe sygnały + JEDEN przycisk głównej akcji prowadzący do pulpitu.
 export default function SkrotStatusu({ pracownik, pytania, wyniki, konfig, onPokazPoziom }) {
   const prof = profilPracownika(pytania, wyniki, pracownik.id_prac, konfig, pracownik.poziom_docelowy)
-  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac)
+  const powtorki = podsumowaniePowtorek(pytania, wyniki, pracownik.id_prac, null, interwalyPowtorek(konfig))
   const akcja = glownaAkcja(prof, powtorki)
   const pilne = akcja.stan === 'blok'
 

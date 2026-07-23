@@ -25,7 +25,7 @@ import { materialTomu, ID_WLASCICIEL } from './logic/nauka.js'
 import { pytaniaTechniki } from './logic/technika.js'
 import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
-import { profilPracownika, podsumowaniePowtorek } from './logic/progress.js'
+import { profilPracownika, podsumowaniePowtorek, interwalyPowtorek } from './logic/progress.js'
 
 // Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
 // logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
@@ -94,7 +94,7 @@ export default function App() {
       { ...stan.konfig, PROG_CCP: 1 }, pracownik.poziom_docelowy
     )
     if (!prof.ccpOk) return true
-    return podsumowaniePowtorek(pytania, stan.wyniki, pracownik.id_prac).liczba > 0
+    return podsumowaniePowtorek(pytania, stan.wyniki, pracownik.id_prac, null, interwalyPowtorek(stan.konfig)).liczba > 0
   }, [pracownik, pytania, stan.wyniki, stan.konfig])
 
   // --- akcje (WYNIK: wyłącznie dopisywanie — log append-only) ---

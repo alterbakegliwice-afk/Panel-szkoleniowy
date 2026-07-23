@@ -115,6 +115,18 @@ export function listaTomow(pytania) {
 // „serii”. Oblanie kasuje serię (wraca do intensywnej nauki, nie powtórki).
 export const INTERWALY_POWTOREK_DNI = [7, 30, 90, 180]
 
+// Tempo powtórek — konfigurowalne przez właściciela (konfig.TEMPO_POWTOREK),
+// jak próg zaliczenia. Harmonogram pozostaje rozszerzający; zmienia się skala.
+export const TEMPA_POWTOREK = {
+  intensywne: { nazwa: 'Intensywne', opis: 'częstsze odświeżanie — nowy zespół, dużo nowej wiedzy', dni: [4, 14, 45, 90] },
+  standard: { nazwa: 'Standard', opis: 'domyślne — zgodne z badaniami nad rozłożonym powtarzaniem', dni: INTERWALY_POWTOREK_DNI },
+  spokojne: { nazwa: 'Spokojne', opis: 'rzadsze — doświadczony zespół, stabilna wiedza', dni: [14, 60, 180, 365] }
+}
+
+export function interwalyPowtorek(konfig) {
+  return (TEMPA_POWTOREK[konfig?.TEMPO_POWTOREK] || TEMPA_POWTOREK.standard).dni
+}
+
 // Tylko pytania auto-oceniane da się samodzielnie powtórzyć bez Mentora —
 // praktyczne/otwarte idą inną ścieżką i nie wchodzą do powtórek. Definicja
 // MUSI zgadzać się z Quiz.autoOceniany (typ + opcje), inaczej powtórka
@@ -132,7 +144,7 @@ function dodajDni(iso, dni) {
 // Lista pozycji, które „dojrzały” do powtórki dla danego pracownika.
 // terazISO wstrzykiwalne (testy). CCP na początku listy — utrwalenie wiedzy
 // o bezpieczeństwie żywności jest najważniejsze.
-export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null) {
+export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null, interwaly = INTERWALY_POWTOREK_DNI) {
   const teraz = new Date(terazISO || new Date().toISOString())
   const mapaP = new Map(pytania.map((p) => [p.id, p]))
   const hist = new Map()
@@ -153,7 +165,7 @@ export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null) {
     if (!ost.zaliczyl || !ost.data) continue // oblane lub bez daty → nie powtórka
     let seria = 0
     for (let i = wpisy.length - 1; i >= 0 && wpisy[i].zaliczyl; i--) seria++
-    const interwal = INTERWALY_POWTOREK_DNI[Math.min(seria - 1, INTERWALY_POWTOREK_DNI.length - 1)]
+    const interwal = interwaly[Math.min(seria - 1, interwaly.length - 1)]
     const termin = dodajDni(ost.data, interwal)
     if (teraz >= termin) {
       due.push({
@@ -172,8 +184,8 @@ export function pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO = null) {
 }
 
 // Podsumowanie do dashboardu: ile pozycji do powtórki, w tym ile CCP.
-export function podsumowaniePowtorek(pytania, wyniki, idPrac, terazISO = null) {
-  const poz = pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO)
+export function podsumowaniePowtorek(pytania, wyniki, idPrac, terazISO = null, interwaly = INTERWALY_POWTOREK_DNI) {
+  const poz = pozycjeDoPowtorki(pytania, wyniki, idPrac, terazISO, interwaly)
   return { pozycje: poz, liczba: poz.length, ccp: poz.filter((x) => x.ccp).length }
 }
 
