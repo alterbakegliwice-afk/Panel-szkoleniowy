@@ -494,6 +494,69 @@ details summary:hover { color: var(--akcent-ciemny); }
 .plan-linia { border-bottom: 1px dashed var(--linia-mocna); height: 1px; }
 .plan-stopka { margin-top: 1.4rem; border-top: 1px solid var(--linia); padding-top: .6rem; }
 
+/* ---------- pulpit „Mój poziom" — CO TERAZ + chipy + mapa wiedzy ---------- */
+/* hero: jeden punkt skupienia; kolor lewej krawędzi = waga akcji */
+.co-teraz { border-left: 6px solid var(--zloto); background: linear-gradient(180deg, #fff, var(--zloto-tint)); }
+.co-teraz-blok { border-left-color: var(--brak); background: linear-gradient(180deg, #fff, var(--brak-tlo)); }
+.co-teraz-ok { border-left-color: var(--ok); background: linear-gradient(180deg, #fff, var(--ok-tlo)); }
+.co-teraz h2 { font-size: 1.35rem; margin: .15rem 0 .35rem; }
+.co-teraz-blok h2 { color: var(--brak-ciemny); }
+.co-teraz-opis { max-width: 70ch; margin-bottom: .7rem; }
+
+/* chipy statusu: cały stan w jednej skanowalnej linii */
+.status-chipy { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .9rem; padding-top: .8rem; border-top: 1px dashed var(--linia); }
+.chip-status { display: inline-flex; align-items: center; gap: .3rem; padding: .3rem .7rem; border-radius: 999px; font-size: .8rem; border: 1px solid var(--linia); background: #fff; white-space: nowrap; }
+.chip-status.ok { background: var(--ok-tlo); color: var(--ok); border-color: transparent; font-weight: 650; }
+.chip-status.toku { background: var(--toku-tlo); color: var(--toku); border-color: transparent; font-weight: 650; }
+.chip-status.brak { background: var(--brak-tlo); color: var(--brak-ciemny); border-color: transparent; font-weight: 750; }
+.chip-status.neutral { color: var(--tekst); }
+
+/* powtórki jako rozwijana karta (otwiera się sama, gdy to główna akcja) */
+.powtorki-karta > summary { cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+
+/* nagłówek sekcji między kartami */
+.sekcja-tytul { margin: 1.3rem 0 .8rem; font-size: 1.15rem; }
+.tom-pilny { border-left: 6px solid var(--brak); }
+
+/* mapa wiedzy (SVG) */
+.mapa-wiedzy { display: block; width: 100%; height: auto; }
+.mapa-nic { fill: none; stroke: var(--linia-mocna); stroke-width: 1.5; opacity: .55; }
+.mapa-wezel { cursor: pointer; }
+.mapa-wezel-statyczny { cursor: default; }
+.mapa-wezel:not(.mapa-wezel-statyczny):hover .mapa-kolo, .mapa-wezel:focus-visible .mapa-kolo { filter: brightness(1.06); stroke: var(--akcent); stroke-width: 2; }
+.mapa-wezel:focus-visible { outline: none; }
+.mapa-kolo { stroke: #fff; stroke-width: 1.5; }
+.mapa-ok { fill: var(--ok-tlo); }
+.mapa-toku { fill: var(--toku-tlo); }
+.mapa-blok { fill: var(--brak-tlo); }
+.mapa-info { fill: var(--karta-inset); }
+.mapa-procent { font-size: 13px; font-weight: 750; fill: var(--tekst); }
+.mapa-kolo.mapa-blok + .mapa-procent { fill: var(--brak-ciemny); }
+.mapa-etykieta { font-size: 12.5px; font-weight: 650; fill: var(--tekst); }
+.mapa-kolo-centrum { fill: var(--akcent-tint); stroke: var(--akcent); stroke-width: 1.5; }
+.mapa-centrum-proc { font-size: 17px; font-weight: 800; fill: var(--akcent-ciemny); }
+.mapa-centrum-podpis { font-size: 11px; fill: var(--cichy); text-transform: uppercase; letter-spacing: .08em; }
+.mapa-legenda { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; margin-top: .2rem; }
+.legenda-kropka { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; }
+.legenda-kropka.ok { background: var(--ok); }
+.legenda-kropka.toku { background: var(--toku); }
+.legenda-kropka.blok { background: var(--brak); }
+.legenda-kropka.info { background: var(--cichy); }
+/* na wąskich ekranach mapa robi się nieczytelna — karty niżej niosą tę samą treść */
+@media (max-width: 640px) { .tylko-desktop { display: none; } }
+
+/* pasek statusu na landing „Mój dzień" */
+.skrot-statusu { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: .8rem 1.1rem; }
+.skrot-statusu .status-chipy { margin: 0; padding: 0; border: none; }
+.skrot-pilny { border-left: 6px solid var(--brak); background: linear-gradient(180deg, #fff, var(--brak-tlo)); }
+
+/* nawigacja: separator grupy okazjonalnej + kropka-alert */
+.zakladki-separator { width: 1px; align-self: stretch; margin: .3rem .35rem; background: var(--linia-mocna); }
+.zakladka-dalej { opacity: .75; }
+.zakladka-dalej:hover, .zakladka-dalej.aktywna { opacity: 1; }
+.zakladka { position: relative; }
+.alert-kropka { position: absolute; top: 2px; right: 2px; width: .55rem; height: .55rem; border-radius: 50%; background: var(--brak); box-shadow: 0 0 0 2px #fff; }
+
 /* druk: sama treść (karta maszyny / plan rozwoju), bez nawigacji i przycisków */
 @media print {
   .naglowek, .stopka, .bez-druku, .diag-szukaj, .no-print, button { display: none !important; }

@@ -170,6 +170,35 @@ Trzy mechanizmy odróżniają panel od zwykłego LMS „obejrzyj → zdaj quiz":
 
 Źródła i pełne uzasadnienie każdego mechanizmu — w komentarzach przy funkcjach.
 
+## Pulpit „Mój poziom" — układ pod skanowanie wzrokiem (redesign ADHD)
+
+Po red-teamie użyteczności pulpit został przebudowany w odwróconą piramidę ważności —
+najpierw decyzja, potem praca, na końcu archiwum:
+
+1. **„Co teraz?"** — hero z JEDNĄ rekomendowaną akcją i przyciskiem
+   (`logic/mapaWiedzy.js → glownaAkcja`). Twardy priorytet: blokada CCP →
+   zaległe powtórki CCP → powtórki → następny tom → gotowe. Kolor lewej
+   krawędzi = waga (czerwień tylko dla bezpieczeństwa).
+2. **Chipy statusu** — cały stan w jednej linii (poziom %, CCP, cel, powtórki,
+   odpowiedzi u Mentora). Skan w 2 sekundy, bez czytania akapitów.
+3. **Alarm CCP** — pełna czerwona karta WYŁĄCZNIE przy blokadzie; stan OK jest
+   chipem. Czerwień zarezerwowana dla alarmu — dashboard nie uczy ignorowania koloru.
+4. **Mapa wiedzy** (`components/MapaWiedzy.jsx`) — rozproszona mapa myśli w SVG:
+   węzeł centralny (uczeń, % ogólny) + powiązane tematy w sektorach (tomy wiedzy,
+   Technika/Sprzątanie, Rozwój z Work Profile). Węzeł = pierścień postępu + stan
+   kolorem; klik = przejście do pracy (nauka/quiz/zakładka). Jedno spojrzenie =
+   cały krajobraz nauki; na wąskich ekranach mapa się chowa (karty niżej niosą
+   tę samą treść). Dane: `logic/mapaWiedzy.js → budujMapeWiedzy` (pod testami).
+5. **Tomy wg pilności** — blokada CCP pierwsza (czerwona krawędź), potem w toku
+   od najniższego %, opanowane na końcu.
+6. **Historia** — rozwijany szczegół na dole.
+
+Nawigacja: zakładki ułożone wg częstości użycia — codzienne/częste (Mój dzień,
+Mój poziom, Rozwój; dla zarządu Zespół, Do oceny, Zgłoszenia) przed separatorem,
+okazjonalne (Technika, Sprzątanie, Przedsiębiorca, Konfiguracja) za nim, lekko
+wyciszone. „Mój poziom" dostaje **kropkę-alert**, gdy jest blokada CCP lub zaległe
+powtórki — alarm widać z każdej zakładki, także z landing page „Mój dzień".
+
 ## Warstwa graficzna (pod uciekającą uwagę / ADHD)
 
 Kierunek: „Złoty Standard" — rzemieślnicza powaga piekarni, żeby respondent czuł, że robi coś ważnego.

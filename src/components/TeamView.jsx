@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import { profilPracownika, historiaPracownika, podsumowaniePowtorek } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
+import { budujMapeWiedzy } from '../logic/mapaWiedzy.js'
+import MapaWiedzy from './MapaWiedzy.jsx'
 import { TECHNIKA } from '../logic/technika.js'
 import { SPRZATANIE } from '../logic/sprzatanie.js'
 import { postepPozycji } from '../logic/panelPraktyczny.js'
@@ -202,6 +204,33 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
           onDodajObserwacje={onDodajObserwacje}
         />
       )}
+
+      <div className="karta tylko-desktop">
+        <h2>🗺 Mapy wiedzy zespołu</h2>
+        <p className="cichy mini">
+          Cały krajobraz nauki pracownika na jednym spojrzeniu — tomy wiedzy, Technika,
+          Sprzątanie i Rozwój (Work Profile) z postępem i stanem. Ta sama mapa, którą
+          pracownik widzi na swoim pulpicie.
+        </p>
+        {wiersze.map(({ prac, prof }) => {
+          const mapa = budujMapeWiedzy({
+            prof,
+            wyniki,
+            idPrac: prac.id_prac,
+            profile: profile || [],
+            prog: konfig.PROG_ZALICZENIA ?? 0.8
+          })
+          return (
+            <details key={prac.id_prac} className="historia-karta">
+              <summary>{prac.imie} — mapa wiedzy</summary>
+              <MapaWiedzy
+                centrum={{ ...mapa.centrum, etykieta: prac.imie.split(' ').pop() }}
+                wezly={mapa.wezly}
+              />
+            </details>
+          )
+        })}
+      </div>
 
       <div className="karta">
         <h2>Jak szkolić — profil charakteru zespołu</h2>
