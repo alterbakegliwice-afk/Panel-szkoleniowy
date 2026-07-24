@@ -1,5 +1,12 @@
 # Alterbake — Platforma Szkoleniowa
 
+> **⚠️ ZMIGROWANO DO MONOREPO ALTERBAKE OS (2026-07-24).**
+> Kod tego repozytorium żyje teraz w `alterbake-ai-dashboard` w katalogu `apps/panel/`
+> (gałąź konsolidacyjna `claude/alterbake-routing-consolidation-lfze3v`; po scaleniu — `main`),
+> pod wspólną powłoką z routingiem `#/`. Tam prowadź dalszy rozwój — to repozytorium
+> pozostaje archiwum historii sprzed konsolidacji.
+
+
 Standalone web app do ewaluacji wiedzy pracowników piekarni/cukierni Alterbake:
 profile, quizy, pomiar postępu, widok „mój poziom wiedzy" per pracownik, oraz
 eksport do formatu Panelu Piekarni M5.
