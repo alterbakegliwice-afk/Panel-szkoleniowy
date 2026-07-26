@@ -13,7 +13,9 @@ export function eksportPanelM5(pytania, wyniki, pracownicy, konfig, wygenerowano
   return {
     wersja: WERSJA_FORMATU,
     wygenerowano,
-    pracownicy: pracownicy.map((prac) => {
+    // Goście (testujący spoza Alterbake) nie trafiają do Panelu M5 —
+    // eksport opisuje wyłącznie realny zespół piekarni.
+    pracownicy: pracownicy.filter((p) => p.rola !== 'Gość').map((prac) => {
       const prof = profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
       const pow = podsumowaniePowtorek(pytania, wyniki, prac.id_prac, wygenerowano, interwalyPowtorek(konfig))
       return {

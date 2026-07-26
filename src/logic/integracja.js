@@ -65,7 +65,9 @@ export function zbudujRejestr(stan, terazISO) {
       imie: 'Piotr',
       pin: (stan.konfig && stan.konfig.PIN_WLASCICIELA) || ''
     },
-    pracownicy: (stan.pracownicy || []).map((p) => ({
+    // Goście (osoby spoza Alterbake) nie wchodzą do rejestru — Planer i AI
+    // Dashboard widzą wyłącznie realny zespół piekarni.
+    pracownicy: (stan.pracownicy || []).filter((p) => p.rola !== 'Gość').map((p) => ({
       id_prac: p.id_prac,
       imie: p.imie,
       rola: p.rola,

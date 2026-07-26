@@ -105,6 +105,38 @@ test.describe('mobile: mapa wiedzy jako lista', () => {
   })
 })
 
+test('gość spoza Alterbake: samodzielne wejście, powrót bez dubla profilu', async ({ page }) => {
+  await page.goto('/')
+
+  // wejście z ekranu startowego — bez PIN-u i bez panelu właściciela
+  await page.getByPlaceholder('Twoje imię').fill('Kuba Znajomy')
+  await page.getByRole('button', { name: /Wypróbuj jako Gość/ }).click()
+  await expect(page.locator('.skrot-statusu')).toBeVisible() // landing „Mój dzień"
+
+  // po wylogowaniu profil gościa jest na liście i wpuszcza jednym klikiem
+  await page.getByRole('button', { name: 'Zmień profil' }).click()
+  const kafel = page.locator('.profil-kafel', { hasText: 'Kuba Znajomy' })
+  await expect(kafel).toBeVisible()
+  await expect(kafel).toContainText('Gość')
+
+  // ponowne wejście przez pole gościa NIE tworzy drugiego profilu (dedupe po imieniu)
+  await page.getByPlaceholder('Twoje imię').fill('kuba znajomy')
+  await page.getByRole('button', { name: /Wypróbuj jako Gość/ }).click()
+  await page.getByRole('button', { name: 'Zmień profil' }).click()
+  await expect(page.locator('.profil-kafel', { hasText: 'Kuba Znajomy' })).toHaveCount(1)
+
+  // widok Zespół: goście w osobnej sekcji, poza tabelą zespołu Alterbake
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+  await expect(page.getByRole('heading', { name: /Osoby spoza Alterbake/ })).toBeVisible()
+  const sekcjaGosci = page.locator('.karta', { hasText: 'Osoby spoza Alterbake' })
+  await expect(sekcjaGosci.getByText('Kuba Znajomy')).toBeVisible()
+  // tabela zespołu (pod nagłówkiem „Zespół Alterbake") nie zawiera gościa
+  await expect(page.getByRole('heading', { name: /Zespół Alterbake/ })).toBeVisible()
+  const tabelaZespolu = page.locator('.tabela-otoczka').first()
+  await expect(tabelaZespolu.getByText('Kuba Znajomy')).toHaveCount(0)
+})
+
 test('nawigacja: moduły okazjonalne za separatorem', async ({ page }) => {
   await page.goto('/')
   await page.locator('.profil-kafel').first().click()
