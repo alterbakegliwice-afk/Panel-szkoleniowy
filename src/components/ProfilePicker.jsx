@@ -74,13 +74,26 @@ export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor
       <h1>Kto się uczy?</h1>
       <p className="cichy">Wybierz swój profil, żeby zobaczyć swój poziom wiedzy i kolejny krok.</p>
       <div className="lista-profili">
-        {pracownicy.map((p) => (
+        {pracownicy.filter((p) => p.rola !== 'Gość').map((p) => (
           <button key={p.id_prac} className="profil-kafel" onClick={() => wybierz(p)}>
             <span className="profil-imie">{p.imie}</span>
             <span className="profil-rola">{p.rola}{p.pin ? ' · 🔒' : ''}</span>
           </button>
         ))}
       </div>
+      {pracownicy.some((p) => p.rola === 'Gość') && (
+        <>
+          <div className="separator"><span>goście</span></div>
+          <div className="lista-profili">
+            {pracownicy.filter((p) => p.rola === 'Gość').map((p) => (
+              <button key={p.id_prac} className="profil-kafel" onClick={() => wybierz(p)}>
+                <span className="profil-imie">{p.imie}</span>
+                <span className="profil-rola">{p.rola}{p.pin ? ' · 🔒' : ''}</span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
       <div className="separator"><span>lub</span></div>
       <button className="glowny szeroki" onClick={wybierzWlasciciela}>
         Wejdź jako Właściciel (Piotr){pinWlasciciela ? ' 🔒' : ''}

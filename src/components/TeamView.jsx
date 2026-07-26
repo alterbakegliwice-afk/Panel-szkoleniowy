@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { ROLA_GOSC } from '../logic/store.js'
 import { profilPracownika, historiaPracownika, podsumowaniePowtorek, interwalyPowtorek } from '../logic/progress.js'
 import { podsumowanieZespolu, nazwaNarzedzia, obszar, wskazowkiCharakteruZSerii } from '../logic/rozwoj.js'
 import { budujMapeWiedzy } from '../logic/mapaWiedzy.js'
@@ -14,13 +15,23 @@ import ObserwacjeMentora from './ObserwacjeMentora.jsx'
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
 export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, konfig, profile, obserwacje, oceniajacy, onDodajProfil, onDodajObserwacje }) {
   const proc = (x) => Math.round(x * 100)
-  const rozwoj = podsumowanieZespolu(profile || [], pracownicy)
-  const wiersze = pracownicy.map((prac) => ({
+  // Podział: zespół Alterbake osobno od gości (osób spoza) — statystyki
+  // piekarni i ewaluacja narzędzia na zewnętrznych uczestnikach nie mieszają się.
+  const zespol = pracownicy.filter((p) => p.rola !== ROLA_GOSC)
+  const goscie = pracownicy.filter((p) => p.rola === ROLA_GOSC)
+  const rozwoj = podsumowanieZespolu(profile || [], zespol)
+  const rozwojGosci = podsumowanieZespolu(profile || [], goscie)
+  const zbudujWiersz = (prac) => ({
     prac,
     prof: profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy),
     powtorki: podsumowaniePowtorek(pytania, wyniki, prac.id_prac, null, interwalyPowtorek(konfig))
-  }))
-  // Zaległe powtórki CCP w całym zespole = sygnał bezpieczeństwa żywności dla właściciela.
+  })
+  const wiersze = zespol.map(zbudujWiersz)
+  const wierszeGosci = goscie.map(zbudujWiersz)
+  // per-osobowe karty szczegółów (mapy, charakter): zespół najpierw, goście za nim
+  const wierszeWszystkich = [...wiersze, ...wierszeGosci]
+  // Zaległe powtórki CCP w zespole = sygnał bezpieczeństwa żywności dla właściciela
+  // (goście nie pieką w Alterbake — nie wchodzą do tego alarmu).
   const zalegleCcp = wiersze.reduce((s, w) => s + w.powtorki.ccp, 0)
 
   return (
@@ -47,6 +58,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
         </div>
       )}
 
+      <h2 className="sekcja-tytul">🏠 Zespół Alterbake</h2>
       <div className="tabela-otoczka">
         <table className="tabela">
           <thead>
@@ -119,7 +131,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
         tytul="Technika — znajomość parku maszynowego"
         opis="Postęp quizów Panelu Technicznego per maszyna (próg jak w tomach). Kto „czyta&quot; maszyny, ten diagnozuje objawy zamiast dzwonić po serwis — kolumny to maszyny, najedź na ikonę."
         pozycje={TECHNIKA.maszyny}
-        pracownicy={pracownicy}
+        pracownicy={zespol}
         wyniki={wyniki}
         konfig={konfig}
       />
@@ -128,7 +140,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
         tytul="Sprzątanie — higiena skuteczna i wydajna"
         opis="Postęp quizów modułu Sprzątania per strefa. Kolumny to strefy higieny — najedź na ikonę."
         pozycje={SPRZATANIE.strefy}
-        pracownicy={pracownicy}
+        pracownicy={zespol}
         wyniki={wyniki}
         konfig={konfig}
       />
@@ -187,6 +199,75 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
         </div>
       </div>
 
+      {goscie.length > 0 && (
+        <div className="karta">
+          <h2>🎒 Osoby spoza Alterbake (goście)</h2>
+          <p className="cichy mini">
+            Testujący platformę — osobno od zespołu piekarni. Im więcej podejść, tym lepsza
+            ewaluacja narzędzia: porównuj priorytety i zmiany po reteście między osobami.
+            Goście nie wchodzą do eksportu M5, rejestru Planera ani do alarmu CCP zespołu.
+          </p>
+          <div className="tabela-otoczka">
+            <table className="tabela">
+              <thead>
+                <tr>
+                  <th>Gość</th>
+                  <th>Poziom ogólny</th>
+                  <th>Do powtórki</th>
+                  <th>Testy WP</th>
+                  <th>Ostatni test</th>
+                  <th>Priorytety rozwojowe</th>
+                  <th>Zmiana po reteście</th>
+                </tr>
+              </thead>
+              <tbody>
+                {wierszeGosci.map(({ prac, prof, powtorki }) => {
+                  const g = rozwojGosci.find((r) => r.prac.id_prac === prac.id_prac)
+                  const postep = g?.postep
+                  const sredniaZmiana = g?.sredniaZmiana ?? null
+                  return (
+                    <tr key={prac.id_prac}>
+                      <td><strong>{prac.imie}</strong><div className="cichy mini">{prac.id_prac}</div></td>
+                      <td><strong>{proc(prof.poziomOgolny)}%</strong></td>
+                      <td>
+                        {powtorki.liczba > 0
+                          ? <span className="plakietka toku">{powtorki.liczba}</span>
+                          : <span className="cichy mini">—</span>}
+                      </td>
+                      {postep ? (
+                        <>
+                          <td>{postep.liczbaTestow}</td>
+                          <td>
+                            {nazwaNarzedzia(postep.ostatni.narzedzie)}
+                            <div className="cichy mini">{(postep.ostatni.data || '').slice(0, 10)}</div>
+                          </td>
+                          <td className="mini">
+                            {postep.priorytety.map((id) => obszar(id)?.nazwa).join(' · ')}
+                          </td>
+                          <td>
+                            {sredniaZmiana === null ? (
+                              <span className="cichy mini">pierwsze podejście</span>
+                            ) : sredniaZmiana === 0 ? (
+                              <span className="cichy">= bez zmian</span>
+                            ) : (
+                              <span className={sredniaZmiana > 0 ? 'delta-plus' : 'delta-minus'}>
+                                {sredniaZmiana > 0 ? '▲ +' : '▼ '}{sredniaZmiana} śr. / obszar
+                              </span>
+                            )}
+                          </td>
+                        </>
+                      ) : (
+                        <td colSpan={4} className="cichy mini">brak testu Work Profile</td>
+                      )}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {onDodajProfil && (
         <ImportWyniku
           pracownicy={pracownicy}
@@ -212,7 +293,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
           Sprzątanie i Rozwój (Work Profile) z postępem i stanem. Ta sama mapa, którą
           pracownik widzi na swoim pulpicie.
         </p>
-        {wiersze.map(({ prac, prof }) => {
+        {wierszeWszystkich.map(({ prac, prof }) => {
           const mapa = budujMapeWiedzy({
             prof,
             wyniki,
@@ -222,7 +303,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
           })
           return (
             <details key={prac.id_prac} className="historia-karta">
-              <summary>{prac.imie} — mapa wiedzy</summary>
+              <summary>{prac.imie} — mapa wiedzy{prac.rola === ROLA_GOSC ? ' · gość' : ''}</summary>
               <MapaWiedzy
                 centrum={{ ...mapa.centrum, etykieta: prac.imie.split(' ').pop() }}
                 wezly={mapa.wezly}
@@ -239,7 +320,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
           To nie ocena — te same treści, inna droga dotarcia. Widoczne dla pracowników,
           którzy wykonali Mapę Potencjału.
         </p>
-        {pracownicy.map((prac) => {
+        {[...zespol, ...goscie].map((prac) => {
           const ch = wskazowkiCharakteruZSerii(profile || [], prac.id_prac)
           return (
             <details key={prac.id_prac} className="historia-karta">

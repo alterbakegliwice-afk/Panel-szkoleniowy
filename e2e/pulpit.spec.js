@@ -124,6 +124,17 @@ test('gość spoza Alterbake: samodzielne wejście, powrót bez dubla profilu', 
   await page.getByRole('button', { name: /Wypróbuj jako Gość/ }).click()
   await page.getByRole('button', { name: 'Zmień profil' }).click()
   await expect(page.locator('.profil-kafel', { hasText: 'Kuba Znajomy' })).toHaveCount(1)
+
+  // widok Zespół: goście w osobnej sekcji, poza tabelą zespołu Alterbake
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+  await expect(page.getByRole('heading', { name: /Osoby spoza Alterbake/ })).toBeVisible()
+  const sekcjaGosci = page.locator('.karta', { hasText: 'Osoby spoza Alterbake' })
+  await expect(sekcjaGosci.getByText('Kuba Znajomy')).toBeVisible()
+  // tabela zespołu (pod nagłówkiem „Zespół Alterbake") nie zawiera gościa
+  await expect(page.getByRole('heading', { name: /Zespół Alterbake/ })).toBeVisible()
+  const tabelaZespolu = page.locator('.tabela-otoczka').first()
+  await expect(tabelaZespolu.getByText('Kuba Znajomy')).toHaveCount(0)
 })
 
 test('nawigacja: moduły okazjonalne za separatorem', async ({ page }) => {
