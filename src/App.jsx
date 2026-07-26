@@ -5,6 +5,8 @@ import {
   bankPytan,
   domyslnyStan,
   kopieDoStanu,
+  nastepneIdPracownika,
+  ROLA_GOSC,
   teraz
 } from './logic/store.js'
 import ProfilePicker from './components/ProfilePicker.jsx'
@@ -182,6 +184,24 @@ export default function App() {
           onWybor={(nowaSesja) => {
             setSesja(nowaSesja)
             setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'dzien' })
+          }}
+          onGosc={(imie) => {
+            // Osoby spoza Alterbake: powrót na istniejący profil gościa o tym
+            // imieniu (bez dubli), inaczej nowy profil bez celu poziomowego.
+            const istnieje = stan.pracownicy.find(
+              (p) => p.rola === ROLA_GOSC && p.imie.toLowerCase() === imie.toLowerCase()
+            )
+            const gosc = istnieje || {
+              id_prac: nastepneIdPracownika(stan.pracownicy),
+              imie,
+              rola: ROLA_GOSC,
+              data_startu: teraz().slice(0, 10),
+              poziom_docelowy: '',
+              pin: ''
+            }
+            if (!istnieje) setStan((s) => ({ ...s, pracownicy: [...s.pracownicy, gosc] }))
+            setSesja({ rodzaj: 'pracownik', idPrac: gosc.id_prac })
+            setEkran({ widok: 'dzien' })
           }}
         />
       </Powloka>

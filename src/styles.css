@@ -563,6 +563,10 @@ details summary:hover { color: var(--akcent-ciemny); }
 .mapa-lista-nazwa { flex: 1 1 auto; min-width: 0; font-weight: 650; }
 .mapa-lista-procent { font-variant-numeric: tabular-nums; color: var(--cichy); font-weight: 700; }
 
+/* wejście gościa (osoby spoza Alterbake) na ekranie wyboru profilu */
+.gosc-wejscie { margin-top: .2rem; }
+.gosc-wejscie .pole { flex: 1 1 11rem; min-width: 0; }
+
 /* pasek statusu na landing „Mój dzień" */
 .skrot-statusu { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: .8rem 1.1rem; }
 .skrot-statusu .status-chipy { margin: 0; padding: 0; border: none; }

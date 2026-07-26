@@ -2,10 +2,16 @@ import { useState } from 'react'
 
 // Logowanie = prosty wybór profilu z listy + opcjonalny PIN (spec.md §2).
 // Bez OAuth. Piekarnia, nie bank.
-export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor }) {
+export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor, onGosc }) {
   const [pinDla, setPinDla] = useState(null) // pracownik lub {wlasciciel:true} wymagający PIN
   const [pin, setPin] = useState('')
   const [blad, setBlad] = useState('')
+  const [imieGoscia, setImieGoscia] = useState('')
+
+  const wejdzJakoGosc = () => {
+    const imie = imieGoscia.trim()
+    if (imie) onGosc?.(imie)
+  }
 
   const wybierz = (prac) => {
     if (prac.pin) {
@@ -82,6 +88,28 @@ export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor
       <p className="cichy mini">
         Właściciel: pełny widok zespołu, ocena, konfiguracja progów i eksport do Panelu M5.
       </p>
+      {onGosc && (
+        <>
+          <div className="separator"><span>spoza Alterbake?</span></div>
+          <div className="rzad gosc-wejscie">
+            <input
+              className="pole"
+              placeholder="Twoje imię"
+              maxLength={40}
+              value={imieGoscia}
+              onChange={(e) => setImieGoscia(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && wejdzJakoGosc()}
+            />
+            <button className="drugi" onClick={wejdzJakoGosc} disabled={!imieGoscia.trim()}>
+              🎒 Wypróbuj jako Gość
+            </button>
+          </div>
+          <p className="cichy mini">
+            Dla znajomych i testujących: pełny dostęp do nauki, quizów i testów Work Profile.
+            Profil gościa żyje w tej przeglądarce i nie trafia do danych zespołu piekarni.
+          </p>
+        </>
+      )}
     </div>
   )
 }

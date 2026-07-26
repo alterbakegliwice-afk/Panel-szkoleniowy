@@ -121,6 +121,15 @@ describe('eksport do Panelu M5 (schema.md)', () => {
     expect(zakwas.ccp_status).toBe('OK')
   })
 
+  it('goście (spoza Alterbake) nie trafiają do eksportu M5', () => {
+    const pracownicy = [
+      { id_prac: 'P-01', imie: 'Weronika', rola: 'Piekarz' },
+      { id_prac: 'P-07', imie: 'Kuba', rola: 'Gość' }
+    ]
+    const eksport = eksportPanelM5(PYTANIA, [], pracownicy, KONFIG, '2026-07-09T12:00:00Z')
+    expect(eksport.pracownicy.map((p) => p.id_prac)).toEqual(['P-01'])
+  })
+
   it('eksport zawiera poziom docelowy i gotowość (cel_osiagniety)', () => {
     const pracownicy = [{ id_prac: 'P-01', imie: 'Weronika', rola: 'Pomocnik', poziom_docelowy: 'JUNIOR' }]
     const eksport = eksportPanelM5(PYTANIA, [], pracownicy, KONFIG, '2026-07-09T12:00:00Z')

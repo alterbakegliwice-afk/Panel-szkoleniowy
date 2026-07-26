@@ -95,6 +95,20 @@ describe('rejestr zespołu (alterbake_zespol_v1)', () => {
     const zapis = JSON.parse(localStorage.getItem(KLUCZ_ZESPOL))
     expect(zapis.pracownicy).toHaveLength(2)
   })
+
+  it('goście (spoza Alterbake) nie wchodzą do rejestru zespołu', () => {
+    const r = zbudujRejestr(
+      {
+        konfig: {},
+        pracownicy: [
+          { id_prac: 'P-01', imie: 'Weronika', rola: 'Piekarz' },
+          { id_prac: 'P-07', imie: 'Kuba', rola: 'Gość' }
+        ]
+      },
+      't'
+    )
+    expect(r.pracownicy.map((p) => p.id_prac)).toEqual(['P-01'])
+  })
 })
 
 describe('zgłoszenia (alterbake_zgloszenia_v1)', () => {

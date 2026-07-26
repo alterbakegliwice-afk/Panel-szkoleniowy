@@ -34,7 +34,10 @@ export const PRZYKLADOWE_WYNIKI = [
   { data: '2026-07-06', id_prac: 'P-02', id_pytania: 'Z-01', zaliczyl: false, oceniajacy: 'Piotr', notatka: 'przykład — do powtórki' }
 ]
 
-export const ROLE = ['Piekarz', 'Pomocnik', 'Cukiernik', 'Obsługa', 'Mentor']
+// Gość = osoba spoza Alterbake (znajomi testujący platformę). Pełny dostęp do
+// nauki i testów, ale NIE trafia do eksportu M5 ani rejestru zespołu Planera.
+export const ROLA_GOSC = 'Gość'
+export const ROLE = ['Piekarz', 'Pomocnik', 'Cukiernik', 'Obsługa', 'Mentor', ROLA_GOSC]
 
 export function domyslnyStan() {
   return {
