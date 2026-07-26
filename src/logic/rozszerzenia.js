@@ -7,20 +7,53 @@
 // Kształt karty (zgodny z materialy_nauka.json → tomy[].karty[]):
 //   { id, tom, tytul, punkty:[string], zrodlo, zPytania (id źródłowego pytania), data }
 
+import { listaTomow } from './progress.js'
+import { TECHNIKA } from './technika.js'
+import { SPRZATANIE } from './sprzatanie.js'
+
 let licznikId = 0
 
-export function nowaKarta({ tom, tytul, punkty, zrodlo, zPytania = '' }, terazISO = new Date().toISOString()) {
+// Znormalizowane pola treści karty — wspólne dla tworzenia i edycji (trim +
+// odrzucenie pustych punktów), żeby jedna karta nie miała dwóch reguł czyszczenia.
+function polaKarty({ tom, tytul, punkty, zrodlo }) {
   return {
-    id: 'kr-' + Date.now().toString(36) + '-' + (licznikId++).toString(36),
     tom: (tom || '').trim(),
     tytul: (tytul || '').trim(),
     punkty: (Array.isArray(punkty) ? punkty : [])
       .map((p) => (p || '').trim())
       .filter((p) => p !== ''),
-    zrodlo: (zrodlo || '').trim(),
+    zrodlo: (zrodlo || '').trim()
+  }
+}
+
+// Lista tematów, do których można przypiąć kartę (tomy banku + Technika + Sprzątanie).
+// Jedno źródło dla formularza pytania (PytaniaMistrza) i redakcji kart (OwnerPanel).
+export function listaTematow(pytaniaBank) {
+  return [
+    ...listaTomow(pytaniaBank || []),
+    ...TECHNIKA.maszyny.map((m) => m.nazwa),
+    ...SPRZATANIE.strefy.map((s) => s.nazwa)
+  ]
+}
+
+export function nowaKarta({ tom, tytul, punkty, zrodlo, zPytania = '' }, terazISO = new Date().toISOString()) {
+  return {
+    id: 'kr-' + Date.now().toString(36) + '-' + (licznikId++).toString(36),
+    ...polaKarty({ tom, tytul, punkty, zrodlo }),
     zPytania,
     data: terazISO
   }
+}
+
+// Edycja karty w miejscu (redakcja): tylko treść, zachowuje id/zPytania/data.
+export function aktualizujKarte(lista, id, zmiany) {
+  return (Array.isArray(lista) ? lista : []).map((k) =>
+    k && k.id === id ? { ...k, ...polaKarty({ tom: k.tom, tytul: k.tytul, punkty: k.punkty, zrodlo: k.zrodlo, ...zmiany }) } : k
+  )
+}
+
+export function usunKarte(lista, id) {
+  return (Array.isArray(lista) ? lista : []).filter((k) => k && k.id !== id)
 }
 
 // Walidacja przy wczytaniu/backupie — zepsuty wpis (ręczna edycja localStorage,

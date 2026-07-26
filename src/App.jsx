@@ -26,7 +26,7 @@ import { pytaniaTechniki } from './logic/technika.js'
 import { pytaniaSprzatania } from './logic/sprzatanie.js'
 import { wczytajZgloszenia } from './logic/integracja.js'
 import { noweZapytanie } from './logic/pytaniaMistrza.js'
-import { nowaKarta, kartyTomu } from './logic/rozszerzenia.js'
+import { nowaKarta, kartyTomu, aktualizujKarte, usunKarte } from './logic/rozszerzenia.js'
 
 // Właściciel jako „uczeń" paneli praktycznych (Technika/Sprzątanie) — wyniki
 // logują się pod ID_WLASCICIEL, nie mieszają się z postępem zespołu.
@@ -131,6 +131,23 @@ export default function App() {
         ? (s.pytania || []).map((p) => (p.id === zPytania ? { ...p, kartaUtworzona: true } : p))
         : s.pytania
     }))
+
+  // Redakcja kart: edycja w miejscu (tylko treść) i usuwanie. Usunięcie karty
+  // „odblokowuje" pytanie źródłowe — wraca do listy „do rozszerzenia" w skrzynce.
+  const edytujKarteRozszerzenia = (id, zmiany) =>
+    setStan((s) => ({ ...s, rozszerzenia: aktualizujKarte(s.rozszerzenia || [], id, zmiany) }))
+
+  const usunKarteRozszerzenia = (id) =>
+    setStan((s) => {
+      const karta = (s.rozszerzenia || []).find((k) => k.id === id)
+      return {
+        ...s,
+        rozszerzenia: usunKarte(s.rozszerzenia || [], id),
+        pytania: karta && karta.zPytania
+          ? (s.pytania || []).map((p) => (p.id === karta.zPytania ? { ...p, kartaUtworzona: false } : p))
+          : s.pytania
+      }
+    })
 
   // Punkt wejścia z ekranu nauki (Learning) — tożsamość zależy od sesji;
   // wspólny dla tomów banku, Techniki/Sprzątania, Przedsiębiorcy i Rozwoju.
@@ -418,6 +435,8 @@ export default function App() {
           onPrzywrocSeed={przywrocSeed}
           onReset={resetujWszystko}
           onKopia={wczytajKopie}
+          onEdytujKarte={edytujKarteRozszerzenia}
+          onUsunKarte={usunKarteRozszerzenia}
         />
       )}
     </Powloka>

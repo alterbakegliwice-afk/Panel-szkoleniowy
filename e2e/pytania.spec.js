@@ -84,3 +84,48 @@ test('Właściciel zamienia oflagowane pytanie w kartę wiedzy — pojawia się 
   await expect(page.getByText('Podwaja objętość w 4–8 h i pływa w wodzie (test flotacji).')).toBeVisible()
   await expect(page.getByText(/rozszerzenie · z pytania zespołu/)).toBeVisible()
 })
+
+test('Redakcja kart: Właściciel edytuje i usuwa kartę, usunięcie odblokowuje pytanie', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('.profil-kafel').first().click()
+
+  // pracownik pyta z pierwszego tomu
+  await page.getByRole('button', { name: 'Mój poziom' }).click()
+  const tom = page.locator('.tom').first()
+  await tom.getByRole('button', { name: /Ucz się/ }).click()
+  await page.getByPlaceholder(/zakwas nie ma zapachu/).fill('Ile trwa autoliza?')
+  await page.getByRole('button', { name: 'Wyślij pytanie' }).click()
+  await expect(page.getByText('Pytanie zapisane')).toBeVisible()
+
+  // Właściciel: odpowiada, flaguje, tworzy kartę
+  await page.getByRole('button', { name: 'Zmień profil' }).click()
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Pytania/ }).click()
+  await page.getByPlaceholder('Odpowiedź dla pracownika').fill('Zwykle 20–60 minut, zależnie od mąki.')
+  await page.getByRole('checkbox', { name: /do rozszerzenia materiału/ }).check()
+  await page.getByRole('button', { name: 'Odpowiedz', exact: true }).click()
+  await page.getByRole('button', { name: /^odpowiedziane/ }).click()
+  await page.getByRole('button', { name: /Utwórz kartę wiedzy/ }).click()
+  await page.getByPlaceholder(/Zakwas bez zapachu/).fill('Autoliza — czas')
+  await page.getByRole('button', { name: 'Opublikuj kartę' }).click()
+  await expect(page.getByText('karta wiedzy utworzona z tego pytania')).toBeVisible()
+
+  // Konfiguracja: sekcja redakcji, edycja tytułu karty
+  await page.getByRole('button', { name: /Konfiguracja/ }).click()
+  const redakcja = page.locator('.karta', { hasText: 'Karty wiedzy z pytań' })
+  await expect(redakcja.getByText('Autoliza — czas')).toBeVisible()
+  await redakcja.getByRole('button', { name: 'Edytuj' }).click()
+  await redakcja.getByLabel('Tytuł karty').fill('Autoliza — ile trwa')
+  await page.getByRole('button', { name: 'Zapisz zmiany' }).click()
+  await expect(redakcja.getByText('Autoliza — ile trwa')).toBeVisible()
+
+  // usunięcie karty (auto-akceptacja confirm)
+  page.on('dialog', (d) => d.accept())
+  await redakcja.getByRole('button', { name: 'Usuń' }).click()
+  await expect(page.getByText('Brak kart z pytań.')).toBeVisible()
+
+  // pytanie wróciło do „do rozszerzenia" — przycisk „Utwórz kartę wiedzy" znów dostępny
+  await page.getByRole('button', { name: /^Pytania/ }).click()
+  await page.getByRole('button', { name: /^odpowiedziane/ }).click()
+  await expect(page.getByRole('button', { name: /Utwórz kartę wiedzy/ })).toBeVisible()
+})

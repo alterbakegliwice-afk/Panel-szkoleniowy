@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import { listaTomow } from '../logic/progress.js'
-import { TECHNIKA } from '../logic/technika.js'
-import { SPRZATANIE } from '../logic/sprzatanie.js'
-import { szkicPunktow } from '../logic/rozszerzenia.js'
+import { szkicPunktow, listaTematow } from '../logic/rozszerzenia.js'
 
 const ETYKIETY_STATUSU = { nowe: 'nowe', odpowiedziane: 'odpowiedziane' }
 
@@ -12,11 +9,7 @@ const ETYKIETY_STATUSU = { nowe: 'nowe', odpowiedziane: 'odpowiedziane' }
 // skrzynka, odpowiedź, oznaczenie „do rozszerzenia materiału" i — po odpowiedzi
 // — zamiana pytania w kartę wiedzy tomu (warstwa PRAKTYCZNA, SPEC §4c).
 export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, onDodaj, onOdpowiedz, onPrzelaczFlage, onDodajKarte }) {
-  const tematy = [
-    ...listaTomow(pytaniaBank || []),
-    ...TECHNIKA.maszyny.map((m) => m.nazwa),
-    ...SPRZATANIE.strefy.map((s) => s.nazwa)
-  ]
+  const tematy = listaTematow(pytaniaBank)
 
   if (tryb === 'pracownik') {
     return (

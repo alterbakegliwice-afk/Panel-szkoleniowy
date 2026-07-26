@@ -210,7 +210,18 @@ oraz **praktyczna** (flaga → publikacja karty), dodana 2026-07-23.
   `kartaUtworzona:true` (znika z listy „do rozszerzenia”).
 - `kartyTomu(tom, rozszerzenia)` — merge przy renderze: `Learning` skleja karty
   statyczne + rozszerzenia danego tematu (nazwa tomu/maszyny/strefy/modułu).
+- `listaTematow(pytaniaBank)` — jedno źródło listy tematów (tomy banku + Technika
+  + Sprzątanie) dla formularza pytania i redakcji kart (koniec z duplikacją).
 - Backup: `filtrujRozszerzenia()` w `store.js` (`eksportKopii`/`kopieDoStanu`).
+
+### Redakcja kart — `OwnerPanel.jsx` → `RedakcjaKart` (2026-07-23)
+
+- Konfiguracja → sekcja „Karty wiedzy z pytań”: lista kart pogrupowana po tomie,
+  edycja w miejscu (`KartaEdycja`: tom/tytuł/punkty/źródło) i usuwanie z potwierdzeniem.
+- `aktualizujKarte(lista, id, zmiany)` / `usunKarte(lista, id)` w `rozszerzenia.js`
+  (czyste, testowalne; wspólna normalizacja pól co `nowaKarta`).
+- Usunięcie karty **odblokowuje pytanie źródłowe**: App zeruje `kartaUtworzona`,
+  więc pytanie wraca do listy „do rozszerzenia” (brak osieroconego znacznika).
 
 ## 5. Poza zakresem (świadomie)
 

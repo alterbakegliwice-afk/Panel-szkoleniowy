@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { eksportPanelM5 } from '../logic/export.js'
 import { pytaniaTechniki } from '../logic/technika.js'
 import { pytaniaSprzatania } from '../logic/sprzatanie.js'
+import { listaTematow } from '../logic/rozszerzenia.js'
 import { MODULY_PLANERA } from '../logic/integracja.js'
 import {
   ROLE,
@@ -14,7 +15,7 @@ import {
 
 // Panel Właściciela: progi (KONFIG), pracownicy, bank pytań, eksport do Panelu M5.
 // PROG_CCP nie jest edytowalny — 100% nienegocjowalne (AI_BATON §4).
-export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank, onPrzywrocSeed, onReset, onKopia }) {
+export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank, onPrzywrocSeed, onReset, onKopia, onEdytujKarte, onUsunKarte }) {
   const konfig = { PROG_CCP: 1, ...stan.konfig }
 
   const pobierz = (obiekt, nazwa) => {
@@ -39,6 +40,13 @@ export default function OwnerPanel({ stan, bank, onKonfig, onPracownicy, onBank,
       <Pracownicy pracownicy={stan.pracownicy} onPracownicy={onPracownicy} />
       <PinWlasciciela konfig={konfig} onKonfig={onKonfig} />
       <BankPytan bank={bank} wgrany={!!stan.bank} onBank={onBank} onPrzywrocSeed={onPrzywrocSeed} pobierz={pobierz} />
+
+      <RedakcjaKart
+        rozszerzenia={stan.rozszerzenia || []}
+        tematy={listaTematow(bank.pytania)}
+        onEdytuj={onEdytujKarte}
+        onUsun={onUsunKarte}
+      />
 
       <div className="karta">
         <h2>Eksport do Panelu Piekarni M5</h2>
@@ -117,6 +125,127 @@ function KopiaZapasowa({ stan, pobierz, onKopia }) {
         Kopia zawiera pełny log append-only — po wczytaniu na innym komputerze historia jest
         identyczna. To NIE to samo co eksport M5 (ten jest tylko dla Panelu, bez pełnego logu).
       </p>
+    </div>
+  )
+}
+
+// Redakcja kart wiedzy utworzonych z pytań (stan.rozszerzenia). Pogrupowane po
+// tomie; każda karta edytowalna w miejscu lub do usunięcia. Usunięcie odblokowuje
+// pytanie źródłowe (App: kartaUtworzona → false).
+function RedakcjaKart({ rozszerzenia, tematy, onEdytuj, onUsun }) {
+  const [edycja, setEdycja] = useState(null) // id edytowanej karty
+
+  if (!rozszerzenia.length) {
+    return (
+      <div className="karta">
+        <h2>Karty wiedzy z pytań</h2>
+        <p className="cichy">
+          Brak kart z pytań. Powstają w zakładce „Pytania”: odpowiedz na pytanie, oznacz
+          „do rozszerzenia materiału”, a potem „Utwórz kartę wiedzy”.
+        </p>
+      </div>
+    )
+  }
+
+  // grupowanie po tomie z zachowaniem kolejności pierwszego wystąpienia
+  const tomy = []
+  const wgTomu = {}
+  for (const k of rozszerzenia) {
+    if (!wgTomu[k.tom]) { wgTomu[k.tom] = []; tomy.push(k.tom) }
+    wgTomu[k.tom].push(k)
+  }
+
+  return (
+    <div className="karta">
+      <h2>Karty wiedzy z pytań ({rozszerzenia.length})</h2>
+      <p className="cichy">
+        Karty dopisane do materiału z pytań zespołu. Możesz je poprawić lub usunąć —
+        zmiana jest natychmiast widoczna u pracowników. Usunięcie karty przywraca jej
+        pytanie do listy „do rozszerzenia”.
+      </p>
+      {tomy.map((tom) => (
+        <div key={tom} className="redakcja-tom">
+          <h3 className="cichy">{tom || 'Ogólne'}</h3>
+          <ul className="lista-zgloszen">
+            {wgTomu[tom].map((k) =>
+              edycja === k.id ? (
+                <li key={k.id}>
+                  <KartaEdycja
+                    karta={k}
+                    tematy={tematy}
+                    onZapisz={(zmiany) => { onEdytuj(k.id, zmiany); setEdycja(null) }}
+                    onAnuluj={() => setEdycja(null)}
+                  />
+                </li>
+              ) : (
+                <li key={k.id}>
+                  <div className="rzad">
+                    <strong>{k.tytul}</strong>
+                    <span className="cichy mini">{k.punkty.length} pkt · {(k.data || '').slice(0, 10)}</span>
+                  </div>
+                  <ul className="nauka-punkty">
+                    {k.punkty.map((p, j) => <li key={j}>{p}</li>)}
+                  </ul>
+                  {k.zrodlo && <p className="cichy mini">Źródło: {k.zrodlo}</p>}
+                  <div className="rzad">
+                    <button className="drugi" onClick={() => setEdycja(k.id)}>Edytuj</button>
+                    <button
+                      className="odrzuc"
+                      onClick={() => { if (confirm(`Usunąć kartę „${k.tytul}”?`)) onUsun(k.id) }}
+                    >
+                      Usuń
+                    </button>
+                  </div>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function KartaEdycja({ karta, tematy, onZapisz, onAnuluj }) {
+  const [tom, setTom] = useState(karta.tom || '')
+  const [tytul, setTytul] = useState(karta.tytul)
+  const [punkty, setPunkty] = useState((karta.punkty || []).join('\n'))
+  const [zrodlo, setZrodlo] = useState(karta.zrodlo || '')
+
+  const listaPunktow = punkty.split('\n').map((w) => w.trim()).filter((w) => w !== '')
+  const gotowe = tom.trim() !== '' && tytul.trim() !== '' && listaPunktow.length > 0
+
+  return (
+    <div className="karta-rozszerzenie">
+      <label className="pole-etykieta">
+        Tom docelowy
+        <select className="pole" value={tom} onChange={(e) => setTom(e.target.value)}>
+          <option value="">— wybierz tom —</option>
+          {tematy.map((t) => <option key={t} value={t}>{t}</option>)}
+        </select>
+      </label>
+      <label className="pole-etykieta">
+        Tytuł karty
+        <input className="pole" value={tytul} onChange={(e) => setTytul(e.target.value)} />
+      </label>
+      <label className="pole-etykieta">
+        Punkty (jeden na wiersz)
+        <textarea className="pole" rows={5} value={punkty} onChange={(e) => setPunkty(e.target.value)} />
+      </label>
+      <label className="pole-etykieta">
+        Źródło
+        <input className="pole" value={zrodlo} onChange={(e) => setZrodlo(e.target.value)} />
+      </label>
+      <div className="rzad">
+        <button className="drugi" onClick={onAnuluj}>Anuluj</button>
+        <button
+          className="glowny"
+          disabled={!gotowe}
+          onClick={() => onZapisz({ tom: tom.trim(), tytul: tytul.trim(), punkty: listaPunktow, zrodlo: zrodlo.trim() })}
+        >
+          Zapisz zmiany
+        </button>
+      </div>
     </div>
   )
 }
