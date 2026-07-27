@@ -147,6 +147,29 @@ export function nastepneIdPracownika(pracownicy) {
   return 'P-' + String(max + 1).padStart(2, '0')
 }
 
+// Profil gościa (osoby spoza Alterbake) — bez PIN-u i bez poziomu docelowego:
+// gość się uczy i testuje, ale nie podlega ścieżce awansu piekarni.
+export function nowyGosc(pracownicy, imie, dataStartu) {
+  return {
+    id_prac: nastepneIdPracownika(pracownicy),
+    imie: String(imie || '').trim(),
+    rola: ROLA_GOSC,
+    data_startu: dataStartu,
+    poziom_docelowy: '',
+    pin: ''
+  }
+}
+
+// Powrót gościa po imieniu: to samo imię = ten sam profil (bez wielkości liter
+// i zbędnych spacji), żeby kolejne wejście nie tworzyło pustego duplikatu.
+export function znajdzGoscia(pracownicy, imie) {
+  const szukane = String(imie || '').trim().toLowerCase()
+  if (!szukane) return null
+  return (pracownicy || []).find(
+    (p) => p.rola === ROLA_GOSC && String(p.imie || '').trim().toLowerCase() === szukane
+  ) || null
+}
+
 export function teraz() {
   return new Date().toISOString()
 }

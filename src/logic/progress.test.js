@@ -8,7 +8,7 @@ import {
 } from './progress.js'
 import { historiaPracownika, pozycjeDoPowtorki, podsumowaniePowtorek, INTERWALY_POWTOREK_DNI, TEMPA_POWTOREK, interwalyPowtorek } from './progress.js'
 import { eksportPanelM5 } from './export.js'
-import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu } from './store.js'
+import { walidujBank, eksportKopii, walidujKopie, kopieDoStanu, nowyGosc, znajdzGoscia, ROLA_GOSC } from './store.js'
 import seed from '../data/bank_pytan_seed.json'
 
 const KONFIG = DOMYSLNA_KONFIG
@@ -230,6 +230,36 @@ describe('historia podejść (log append-only = dowód przy awansie)', () => {
       'P-01'
     )
     expect(h[0].pytanie).toMatch(/spoza aktualnego banku/)
+  })
+})
+
+describe('profile gości (osoby spoza Alterbake)', () => {
+  const ZESPOL = [
+    { id_prac: 'P-01', imie: 'Weronika', rola: 'Piekarz' },
+    { id_prac: 'P-02', imie: 'Kuba Znajomy', rola: ROLA_GOSC }
+  ]
+
+  it('nowyGosc: kolejne ID, rola Gość, bez PIN-u i celu poziomowego', () => {
+    const g = nowyGosc(ZESPOL, '  Ola  ', '2026-07-27')
+    expect(g).toEqual({
+      id_prac: 'P-03',
+      imie: 'Ola',
+      rola: ROLA_GOSC,
+      data_startu: '2026-07-27',
+      poziom_docelowy: '',
+      pin: ''
+    })
+  })
+
+  it('znajdzGoscia: to samo imię (inna wielkość liter, spacje) = ten sam profil', () => {
+    expect(znajdzGoscia(ZESPOL, '  kuba znajomy ')?.id_prac).toBe('P-02')
+    expect(znajdzGoscia(ZESPOL, 'Ola')).toBe(null)
+    expect(znajdzGoscia(ZESPOL, '   ')).toBe(null)
+  })
+
+  it('znajdzGoscia nie podszywa się pod pracownika o tym samym imieniu', () => {
+    // imię pracownicy nie może wpuścić gościa na jej profil (i odwrotnie)
+    expect(znajdzGoscia(ZESPOL, 'Weronika')).toBe(null)
   })
 })
 

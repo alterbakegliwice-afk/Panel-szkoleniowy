@@ -563,6 +563,13 @@ details summary:hover { color: var(--akcent-ciemny); }
 .mapa-lista-nazwa { flex: 1 1 auto; min-width: 0; font-weight: 650; }
 .mapa-lista-procent { font-variant-numeric: tabular-nums; color: var(--cichy); font-weight: 700; }
 
+/* wklejanie wyniku przysłanego wiadomością (zdalni testujący) */
+.wklejka-blok { margin-top: .9rem; border-top: 1px solid var(--linia); padding-top: .6rem; }
+.wklejka-blok > summary { cursor: pointer; font-weight: 700; color: var(--akcent-ciemny); }
+.wklejka-pole { width: 100%; margin: .5rem 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .78rem; resize: vertical; }
+.wklejka-podglad { margin-top: .7rem; padding: .7rem .8rem; border-radius: var(--r); background: var(--karta-inset); }
+.wklejka-podglad p { margin: 0 0 .4rem; font-size: .86rem; }
+
 /* wejście gościa (osoby spoza Alterbake) na ekranie wyboru profilu */
 .gosc-wejscie { margin-top: .2rem; }
 .gosc-wejscie .pole { flex: 1 1 11rem; min-width: 0; }
