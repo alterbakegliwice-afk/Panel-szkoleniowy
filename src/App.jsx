@@ -183,7 +183,15 @@ export default function App() {
           pinWlasciciela={stan.konfig.PIN_WLASCICIELA || ''}
           onWybor={(nowaSesja) => {
             setSesja(nowaSesja)
-            setEkran({ widok: nowaSesja.rodzaj === 'wlasciciel' ? 'zespol' : 'dzien' })
+            // Goście nie mają „Mojego dnia" (zadania Planera piekarni) — lądują
+            // wprost na pulpicie nauki.
+            const wybrany = nowaSesja.rodzaj === 'pracownik'
+              ? stan.pracownicy.find((p) => p.id_prac === nowaSesja.idPrac)
+              : null
+            const widok = nowaSesja.rodzaj === 'wlasciciel'
+              ? 'zespol'
+              : wybrany?.rola === ROLA_GOSC ? 'profil' : 'dzien'
+            setEkran({ widok })
           }}
           onGosc={(imie) => {
             // Osoby spoza Alterbake: powrót na istniejący profil gościa o tym
@@ -201,7 +209,7 @@ export default function App() {
             }
             if (!istnieje) setStan((s) => ({ ...s, pracownicy: [...s.pracownicy, gosc] }))
             setSesja({ rodzaj: 'pracownik', idPrac: gosc.id_prac })
-            setEkran({ widok: 'dzien' })
+            setEkran({ widok: 'profil' }) // pulpit nauki, nie zadania Planera piekarni
           }}
         />
       </Powloka>
@@ -211,8 +219,11 @@ export default function App() {
   // Zakładki wg częstości użycia: codzienne/częste najpierw, okazjonalne za
   // separatorem (grupa 'dalej') — mniej bodźców o równej wadze, szybszy skan.
   const zakladki = []
+  const jestGosciem = pracownik?.rola === ROLA_GOSC
   if (pracownik) {
-    zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
+    // „Mój dzień" = zadania Planera piekarni — dla gości (osób spoza) to pusty,
+    // mylący widok, więc go nie pokazujemy.
+    if (!jestGosciem) zakladki.push({ id: 'dzien', etykieta: 'Mój dzień' })
     zakladki.push({ id: 'profil', etykieta: 'Mój poziom', alert: alertPoziomu })
     zakladki.push({ id: 'rozwoj', etykieta: 'Rozwój' })
   }
