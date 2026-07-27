@@ -5,7 +5,8 @@ import {
   bankPytan,
   domyslnyStan,
   kopieDoStanu,
-  nastepneIdPracownika,
+  nowyGosc,
+  znajdzGoscia,
   ROLA_GOSC,
   teraz
 } from './logic/store.js'
@@ -114,6 +115,19 @@ export default function App() {
   const dodajObserwacje = (wpis) =>
     setStan((s) => ({ ...s, obserwacje: [...(s.obserwacje || []), wpis] }))
 
+  // Profil gościa (osoba spoza Alterbake): zakładany z ekranu startowego przez
+  // samego gościa albo przez Właściciela przy wklejaniu przysłanego wyniku.
+  // Zwraca profil (istniejący lub nowy), żeby wywołujący mógł od razu działać.
+  const dodajGoscia = (imie) => {
+    const czyste = String(imie || '').trim()
+    if (!czyste) return null
+    const istnieje = znajdzGoscia(stan.pracownicy, czyste)
+    if (istnieje) return istnieje
+    const gosc = nowyGosc(stan.pracownicy, czyste, teraz().slice(0, 10))
+    setStan((s) => ({ ...s, pracownicy: [...s.pracownicy, gosc] }))
+    return gosc
+  }
+
   // Odhaczenie/odznaczenie mikropraktyki rozwojowej (samoocena, toggle).
   const przelaczPraktyke = (klucz) =>
     setStan((s) => {
@@ -196,18 +210,8 @@ export default function App() {
           onGosc={(imie) => {
             // Osoby spoza Alterbake: powrót na istniejący profil gościa o tym
             // imieniu (bez dubli), inaczej nowy profil bez celu poziomowego.
-            const istnieje = stan.pracownicy.find(
-              (p) => p.rola === ROLA_GOSC && p.imie.toLowerCase() === imie.toLowerCase()
-            )
-            const gosc = istnieje || {
-              id_prac: nastepneIdPracownika(stan.pracownicy),
-              imie,
-              rola: ROLA_GOSC,
-              data_startu: teraz().slice(0, 10),
-              poziom_docelowy: '',
-              pin: ''
-            }
-            if (!istnieje) setStan((s) => ({ ...s, pracownicy: [...s.pracownicy, gosc] }))
+            const gosc = dodajGoscia(imie)
+            if (!gosc) return
             setSesja({ rodzaj: 'pracownik', idPrac: gosc.id_prac })
             setEkran({ widok: 'profil' }) // pulpit nauki, nie zadania Planera piekarni
           }}
@@ -402,6 +406,7 @@ export default function App() {
           oceniajacy={oceniajacy}
           onDodajProfil={dodajProfil}
           onDodajObserwacje={dodajObserwacje}
+          onDodajGoscia={dodajGoscia}
         />
       )}
       {ekran.widok === 'ocena' && (jestMentorem || jestWlascicielem) && (

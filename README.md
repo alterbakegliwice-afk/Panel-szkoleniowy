@@ -114,10 +114,14 @@ i **Mapa Potencjału**) w zamkniętą pętlę rozwojową:
    praktyki): panel porównuje wynik z poprzednim podejściem **tego samego
    narzędzia** (skal różnych narzędzi nie porównujemy) i pokazuje deltę per obszar.
 
-Wyniki wpadają do panelu dwiema drogami: **automatycznie** przez wspólny
+Wyniki wpadają do panelu trzema drogami: **automatycznie** przez wspólny
 `localStorage` (klucz `alterbake_work_profile_wyniki_v1` — działa, bo testy
-i panel stoją na tym samym originie GitHub Pages) albo **z pliku JSON**
-pobranego przyciskiem w raporcie testu (inne urządzenie / `file://`).
+i panel stoją na tym samym originie GitHub Pages), **wklejone z wiadomości**
+(osoba testująca zdalnie klika w raporcie „📤 Wyślij wynik właścicielowi" —
+wynik ląduje w jej schowku jako ~300–530 znaków JSON-a, więc mieści się
+w dowolnym komunikatorze; właściciel wkleja go w Zespół → „Wklej wynik
+przysłany wiadomością") albo **z pliku JSON** pobranego przyciskiem w raporcie
+(inne urządzenie / `file://`).
 Log wyników testów (`profile` w stanie) jest append-only jak WYNIK i wchodzi
 do kopii zapasowej. Dane: `src/data/rozwoj_kompetencji.json`, logika i mapowanie:
 `src/logic/rozwoj.js` (testy: `src/logic/rozwoj.test.js`), UI: `src/components/Rozwoj.jsx`.
@@ -137,7 +141,14 @@ Co jeszcze daje zakładka:
 - **Trend w czasie** — po 3+ podejściach mini-wykresy (`Sparkline`) pokazują
   kierunek zmian per obszar, nie tylko ostatnią deltę.
 - **Import przez Mentora/Właściciela** — w zakładce Zespół można przypisać wynik
-  testu wybranemu pracownikowi (gdy to prowadzący ma plik). `ImportWyniku.jsx`.
+  testu wybranemu pracownikowi: z pliku, z wklejonej wiadomości albo z wyników
+  wykrytych w tej przeglądarce. Gdy wklejony wynik jest podpisany osobą, której
+  nie ma w panelu, jedno kliknięcie zakłada jej **profil gościa** i przypisuje
+  wynik — tak zbiera się ewaluację od osób spoza Alterbake. `ImportWyniku.jsx`.
+- **Goście (osoby spoza Alterbake)** — wejście z ekranu startowego („Wypróbuj
+  jako Gość") daje pełny dostęp do nauki i testów, ale profile gości są
+  odfiltrowane z eksportu M5, rejestru Planera i alarmu CCP zespołu; w widoku
+  Zespół mają własną sekcję z metrykami ewaluacji narzędzia.
 - **PIN per pracownik** — Konfiguracja → Pracownicy: ustaw/zmień/zdejmij PIN
   chroniący profil (wyniki Work Profile to dane wrażliwsze niż quizy wiedzy).
 

@@ -68,3 +68,43 @@ test('Mentor/Właściciel: przypisanie wyniku pracownikowi i widok zespołu', as
   await page.getByRole('button', { name: /Przypisz do:/ }).first().click()
   await expect(page.getByText(/przypisany do:/)).toBeVisible()
 })
+
+test('zdalny testujący: wklejony wynik zakłada profil gościa i ląduje w ewaluacji', async ({ page }) => {
+  await page.goto('/') // czysty stan — żadnych wyników w tej przeglądarce
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+
+  // dokładnie to, co test kopiuje do schowka przyciskiem „Wyślij wynik właścicielowi"
+  const przyslany = JSON.stringify(wynikPP('2026-07-20T09:00:00.000Z', 35, 48))
+    .replace('"imie":"Weronika"', '"imie":"Ola Testerka"')
+
+  await page.getByText('Wklej wynik przysłany wiadomością').click()
+  await page.locator('.wklejka-pole').fill(przyslany)
+  await page.getByRole('button', { name: 'Sprawdź wklejony wynik' }).click()
+
+  // panel rozpoznaje osobę spoza zespołu i proponuje założenie profilu gościa
+  const podglad = page.locator('.wklejka-podglad')
+  await expect(podglad).toContainText('Ola Testerka')
+  await podglad.getByRole('button', { name: /Dodaj gościa .*Ola Testerka.* i przypisz/ }).click()
+  await expect(page.getByText(/przypisany do: Ola Testerka/)).toBeVisible()
+
+  // wynik trafia do sekcji ewaluacyjnej gości, nie do tabeli zespołu
+  const sekcjaGosci = page.locator('.karta', { hasText: 'Osoby spoza Alterbake' })
+  await expect(sekcjaGosci.getByText('Ola Testerka')).toBeVisible()
+  await expect(sekcjaGosci).toContainText('Profil Pracy')
+})
+
+test('wklejka odrzuca śmieci i wynik nie z Work Profile', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: /Wejdź jako Właściciel/ }).click()
+  await page.getByRole('button', { name: /^Zespół$/ }).click()
+  await page.getByText('Wklej wynik przysłany wiadomością').click()
+
+  await page.locator('.wklejka-pole').fill('to nie jest json')
+  await page.getByRole('button', { name: 'Sprawdź wklejony wynik' }).click()
+  await expect(page.getByText(/nie jest poprawny JSON/)).toBeVisible()
+
+  await page.locator('.wklejka-pole').fill('{"typ":"cos-innego"}')
+  await page.getByRole('button', { name: 'Sprawdź wklejony wynik' }).click()
+  await expect(page.getByText(/nie jest wynikiem testu Work Profile/)).toBeVisible()
+})

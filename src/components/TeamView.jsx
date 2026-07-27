@@ -13,7 +13,7 @@ import ObserwacjeMentora from './ObserwacjeMentora.jsx'
 
 // Widok Mentora/Właściciela: postęp całego zespołu + kryterium awansu (spec.md §2, §4).
 // Awans na Samodzielnego = obiektywne kryterium (sedno M5). Awans na Mentora = decyzja ludzka.
-export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, konfig, profile, obserwacje, oceniajacy, onDodajProfil, onDodajObserwacje }) {
+export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, konfig, profile, obserwacje, oceniajacy, onDodajProfil, onDodajObserwacje, onDodajGoscia }) {
   const proc = (x) => Math.round(x * 100)
   // Podział: zespół Alterbake osobno od gości (osób spoza) — statystyki
   // piekarni i ewaluacja narzędzia na zewnętrznych uczestnikach nie mieszają się.
@@ -273,6 +273,7 @@ export default function TeamView({ pracownicy, pytania, pytaniaOpisowe, wyniki, 
           pracownicy={pracownicy}
           profile={profile || []}
           onDodajProfil={onDodajProfil}
+          onDodajGoscia={onDodajGoscia}
         />
       )}
 
