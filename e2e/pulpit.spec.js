@@ -108,10 +108,12 @@ test.describe('mobile: mapa wiedzy jako lista', () => {
 test('gość spoza Alterbake: samodzielne wejście, powrót bez dubla profilu', async ({ page }) => {
   await page.goto('/')
 
-  // wejście z ekranu startowego — bez PIN-u i bez panelu właściciela
+  // wejście z ekranu startowego — bez PIN-u i bez panelu właściciela;
+  // gość ląduje na pulpicie nauki (nie na zadaniach Planera piekarni)
   await page.getByPlaceholder('Twoje imię').fill('Kuba Znajomy')
   await page.getByRole('button', { name: /Wypróbuj jako Gość/ }).click()
-  await expect(page.locator('.skrot-statusu')).toBeVisible() // landing „Mój dzień"
+  await expect(page.locator('.co-teraz')).toBeVisible() // pulpit „Mój poziom"
+  await expect(page.getByRole('button', { name: 'Mój dzień' })).toHaveCount(0)
 
   // po wylogowaniu profil gościa jest na liście i wpuszcza jednym klikiem
   await page.getByRole('button', { name: 'Zmień profil' }).click()

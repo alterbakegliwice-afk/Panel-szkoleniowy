@@ -1,6 +1,7 @@
 // Eksport do Panelu Piekarni M5 — format ze schema.md.
 // Tylko plik (JSON) — NIE integracja live (Panel nie ma jeszcze buildu, spec.md §7).
 import { profilPracownika, podsumowaniePowtorek, interwalyPowtorek } from './progress.js'
+import { ROLA_GOSC } from './store.js'
 
 // Bump: doszedł sygnał zaległych powtórek (spaced retrieval) per pracownik.
 const WERSJA_FORMATU = '2026-07-14'
@@ -15,7 +16,7 @@ export function eksportPanelM5(pytania, wyniki, pracownicy, konfig, wygenerowano
     wygenerowano,
     // Goście (testujący spoza Alterbake) nie trafiają do Panelu M5 —
     // eksport opisuje wyłącznie realny zespół piekarni.
-    pracownicy: pracownicy.filter((p) => p.rola !== 'Gość').map((prac) => {
+    pracownicy: pracownicy.filter((p) => p.rola !== ROLA_GOSC).map((prac) => {
       const prof = profilPracownika(pytania, wyniki, prac.id_prac, konfig, prac.poziom_docelowy)
       const pow = podsumowaniePowtorek(pytania, wyniki, prac.id_prac, wygenerowano, interwalyPowtorek(konfig))
       return {

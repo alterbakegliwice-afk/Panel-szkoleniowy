@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ROLA_GOSC } from '../logic/store.js'
 
 // Logowanie = prosty wybór profilu z listy + opcjonalny PIN (spec.md §2).
 // Bez OAuth. Piekarnia, nie bank.
@@ -74,18 +75,18 @@ export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor
       <h1>Kto się uczy?</h1>
       <p className="cichy">Wybierz swój profil, żeby zobaczyć swój poziom wiedzy i kolejny krok.</p>
       <div className="lista-profili">
-        {pracownicy.filter((p) => p.rola !== 'Gość').map((p) => (
+        {pracownicy.filter((p) => p.rola !== ROLA_GOSC).map((p) => (
           <button key={p.id_prac} className="profil-kafel" onClick={() => wybierz(p)}>
             <span className="profil-imie">{p.imie}</span>
             <span className="profil-rola">{p.rola}{p.pin ? ' · 🔒' : ''}</span>
           </button>
         ))}
       </div>
-      {pracownicy.some((p) => p.rola === 'Gość') && (
+      {pracownicy.some((p) => p.rola === ROLA_GOSC) && (
         <>
           <div className="separator"><span>goście</span></div>
           <div className="lista-profili">
-            {pracownicy.filter((p) => p.rola === 'Gość').map((p) => (
+            {pracownicy.filter((p) => p.rola === ROLA_GOSC).map((p) => (
               <button key={p.id_prac} className="profil-kafel" onClick={() => wybierz(p)}>
                 <span className="profil-imie">{p.imie}</span>
                 <span className="profil-rola">{p.rola}{p.pin ? ' · 🔒' : ''}</span>
@@ -120,6 +121,7 @@ export default function ProfilePicker({ pracownicy, pinWlasciciela = '', onWybor
           <p className="cichy mini">
             Dla znajomych i testujących: pełny dostęp do nauki, quizów i testów Work Profile.
             Profil gościa żyje w tej przeglądarce i nie trafia do danych zespołu piekarni.
+            To samo imię wraca na istniejący profil — jeśli ktoś już go użył, dopisz nazwisko.
           </p>
         </>
       )}
