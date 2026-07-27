@@ -45,16 +45,20 @@ export default function Learning({ tytul, material, kartyDodatkowe = [], przerob
         </div>
       ))}
 
-      <div className="karta nauka-cta">
-        {przerobiony && <span className="cel-plakietka ok">✓ Materiał już przerobiony</span>}
-        <p className="cichy">
-          {ctaOpis ||
-            'Przeczytałeś materiał? Sprawdź, ile już wiesz — spokojnie, z natychmiastową informacją zwrotną po każdej odpowiedzi.'}
-        </p>
-        <button className="glowny duzy-cta szeroki" onClick={onGotowe}>
-          {ctaTekst || 'Przerobiłem materiał — przejdź do sprawdzenia →'}
-        </button>
-      </div>
+      {/* CTA do sprawdzenia tylko przy materiale statycznym — widok samych
+          rozszerzeń (material=null) nie prowadzi do (potencjalnie pustego) quizu */}
+      {material && (
+        <div className="karta nauka-cta">
+          {przerobiony && <span className="cel-plakietka ok">✓ Materiał już przerobiony</span>}
+          <p className="cichy">
+            {ctaOpis ||
+              'Przeczytałeś materiał? Sprawdź, ile już wiesz — spokojnie, z natychmiastową informacją zwrotną po każdej odpowiedzi.'}
+          </p>
+          <button className="glowny duzy-cta szeroki" onClick={onGotowe}>
+            {ctaTekst || 'Przerobiłem materiał — przejdź do sprawdzenia →'}
+          </button>
+        </div>
+      )}
 
       {onZadajPytanie && <PytanieBox onZadajPytanie={onZadajPytanie} />}
     </div>

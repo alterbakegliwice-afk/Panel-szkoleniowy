@@ -1,8 +1,12 @@
 // ROZSZERZENIA MATERIAŁU — karty wiedzy tworzone w czasie działania przez
 // Właściciela z oflagowanych pytań zespołu (Pytania do Mistrza → warstwa
 // PRAKTYCZNA, SPEC §4c). Statyczne karty żyją w materialy_nauka.json (wpieczone
-// w build); rozszerzenia żyją w stanie (localStorage, append-only), żeby
-// Właściciel mógł rozwijać materiał z przeglądarki bez przebudowy kodu.
+// w build); rozszerzenia żyją w stanie (localStorage), żeby Właściciel mógł
+// rozwijać materiał z przeglądarki bez przebudowy kodu.
+//
+// UWAGA: rozszerzenia to EDYTOWALNY materiał (edycja/usuwanie w OwnerPanel), a
+// NIE log append-only jak wyniki/nauka/pytania. To bezpieczne, bo karty są
+// tylko materiałem do nauki — nie wchodzą do banku pytań, nie liczą CCP/procentu.
 //
 // Kształt karty (zgodny z materialy_nauka.json → tomy[].karty[]):
 //   { id, tom, tytul, punkty:[string], zrodlo, zPytania (id źródłowego pytania), data }
@@ -10,6 +14,8 @@
 import { listaTomow } from './progress.js'
 import { TECHNIKA } from './technika.js'
 import { SPRZATANIE } from './sprzatanie.js'
+import { ROZWOJ } from './rozwoj.js'
+import { PRZEDSIEBIORCA } from './nauka.js'
 
 let licznikId = 0
 
@@ -26,14 +32,21 @@ function polaKarty({ tom, tytul, punkty, zrodlo }) {
   }
 }
 
-// Lista tematów, do których można przypiąć kartę (tomy banku + Technika + Sprzątanie).
+// Lista tematów, do których można przypiąć kartę. MUSI pokrywać wszystkie hosty
+// ekranu nauki (Learning), bo kartyTomu() kluczuje karty po tej samej nazwie,
+// którą host podaje: tomy banku, maszyny Techniki, strefy Sprzątania, obszary
+// Rozwoju (o.nazwa) i moduły Przedsiębiorcy (m.tytul). Pominięcie hosta =
+// niemożliwy wybór tomu docelowego w formularzu karty (karta trafia w próżnię).
 // Jedno źródło dla formularza pytania (PytaniaMistrza) i redakcji kart (OwnerPanel).
 export function listaTematow(pytaniaBank) {
-  return [
+  const wszystkie = [
     ...listaTomow(pytaniaBank || []),
     ...TECHNIKA.maszyny.map((m) => m.nazwa),
-    ...SPRZATANIE.strefy.map((s) => s.nazwa)
+    ...SPRZATANIE.strefy.map((s) => s.nazwa),
+    ...ROZWOJ.obszary.map((o) => o.nazwa),
+    ...PRZEDSIEBIORCA.moduly.map((m) => m.tytul)
   ]
+  return [...new Set(wszystkie)] // dedup — brak zdublowanych <option> przy kolizji nazw
 }
 
 export function nowaKarta({ tom, tytul, punkty, zrodlo, zPytania = '' }, terazISO = new Date().toISOString()) {
@@ -46,10 +59,16 @@ export function nowaKarta({ tom, tytul, punkty, zrodlo, zPytania = '' }, terazIS
 }
 
 // Edycja karty w miejscu (redakcja): tylko treść, zachowuje id/zPytania/data.
+// Obrona w głąb: zmiana, która wyzerowałaby tom/tytuł/punkty (i tak odrzuconą
+// przez filtrujRozszerzenia), jest ignorowana — karta zostaje bez zmian, nie
+// znika cicho ze stanu. UI (KartaEdycja) i tak blokuje pusty zapis.
 export function aktualizujKarte(lista, id, zmiany) {
-  return (Array.isArray(lista) ? lista : []).map((k) =>
-    k && k.id === id ? { ...k, ...polaKarty({ tom: k.tom, tytul: k.tytul, punkty: k.punkty, zrodlo: k.zrodlo, ...zmiany }) } : k
-  )
+  return (Array.isArray(lista) ? lista : []).map((k) => {
+    if (!k || k.id !== id) return k
+    const po = { ...k, ...polaKarty({ tom: k.tom, tytul: k.tytul, punkty: k.punkty, zrodlo: k.zrodlo, ...zmiany }) }
+    if (!po.tom || !po.tytul || !po.punkty.length) return k
+    return po
+  })
 }
 
 export function usunKarte(lista, id) {

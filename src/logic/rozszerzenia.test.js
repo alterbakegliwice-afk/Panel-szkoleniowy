@@ -84,6 +84,13 @@ describe('aktualizujKarte', () => {
     expect(wynik[1].tytul).toBe('B2')
     expect(aktualizujKarte(null, 'x', {})).toEqual([])
   })
+
+  it('obrona w głąb: zmiana zerująca kartę (puste punkty/tytuł/tom) jest ignorowana', () => {
+    const k = nowaKarta({ tom: 'X', tytul: 'a', punkty: ['1'] })
+    expect(aktualizujKarte([k], k.id, { punkty: ['', '   '] })).toEqual([k]) // bez zmian
+    expect(aktualizujKarte([k], k.id, { tytul: '   ' })).toEqual([k])
+    expect(aktualizujKarte([k], k.id, { tom: '' })).toEqual([k])
+  })
 })
 
 describe('usunKarte', () => {
@@ -109,6 +116,15 @@ describe('listaTematow', () => {
 
   it('pusty/niepoprawny bank → same tematy paneli praktycznych', () => {
     expect(listaTematow(undefined).length).toBeGreaterThan(0)
+  })
+
+  it('pokrywa WSZYSTKIE hosty Learning: Technika, Sprzątanie, Rozwój, Przedsiębiorca', () => {
+    const t = listaTematow([])
+    // obszar Rozwoju i moduł Przedsiębiorcy MUSZĄ być wybieralne jako tom docelowy
+    expect(t).toContain('Współpraca') // ROZWOJ.obszary
+    expect(t.some((x) => /Bezpieczeństwo psychologiczne|Delegowanie/.test(x))).toBe(true) // PRZEDSIEBIORCA.moduly
+    // bez duplikatów (Set)
+    expect(new Set(t).size).toBe(t.length)
   })
 })
 

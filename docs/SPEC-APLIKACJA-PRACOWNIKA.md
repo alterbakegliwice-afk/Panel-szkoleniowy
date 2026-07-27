@@ -184,8 +184,9 @@ oraz **praktyczna** (flaga → publikacja karty), dodana 2026-07-23.
   (log append-only w `stan.pytania`, ten sam localStorage co WYNIK/NAUKA/
   KOLEJKA — sprawa wewnętrzna Panelu, nie kontrakt originu jak zgłoszenia).
   Kształt wpisu: `{id, id_prac, imie, tom, tresc, data, status: 'nowe'|
-  'odpowiedziane', odpowiedz, dodacDoMaterialu, kartaUtworzona}`. `tom: ''`
-  = pytanie ogólne. `kartaUtworzona: true` = z pytania powstała już karta.
+  'odpowiedziane', odpowiedz, dodacDoMaterialu}`. `tom: ''` = pytanie ogólne.
+  „Czy z pytania powstała karta” NIE jest osobną flagą — liczy się z istnienia
+  karty rozszerzenia o `zPytania === id` (jedno źródło prawdy, bez desynchronizacji).
 - `Learning.jsx` (uniwersalny ekran nauki — tomy banku, Technika, Sprzątanie,
   moduł Przedsiębiorcy, Rozwój) ma opcjonalne propy `onZadajPytanie(tresc)`
   (mini-formularz pod materiałem) i `kartyDodatkowe[]` (karty-rozszerzenia
@@ -199,19 +200,24 @@ oraz **praktyczna** (flaga → publikacja karty), dodana 2026-07-23.
 
 ### Warstwa praktyczna — `src/logic/rozszerzenia.js` (2026-07-23)
 
-- Karty tworzone w czasie działania żyją w `stan.rozszerzenia` (localStorage,
-  append-only), **nie** w `materialy_nauka.json` (ten jest wpieczony w build).
-  Właściciel rozwija materiał z przeglądarki bez przebudowy kodu.
+- Karty tworzone w czasie działania żyją w `stan.rozszerzenia` (localStorage),
+  **nie** w `materialy_nauka.json` (ten jest wpieczony w build). Właściciel
+  rozwija materiał z przeglądarki bez przebudowy kodu. UWAGA: rozszerzenia to
+  **edytowalny materiał** (edycja/usuwanie), a NIE log append-only jak
+  wyniki/nauka/pytania — bezpieczne, bo karty nie wchodzą do banku pytań i nie
+  liczą CCP/procentu (to tylko treść do nauki).
 - Kształt karty (zgodny z `materialy_nauka.json → tomy[].karty[]`):
   `{id, tom, tytul, punkty:[string], zrodlo, zPytania (id pytania), data}`.
 - `KartaForm` (w `PytaniaMistrza.jsx`) wypełnia **szkic** z odpowiedzi
   (`szkicPunktow()` dzieli na punkty), Właściciel dopracowuje tytuł/punkty i
-  wybiera tom docelowy → `onDodajKarte` dopisuje kartę i oznacza pytanie
-  `kartaUtworzona:true` (znika z listy „do rozszerzenia”).
+  wybiera tom docelowy → `onDodajKarte` dopisuje kartę. Pytanie znika z listy
+  „do rozszerzenia”, bo skrzynka liczy „ma kartę” z istnienia karty (`zPytania`).
 - `kartyTomu(tom, rozszerzenia)` — merge przy renderze: `Learning` skleja karty
   statyczne + rozszerzenia danego tematu (nazwa tomu/maszyny/strefy/modułu).
-- `listaTematow(pytaniaBank)` — jedno źródło listy tematów (tomy banku + Technika
-  + Sprzątanie) dla formularza pytania i redakcji kart (koniec z duplikacją).
+- `listaTematow(pytaniaBank)` — jedno źródło listy tematów. MUSI pokrywać
+  wszystkie hosty Learning: tomy banku + Technika + Sprzątanie + obszary Rozwoju
+  + moduły Przedsiębiorcy (inaczej karta dla pominiętego hosta nie ma wyboru
+  tomu docelowego). Deduplikuje nazwy.
 - Backup: `filtrujRozszerzenia()` w `store.js` (`eksportKopii`/`kopieDoStanu`).
 
 ### Redakcja kart — `OwnerPanel.jsx` → `RedakcjaKart` (2026-07-23)
@@ -219,9 +225,11 @@ oraz **praktyczna** (flaga → publikacja karty), dodana 2026-07-23.
 - Konfiguracja → sekcja „Karty wiedzy z pytań”: lista kart pogrupowana po tomie,
   edycja w miejscu (`KartaEdycja`: tom/tytuł/punkty/źródło) i usuwanie z potwierdzeniem.
 - `aktualizujKarte(lista, id, zmiany)` / `usunKarte(lista, id)` w `rozszerzenia.js`
-  (czyste, testowalne; wspólna normalizacja pól co `nowaKarta`).
-- Usunięcie karty **odblokowuje pytanie źródłowe**: App zeruje `kartaUtworzona`,
-  więc pytanie wraca do listy „do rozszerzenia” (brak osieroconego znacznika).
+  (czyste, testowalne; wspólna normalizacja pól co `nowaKarta`; `aktualizujKarte`
+  ignoruje zmianę, która wyzerowałaby kartę — obrona w głąb).
+- Usunięcie karty **odblokowuje pytanie źródłowe automatycznie**: „ma kartę”
+  liczy się z istnienia karty (`zPytania`), więc po usunięciu przycisk „Utwórz
+  kartę” wraca sam — brak osobnej flagi, brak osieroconego znacznika.
 
 ## 5. Poza zakresem (świadomie)
 

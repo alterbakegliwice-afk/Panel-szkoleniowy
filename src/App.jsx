@@ -121,33 +121,22 @@ export default function App() {
     }))
 
   // Praktyka (SPEC §4c): Właściciel zamienia oflagowane pytanie w kartę materiału.
-  // Karta trafia do stanu (append-only), a pytanie dostaje znacznik kartaUtworzona,
-  // więc znika z listy „do rozszerzenia" w skrzynce.
+  // „Czy pytanie ma już kartę" wyprowadzamy z istnienia karty (zPytania) — jedno
+  // źródło prawdy, bez osobnej flagi, która mogłaby się rozjechać ze stanem kart.
   const dodajKarteRozszerzenia = ({ tom, tytul, punkty, zrodlo, zPytania }) =>
     setStan((s) => ({
       ...s,
-      rozszerzenia: [...(s.rozszerzenia || []), nowaKarta({ tom, tytul, punkty, zrodlo, zPytania })],
-      pytania: zPytania
-        ? (s.pytania || []).map((p) => (p.id === zPytania ? { ...p, kartaUtworzona: true } : p))
-        : s.pytania
+      rozszerzenia: [...(s.rozszerzenia || []), nowaKarta({ tom, tytul, punkty, zrodlo, zPytania })]
     }))
 
   // Redakcja kart: edycja w miejscu (tylko treść) i usuwanie. Usunięcie karty
-  // „odblokowuje" pytanie źródłowe — wraca do listy „do rozszerzenia" w skrzynce.
+  // automatycznie „odblokowuje" pytanie źródłowe (przycisk „Utwórz kartę" wraca),
+  // bo widoczność liczy się z istnienia karty — nic nie trzeba zerować.
   const edytujKarteRozszerzenia = (id, zmiany) =>
     setStan((s) => ({ ...s, rozszerzenia: aktualizujKarte(s.rozszerzenia || [], id, zmiany) }))
 
   const usunKarteRozszerzenia = (id) =>
-    setStan((s) => {
-      const karta = (s.rozszerzenia || []).find((k) => k.id === id)
-      return {
-        ...s,
-        rozszerzenia: usunKarte(s.rozszerzenia || [], id),
-        pytania: karta && karta.zPytania
-          ? (s.pytania || []).map((p) => (p.id === karta.zPytania ? { ...p, kartaUtworzona: false } : p))
-          : s.pytania
-      }
-    })
+    setStan((s) => ({ ...s, rozszerzenia: usunKarte(s.rozszerzenia || [], id) }))
 
   // Punkt wejścia z ekranu nauki (Learning) — tożsamość zależy od sesji;
   // wspólny dla tomów banku, Techniki/Sprzątania, Przedsiębiorcy i Rozwoju.
@@ -295,6 +284,7 @@ export default function App() {
           pracownik={pracownik}
           pytania={stan.pytania || []}
           pytaniaBank={pytania}
+          rozszerzenia={stan.rozszerzenia || []}
           onDodaj={dodajPytanie}
         />
       )}
@@ -303,6 +293,7 @@ export default function App() {
           tryb="zarzad"
           pytania={stan.pytania || []}
           pytaniaBank={pytania}
+          rozszerzenia={stan.rozszerzenia || []}
           onOdpowiedz={odpowiedzNaPytanie}
           onPrzelaczFlage={przelaczFlagePytania}
           onDodajKarte={dodajKarteRozszerzenia}

@@ -131,7 +131,8 @@ function KopiaZapasowa({ stan, pobierz, onKopia }) {
 
 // Redakcja kart wiedzy utworzonych z pytań (stan.rozszerzenia). Pogrupowane po
 // tomie; każda karta edytowalna w miejscu lub do usunięcia. Usunięcie odblokowuje
-// pytanie źródłowe (App: kartaUtworzona → false).
+// pytanie źródłowe automatycznie — skrzynka Pytań liczy „ma kartę" z istnienia
+// karty (zPytania), więc przycisk „Utwórz kartę" wraca sam.
 function RedakcjaKart({ rozszerzenia, tematy, onEdytuj, onUsun }) {
   const [edycja, setEdycja] = useState(null) // id edytowanej karty
 

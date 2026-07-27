@@ -8,8 +8,12 @@ const ETYKIETY_STATUSU = { nowe: 'nowe', odpowiedziane: 'odpowiedziane' }
 // z odpowiedziami. tryb 'zarzad' (tylko Właściciel — jak w Zgloszeniach):
 // skrzynka, odpowiedź, oznaczenie „do rozszerzenia materiału" i — po odpowiedzi
 // — zamiana pytania w kartę wiedzy tomu (warstwa PRAKTYCZNA, SPEC §4c).
-export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, onDodaj, onOdpowiedz, onPrzelaczFlage, onDodajKarte }) {
+export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, rozszerzenia = [], onDodaj, onOdpowiedz, onPrzelaczFlage, onDodajKarte }) {
   const tematy = listaTematow(pytaniaBank)
+  // „Czy pytanie ma już kartę" liczymy z istnienia karty (zPytania) — jedno
+  // źródło prawdy, brak osobnej flagi, która mogłaby się rozjechać ze stanem.
+  const idZKarta = new Set(rozszerzenia.map((k) => k.zPytania).filter(Boolean))
+  const maKarte = (id) => idZKarta.has(id)
 
   if (tryb === 'pracownik') {
     return (
@@ -17,6 +21,7 @@ export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, 
         pracownik={pracownik}
         tematy={tematy}
         pytania={pytania.filter((p) => p.id_prac === pracownik.id_prac)}
+        maKarte={maKarte}
         onDodaj={onDodaj}
       />
     )
@@ -25,6 +30,7 @@ export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, 
     <Skrzynka
       pytania={pytania}
       tematy={tematy}
+      maKarte={maKarte}
       onOdpowiedz={onOdpowiedz}
       onPrzelaczFlage={onPrzelaczFlage}
       onDodajKarte={onDodajKarte}
@@ -32,7 +38,7 @@ export default function PytaniaMistrza({ tryb, pracownik, pytania, pytaniaBank, 
   )
 }
 
-function Formularz({ pracownik, tematy, pytania, onDodaj }) {
+function Formularz({ pracownik, tematy, pytania, maKarte, onDodaj }) {
   const [temat, setTemat] = useState('')
   const [tresc, setTresc] = useState('')
   const [info, setInfo] = useState('')
@@ -88,7 +94,7 @@ function Formularz({ pracownik, tematy, pytania, onDodaj }) {
               </div>
               <p>{p.tresc}</p>
               {p.odpowiedz && <p className="odpowiedz-zgloszenia">↳ {p.odpowiedz}</p>}
-              {p.kartaUtworzona ? (
+              {maKarte(p.id) ? (
                 <span className="ccp-tag ok">✅ Twoje pytanie jest już kartą wiedzy w „{p.tom || 'Ogólne'}"</span>
               ) : p.dodacDoMaterialu ? (
                 <span className="ccp-tag ok">📌 wejdzie do materiału „{p.tom || 'Ogólne'}"</span>
@@ -101,7 +107,7 @@ function Formularz({ pracownik, tematy, pytania, onDodaj }) {
   )
 }
 
-function Skrzynka({ pytania, tematy, onOdpowiedz, onPrzelaczFlage, onDodajKarte }) {
+function Skrzynka({ pytania, tematy, maKarte, onOdpowiedz, onPrzelaczFlage, onDodajKarte }) {
   const [filtr, setFiltr] = useState('nowe')
   const [odpowiedzi, setOdpowiedzi] = useState({})
   const [flagi, setFlagi] = useState({})
@@ -164,7 +170,7 @@ function Skrzynka({ pytania, tematy, onOdpowiedz, onPrzelaczFlage, onDodajKarte 
                     Odpowiedz
                   </button>
                 </div>
-              ) : p.kartaUtworzona ? (
+              ) : maKarte(p.id) ? (
                 <span className="ccp-tag ok">✓ karta wiedzy utworzona z tego pytania</span>
               ) : (
                 <div className="rzad">

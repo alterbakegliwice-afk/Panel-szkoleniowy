@@ -158,8 +158,8 @@ export function teraz() {
 // Log wyników to „wartość projektu" (schema) i żyje tylko w localStorage jednej
 // przeglądarki. Backup ratuje historię przed czyszczeniem cache / zmianą urządzenia.
 // 2026-07-14: schemat urósł o logi Work Profile (profile, praktyki, obserwacje)
-// i o pytania do Mistrza (warstwa teoretyczna) oraz rozszerzenia materiału
-// (karty z pytań, logic/rozszerzenia.js).
+//             i o pytania do Mistrza (stan.pytania, warstwa teoretyczna).
+// 2026-07-23: rozszerzenia materiału (karty z pytań, logic/rozszerzenia.js).
 // Starsze kopie (bez tych pól) wczytują się poprawnie: kopieDoStanu traktuje je
 // jako opcjonalne (brak → []). Wersja jest informacyjna, nie blokuje importu.
 const WERSJA_KOPII = '2026-07-23'
